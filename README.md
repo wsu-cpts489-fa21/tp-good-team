@@ -20,7 +20,7 @@ This repository implements SpeedScore, a web app that enables users to log, anal
       <th colspan="2"></th><th colspan="6">Story Point Counts</th><th colspan="2"></th>
     </tr> 
     <tr>
-      <th>Issue</th><th>Linked PR</th><th>Total</th><th>TM1</th><th>TM2</th><th>TM3</th><th>TM4</th><th>TM5</th><th>% Complete</th><th>Notes</th>
+      <th>Issue</th><th>Linked PR</th><th>Total</th><th>H.J.</th><th>E.A.</th><th>C.H.</th><th>J.S.</th><th>TM5</th><th>% Complete</th><th>Notes</th>
     </tr>
   </thead> 
   <tbody>
