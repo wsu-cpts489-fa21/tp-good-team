@@ -6,8 +6,8 @@ This repository implements SpeedScore, a web app that enables users to log, anal
 
 ## Team members
 1. **Team leader:** *Hekili Jordan (GitHub Id)*
-1. *Team member 2 name (GitHub Id)*
-1. *Team member 3 name (GitHub Id)*
+1. *Team member 2 Eric Alvarez (GitHub Id)*
+1. *Team member 3 Cole Hensley (GitHub Id)*
 1. *Team member 4 Jeremiah Strzelczyk JeremiahStrzelczyk*
 
 ## Milestone 0 (Due 11/19)
