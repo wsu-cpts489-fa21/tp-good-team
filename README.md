@@ -2,9 +2,10 @@
 
 This repository implements SpeedScore, a web app that enables users to log, analyze, share, and discuss their speedgolf rounds and experiences. SpeedScore is built using MongoDB, Express.js, React.js, and Node.js.
 
-## Link to Deployed App
+## Project Links
 
 //TODO: You can access our team's deployed app at [this Heroku site](https://ourapp.herokuapp.com)
+[Project Board](https://github.com/wsu-cpts489-fa21/tp-good-team/projects/1)
 
 ## Team members
 
