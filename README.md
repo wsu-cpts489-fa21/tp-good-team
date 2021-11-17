@@ -5,6 +5,7 @@ This repository implements SpeedScore, a web app that enables users to log, anal
 ## Project Links
 
 //TODO: You can access our team's deployed app at [this Heroku site](https://ourapp.herokuapp.com)
+
 [Project Board](https://github.com/wsu-cpts489-fa21/tp-good-team/projects/1)
 
 ## Team members
