@@ -25,7 +25,7 @@ This repository implements SpeedScore, a web app that enables users to log, anal
   </thead> 
   <tbody>
     <tr>
-      <td><a href="https://github.com/wsu-cpts489-fa21/tp-good-team/issues/10">Issue #10</a></td><td><a href="https://github.com/wsu-cpts489-fa21/tp-good-team/pull/58">PR #58</a></td><td>5</td><td>3</td><td>1</td><td>1</td><td>5</td><td>0</td><td>100</td><td></td>
+      <td><a href="https://github.com/wsu-cpts489-fa21/tp-good-team/issues/10">Issue #10</a></td><td><a href="https://github.com/wsu-cpts489-fa21/tp-good-team/pull/58">PR #58</a></td><td>5</td><td>0</td><td>0</td><td>0</td><td>5</td><td>0</td><td>100</td><td></td>
     </tr>
     <tr>
      <td><a href="https://github.com/issue">Issue #</a></td><td><a href="https://github.com/PR">PR #</a></td><td>3</td><td>0</td><td>0</td><td>0</td><td>0.8</td><td>0.4</td><td>40</td><td>Updated database schema. Updated server routes. Did not implement UI.</td>
