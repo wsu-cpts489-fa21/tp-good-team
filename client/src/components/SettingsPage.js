@@ -7,7 +7,7 @@ import logo from "../images/sslogo2.png";
  * 2. Fix error boxes to work properly
  *****************************************************************/
 
-class ProfileSettings extends React.Component {
+class SettingsPage extends React.Component {
   render() {
     return (
       <div
@@ -568,4 +568,4 @@ class ProfileSettings extends React.Component {
   } //render
 } //class
 
-export default ProfileSettings;
+export default SettingsPage;

@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logo from "../images/sslogo.png";
 import profilePic from "../images/DefaultProfilePic.jpg";
 import AppMode from "./AppMode";
+import SettingsPage from "./SettingsPage";
 
 class NavBar extends React.Component {
   render() {
@@ -54,18 +55,27 @@ class NavBar extends React.Component {
             {/*****************************************************************
              * Account and Profile Settings
              *****************************************************************           */}
-            <button
-              id="profileBtn"
-              type="button"
-              className={"navbar-btn navbar-profile-btn "}
-              aria-label="Account and Profile Settings"
-              style={{
-                backgroundImage:
-                  this.props.userData.identityData.profilePic === ""
-                    ? `url(${profilePic})`
-                    : `url(${this.props.userData.identityData.profilePic})`,
-              }}
-            ></button>
+            {this.props.mode !== "LoginMode" && !this.props.modalOpen ? (
+              <button
+                id="profileBtn"
+                type="button"
+                onClick={() => {
+                  this.props.toggleModalOpen();
+                  this.props.setMode("SettingsMode");
+                }}
+                className={
+                  "navbar-btn navbar-profile-btn " +
+                  (this.props.menuOpen ? " disabled" : "")
+                }
+                aria-label="Account and Profile Settings"
+                style={{
+                  backgroundImage:
+                    this.props.userData.identityData.profilePic === ""
+                      ? `url(${profilePic})`
+                      : `url(${this.props.userData.identityData.profilePic})`,
+                }}
+              ></button>
+            ) : null}
           </div>
         ) : (
           <div className="navbar-right-items"></div>
