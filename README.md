@@ -1,6 +1,8 @@
 # CptS 489 Team Project: good-team
 
-This repository implements SpeedScore, a web app that enables users to log, analyze, share, and discuss their speedgolf rounds and experiences. SpeedScore is built using MongoDB, Express.js, React.js, and Node.js
+This repository implements SpeedScore, a web app that enables users to log, analyze, share, and discuss their speedgolf rounds and experiences.
+
+SpeedScore is built using MongoDB, Express.js, React.js, and Node.js
 
 ## Project Links
 
