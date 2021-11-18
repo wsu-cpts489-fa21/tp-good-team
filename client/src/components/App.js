@@ -118,10 +118,7 @@ class App extends React.Component {
    * User interface state management methods
    ***************************************************************** */
 
-  /*****************************************************************
-   * Updated to keep track of a previos mode when user exits popup
-   *  modals
-   ***************************************************************** */
+  //Updated to keep track of a previos mode when user exits popup modals
   setMode = (newMode) => {
     this.setState({
       prevMode: this.state.mode,
@@ -137,7 +134,9 @@ class App extends React.Component {
     this.setState((prevState) => ({ dialogOpen: !prevState.dialogOpen }));
   };
 
-  //Account Management methods
+  /*****************************************************************
+   * Account Management methods
+   ***************************************************************** */
 
   accountExists = async (email) => {
     const res = await fetch("/user/" + email);
@@ -191,7 +190,9 @@ class App extends React.Component {
     this.setState({ userData: data });
   };
 
-  //Round Management methods
+  /*****************************************************************
+   * Round Management methods
+   ***************************************************************** */
 
   addRound = async (newRoundData) => {
     const url = "/rounds/" + this.state.userData.accountData.id;
@@ -335,6 +336,9 @@ class App extends React.Component {
                 userId={this.state.userId}
               />
             ),
+            /*****************************************************************
+             * Added Settings mode to be part of the render system.
+             *****************************************************************           */
             SettingsMode: (
               <SettingsPage
                 setMode={this.setMode}

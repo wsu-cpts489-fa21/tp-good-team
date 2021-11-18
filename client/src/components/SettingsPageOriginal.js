@@ -2,30 +2,6 @@ import React from "react";
 import logo from "../images/sslogo2.png";
 
 class SettingsPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      accountExpanded: false,
-      nameAndPictureExpanded: false,
-      speedgolfInfoExpanded: false,
-    };
-  }
-  toggleAccount = () => {
-    this.setState((prevState) => ({
-      accountExpanded: !prevState.accountExpanded,
-    }));
-  };
-  toggleNameAndPicture = () => {
-    this.setState((prevState) => ({
-      nameAndPictureExpanded: !prevState.nameAndPictureExpanded,
-    }));
-  };
-
-  toggleSpeedgolfInfo = () => {
-    this.setState((prevState) => ({
-      speedgolfInfoExpanded: !prevState.speedgolfInfoExpanded,
-    }));
-  };
   render() {
     return (
       <div
@@ -69,19 +45,12 @@ class SettingsPage extends React.Component {
         </p>
         <form id="editProfileForm" className="centered" novalidate>
           <div id="profileFormAccordion" className="accordion">
-            {/*****************************************************************
-             * Account Section
-             *****************************************************************           */}
             <div className="accordion-item">
               <fieldset>
                 <h2 className="accordion-header" id="accountHeader">
                   <button
                     id="accountSettingsBtn"
-                    className={
-                      "accordion-button " +
-                      (!this.state.accountExpanded ? " collapsed" : " show")
-                    }
-                    onClick={() => this.toggleAccount()}
+                    className="accordion-button"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#accountSettingsPanel"
@@ -93,10 +62,7 @@ class SettingsPage extends React.Component {
                 </h2>
                 <div
                   id="accountSettingsPanel"
-                  className={
-                    "accordion-collapse " +
-                    (!this.state.accountExpanded ? " collapse" : " show")
-                  }
+                  className="accordion-collapse collapse show"
                   aria-labelledby="accountHeader"
                   data-bs-parent="#profileFormAccordion"
                 >
@@ -194,14 +160,7 @@ class SettingsPage extends React.Component {
                 <h2 id="profileHeader" className="accordion-header">
                   <button
                     id="profileSettingsBtn"
-                    className={
-                      "accordion-button " +
-                      (!this.state.nameAndPictureExpanded
-                        ? " collapsed"
-                        : " show")
-                    }
-                    onClick={() => this.toggleNameAndPicture()}
-                    // className="accordion-button collapsed"
+                    className="accordion-button collapsed"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#profileSettingsPanel"
@@ -213,11 +172,8 @@ class SettingsPage extends React.Component {
                 </h2>
                 <div
                   id="profileSettingsPanel"
-                  className={
-                    "accordion-collapse " +
-                    (!this.state.nameAndPictureExpanded ? " collapse" : " show")
-                  }
-                  // className="accordion-collapse "
+                  className="accordion-collapse collapse"
+                  aria-labelledby="profileHeader"
                   data-bs-parent="#profileFormAccordion"
                 >
                   <div className="accordion-body">
@@ -272,22 +228,12 @@ class SettingsPage extends React.Component {
                 </div>
               </fieldset>
             </div>
-
-            {/*****************************************************************
-             * Speedgolf Info
-             *****************************************************************           */}
             <div className="accordion-item">
               <fieldset>
                 <h2 id="sgHeader" className="accordion-header">
                   <button
                     id="sgSettingsBtn"
-                    className={
-                      "accordion-button " +
-                      (!this.state.speedgolfInfoExpanded
-                        ? " collapsed"
-                        : " show")
-                    }
-                    onClick={() => this.toggleSpeedgolfInfo()}
+                    className="accordion-button collapsed"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#sgSettingsPanel"
@@ -299,10 +245,7 @@ class SettingsPage extends React.Component {
                 </h2>
                 <div
                   id="sgSettingsPanel"
-                  className={
-                    "accordion-collapse " +
-                    (!this.state.speedgolfInfoExpanded ? " collapse" : " show")
-                  }
+                  className="accordion-collapse collapse"
                   aria-labelledby="sgHeader"
                   data-bs-parent="#profileFormAccordion"
                 >

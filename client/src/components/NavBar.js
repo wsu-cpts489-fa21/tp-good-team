@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logo from "../images/sslogo.png";
 import profilePic from "../images/DefaultProfilePic.jpg";
 import AppMode from "./AppMode";
-import SettingsPage from "./SettingsPage";
 
 class NavBar extends React.Component {
   render() {
