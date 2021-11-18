@@ -131,7 +131,7 @@ class App extends React.Component {
   };
 
   toggleModalOpen = () => {
-    this.setState((prevState) => ({ dialogOpen: !prevState.dialogOpen }));
+    this.setState((prevState) => ({ modalOpen: !prevState.modalOpen }));
   };
 
   /*****************************************************************
