@@ -11,7 +11,7 @@ You can acces our team's [Project Board](https://github.com/wsu-cpts489-fa21/tp-
 ## Team members
 
 1. **Team leader:** _Hekili Jordan HekiliJordan_
-1. _Team member 2: Eric Alvarez (GitHub Id)_
+1. _Team member 2: Eric Alvarez Eric-Alz_
 1. _Team member 3: Cole Hensley cjhWSU_
 1. _Team member 4: Jeremiah Strzelczyk [JeremiahStrzelczyk](https://github.com/JeremiahStrzelczyk)
 
