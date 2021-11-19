@@ -4,13 +4,15 @@ import RoundsMode  from './RoundsMode.js';
 import RoundsTable from './RoundsTable.js';
 import RoundForm from './RoundForm.js';
 import FloatingButton from './FloatingButton.js'
+import DeleteDialog from './DeleteDialog.js'
 
 class RoundsPage extends React.Component {
     constructor(props) {
             super(props);
             this.state = {mode: RoundsMode.ROUNDSTABLE,
                           deleteId: -1,
-                          editId: -1};        
+                          editId: -1,
+                          deleteDialogOpen: false};        
     }
 
     setMode = (newMode) => {
@@ -24,11 +26,30 @@ class RoundsPage extends React.Component {
     }
     
     initiateDeleteRound = (val) => {
-        this.setState({deleteId: val},
-        () => alert("Confirm delete goes here!"));
+        console.log('initiate delete round')
+        this.setState({deleteId: val,
+                       deleteDialogOpen: true});
+    }
+    
+    cancelDeleteRound = () => {
+        this.setState({
+            deleteDialogOpen: false
+        })
     }
 
     render() {
+        if (this.state.deleteDialogOpen) {
+            return (
+                <>
+                <div class="space">
+                    <DeleteDialog deleteRound={this.props.deleteRound}
+                                    deleteDialogOpen={this.deleteDialogOpen}
+                                    deleteId={this.state.deleteId}
+                                    cancelDeleteRound={this.cancelDeleteRound}/>
+                </div>
+                </>
+            )
+        }
         switch (this.state.mode) {
         case RoundsMode.ROUNDSTABLE: 
             return (
@@ -48,6 +69,10 @@ class RoundsPage extends React.Component {
                         menuOpen={this.props.menuOpen}
                         action={()=>this.setState({mode: RoundsMode.LOGROUND},
                                     this.props.toggleModalOpen)} />
+                    {this.state.deleteDialogOpen ? <DeleteDialog deleteRound={this.props.deleteRound}
+                                deleteDialogOpen={this.deleteDialogOpen}
+                                deleteId={this.state.deleteId}/> 
+                : null }
             </>
             );
         case RoundsMode.LOGROUND:
