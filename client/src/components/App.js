@@ -24,6 +24,8 @@ import CoursesPage from "./CoursesPage.js";
 import BuddiesPage from "./BuddiesPage.js";
 import SideMenu from "./SideMenu.js";
 import AppMode from "./AppMode.js";
+import SettingsPage from "./SettingsPage";
+
 
 library.add(
   faWindowClose,
@@ -48,6 +50,8 @@ class App extends React.Component {
       mode: AppMode.LOGIN,
       menuOpen: false,
       modalOpen: false,
+      prevMode: AppMode.LOGIN,
+
       userData: {
         accountData: {},
         identityData: {},
@@ -112,10 +116,17 @@ class App extends React.Component {
     });
   };
 
-  //User interface state management methods
+  /*****************************************************************
+   * User interface state management methods
+   ***************************************************************** */
 
+  //Updated to keep track of a previos mode when user exits popup modals
   setMode = (newMode) => {
-    this.setState({ mode: newMode });
+    this.setState({
+      prevMode: this.state.mode,
+      mode: newMode,
+    });
+
   };
 
   toggleMenuOpen = () => {
@@ -123,10 +134,13 @@ class App extends React.Component {
   };
 
   toggleModalOpen = () => {
-    this.setState((prevState) => ({ dialogOpen: !prevState.dialogOpen }));
+    this.setState((prevState) => ({ modalOpen: !prevState.modalOpen }));
   };
 
-  //Account Management methods
+  /*****************************************************************
+   * Account Management methods
+   ***************************************************************** */
+
 
   accountExists = async (email) => {
     const res = await fetch("/user/" + email);
@@ -140,7 +154,8 @@ class App extends React.Component {
   authenticateUser = async (id, pw) => {
     const url = "/auth/login?username=" + id + "&password=" + pw;
     const res = await fetch(url, { method: "POST" });
-    if (res.status == 200) {
+    if (res.status === 200) {
+
       //successful login!
       return true;
     } else {
@@ -167,7 +182,8 @@ class App extends React.Component {
       method: "POST",
       body: JSON.stringify(data),
     });
-    if (res.status == 201) {
+    if (res.status === 201) {
+
       return "New account created with email " + data.accountData.id;
     } else {
       const resText = await res.text();
@@ -180,7 +196,9 @@ class App extends React.Component {
     this.setState({ userData: data });
   };
 
-  //Round Management methods
+  /*****************************************************************
+   * Round Management methods
+   ***************************************************************** */
 
   addRound = async (newRoundData) => {
     const url = "/rounds/" + this.state.userData.accountData.id;
@@ -193,7 +211,8 @@ class App extends React.Component {
       method: "POST",
       body: JSON.stringify(newRoundData),
     });
-    if (res.status == 201) {
+    if (res.status === 201) {
+
       const newRounds = [...this.state.userData.rounds];
       newRounds.push(newRoundData);
       const newUserData = {
@@ -210,45 +229,30 @@ class App extends React.Component {
     }
   };
 
-  updateRound = async (newRoundData, index) => {
-    const url =
-      "/rounds/" +
-      this.state.userData.accountData.id +
-      "/" +
-      this.state.userData.rounds[index].id;
-    const res = await fetch(url, {
-      method: "PUT",
-      headers: {
-        Accept: "application/json",
-        "Content-type": "application/json",
-      },
-      method: "PUT",
-      body: JSON.stringify(newRoundData),
-    });
-
-    if (res.status == 200) {
-      const newRounds = [...this.state.userData.rounds];
-      let r;
-      for (r = 0; r < newRounds.length; ++r) {
-        if (newRounds[r].roundNum === newRoundData.roundNum) {
-          break;
-        }
+  updateRound = (newRoundData) => {
+    const newRounds = [...this.state.userData.rounds];
+    let r;
+    for (r = 0; r < newRounds.length; ++r) {
+      if (newRounds[r].roundNum === newRoundData.roundNum) {
+        break;
       }
-      newRounds[r] = newRoundData;
-      const newUserData = {
-        accountData: this.state.userData.accountData,
-        identityData: this.state.userData.identityData,
-        speedgolfProfileData: this.state.userData.speedgolfProfileData,
-        rounds: newRounds,
-        roundCount: this.state.userData.roundCount,
-      };
-      this.setState({ userData: newUserData });
-      return "Round updated successfully";
-    } else {
-      const text = await res.text();
-      return "Round could not be updated because of" + text;
     }
+    newRounds[r] = newRoundData;
+    const newUserData = {
+      accountData: this.state.userData.accountData,
+      identityData: this.state.userData.identityData,
+      speedgolfProfileData: this.state.userData.speedgolfProfileData,
+      rounds: newRounds,
+      roundCount: this.state.userData.roundCount,
+    };
+    localStorage.setItem(
+      newUserData.accountData.email,
+      JSON.stringify(newUserData)
+    );
+    this.setState({ userData: newUserData });
   };
+
+
   deleteRound = (id) => {
     const newRounds = [...this.state.userData.rounds];
     let r;
@@ -283,6 +287,8 @@ class App extends React.Component {
           toggleModalOpen={this.toggleModalOpen}
           userData={this.state.userData}
           updateUserData={this.updateUserData}
+          setMode={this.setMode}
+
         />
         <ModeTabs
           mode={this.state.mode}
@@ -339,6 +345,17 @@ class App extends React.Component {
                 userId={this.state.userId}
               />
             ),
+            /*****************************************************************
+             * Added Settings mode to be part of the render system.
+             *****************************************************************           */
+            SettingsMode: (
+              <SettingsPage
+                setMode={this.setMode}
+                prevMode={this.state.prevMode}
+                toggleModalOpen={this.toggleModalOpen}
+              />
+            ),
+
           }[this.state.mode]
         }
       </>
