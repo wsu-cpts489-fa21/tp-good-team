@@ -75,5 +75,30 @@ roundRoute.get('/rounds/:userId', async(req, res) => {
 //DELETE round route: Deletes a specific round for a given user
 //in the users collection (DELETE)
 //TO DO: Implement this route
+roundRoute.delete("/rounds/:userId/:roundId", async (req, res) => {
+  console.log(
+    "in /rounds route (DELETE) with id = " + JSON.stringify(req.params.roundId)
+  );
+
+  try {
+    const status = await User.updateOne(
+      { $pull: { rounds: { _id: req.params.roundId } } }
+    );
+    if (status.modifiedCount != 1) {
+      console.log("status: " + JSON.stringify(status));
+      res.status(404).send("Round not delete.");
+    } else {
+      res
+        .status(200)
+        .send("Round with id " + req.params.roundId + " successfully deleted.");
+    }
+  } catch (err) {
+    res
+      .status(400)
+      .send(
+        "Unexpected error occurred when deleting round in database: " + err
+      );
+  }
+});
 
 export default roundRoute;
