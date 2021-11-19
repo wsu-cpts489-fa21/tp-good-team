@@ -199,24 +199,42 @@ class App extends React.Component {
     this.setState({userData: newUserData}); 
   }
 
-  deleteRound = (id) => {
-    const newRounds = [...this.state.userData.rounds];
-    let r;
-    for (r = 0; r < newRounds.length; ++r) {
-        if (newRounds[r].roundNum === this.state.deleteId) {
-            break;
-        }
+  deleteRound = async (id) => {
+    const url =
+      "/rounds/" +
+      this.state.userData.accountData.id +
+      "/" +
+      this.state.userData.rounds[id].id;
+
+    const res = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        "Content-type": "application/json",
+      },
+      method: "DELETE",
+    });
+
+    if (res.status == 200){
+      const newRounds = [...this.state.userData.rounds];
+      let r;
+      for (r = 0; r < newRounds.length; ++r) {
+          if (newRounds[r].roundNum === this.state.deleteId) {
+              break;
+          }
+      }
+    
+      delete newRounds[r];
+      const newUserData = {
+        accountData: this.state.userData.accountData,
+        identityData: this.state.userData.identityData,
+        speedgolfProfileData: this.state.userData.speedgolfProfileData,
+        rounds: newRounds, 
+        roundCount: this.state.userData.roundCount
+      }
+      //localStorage.setItem(newUserData.accountData.email,JSON.stringify(newUserData));
+      this.setState({userData: newUserData});
     }
-    delete newRounds[r];
-    const newUserData = {
-      accountData: this.state.userData.accountData,
-      identityData: this.state.userData.identityData,
-      speedgolfProfileData: this.state.userData.speedgolfProfileData,
-      rounds: newRounds, 
-      roundCount: this.state.userData.roundCount
-    }
-    localStorage.setItem(newUserData.accountData.email,JSON.stringify(newUserData));
-    this.setState({userData: newUserData});
   }
 
   render() {
