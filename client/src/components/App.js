@@ -249,7 +249,6 @@ class App extends React.Component {
       return "Round could not be updated because of" + text;
     }
   };
-
   deleteRound = (id) => {
     const newRounds = [...this.state.userData.rounds];
     let r;

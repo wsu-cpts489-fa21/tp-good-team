@@ -106,7 +106,27 @@ roundRoute.put("/rounds/:userId/:roundId", async (req, res) => {
   console.log(
     "in /rounds route (PUT) with id = " + JSON.stringify(req.params.roundId)
   );
-
+  if (
+    !req.body.hasOwnProperty("date") ||
+    !req.body.hasOwnProperty("course") ||
+    !req.body.hasOwnProperty("type") ||
+    !req.body.hasOwnProperty("holes") ||
+    !req.body.hasOwnProperty("strokes") ||
+    !req.body.hasOwnProperty("minutes") ||
+    !req.body.hasOwnProperty("seconds") ||
+    !req.body.hasOwnProperty("notes")
+  ) {
+    //Body does not contain correct properties
+    return res
+      .status(400)
+      .send(
+        "PUT request on round with id" +
+          req.params.roundId +
+          "formulated incorrectly." +
+          "Body must contain all 8 required fields: date, course, type, holes, strokes, " +
+          "minutes, seconds, notes."
+      );
+  }
   try {
     const status = await User.updateOne(
       {
