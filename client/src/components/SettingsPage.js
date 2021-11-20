@@ -44,6 +44,7 @@ class SettingsPage extends React.Component {
       sw: this.props.userData.speedgolfData.clubs.sw,
       lw: this.props.userData.speedgolfData.clubs.lw,
       putter: this.props.userData.speedgolfData.clubs.putter,
+      clubComments: this.props.userData.speedgolfData.clubComments,
     };
     this.formSubmitted = false;
     this.securityQuestionError = React.createRef();
@@ -126,7 +127,7 @@ class SettingsPage extends React.Component {
     }
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     //TODO async
     this.props.toggleModalOpen();
     this.props.setMode(this.props.prevMode);
@@ -140,6 +141,8 @@ class SettingsPage extends React.Component {
       //Necessary fields are valid: Update account
       const newUserData = {
         accountData: {
+          id: this.state.id,
+          password: this.props.userData.accountData.password,
           securityQuestion: this.state.securityQuestion,
           securityAnswer: this.state.securityAnswer,
         },
@@ -178,9 +181,10 @@ class SettingsPage extends React.Component {
             lw: this.state.lw,
             putter: this.state.putter,
           },
+          clubComments: this.state.clubComments,
         },
       };
-      alert(JSON.stringify(newUserData));
+      const result = await this.props.updateUserData(newUserData);
     } else {
       alert("Did not submit right");
     }
@@ -337,8 +341,8 @@ class SettingsPage extends React.Component {
                         Answer to Security Question:
                         <input
                           onChange={this.handleChange}
-                          value={this.state.SecurityAnswer}
-                          name="SecurityAnswer"
+                          value={this.state.securityAnswer}
+                          name="securityAnswer"
                           id="profileSecurityAnswer"
                           type="text"
                           className="form-control centered"
@@ -618,17 +622,36 @@ class SettingsPage extends React.Component {
                       </legend>
                       <div id="clubsDiv" className="mb-3">
                         <input
-                          onChange={this.handleChange}
-                          value={this.state.driver}
+                          // onChange={this.handleChange}
+                          // value={this.state.driver}
+                          name="driver"
+                          // checked={this.state.check}
+                          checked={this.state.driver ? true : false}
+                          onChange={(e) => {
+                            this.handleChange({
+                              target: {
+                                name: e.target.name,
+                                value: e.target.checked,
+                              },
+                            });
+                          }}
                           id="sgDriver"
                           type="checkbox"
-                          name="driver"
                           aria-describedby="sgClubsDescr"
                         />
                         <label htmlFor="sgDriver">Driver</label>
                         <input
-                          onChange={this.handleChange}
-                          value={this.state.threeW}
+                          // onChange={this.handleChange}
+                          // value={this.state.threeW}
+                          checked={this.state.threeW ? true : false}
+                          onChange={(e) => {
+                            this.handleChange({
+                              target: {
+                                name: e.target.name,
+                                value: e.target.checked,
+                              },
+                            });
+                          }}
                           name="threeW"
                           id="sg3W"
                           type="checkbox"
@@ -636,8 +659,17 @@ class SettingsPage extends React.Component {
                         />
                         <label htmlFor="sg3W">3W</label>
                         <input
-                          onChange={this.handleChange}
-                          value={this.state.fourW}
+                          // onChange={this.handleChange}
+                          // value={this.state.fourW}
+                          checked={this.state.fourW ? true : false}
+                          onChange={(e) => {
+                            this.handleChange({
+                              target: {
+                                name: e.target.name,
+                                value: e.target.checked,
+                              },
+                            });
+                          }}
                           name="fourW"
                           id="sg4W"
                           type="checkbox"
@@ -645,8 +677,17 @@ class SettingsPage extends React.Component {
                         />
                         <label htmlFor="sg4W">4W</label>
                         <input
-                          onChange={this.handleChange}
-                          value={this.state.fiveW}
+                          // onChange={this.handleChange}
+                          // value={this.state.fiveW}
+                          checked={this.state.fiveW ? true : false}
+                          onChange={(e) => {
+                            this.handleChange({
+                              target: {
+                                name: e.target.name,
+                                value: e.target.checked,
+                              },
+                            });
+                          }}
                           name="fiveW"
                           id="sg5W"
                           type="checkbox"
@@ -654,8 +695,17 @@ class SettingsPage extends React.Component {
                         />
                         <label htmlFor="sg5W">5W</label>
                         <input
-                          onChange={this.handleChange}
-                          value={this.state.hybrid}
+                          // onChange={this.handleChange}
+                          // value={this.state.hybrid}
+                          checked={this.state.hybrid ? true : false}
+                          onChange={(e) => {
+                            this.handleChange({
+                              target: {
+                                name: e.target.name,
+                                value: e.target.checked,
+                              },
+                            });
+                          }}
                           name="hybrid"
                           id="sgHybrid"
                           type="checkbox"
@@ -664,8 +714,17 @@ class SettingsPage extends React.Component {
                         <label htmlFor="sgHybrid">Hybrid</label>
                         <br />
                         <input
-                          onChange={this.handleChange}
-                          value={this.state.oneI}
+                          // onChange={this.handleChange}
+                          // value={this.state.oneI}
+                          checked={this.state.oneI ? true : false}
+                          onChange={(e) => {
+                            this.handleChange({
+                              target: {
+                                name: e.target.name,
+                                value: e.target.checked,
+                              },
+                            });
+                          }}
                           name="oneI"
                           id="sg1I"
                           type="checkbox"
@@ -673,8 +732,17 @@ class SettingsPage extends React.Component {
                         />
                         <label>1I</label>
                         <input
-                          onChange={this.handleChange}
-                          value={this.state.twoI}
+                          // onChange={this.handleChange}
+                          // value={this.state.twoI}
+                          checked={this.state.twoI ? true : false}
+                          onChange={(e) => {
+                            this.handleChange({
+                              target: {
+                                name: e.target.name,
+                                value: e.target.checked,
+                              },
+                            });
+                          }}
                           name="twoI"
                           id="sg2I"
                           type="checkbox"
@@ -682,8 +750,17 @@ class SettingsPage extends React.Component {
                         />
                         <label htmlFor="sg2I">2I</label>
                         <input
-                          onChange={this.handleChange}
-                          value={this.state.threeI}
+                          // onChange={this.handleChange}
+                          // value={this.state.threeI}
+                          checked={this.state.threeI ? true : false}
+                          onChange={(e) => {
+                            this.handleChange({
+                              target: {
+                                name: e.target.name,
+                                value: e.target.checked,
+                              },
+                            });
+                          }}
                           name="threeI"
                           id="sg3I"
                           type="checkbox"
@@ -691,8 +768,17 @@ class SettingsPage extends React.Component {
                         />
                         <label htmlFor="sg3I">3I</label>
                         <input
-                          onChange={this.handleChange}
-                          value={this.state.fourI}
+                          // onChange={this.handleChange}
+                          // value={this.state.fourI}
+                          checked={this.state.fourI ? true : false}
+                          onChange={(e) => {
+                            this.handleChange({
+                              target: {
+                                name: e.target.name,
+                                value: e.target.checked,
+                              },
+                            });
+                          }}
                           name="fourI"
                           id="sg4I"
                           type="checkbox"
@@ -700,8 +786,17 @@ class SettingsPage extends React.Component {
                         />
                         <label htmlFor="sg4I">4I</label>
                         <input
-                          onChange={this.handleChange}
-                          value={this.state.fiveI}
+                          // onChange={this.handleChange}
+                          // value={this.state.fiveI}
+                          checked={this.state.fiveI ? true : false}
+                          onChange={(e) => {
+                            this.handleChange({
+                              target: {
+                                name: e.target.name,
+                                value: e.target.checked,
+                              },
+                            });
+                          }}
                           name="fiveI"
                           id="sg5I"
                           type="checkbox"
@@ -709,8 +804,17 @@ class SettingsPage extends React.Component {
                         />
                         <label htmlFor="sg5I">5I</label>
                         <input
-                          onChange={this.handleChange}
-                          value={this.state.sixI}
+                          // onChange={this.handleChange}
+                          // value={this.state.sixI}
+                          checked={this.state.sixI ? true : false}
+                          onChange={(e) => {
+                            this.handleChange({
+                              target: {
+                                name: e.target.name,
+                                value: e.target.checked,
+                              },
+                            });
+                          }}
                           name="sixI"
                           id="sg6I"
                           type="checkbox"
@@ -718,8 +822,17 @@ class SettingsPage extends React.Component {
                         />
                         <label htmlFor="sg6I">6I</label>
                         <input
-                          onChange={this.handleChange}
-                          value={this.state.sevenI}
+                          // onChange={this.handleChange}
+                          // value={this.state.sevenI}
+                          checked={this.state.sevenI ? true : false}
+                          onChange={(e) => {
+                            this.handleChange({
+                              target: {
+                                name: e.target.name,
+                                value: e.target.checked,
+                              },
+                            });
+                          }}
                           name="sevenI"
                           id="sg7I"
                           type="checkbox"
@@ -727,8 +840,17 @@ class SettingsPage extends React.Component {
                         />
                         <label htmlFor="sg7I">7I</label>
                         <input
-                          onChange={this.handleChange}
-                          value={this.state.eightI}
+                          // onChange={this.handleChange}
+                          // value={this.state.eightI}
+                          checked={this.state.eightI ? true : false}
+                          onChange={(e) => {
+                            this.handleChange({
+                              target: {
+                                name: e.target.name,
+                                value: e.target.checked,
+                              },
+                            });
+                          }}
                           name="eightI"
                           id="sg8I"
                           type="checkbox"
@@ -736,8 +858,17 @@ class SettingsPage extends React.Component {
                         />
                         <label htmlFor="sg8I">8I</label>
                         <input
-                          onChange={this.handleChange}
-                          value={this.state.nineI}
+                          // onChange={this.handleChange}
+                          // value={this.state.nineI}
+                          checked={this.state.nineI ? true : false}
+                          onChange={(e) => {
+                            this.handleChange({
+                              target: {
+                                name: e.target.name,
+                                value: e.target.checked,
+                              },
+                            });
+                          }}
                           name="nineI"
                           id="sg9I"
                           type="checkbox"
@@ -746,8 +877,17 @@ class SettingsPage extends React.Component {
                         <label htmlFor="sg9I">9I</label>
                         <br />
                         <input
-                          onChange={this.handleChange}
-                          value={this.state.pw}
+                          // onChange={this.handleChange}
+                          // value={this.state.pw}
+                          checked={this.state.pw ? true : false}
+                          onChange={(e) => {
+                            this.handleChange({
+                              target: {
+                                name: e.target.name,
+                                value: e.target.checked,
+                              },
+                            });
+                          }}
                           name="pw"
                           id="sgPW"
                           type="checkbox"
@@ -755,8 +895,17 @@ class SettingsPage extends React.Component {
                         />
                         <label htmlFor="sgPW">PW</label>
                         <input
-                          onChange={this.handleChange}
-                          value={this.state.gw}
+                          // onChange={this.handleChange}
+                          // value={this.state.gw}
+                          checked={this.state.gw ? true : false}
+                          onChange={(e) => {
+                            this.handleChange({
+                              target: {
+                                name: e.target.name,
+                                value: e.target.checked,
+                              },
+                            });
+                          }}
                           name="gw"
                           id="sgGW"
                           type="checkbox"
@@ -764,8 +913,17 @@ class SettingsPage extends React.Component {
                         />
                         <label htmlFor="sgGW">GW</label>
                         <input
-                          onChange={this.handleChange}
-                          value={this.state.sw}
+                          // onChange={this.handleChange}
+                          // value={this.state.sw}
+                          checked={this.state.sw ? true : false}
+                          onChange={(e) => {
+                            this.handleChange({
+                              target: {
+                                name: e.target.name,
+                                value: e.target.checked,
+                              },
+                            });
+                          }}
                           name="sw"
                           id="sgSW"
                           type="checkbox"
@@ -773,8 +931,17 @@ class SettingsPage extends React.Component {
                         />
                         <label htmlFor="sgSW">SW</label>
                         <input
-                          onChange={this.handleChange}
-                          value={this.state.lw}
+                          // onChange={this.handleChange}
+                          // value={this.state.lw}
+                          checked={this.state.lw ? true : false}
+                          onChange={(e) => {
+                            this.handleChange({
+                              target: {
+                                name: e.target.name,
+                                value: e.target.checked,
+                              },
+                            });
+                          }}
                           name="lw"
                           id="sgLW"
                           type="checkbox"
@@ -783,8 +950,17 @@ class SettingsPage extends React.Component {
                         <label htmlFor="sgLW">LW</label>
                         <br />
                         <input
-                          onChange={this.handleChange}
-                          value={this.state.putter}
+                          // onChange={this.handleChange}
+                          // value={this.state.putter}
+                          checked={this.state.putter ? true : false}
+                          onChange={(e) => {
+                            this.handleChange({
+                              target: {
+                                name: e.target.name,
+                                value: e.target.checked,
+                              },
+                            });
+                          }}
                           name="putter"
                           id="sgPutter"
                           type="checkbox"
@@ -799,6 +975,9 @@ class SettingsPage extends React.Component {
                           Comments on Clubs (optional):
                         </label>
                         <textarea
+                          onChange={this.handleChange}
+                          value={this.state.clubComments}
+                          name="clubComments"
                           id="sgClubComments"
                           className="form-control"
                           aria-describedby="sgClubCommentsDescr"
