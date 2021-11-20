@@ -1,6 +1,7 @@
 import { faThemeisle } from "@fortawesome/free-brands-svg-icons";
 import React from "react";
 import logo from "../images/sslogo2.png";
+import profilePic from "./../images/DefaultProfilePic.jpg";
 
 class SettingsPage extends React.Component {
   constructor(props) {
@@ -97,6 +98,7 @@ class SettingsPage extends React.Component {
   /*****************************************************************
    * Handlers
    ***************************************************************** */
+
   handleChange = (event) => {
     if (event.target.name !== "profilePic") {
       this.setState({ [event.target.name]: event.target.value });
@@ -414,20 +416,22 @@ class SettingsPage extends React.Component {
                         Profile Picture (optional):
                         <br />
                         <img
-                          id="profilePicImage"
-                          src={logo}
-                          alt="SpeedScore logo"
+                          id="acctProfilePicImage"
+                          src={
+                            this.state.profilePic === ""
+                              ? profilePic
+                              : this.state.profilePic
+                          }
                           className="fm-profile-pic"
                           height="46"
                           width="auto"
                         />
                         <input
-                          onChange={this.handleChange}
-                          value={this.state.profilePic}
-                          name="profilePic"
                           id="profilePic"
-                          type="file"
+                          onChange={this.handleChange}
                           className="form-control centered"
+                          name="profilePic"
+                          type="file"
                           accept=".png, .gif, .jpg"
                           aria-describedby="profilePicDescr"
                         />
