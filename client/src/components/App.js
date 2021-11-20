@@ -341,8 +341,9 @@ class App extends React.Component {
              *****************************************************************           */
             SettingsMode: (
               <SettingsPage
-                setMode={this.setMode}
+                userData={this.state.userData}
                 prevMode={this.state.prevMode}
+                setMode={this.setMode}
                 toggleModalOpen={this.toggleModalOpen}
               />
             ),

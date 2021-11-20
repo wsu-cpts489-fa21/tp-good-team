@@ -1,15 +1,87 @@
+import { faThemeisle } from "@fortawesome/free-brands-svg-icons";
 import React from "react";
 import logo from "../images/sslogo2.png";
 
 class SettingsPage extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       accountExpanded: false,
       nameAndPictureExpanded: false,
       speedgolfInfoExpanded: false,
+      securityQuestionValid: true,
+      securityAnswerValid: true,
+      passwordValid: true,
+      id: this.props.userData.accountData.id,
+      securityQuestion: this.props.userData.accountData.securityQuestion,
+      securityAnswer: this.props.userData.accountData.securityAnswer,
+      displayName: this.props.userData.identityData.displayName,
+      profilePic: this.props.userData.identityData.profilePic,
+      bio: this.props.userData.speedgolfData.bio,
+      homeCourse: this.props.userData.speedgolfData.homeCourse,
+      firstRound: this.props.userData.speedgolfData.firstRound,
+      strokes: this.props.userData.speedgolfData.personalBest.strokes,
+      minutes: this.props.userData.speedgolfData.personalBest.minutes,
+      seconds: this.props.userData.speedgolfData.personalBest.seconds,
+      course: this.props.userData.speedgolfData.personalBest.course,
+      driver: this.props.userData.speedgolfData.clubs.driver,
+      threeW: this.props.userData.speedgolfData.clubs.threeW,
+      fourW: this.props.userData.speedgolfData.clubs.fourW,
+      fiveW: this.props.userData.speedgolfData.clubs.fiveW,
+      hybrid: this.props.userData.speedgolfData.clubs.hybrid,
+      oneI: this.props.userData.speedgolfData.clubs.oneI,
+      twoI: this.props.userData.speedgolfData.clubs.twoI,
+      threeI: this.props.userData.speedgolfData.clubs.threeI,
+      fourI: this.props.userData.speedgolfData.clubs.fourI,
+      fiveI: this.props.userData.speedgolfData.clubs.fiveI,
+      sixI: this.props.userData.speedgolfData.clubs.sixI,
+      sevenI: this.props.userData.speedgolfData.clubs.sevenI,
+      eightI: this.props.userData.speedgolfData.clubs.eightI,
+      nineI: this.props.userData.speedgolfData.clubs.nineI,
+      pw: this.props.userData.speedgolfData.clubs.pw,
+      gw: this.props.userData.speedgolfData.clubs.gw,
+      sw: this.props.userData.speedgolfData.clubs.sw,
+      lw: this.props.userData.speedgolfData.clubs.lw,
+      putter: this.props.userData.speedgolfData.clubs.putter,
     };
+    this.formSubmitted = false;
+    this.securityQuestionError = React.createRef();
+    this.securityAnswerError = React.createRef();
+    this.passwordError = React.createRef();
   }
+
+  // populateClass = async () => {
+  //   const url = "/users/" + this.props.accountData.id;
+  //   const res = await fetch(url, {
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-Type": "application/json",
+  //     },
+  //     method: "GET",
+  //     body: JSON.stringify()
+  //   }
+  //     )
+  // }
+
+  componentDidUpdate() {
+    if (this.formSubmitted) {
+      if (!this.state.securityAnswerValid) {
+        this.securityAnswerError.current.focus();
+      }
+      if (!this.state.securityQuestionValid) {
+        this.securityQuestionError.current.focus();
+      }
+      if (!this.state.passwordValid) {
+        this.passwordError.current.focus();
+      }
+      this.formSubmitted = false;
+    }
+  }
+
+  /*****************************************************************
+   * Methods for expanding and contracting accordion sections
+   ***************************************************************** */
   toggleAccount = () => {
     this.setState((prevState) => ({
       accountExpanded: !prevState.accountExpanded,
@@ -20,12 +92,100 @@ class SettingsPage extends React.Component {
       nameAndPictureExpanded: !prevState.nameAndPictureExpanded,
     }));
   };
-
   toggleSpeedgolfInfo = () => {
     this.setState((prevState) => ({
       speedgolfInfoExpanded: !prevState.speedgolfInfoExpanded,
     }));
   };
+
+  /*****************************************************************
+   * Validation Methods
+   ***************************************************************** */
+  passwordIsValid = (pass) => {
+    //TODO: password is only valid if it matches password on file
+    return true;
+  };
+
+  /*****************************************************************
+   * Handlers
+   ***************************************************************** */
+  handleChange = (event) => {
+    if (event.target.name !== "profilePic") {
+      this.setState({ [event.target.name]: event.target.value });
+      return;
+    }
+    if (event.target.value.length === 0) {
+      this.setState({ profilePic: "" });
+    } else {
+      const self = this;
+      const reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.addEventListener("load", function () {
+        self.setState({ profilePic: this.result });
+      });
+    }
+  };
+
+  handleSubmit = (event) => {
+    //TODO async
+    this.props.toggleModalOpen();
+    this.props.setMode(this.props.prevMode);
+    event.preventDefault();
+    //Is security Q and A valid?
+    const sqValid = this.state.securityQuestion.length > 0;
+    const saValid = this.state.securityAnswer.length > 0;
+    const pValid = this.passwordIsValid(this.state.password); //TODO async
+
+    if (pValid && sqValid && saValid) {
+      //Necessary fields are valid: Update account
+      const newUserData = {
+        accountData: {
+          securityQuestion: this.state.securityQuestion,
+          securityAnswer: this.state.securityAnswer,
+        },
+        identityData: {
+          displayName: this.state.displayName,
+          profilePic: this.state.profilePic,
+        },
+        speedgolfData: {
+          bio: this.state.bio,
+          homeCourse: this.state.homeCourse,
+          firstRound: this.state.firstRound,
+          personalBest: {
+            strokes: this.state.strokes,
+            minutes: this.state.minutes,
+            seconds: this.state.seconds,
+            course: this.state.course,
+          },
+          clubs: {
+            driver: this.state.driver,
+            threeW: this.state.threeW,
+            fourW: this.state.fourW,
+            fiveW: this.state.fiveW,
+            hybrid: this.state.hybrid,
+            oneI: this.state.oneI,
+            twoI: this.state.twoI,
+            threeI: this.state.threeI,
+            fourI: this.state.fourI,
+            fiveI: this.state.fiveI,
+            sixI: this.state.sixI,
+            sevenI: this.state.sevenI,
+            eightI: this.state.eightI,
+            nineI: this.state.nineI,
+            pw: this.state.pw,
+            gw: this.state.gw,
+            sw: this.state.sw,
+            lw: this.state.lw,
+            putter: this.state.putter,
+          },
+        },
+      };
+      alert(JSON.stringify(newUserData));
+    } else {
+      alert("Did not submit right");
+    }
+  };
+
   render() {
     return (
       <div
@@ -67,7 +227,12 @@ class SettingsPage extends React.Component {
             Enter a valid security question answer
           </a>
         </p>
-        <form id="editProfileForm" className="centered" novalidate>
+        <form
+          onSubmit={this.handleSubmit}
+          id="editProfileForm"
+          className="centered"
+          novalidate
+        >
           <div id="profileFormAccordion" className="accordion">
             {/*****************************************************************
              * Account Section
@@ -105,11 +270,13 @@ class SettingsPage extends React.Component {
                       <label htmlFor="profileEmail" className="form-label">
                         Email:
                         <input
+                          onChange={this.handleChange}
+                          value={this.state.id}
+                          name="id"
                           id="profileEmail"
                           type="email"
                           className="form-control centered"
                           aria-describedby="profileEmailDescr"
-                          required
                         />
                       </label>
                       <div id="profileEmailDescr" className="form-text">
@@ -120,6 +287,9 @@ class SettingsPage extends React.Component {
                       <label htmlFor="profilePassword" className="form-label">
                         Password:
                         <input
+                          onChange={this.handleChange}
+                          value={this.state.password}
+                          name="password"
                           id="profilePassword"
                           type="password"
                           className="form-control centered"
@@ -140,12 +310,14 @@ class SettingsPage extends React.Component {
                       >
                         Security Question:
                         <input
+                          onChange={this.handleChange}
+                          value={this.state.securityQuestion}
+                          name="securityQuestion"
                           id="profileSecurityQuestion"
                           type="text"
                           className="form-control centered"
                           minlength="5"
                           aria-describedby="profileSecurityQuestionDescr"
-                          required
                         />
                       </label>
                       <div
@@ -164,12 +336,14 @@ class SettingsPage extends React.Component {
                       >
                         Answer to Security Question:
                         <input
+                          onChange={this.handleChange}
+                          value={this.state.SecurityAnswer}
+                          name="SecurityAnswer"
                           id="profileSecurityAnswer"
                           type="text"
                           className="form-control centered"
                           minlength="5"
                           aria-describedby="profileSecurityAnswerDescr"
-                          required
                         />
                       </label>
                       <div
@@ -229,12 +403,14 @@ class SettingsPage extends React.Component {
                         Display Name:
                         <br />
                         <input
+                          onChange={this.handleChange}
+                          value={this.state.displayName}
+                          name="displayName"
                           id="profileDisplayName"
                           type="text"
                           className="form-control centered"
                           minlength="5"
                           aria-describedby="profileDisplayNameDescr"
-                          required
                         />
                       </label>
                       <div id="profileDisplayNameDescr" className="form-text">
@@ -255,12 +431,14 @@ class SettingsPage extends React.Component {
                           width="auto"
                         />
                         <input
+                          onChange={this.handleChange}
+                          value={this.state.profilePic}
+                          name="profilePic"
                           id="profilePic"
                           type="file"
                           className="form-control centered"
                           accept=".png, .gif, .jpg"
                           aria-describedby="profilePicDescr"
-                          required
                         />
                       </label>
                       <div id="profilePicDescr" className="form-text">
@@ -312,6 +490,9 @@ class SettingsPage extends React.Component {
                         Personal Speedgolf Bio (optional):
                       </label>
                       <textarea
+                        onChange={this.handleChange}
+                        value={this.bio}
+                        name="bio"
                         id="sgBio"
                         className="form-control"
                         aria-describedby="sgBioDescr"
@@ -329,6 +510,9 @@ class SettingsPage extends React.Component {
                         Date of First Speedgolf Round (optional):
                       </label>
                       <input
+                        onChange={this.handleChange}
+                        value={this.state.firstRound}
+                        name="firstRound"
                         type="month"
                         id="sgFirstRound"
                         className="form-control centered"
@@ -345,6 +529,9 @@ class SettingsPage extends React.Component {
                         Home Course (optional):
                       </label>
                       <input
+                        onChange={this.handleChange}
+                        value={this.state.homeCourse}
+                        name="homeCourse"
                         type="text"
                         id="sgHomeCourse"
                         className="form-control centered"
@@ -362,6 +549,9 @@ class SettingsPage extends React.Component {
                         <label htmlFor="sgBestStrokes" className="form-label">
                           Strokes:
                           <input
+                            onChange={this.handleChange}
+                            value={this.state.strokes}
+                            name="strokes"
                             id="sgBestStrokes"
                             type="number"
                             className="form-control centered"
@@ -373,6 +563,9 @@ class SettingsPage extends React.Component {
                         <label htmlFor="sgBestMinutes" className="form-label">
                           Minutes:
                           <input
+                            onChange={this.handleChange}
+                            value={this.state.minutes}
+                            name="minutes"
                             id="sgBestMinutes"
                             type="number"
                             className="form-control centered"
@@ -384,6 +577,9 @@ class SettingsPage extends React.Component {
                         <label htmlFor="sgBestSeconds" className="form-label">
                           Seconds:
                           <input
+                            onChange={this.handleChange}
+                            value={this.state.seconds}
+                            name="seconds"
                             id="sgBestSeconds"
                             type="number"
                             className="form-control centered"
@@ -401,11 +597,13 @@ class SettingsPage extends React.Component {
                         <label htmlFor="sgBestCourse" className="form-label">
                           Course Where Best Score Attained (optional):
                           <input
+                            onChange={this.handleChange}
+                            value={this.state.course}
+                            name="course"
                             id="sgBestCourse"
                             type="text"
                             className="form-control centered"
                             aria-describedby="sgBestCourseDescr"
-                            minlength="10"
                           />
                         </label>
                         <div id="sgBestCourseDescr" className="form-text">
@@ -420,138 +618,176 @@ class SettingsPage extends React.Component {
                       </legend>
                       <div id="clubsDiv" className="mb-3">
                         <input
+                          onChange={this.handleChange}
+                          value={this.state.driver}
                           id="sgDriver"
                           type="checkbox"
-                          name="Driver"
+                          name="driver"
                           aria-describedby="sgClubsDescr"
                         />
                         <label htmlFor="sgDriver">Driver</label>
                         <input
+                          onChange={this.handleChange}
+                          value={this.state.threeW}
+                          name="threeW"
                           id="sg3W"
                           type="checkbox"
-                          name="3W"
                           aria-describedby="sgClubsDescr"
                         />
                         <label htmlFor="sg3W">3W</label>
                         <input
+                          onChange={this.handleChange}
+                          value={this.state.fourW}
+                          name="fourW"
                           id="sg4W"
                           type="checkbox"
-                          name="4W"
                           aria-describedby="sgClubsDescr"
                         />
                         <label htmlFor="sg4W">4W</label>
                         <input
+                          onChange={this.handleChange}
+                          value={this.state.fiveW}
+                          name="fiveW"
                           id="sg5W"
                           type="checkbox"
-                          name="5W"
                           aria-describedby="sgClubsDescr"
                         />
                         <label htmlFor="sg5W">5W</label>
                         <input
+                          onChange={this.handleChange}
+                          value={this.state.hybrid}
+                          name="hybrid"
                           id="sgHybrid"
                           type="checkbox"
-                          name="Hybrid"
                           aria-describedby="sgClubsDescr"
                         />
                         <label htmlFor="sgHybrid">Hybrid</label>
                         <br />
                         <input
+                          onChange={this.handleChange}
+                          value={this.state.oneI}
+                          name="oneI"
                           id="sg1I"
                           type="checkbox"
-                          name="1I"
                           aria-describedby="1I"
                         />
                         <label>1I</label>
                         <input
+                          onChange={this.handleChange}
+                          value={this.state.twoI}
+                          name="twoI"
                           id="sg2I"
                           type="checkbox"
-                          name="2I"
                           aria-describedby="sgClubsDescr"
                         />
                         <label htmlFor="sg2I">2I</label>
                         <input
+                          onChange={this.handleChange}
+                          value={this.state.threeI}
+                          name="threeI"
                           id="sg3I"
                           type="checkbox"
-                          name="3I"
                           aria-describedby="sgClubsDescr"
                         />
                         <label htmlFor="sg3I">3I</label>
                         <input
+                          onChange={this.handleChange}
+                          value={this.state.fourI}
+                          name="fourI"
                           id="sg4I"
                           type="checkbox"
-                          name="4I"
                           aria-describedby="sgClubsDescr"
                         />
                         <label htmlFor="sg4I">4I</label>
                         <input
+                          onChange={this.handleChange}
+                          value={this.state.fiveI}
+                          name="fiveI"
                           id="sg5I"
                           type="checkbox"
-                          name="5I"
                           aria-describedby="sgClubsDescr"
                         />
                         <label htmlFor="sg5I">5I</label>
                         <input
+                          onChange={this.handleChange}
+                          value={this.state.sixI}
+                          name="sixI"
                           id="sg6I"
                           type="checkbox"
-                          name="6I"
                           aria-describedby="sgClubsDescr"
                         />
                         <label htmlFor="sg6I">6I</label>
                         <input
+                          onChange={this.handleChange}
+                          value={this.state.sevenI}
+                          name="sevenI"
                           id="sg7I"
                           type="checkbox"
-                          name="7I"
                           aria-describedby="sgClubsDescr"
                         />
                         <label htmlFor="sg7I">7I</label>
                         <input
+                          onChange={this.handleChange}
+                          value={this.state.eightI}
+                          name="eightI"
                           id="sg8I"
                           type="checkbox"
-                          name="8I"
                           aria-describedby="sgClubsDescr"
                         />
                         <label htmlFor="sg8I">8I</label>
                         <input
+                          onChange={this.handleChange}
+                          value={this.state.nineI}
+                          name="nineI"
                           id="sg9I"
                           type="checkbox"
-                          name="9I"
                           aria-describedby="sgClubsDescr"
                         />
                         <label htmlFor="sg9I">9I</label>
                         <br />
                         <input
+                          onChange={this.handleChange}
+                          value={this.state.pw}
+                          name="pw"
                           id="sgPW"
                           type="checkbox"
-                          name="PW"
                           aria-describedby="sgClubsDescr"
                         />
                         <label htmlFor="sgPW">PW</label>
                         <input
+                          onChange={this.handleChange}
+                          value={this.state.gw}
+                          name="gw"
                           id="sgGW"
                           type="checkbox"
-                          name="GW"
                           aria-describedby="sgClubsDescr"
                         />
                         <label htmlFor="sgGW">GW</label>
                         <input
+                          onChange={this.handleChange}
+                          value={this.state.sw}
+                          name="sw"
                           id="sgSW"
                           type="checkbox"
-                          name="SW"
                           aria-describedby="sgClubsDescr"
                         />
                         <label htmlFor="sgSW">SW</label>
                         <input
+                          onChange={this.handleChange}
+                          value={this.state.lw}
+                          name="lw"
                           id="sgLW"
                           type="checkbox"
-                          name="LW"
                           aria-describedby="sgClubsDescr"
                         />
                         <label htmlFor="sgLW">LW</label>
                         <br />
                         <input
+                          onChange={this.handleChange}
+                          value={this.state.putter}
+                          name="putter"
                           id="sgPutter"
                           type="checkbox"
-                          name="Putter"
                           aria-describedby="sgClubsDescr"
                         />
                         <label htmlFor="sgPutter">Putter</label>
@@ -587,10 +823,10 @@ class SettingsPage extends React.Component {
               className="btn btn-primary dialog-primary-btn"
               aria-live="polite"
               aria-busy="false"
-              onClick={() => {
-                this.props.toggleModalOpen();
-                this.props.setMode(this.props.prevMode);
-              }}
+              // onClick={() => {
+              //   this.props.toggleModalOpen();
+              //   this.props.setMode(this.props.prevMode);
+              // }}
             >
               <span
                 id="editProfileBtnIcon"
