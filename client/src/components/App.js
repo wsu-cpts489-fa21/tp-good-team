@@ -15,6 +15,7 @@ import {
   faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faGoogle } from "@fortawesome/free-brands-svg-icons";
+
 import NavBar from "./NavBar.js";
 import ModeTabs from "./ModeTabs.js";
 import LoginPage from "./LoginPage.js";
@@ -24,6 +25,7 @@ import CoursesPage from "./CoursesPage.js";
 import BuddiesPage from "./BuddiesPage.js";
 import SideMenu from "./SideMenu.js";
 import AppMode from "./AppMode.js";
+import SettingsPage from "./SettingsPage";
 
 library.add(
   faWindowClose,
@@ -49,6 +51,8 @@ class App extends React.Component {
       mode: AppMode.LOGIN,
       menuOpen: false,
       modalOpen: false,
+      prevMode: AppMode.LOGIN,
+
       userData: {
         accountData: {},
         identityData: {},
@@ -113,10 +117,16 @@ class App extends React.Component {
     });
   };
 
-  //User interface state management methods
+  /*****************************************************************
+   * User interface state management methods
+   ***************************************************************** */
 
+  //Updated to keep track of a previos mode when user exits popup modals
   setMode = (newMode) => {
-    this.setState({ mode: newMode });
+    this.setState({
+      prevMode: this.state.mode,
+      mode: newMode,
+    });
   };
 
   toggleMenuOpen = () => {
@@ -124,10 +134,12 @@ class App extends React.Component {
   };
 
   toggleModalOpen = () => {
-    this.setState((prevState) => ({ dialogOpen: !prevState.dialogOpen }));
+    this.setState((prevState) => ({ modalOpen: !prevState.modalOpen }));
   };
 
-  //Account Management methods
+  /*****************************************************************
+   * Account Management methods
+   ***************************************************************** */
 
   accountExists = async (email) => {
     const res = await fetch("/user/" + email);
@@ -270,6 +282,7 @@ class App extends React.Component {
           toggleModalOpen={this.toggleModalOpen}
           userData={this.state.userData}
           updateUserData={this.updateUserData}
+          setMode={this.setMode}
         />
         <ModeTabs
           mode={this.state.mode}
@@ -324,6 +337,16 @@ class App extends React.Component {
                 toggleModalOpen={this.toggleModalOpen}
                 menuOpen={this.state.menuOpen}
                 userId={this.state.userId}
+              />
+            ),
+            /*****************************************************************
+             * Added Settings mode to be part of the render system.
+             *****************************************************************           */
+            SettingsMode: (
+              <SettingsPage
+                setMode={this.setMode}
+                prevMode={this.state.prevMode}
+                toggleModalOpen={this.toggleModalOpen}
               />
             ),
           }[this.state.mode]
