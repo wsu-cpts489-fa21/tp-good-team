@@ -8,12 +8,16 @@ class SettingsPage extends React.Component {
     super(props);
 
     this.state = {
+      //Expanded Accordion checks
       accountExpanded: false,
       nameAndPictureExpanded: false,
       speedgolfInfoExpanded: false,
+      //Validity checks
+      // emailValid: true,
       securityQuestionValid: true,
       securityAnswerValid: true,
       passwordValid: true,
+      //Configurable fields
       id: this.props.userData.accountData.id,
       securityQuestion: this.props.userData.accountData.securityQuestion,
       securityAnswer: this.props.userData.accountData.securityAnswer,
@@ -64,6 +68,9 @@ class SettingsPage extends React.Component {
       if (!this.state.passwordValid) {
         this.passwordError.current.focus();
       }
+      // if (!this.state.emailValid) {
+      //   this.emailError.current.focus();
+      // }
       this.formSubmitted = false;
     }
   }
@@ -90,9 +97,15 @@ class SettingsPage extends React.Component {
   /*****************************************************************
    * Validation Methods
    ***************************************************************** */
+  //  emailIsValid = (email) => {
+  //   const re =
+  //     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  //   return re.test(String(email).toLowerCase());
+  // };
+
   passwordIsValid = (pass) => {
-    //TODO: password is only valid if it matches password on file
-    return true;
+    const re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+    return re.test(String(pass));
   };
 
   /*****************************************************************
@@ -117,14 +130,11 @@ class SettingsPage extends React.Component {
   };
 
   handleSubmit = async (event) => {
-    //TODO async
-    this.props.toggleModalOpen();
-    this.props.setMode(this.props.prevMode);
     event.preventDefault();
     //Is security Q and A valid?
     const sqValid = this.state.securityQuestion.length > 0;
     const saValid = this.state.securityAnswer.length > 0;
-    const pValid = this.passwordIsValid(this.state.password); //TODO async
+    const pValid = this.passwordIsValid(this.state.password);
 
     if (pValid && sqValid && saValid) {
       //Necessary fields are valid: Update account
@@ -174,9 +184,88 @@ class SettingsPage extends React.Component {
         },
       };
       const result = await this.props.updateUserData(newUserData);
+      this.props.toggleModalOpen();
+      this.props.setMode(this.props.prevMode);
     } else {
-      alert("Did not submit right");
+      //At least one field invalid
+      //Clear out invalid fields and display errors
+      // const eVal = !eValid ? "" : this.state.email;
+      const pVal = !pValid ? "" : this.state.password;
+
+      this.formSubmitted = true; //Ensures error message gets focus
+      this.setState({
+        // email: eVal,
+        password: pVal,
+        passwordValid: pValid,
+        // emailValid: eValid,
+        passwordValid: pValid,
+        securityQuestionValid: sqValid,
+        securityAnswerValid: saValid,
+      });
     }
+  };
+
+  /*****************************************************************
+   * Error box
+   ***************************************************************** */
+  renderErrorBox = (e) => {
+    if (
+      // this.state.emailValid &&
+      this.state.passwordValid &&
+      this.state.securityQuestionValid &&
+      this.state.securityAnswerValid
+    ) {
+      return null;
+    }
+    return (
+      <p id="errorBox" className="alert alert-danger centered">
+        {/* {!this.state.emailValid && (
+          <a
+            id="emailError"
+            href="#email"
+            className="alert-link"
+            ref={this.emailError}
+          >
+            Enter a valid email address
+            <br />
+          </a>
+        )} */}
+        {!this.state.passwordValid && (
+          <a
+            id="passwordError"
+            href="#password"
+            className="alert-link"
+            ref={this.passwordError}
+          >
+            Enter a valid password
+            <br />
+          </a>
+        )}
+
+        {!this.state.securityQuestionValid && (
+          <a
+            id="securityQuestionError"
+            href="#securityQuestion"
+            className="alert-link"
+            ref={this.securityQuestionError}
+          >
+            Enter a security question
+            <br />
+          </a>
+        )}
+        {!this.state.securityAnswerValid && (
+          <a
+            id="securityAnswerError"
+            href="#securityAnswer"
+            className="alert-link"
+            ref={this.securityAnswerError}
+          >
+            Enter a security answer
+            <br />
+          </a>
+        )}
+      </p>
+    );
   };
 
   render() {
@@ -191,35 +280,7 @@ class SettingsPage extends React.Component {
         <h1 id="accountProfileHeader" className="mode-page-header">
           Account & Profile
         </h1>
-        <p id="profileErrorBox" className="alert alert-danger centered">
-          <a id="profileEmailError" href="#profileEmail" className="alert-link">
-            Enter a valid email address
-            <br />
-          </a>
-          <a
-            id="profileDisplayNameError"
-            href="#profileDisplayName"
-            className="alert-link"
-          >
-            Enter a valid display name
-            <br />
-          </a>
-          <a
-            id="profileSecurityQuestionError"
-            href="#profileSecurityQuestion"
-            className="alert-link"
-          >
-            Enter a valid security question
-            <br />
-          </a>
-          <a
-            id="profileSecurityAnswerError"
-            href="#profileSecurityAnswer"
-            className="alert-link"
-          >
-            Enter a valid security question answer
-          </a>
-        </p>
+        {this.renderErrorBox()}
         <form
           onSubmit={this.handleSubmit}
           id="editProfileForm"
@@ -277,40 +338,41 @@ class SettingsPage extends React.Component {
                       </div>
                     </div>
                     <div className="mb-3">
-                      <label htmlFor="profilePassword" className="form-label">
+                      <label htmlFor="password" className="form-label">
                         Password:
                         <input
-                          onChange={this.handleChange}
+                          id="password"
+                          ref={this.password}
                           value={this.state.password}
+                          onChange={this.handleChange}
                           name="password"
-                          id="profilePassword"
                           type="password"
                           className="form-control centered"
-                          pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$"
-                          aria-describedby="profilePasswordDescr"
-                          readonly
+                          aria-describedby="passwordDescr"
+                          // readonly
                         />
                       </label>
-                      <div id="profilePasswordDescr" className="form-text">
+                      <div id="passwordDescr" className="form-text">
                         Use the "Reset Password" option on the Log In page to
                         reset your password.
                       </div>
                     </div>
                     <div className="mb-3">
-                      <label
-                        htmlFor="profileSecurityQuestion"
-                        className="form-label"
-                      >
+                      <label htmlFor="securityQuestion" className="form-label">
                         Security Question:
-                        <input
+                        <textarea
+                          id="securityQuestion"
+                          ref={this.securityQuestion}
                           onChange={this.handleChange}
                           value={this.state.securityQuestion}
                           name="securityQuestion"
-                          id="profileSecurityQuestion"
-                          type="text"
+                          // type="text"
                           className="form-control centered"
-                          minlength="5"
-                          aria-describedby="profileSecurityQuestionDescr"
+                          size="35"
+                          rows="2"
+                          cols="35"
+                          maxLength="100"
+                          aria-describedby="securityQuestionDescr"
                         />
                       </label>
                       <div
@@ -323,26 +385,23 @@ class SettingsPage extends React.Component {
                       </div>
                     </div>
                     <div className="mb-3">
-                      <label
-                        htmlFor="profileSecurityAnswer"
-                        className="form-label"
-                      >
+                      <label htmlFor="securityAnswer" className="form-label">
                         Answer to Security Question:
-                        <input
-                          onChange={this.handleChange}
+                        <textarea
+                          id="securityAnswer"
+                          ref={this.securityAnswer}
                           value={this.state.securityAnswer}
-                          name="securityAnswer"
-                          id="profileSecurityAnswer"
-                          type="text"
+                          onChange={this.handleChange}
                           className="form-control centered"
-                          minlength="5"
-                          aria-describedby="profileSecurityAnswerDescr"
+                          name="securityAnswer"
+                          type="text"
+                          rows="2"
+                          cols="35"
+                          maxLength="100"
+                          aria-describedby="securityAnswerDescr"
                         />
                       </label>
-                      <div
-                        id="profileSecurityAnswerDescr"
-                        className="form-text"
-                      >
+                      <div id="securityAnswerDescr" className="form-text">
                         Your security answer must be at least 5 characters and
                         should be something you easily associate your security
                         question. You will have to provide this answer if you
