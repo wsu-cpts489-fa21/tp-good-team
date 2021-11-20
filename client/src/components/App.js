@@ -26,6 +26,7 @@ import SideMenu from "./SideMenu.js";
 import AppMode from "./AppMode.js";
 import SettingsPage from "./SettingsPage";
 
+
 library.add(
   faWindowClose,
   faEdit,
@@ -50,6 +51,7 @@ class App extends React.Component {
       menuOpen: false,
       modalOpen: false,
       prevMode: AppMode.LOGIN,
+
       userData: {
         accountData: {},
         identityData: {},
@@ -124,6 +126,7 @@ class App extends React.Component {
       prevMode: this.state.mode,
       mode: newMode,
     });
+
   };
 
   toggleMenuOpen = () => {
@@ -138,6 +141,7 @@ class App extends React.Component {
    * Account Management methods
    ***************************************************************** */
 
+
   accountExists = async (email) => {
     const res = await fetch("/user/" + email);
     return res.status === 200;
@@ -151,6 +155,7 @@ class App extends React.Component {
     const url = "/auth/login?username=" + id + "&password=" + pw;
     const res = await fetch(url, { method: "POST" });
     if (res.status === 200) {
+
       //successful login!
       return true;
     } else {
@@ -178,6 +183,7 @@ class App extends React.Component {
       body: JSON.stringify(data),
     });
     if (res.status === 201) {
+
       return "New account created with email " + data.accountData.id;
     } else {
       const resText = await res.text();
@@ -227,6 +233,7 @@ class App extends React.Component {
       body: JSON.stringify(newRoundData),
     });
     if (res.status === 201) {
+
       const newRounds = [...this.state.userData.rounds];
       newRounds.push(newRoundData);
       const newUserData = {
@@ -266,6 +273,7 @@ class App extends React.Component {
     this.setState({ userData: newUserData });
   };
 
+
   deleteRound = (id) => {
     const newRounds = [...this.state.userData.rounds];
     let r;
@@ -301,6 +309,7 @@ class App extends React.Component {
           userData={this.state.userData}
           updateUserData={this.updateUserData}
           setMode={this.setMode}
+
         />
         <ModeTabs
           mode={this.state.mode}
@@ -369,6 +378,7 @@ class App extends React.Component {
                 updateUserData={this.updateUserData}
               />
             ),
+
           }[this.state.mode]
         }
       </>
