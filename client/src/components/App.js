@@ -181,7 +181,9 @@ class App extends React.Component {
     this.setState({ userData: data });
   };
 
-  //Round Management methods
+  /*****************************************************************
+   * Round Management methods
+   ******************************************************************/
 
   addRound = async (newRoundData) => {
     const url = "/rounds/" + this.state.userData.accountData.id;
