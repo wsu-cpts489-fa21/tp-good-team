@@ -204,7 +204,6 @@ class App extends React.Component {
       // alert("IDA: " + newUserData.accountData.id);
       return "Account " + newUserData.accountData.id + " successfully updated.";
     } else {
-      alert("ELSE");
       // alert("ELSE " + newUserData.accountData.id);
       // alert("ELSE2 " + this.state.userData.accountData.id);
       const resText = await res.text();

@@ -448,24 +448,21 @@ class SettingsPage extends React.Component {
                 >
                   <div className="accordion-body">
                     <div className="mb-3">
-                      <label
-                        htmlFor="profileDisplayName"
-                        className="form-label"
-                      >
+                      <label htmlFor="displayName" className="form-label">
                         Display Name:
                         <br />
                         <input
                           onChange={this.handleChange}
                           value={this.state.displayName}
                           name="displayName"
-                          id="profileDisplayName"
+                          id="displayName"
                           type="text"
                           className="form-control centered"
-                          minlength="5"
-                          aria-describedby="profileDisplayNameDescr"
+                          size="35"
+                          aria-describedby="displayNameDescr"
                         />
                       </label>
-                      <div id="profileDisplayNameDescr" className="form-text">
+                      <div id="displayNameDescr" className="form-text">
                         Your display name is your identity within SpeedScore. It
                         must be at least 5 characters.
                       </div>
@@ -540,39 +537,39 @@ class SettingsPage extends React.Component {
                 >
                   <div className="accordion-body">
                     <div className="mb-3">
-                      <label htmlFor="sgBio" className="form-label">
+                      <label htmlFor="bio" className="form-label">
                         Personal Speedgolf Bio (optional):
                       </label>
                       <textarea
                         onChange={this.handleChange}
-                        value={this.bio}
+                        value={this.state.bio}
                         name="bio"
-                        id="sgBio"
+                        id="bio"
                         className="form-control"
-                        aria-describedby="sgBioDescr"
+                        aria-describedby="bioDescr"
                         rows="5"
                         cols="40"
                         maxlength="500"
                       ></textarea>
-                      <div id="sgBioDescr" className="form-text">
+                      <div id="bioDescr" className="form-text">
                         A short personal bio about your speedgolf journey.
                         Maximum of 500 characters.
                       </div>
                     </div>
                     <div className="mb-3">
-                      <label htmlFor="sgFirstRound" className="form-label">
+                      <label htmlFor="firstRound" className="form-label">
                         Date of First Speedgolf Round (optional):
                       </label>
                       <input
-                        id="sgFirstRound"
+                        id="firstRound"
                         name="firstRound"
                         className="form-control centered"
                         type="date"
-                        aria-describedby="sgFirstRoundDescr"
+                        aria-describedby="firstRoundDescr"
                         value={this.state.firstRound}
                         onChange={this.handleChange}
                       />
-                      <div id="sgFirstRoundDescr" className="form-text">
+                      <div id="firstRoundDescr" className="form-text">
                         Month and year in which you played your first speedgolf
                         round.
                       </div>
