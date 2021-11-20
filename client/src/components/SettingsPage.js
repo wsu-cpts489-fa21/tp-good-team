@@ -52,19 +52,6 @@ class SettingsPage extends React.Component {
     this.passwordError = React.createRef();
   }
 
-  // populateClass = async () => {
-  //   const url = "/users/" + this.props.accountData.id;
-  //   const res = await fetch(url, {
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //     },
-  //     method: "GET",
-  //     body: JSON.stringify()
-  //   }
-  //     )
-  // }
-
   componentDidUpdate() {
     if (this.formSubmitted) {
       if (!this.state.securityAnswerValid) {
@@ -514,14 +501,13 @@ class SettingsPage extends React.Component {
                         Date of First Speedgolf Round (optional):
                       </label>
                       <input
-                        onChange={this.handleChange}
-                        value={this.state.firstRound}
-                        name="firstRound"
-                        type="month"
                         id="sgFirstRound"
+                        name="firstRound"
                         className="form-control centered"
-                        value="2021-07"
+                        type="date"
                         aria-describedby="sgFirstRoundDescr"
+                        value={this.state.firstRound}
+                        onChange={this.handleChange}
                       />
                       <div id="sgFirstRoundDescr" className="form-text">
                         Month and year in which you played your first speedgolf
@@ -622,10 +608,7 @@ class SettingsPage extends React.Component {
                       </legend>
                       <div id="clubsDiv" className="mb-3">
                         <input
-                          // onChange={this.handleChange}
-                          // value={this.state.driver}
                           name="driver"
-                          // checked={this.state.check}
                           checked={this.state.driver ? true : false}
                           onChange={(e) => {
                             this.handleChange({
@@ -641,8 +624,6 @@ class SettingsPage extends React.Component {
                         />
                         <label htmlFor="sgDriver">Driver</label>
                         <input
-                          // onChange={this.handleChange}
-                          // value={this.state.threeW}
                           checked={this.state.threeW ? true : false}
                           onChange={(e) => {
                             this.handleChange({
@@ -659,8 +640,6 @@ class SettingsPage extends React.Component {
                         />
                         <label htmlFor="sg3W">3W</label>
                         <input
-                          // onChange={this.handleChange}
-                          // value={this.state.fourW}
                           checked={this.state.fourW ? true : false}
                           onChange={(e) => {
                             this.handleChange({
@@ -677,8 +656,6 @@ class SettingsPage extends React.Component {
                         />
                         <label htmlFor="sg4W">4W</label>
                         <input
-                          // onChange={this.handleChange}
-                          // value={this.state.fiveW}
                           checked={this.state.fiveW ? true : false}
                           onChange={(e) => {
                             this.handleChange({
@@ -695,8 +672,6 @@ class SettingsPage extends React.Component {
                         />
                         <label htmlFor="sg5W">5W</label>
                         <input
-                          // onChange={this.handleChange}
-                          // value={this.state.hybrid}
                           checked={this.state.hybrid ? true : false}
                           onChange={(e) => {
                             this.handleChange({
@@ -714,8 +689,6 @@ class SettingsPage extends React.Component {
                         <label htmlFor="sgHybrid">Hybrid</label>
                         <br />
                         <input
-                          // onChange={this.handleChange}
-                          // value={this.state.oneI}
                           checked={this.state.oneI ? true : false}
                           onChange={(e) => {
                             this.handleChange({
@@ -732,8 +705,6 @@ class SettingsPage extends React.Component {
                         />
                         <label>1I</label>
                         <input
-                          // onChange={this.handleChange}
-                          // value={this.state.twoI}
                           checked={this.state.twoI ? true : false}
                           onChange={(e) => {
                             this.handleChange({
@@ -750,8 +721,6 @@ class SettingsPage extends React.Component {
                         />
                         <label htmlFor="sg2I">2I</label>
                         <input
-                          // onChange={this.handleChange}
-                          // value={this.state.threeI}
                           checked={this.state.threeI ? true : false}
                           onChange={(e) => {
                             this.handleChange({
@@ -768,8 +737,6 @@ class SettingsPage extends React.Component {
                         />
                         <label htmlFor="sg3I">3I</label>
                         <input
-                          // onChange={this.handleChange}
-                          // value={this.state.fourI}
                           checked={this.state.fourI ? true : false}
                           onChange={(e) => {
                             this.handleChange({
@@ -786,8 +753,6 @@ class SettingsPage extends React.Component {
                         />
                         <label htmlFor="sg4I">4I</label>
                         <input
-                          // onChange={this.handleChange}
-                          // value={this.state.fiveI}
                           checked={this.state.fiveI ? true : false}
                           onChange={(e) => {
                             this.handleChange({
@@ -804,8 +769,6 @@ class SettingsPage extends React.Component {
                         />
                         <label htmlFor="sg5I">5I</label>
                         <input
-                          // onChange={this.handleChange}
-                          // value={this.state.sixI}
                           checked={this.state.sixI ? true : false}
                           onChange={(e) => {
                             this.handleChange({
@@ -822,8 +785,6 @@ class SettingsPage extends React.Component {
                         />
                         <label htmlFor="sg6I">6I</label>
                         <input
-                          // onChange={this.handleChange}
-                          // value={this.state.sevenI}
                           checked={this.state.sevenI ? true : false}
                           onChange={(e) => {
                             this.handleChange({
@@ -840,8 +801,6 @@ class SettingsPage extends React.Component {
                         />
                         <label htmlFor="sg7I">7I</label>
                         <input
-                          // onChange={this.handleChange}
-                          // value={this.state.eightI}
                           checked={this.state.eightI ? true : false}
                           onChange={(e) => {
                             this.handleChange({
@@ -858,8 +817,6 @@ class SettingsPage extends React.Component {
                         />
                         <label htmlFor="sg8I">8I</label>
                         <input
-                          // onChange={this.handleChange}
-                          // value={this.state.nineI}
                           checked={this.state.nineI ? true : false}
                           onChange={(e) => {
                             this.handleChange({
@@ -877,8 +834,6 @@ class SettingsPage extends React.Component {
                         <label htmlFor="sg9I">9I</label>
                         <br />
                         <input
-                          // onChange={this.handleChange}
-                          // value={this.state.pw}
                           checked={this.state.pw ? true : false}
                           onChange={(e) => {
                             this.handleChange({
@@ -895,8 +850,6 @@ class SettingsPage extends React.Component {
                         />
                         <label htmlFor="sgPW">PW</label>
                         <input
-                          // onChange={this.handleChange}
-                          // value={this.state.gw}
                           checked={this.state.gw ? true : false}
                           onChange={(e) => {
                             this.handleChange({
@@ -913,8 +866,6 @@ class SettingsPage extends React.Component {
                         />
                         <label htmlFor="sgGW">GW</label>
                         <input
-                          // onChange={this.handleChange}
-                          // value={this.state.sw}
                           checked={this.state.sw ? true : false}
                           onChange={(e) => {
                             this.handleChange({
@@ -931,8 +882,6 @@ class SettingsPage extends React.Component {
                         />
                         <label htmlFor="sgSW">SW</label>
                         <input
-                          // onChange={this.handleChange}
-                          // value={this.state.lw}
                           checked={this.state.lw ? true : false}
                           onChange={(e) => {
                             this.handleChange({
@@ -950,8 +899,6 @@ class SettingsPage extends React.Component {
                         <label htmlFor="sgLW">LW</label>
                         <br />
                         <input
-                          // onChange={this.handleChange}
-                          // value={this.state.putter}
                           checked={this.state.putter ? true : false}
                           onChange={(e) => {
                             this.handleChange({
