@@ -402,3 +402,8 @@ button::-moz-focus-inner {
 .cell-align-middle {
   vertical-align: middle;
 }
+
+.space {
+  position: relative;
+  top: 100px;
+}
