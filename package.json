@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon --exec node -r dotenv/config server.js",
     "start": "node -r dotenv/config server.js",
-    "test": "npx testcafe chrome client/src/__tests__/testSettingsPage.js",
+    "test": "npx testcafe chrome tests/*.js",
     "b": "cd client && npm run build && cd .. && npm run dev",
     "install-all-dependencies": "npm install -g testcafe && npm i testcafe --save-dev && npm install passport-google-oauth20 && npm install passport-local && npm install bcrypt && npm install mongoose && npm install passport-local && npm install passport && npm install passport-github && npm install dotenv && cd client && npm install && npm install --save @fortawesome/free-brands-svg-icons && npm install bootstrap-social && npm run build && cd .. && npm i && npm run dev"
   },
@@ -44,6 +44,7 @@
     "@babel/core": "^7.15.8",
     "@babel/node": "^7.15.8",
     "@babel/preset-env": "^7.15.8",
+    "@testing-library/react": "^12.1.2",
     "nodemon": "^2.0.14",
     "testcafe": "^1.17.1"
   },

@@ -218,10 +218,10 @@ class SettingsPage extends React.Component {
       return null;
     }
     return (
-      <p id="errorBox" className="alert alert-danger centered">
+      <p id="spErrorBox" className="alert alert-danger centered">
         {/* {!this.state.emailValid && (
           <a
-            id="emailError"
+            id="spEmailError"
             href="#email"
             className="alert-link"
             ref={this.emailError}
@@ -232,7 +232,7 @@ class SettingsPage extends React.Component {
         )} */}
         {!this.state.passwordValid && (
           <a
-            id="passwordError"
+            id="spPasswordError"
             href="#password"
             className="alert-link"
             ref={this.passwordError}
@@ -244,7 +244,7 @@ class SettingsPage extends React.Component {
 
         {!this.state.securityQuestionValid && (
           <a
-            id="securityQuestionError"
+            id="spSecurityQuestionError"
             href="#securityQuestion"
             className="alert-link"
             ref={this.securityQuestionError}
@@ -255,7 +255,7 @@ class SettingsPage extends React.Component {
         )}
         {!this.state.securityAnswerValid && (
           <a
-            id="securityAnswerError"
+            id="spSecurityAnswerError"
             href="#securityAnswer"
             className="alert-link"
             ref={this.securityAnswerError}
@@ -341,7 +341,7 @@ class SettingsPage extends React.Component {
                       <label htmlFor="password" className="form-label">
                         Password:
                         <input
-                          id="password"
+                          id="spPassword"
                           ref={this.password}
                           value={this.state.password}
                           onChange={this.handleChange}
@@ -361,7 +361,7 @@ class SettingsPage extends React.Component {
                       <label htmlFor="securityQuestion" className="form-label">
                         Security Question:
                         <textarea
-                          id="securityQuestion"
+                          id="spSecurityQuestion"
                           ref={this.securityQuestion}
                           onChange={this.handleChange}
                           value={this.state.securityQuestion}
@@ -388,7 +388,7 @@ class SettingsPage extends React.Component {
                       <label htmlFor="securityAnswer" className="form-label">
                         Answer to Security Question:
                         <textarea
-                          id="securityAnswer"
+                          id="spSecurityAnswer"
                           ref={this.securityAnswer}
                           value={this.state.securityAnswer}
                           onChange={this.handleChange}
@@ -455,7 +455,7 @@ class SettingsPage extends React.Component {
                           onChange={this.handleChange}
                           value={this.state.displayName}
                           name="displayName"
-                          id="displayName"
+                          id="spDisplayName"
                           type="text"
                           className="form-control centered"
                           size="35"
@@ -544,7 +544,7 @@ class SettingsPage extends React.Component {
                         onChange={this.handleChange}
                         value={this.state.bio}
                         name="bio"
-                        id="bio"
+                        id="sgBio"
                         className="form-control"
                         aria-describedby="bioDescr"
                         rows="5"
@@ -561,7 +561,7 @@ class SettingsPage extends React.Component {
                         Date of First Speedgolf Round (optional):
                       </label>
                       <input
-                        id="firstRound"
+                        id="sgFirstRound"
                         name="firstRound"
                         className="form-control centered"
                         type="date"
