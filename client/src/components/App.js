@@ -14,7 +14,8 @@ import {
   faEye,
   faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faGoogle } from "@fortawesome/free-brands-svg-icons";
+
 import NavBar from "./NavBar.js";
 import ModeTabs from "./ModeTabs.js";
 import LoginPage from "./LoginPage.js";
@@ -26,7 +27,6 @@ import SideMenu from "./SideMenu.js";
 import AppMode from "./AppMode.js";
 
 import SettingsPage from "./SettingsPage";
-
 
 library.add(
   faWindowClose,
@@ -41,7 +41,8 @@ library.add(
   faTrash,
   faEye,
   faUserPlus,
-  faGithub
+  faGithub,
+  faGoogle
 );
 
 class App extends React.Component {
@@ -128,7 +129,6 @@ class App extends React.Component {
       prevMode: this.state.mode,
       mode: newMode,
     });
-
   };
 
   toggleMenuOpen = () => {
@@ -144,7 +144,6 @@ class App extends React.Component {
    * Account Management methods
    ***************************************************************** */
 
-
   accountExists = async (email) => {
     const res = await fetch("/user/" + email);
     return res.status === 200;
@@ -158,8 +157,7 @@ class App extends React.Component {
   authenticateUser = async (id, pw) => {
     const url = "/auth/login?username=" + id + "&password=" + pw;
     const res = await fetch(url, { method: "POST" });
-    if (res.status === 200) {
-
+    if (res.status == 200) {
       //successful login!
       return true;
     } else {
@@ -202,7 +200,7 @@ class App extends React.Component {
 
   /*****************************************************************
    * Round Management methods
-   ***************************************************************** */
+   ******************************************************************/
 
   addRound = async (newRoundData) => {
 
@@ -216,7 +214,6 @@ class App extends React.Component {
       method: "POST",
       body: JSON.stringify(newRoundData),
     });
-
     if (res.status == 201) {
 
       const newRounds = [...this.state.userData.rounds];
@@ -284,6 +281,7 @@ class App extends React.Component {
     this.setState({ userData: newUserData });
   };
 
+
   deleteRound = async (id) => {
     const url =
       "/rounds/" +
@@ -325,7 +323,6 @@ class App extends React.Component {
           updateUserData={this.updateUserData}
 
           setMode={this.setMode}
-
         />
         <ModeTabs
           mode={this.state.mode}
@@ -393,7 +390,6 @@ class App extends React.Component {
                 toggleModalOpen={this.toggleModalOpen}
               />
             ),
-
           }[this.state.mode]
         }
       </>
