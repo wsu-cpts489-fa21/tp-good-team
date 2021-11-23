@@ -14,7 +14,8 @@ import {
   faEye,
   faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faGoogle } from "@fortawesome/free-brands-svg-icons";
+
 import NavBar from "./NavBar.js";
 import ModeTabs from "./ModeTabs.js";
 import LoginPage from "./LoginPage.js";
@@ -39,7 +40,8 @@ library.add(
   faTrash,
   faEye,
   faUserPlus,
-  faGithub
+  faGithub,
+  faGoogle
 );
 
 class App extends React.Component {
@@ -56,7 +58,6 @@ class App extends React.Component {
         identityData: {},
         speedgolfData: {},
         rounds: [],
-        roundCount: 0,
       },
       authenticated: false,
     };
@@ -151,7 +152,7 @@ class App extends React.Component {
   authenticateUser = async (id, pw) => {
     const url = "/auth/login?username=" + id + "&password=" + pw;
     const res = await fetch(url, { method: "POST" });
-    if (res.status === 200) {
+    if (res.status == 200) {
       //successful login!
       return true;
     } else {
@@ -178,7 +179,7 @@ class App extends React.Component {
       method: "POST",
       body: JSON.stringify(data),
     });
-    if (res.status === 201) {
+    if (res.status == 201) {
       return "New account created with email " + data.accountData.id;
     } else {
       const resText = await res.text();
@@ -186,14 +187,35 @@ class App extends React.Component {
     }
   };
 
-  updateUserData = (data) => {
-    localStorage.setItem(data.accountData.email, JSON.stringify(data));
-    this.setState({ userData: data });
+  updateUserData = async (newUserData) => {
+    // localStorage.setItem(data.accountData.email, JSON.stringify(newUserData));
+    const url = "/users/" + this.state.userData.accountData.id;
+    const res = await fetch(url, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "PUT",
+      body: JSON.stringify(newUserData),
+    });
+
+    if (res.status === 200) {
+      // alert("IDB: " + newUserData.accountData.id);
+
+      this.setState({ userData: newUserData });
+      // alert("IDA: " + newUserData.accountData.id);
+      return "Account " + newUserData.accountData.id + " successfully updated.";
+    } else {
+      // alert("ELSE " + newUserData.accountData.id);
+      // alert("ELSE2 " + this.state.userData.accountData.id);
+      const resText = await res.text();
+      return "Unable to update account. " + resText;
+    }
   };
 
   /*****************************************************************
    * Round Management methods
-   ***************************************************************** */
+   ******************************************************************/
 
   addRound = async (newRoundData) => {
     const url = "/rounds/" + this.state.userData.accountData.id;
@@ -206,7 +228,7 @@ class App extends React.Component {
       method: "POST",
       body: JSON.stringify(newRoundData),
     });
-    if (res.status === 201) {
+    if (res.status == 201) {
       const newRounds = [...this.state.userData.rounds];
       newRounds.push(newRoundData);
       const newUserData = {
@@ -216,6 +238,7 @@ class App extends React.Component {
         rounds: newRounds,
       };
       this.setState({ userData: newUserData });
+
       return "New round logged.";
     } else {
       const resText = await res.text();
@@ -223,50 +246,63 @@ class App extends React.Component {
     }
   };
 
-  updateRound = (newRoundData) => {
-    const newRounds = [...this.state.userData.rounds];
-    let r;
-    for (r = 0; r < newRounds.length; ++r) {
-      if (newRounds[r].roundNum === newRoundData.roundNum) {
-        break;
-      }
+  updateRound = async (newRoundData, index) => {
+    const url =
+      "/rounds/" +
+      this.state.userData.accountData.id +
+      "/" +
+      this.state.userData.rounds[index]._id; //Changed for customId
+    const res = await fetch(url, {
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-type": "application/json",
+      },
+      method: "PUT",
+      body: JSON.stringify(newRoundData),
+    });
+
+    if (res.status == 200) {
+      const newRounds = [...this.state.userData.rounds];
+
+      newRounds[index] = newRoundData;
+      const newUserData = {
+        accountData: this.state.userData.accountData,
+        identityData: this.state.userData.identityData,
+        speedgolfProfileData: this.state.userData.speedgolfProfileData,
+        rounds: newRounds,
+      };
+      this.setState({ userData: newUserData });
+      return "Round updated successfully";
+    } else {
+      const text = await res.text();
+      return "Round could not be updated because of" + text;
     }
-    newRounds[r] = newRoundData;
-    const newUserData = {
-      accountData: this.state.userData.accountData,
-      identityData: this.state.userData.identityData,
-      speedgolfProfileData: this.state.userData.speedgolfProfileData,
-      rounds: newRounds,
-      roundCount: this.state.userData.roundCount,
-    };
-    localStorage.setItem(
-      newUserData.accountData.email,
-      JSON.stringify(newUserData)
-    );
-    this.setState({ userData: newUserData });
   };
 
-  deleteRound = (id) => {
-    const newRounds = [...this.state.userData.rounds];
-    let r;
-    for (r = 0; r < newRounds.length; ++r) {
-      if (newRounds[r].roundNum === this.state.deleteId) {
-        break;
-      }
+  deleteRound = async (id) => {
+    const url =
+      "/rounds/" +
+      this.state.userData.accountData.id +
+      "/" +
+      this.state.userData.rounds[id]._id; //Changed to use customId
+
+    if (res.status == 200) {
+      const newRounds = this.state.userData.rounds.filter(
+        (item) => item._id !== this.state.userData.rounds[id]._id //Changed to use customId
+      );
+
+      const newUserData = {
+        accountData: this.state.userData.accountData,
+        identityData: this.state.userData.identityData,
+        speedgolfProfileData: this.state.userData.speedgolfProfileData,
+        rounds: newRounds,
+      };
+      this.setState({ userData: newUserData });
+    } else {
+      const resText = await res.text();
+      return "Unable to delete round.";
     }
-    delete newRounds[r];
-    const newUserData = {
-      accountData: this.state.userData.accountData,
-      identityData: this.state.userData.identityData,
-      speedgolfProfileData: this.state.userData.speedgolfProfileData,
-      rounds: newRounds,
-      roundCount: this.state.userData.roundCount,
-    };
-    localStorage.setItem(
-      newUserData.accountData.email,
-      JSON.stringify(newUserData)
-    );
-    this.setState({ userData: newUserData });
   };
 
   render() {
@@ -342,9 +378,11 @@ class App extends React.Component {
              *****************************************************************           */
             SettingsMode: (
               <SettingsPage
-                setMode={this.setMode}
+                userData={this.state.userData}
                 prevMode={this.state.prevMode}
+                setMode={this.setMode}
                 toggleModalOpen={this.toggleModalOpen}
+                updateUserData={this.updateUserData}
               />
             ),
           }[this.state.mode]
