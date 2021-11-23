@@ -12,16 +12,16 @@ class DeleteDialog extends React.Component {
             this.props.cancelDeleteRound();
           }}
         >
-          Close
+          No, do not delete
         </button>
         <button
           id="deleteRoundBtn"
           onClick={() => {
-            this.props.deleteRound(this.props.deleteId);
+            this.props.confirmDeleteRound();
             this.props.cancelDeleteRound();
           }}
         >
-          Delete
+          Yes, delete
         </button>
       </>
     );

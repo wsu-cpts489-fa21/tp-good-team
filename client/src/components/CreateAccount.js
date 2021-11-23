@@ -70,6 +70,7 @@ class CreateAccount extends React.Component {
       return;
     }
     if (event.target.value.length == 0) {
+
       this.setState({ profilePic: "" });
     } else {
       const self = this;
@@ -327,7 +328,8 @@ class CreateAccount extends React.Component {
               <img
                 id="acctProfilePicImage"
                 src={
-                  this.state.profilePic == ""
+
+                  this.state.profilePic === ""
                     ? profilePic
                     : this.state.profilePic
                 }
@@ -396,6 +398,7 @@ class CreateAccount extends React.Component {
           <div className="mode-page-btn-container">
             <button
               id="submitCreateAccountBtn"
+
               type="submit"
               className="mode-page-btn action-dialog action-button"
             >
