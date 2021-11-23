@@ -46,7 +46,7 @@ You can acces our team's [Project Board](https://github.com/wsu-cpts489-fa21/tp-
 
 | Team Member | Contribution Reflection Statement                                                                                                                                                          |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| H.J.        | <_Required_: The story points data is unlikely to tell the whole story about your contribution. Write a brief statement explaining and reflecting on your contribution to this milestone.> |
+| H.J.        | <_Required_: I initially create the updateRound route and the updateRound function in App.js and later on it was improved. Later on I helped with testing, modifying the test to work accurately with our web application.> |
 | E.A.        | <_Required_: The story points data is unlikely to tell the whole story about your contribution. Write a brief statement explaining and reflecting on your contribution to this milestone.> |
 | C.H.        | <_Required_: The story points data is unlikely to tell the whole story about your contribution. Write a brief statement explaining and reflecting on your contribution to this milestone.> |
 | J.S.        | <_Required_: The story points data is unlikely to tell the whole story about your contribution. Write a brief statement explaining and reflecting on your contribution to this milestone.> |
@@ -132,32 +132,31 @@ You can acces our team's [Project Board](https://github.com/wsu-cpts489-fa21/tp-
 
 | Team Member | Communication Reflection Statement                                                                                                                                                                               |
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| H.J.        | <_Required_: The posts/replies data is unlikely to tell the whole story about your communication. Write a brief statement explaining and reflecting on your communication with your team during this milestone.> |
+| H.J.        | <_Required_: In discord we all went over what we preferred to do and I also had to delegate some roles to people who had not picked up any.> |
 | E.A.        | <_Required_: The posts/replies data is unlikely to tell the whole story about your communication. Write a brief statement explaining and reflecting on your communication with your team during this milestone.> |
 | C.H.        | <_Required_: The posts/replies data is unlikely to tell the whole story about your communication. Write a brief statement explaining and reflecting on your communication with your team during this milestone.> |
 | J.S.        | <_Required_: The posts/replies data is unlikely to tell the whole story about your communication. Write a brief statement explaining and reflecting on your communication with your team during this milestone.> |
 
 ### Retrospective
 
-[Link to Recording](https://wsu.zoom.us/recording)
+We did not use Zoom, we used a private discord meeting to go through what we did and what we still needed to do. 
 
 #### What went well
 
-- Item 1
-- Item 2
-- Item x
+- Communication for the most part was quick and smooth.
+- We had everything we needed by the time our demo came along however a few bugs led us to not be able to demo at 100% completeness.
+- Teammates were cooperating and working together
 
 #### What we'd like to improve
 
-- Item 1
-- Item 2
-- Item x
+- Giving ourselves a day or two earlier to finish
+- Giving everyone evenly as possible distributed points
 
 #### Changes we plan to implement in next milestone period
 
-- Item 1
-- Item 2
-- Item x
+- Finishing quicker
+- Everyone reviewing PRs
+- Work quickly but do not rush, give ourselves time
 
 ## Milestone 1 (Due 12/3)
 
