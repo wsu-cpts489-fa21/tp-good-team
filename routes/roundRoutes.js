@@ -60,6 +60,7 @@ roundRoute.post("/rounds/:userId", async (req, res, next) => {
     } else {
       return res.status(201).send("Round successfully added to database.");
     }
+
   } catch (err) {
     console.log(err);
     return res
@@ -155,14 +156,19 @@ roundRoute.put("/rounds/:userId/:roundId", async (req, res) => {
 //in the users collection (DELETE)
 //TO DO: Implement this route
 roundRoute.delete("/rounds/:userId/:roundId", async (req, res) => {
-  console.log(
-    "in /rounds route (DELETE) with id = " + JSON.stringify(req.params.roundId)
-  );
+  console.log("in /rounds route (DELETE) with id = " + req.params.roundId);
 
   try {
-    const status = await User.updateOne({
-      $pull: { rounds: { _id: req.params.roundId } },
-    });
+    const status = await User.updateOne(
+      {
+        "accountData.id": req.params.userId,
+        rounds: { $elemMatch: { _id: req.params.roundId } },
+      },
+      { $pull: { rounds: { _id: req.params.roundId } } }
+      // { $pull: { rounds: { "rounds.$.roundId": req.params.roundId } } }
+      // { $pull: { "rounds.$.roundId": req.params.roundId } }
+    );
+
     if (status.modifiedCount != 1) {
       console.log("status: " + JSON.stringify(status));
       res.status(404).send("Round not delete.");

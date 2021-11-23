@@ -68,7 +68,7 @@ class RoundForm extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    //Added for customId
+    //Added if statement for customId
     if (this.props.mode === RoundsMode.LOGROUND) {
       this.setState({ _id: Date.now() });
     }
@@ -260,12 +260,14 @@ class RoundForm extends React.Component {
           </div>
           <div className="mode-page-btn-container">
             <button
+              id="roundFormSubmitBtnLabel"
+
               type="submit"
               className="mode-page-btn action-dialog action-button"
             >
               <FontAwesomeIcon
                 icon={this.state.btnIcon}
-                className={this.state.btnIcon === "spinner" ? "fa-spin" : ""}
+                className={this.state.btnIcon == "spinner" ? "fa-spin" : ""}
 
               />
               <span>&nbsp;{this.state.btnLabel}</span>

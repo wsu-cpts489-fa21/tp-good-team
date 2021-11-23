@@ -24,6 +24,7 @@ import CoursesPage from "./CoursesPage.js";
 import BuddiesPage from "./BuddiesPage.js";
 import SideMenu from "./SideMenu.js";
 import AppMode from "./AppMode.js";
+
 import SettingsPage from "./SettingsPage";
 
 
@@ -50,6 +51,7 @@ class App extends React.Component {
       mode: AppMode.LOGIN,
       menuOpen: false,
       modalOpen: false,
+
       prevMode: AppMode.LOGIN,
 
       userData: {
@@ -115,6 +117,7 @@ class App extends React.Component {
     });
   };
 
+
   /*****************************************************************
    * User interface state management methods
    ***************************************************************** */
@@ -133,6 +136,7 @@ class App extends React.Component {
   };
 
   toggleModalOpen = () => {
+
     this.setState((prevState) => ({ modalOpen: !prevState.modalOpen }));
   };
 
@@ -149,6 +153,7 @@ class App extends React.Component {
   getAccountData = (email) => {
     return JSON.parse(localStorage.getItem(email));
   };
+
 
   authenticateUser = async (id, pw) => {
     const url = "/auth/login?username=" + id + "&password=" + pw;
@@ -181,7 +186,7 @@ class App extends React.Component {
       method: "POST",
       body: JSON.stringify(data),
     });
-    if (res.status === 201) {
+    if (res.status == 201) {
 
       return "New account created with email " + data.accountData.id;
     } else {
@@ -200,6 +205,7 @@ class App extends React.Component {
    ***************************************************************** */
 
   addRound = async (newRoundData) => {
+
     const url = "/rounds/" + this.state.userData.accountData.id;
     let res = await fetch(url, {
       method: "POST",
@@ -222,6 +228,7 @@ class App extends React.Component {
         rounds: newRounds,
       };
       this.setState({ userData: newUserData });
+
       return "New round logged.";
     } else {
       const resText = await res.text();
@@ -277,28 +284,32 @@ class App extends React.Component {
     this.setState({ userData: newUserData });
   };
 
+  deleteRound = async (id) => {
+    const url =
+      "/rounds/" +
+      this.state.userData.accountData.id +
+      "/" +
+      this.state.userData.rounds[id]._id; //Changed to use customId
 
-  deleteRound = (id) => {
-    const newRounds = [...this.state.userData.rounds];
-    let r;
-    for (r = 0; r < newRounds.length; ++r) {
-      if (newRounds[r].roundNum === this.state.deleteId) {
-        break;
-      }
+
+
+    if (res.status == 200) {
+      const newRounds = this.state.userData.rounds.filter(
+        (item) => item._id !== this.state.userData.rounds[id]._id //Changed to use customId
+      );
+
+      const newUserData = {
+        accountData: this.state.userData.accountData,
+        identityData: this.state.userData.identityData,
+        speedgolfProfileData: this.state.userData.speedgolfProfileData,
+        rounds: newRounds,
+      };
+      this.setState({ userData: newUserData });
+    } else {
+      const resText = await res.text();
+      return "Unable to delete round.";
     }
-    delete newRounds[r];
-    const newUserData = {
-      accountData: this.state.userData.accountData,
-      identityData: this.state.userData.identityData,
-      speedgolfProfileData: this.state.userData.speedgolfProfileData,
-      rounds: newRounds,
-      roundCount: this.state.userData.roundCount,
-    };
-    localStorage.setItem(
-      newUserData.accountData.email,
-      JSON.stringify(newUserData)
-    );
-    this.setState({ userData: newUserData });
+
   };
 
   render() {
@@ -312,6 +323,7 @@ class App extends React.Component {
           toggleModalOpen={this.toggleModalOpen}
           userData={this.state.userData}
           updateUserData={this.updateUserData}
+
           setMode={this.setMode}
 
         />
@@ -370,6 +382,7 @@ class App extends React.Component {
                 userId={this.state.userId}
               />
             ),
+
             /*****************************************************************
              * Added Settings mode to be part of the render system.
              *****************************************************************           */
