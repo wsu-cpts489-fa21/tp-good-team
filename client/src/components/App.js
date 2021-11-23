@@ -215,7 +215,7 @@ class App extends React.Component {
       "/rounds/" +
       this.state.userData.accountData.id +
       "/" +
-      this.state.userData.rounds[index].id;
+      this.state.userData.rounds[index]._id; //Changed for customId
     const res = await fetch(url, {
       method: "PUT",
       headers: {
