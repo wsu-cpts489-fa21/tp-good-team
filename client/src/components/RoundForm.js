@@ -9,6 +9,7 @@ class RoundForm extends React.Component {
       let today = new Date(Date.now() - new Date().getTimezoneOffset() * 60000);
       this.state = {
         date: today.toISOString().substr(0, 10),
+        _id: 0,
         course: "",
         type: "practice",
         holes: "18",
@@ -67,6 +68,10 @@ class RoundForm extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    //Added if statement for customId
+    if (this.props.mode === RoundsMode.LOGROUND) {
+      this.setState({ _id: Date.now() });
+    }
     this.setState(
       { btnIcon: "spinner", btnLabel: "Saving..." },
       this.handleSubmitCallback

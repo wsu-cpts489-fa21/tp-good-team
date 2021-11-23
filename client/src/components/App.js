@@ -183,6 +183,7 @@ class App extends React.Component {
   //Round Management methods
 
   addRound = async (newRoundData) => {
+    console.log("New Round: " + JSON.stringify(newRoundData));
     const url = "/rounds/" + this.state.userData.accountData.id;
     let res = await fetch(url, {
       method: "POST",
@@ -203,6 +204,7 @@ class App extends React.Component {
         rounds: newRounds,
       };
       this.setState({ userData: newUserData });
+      console.log("NewUserData: " + JSON.stringify(this.state.userData));
       return "New round logged.";
     } else {
       const resText = await res.text();
@@ -238,7 +240,7 @@ class App extends React.Component {
       "/rounds/" +
       this.state.userData.accountData.id +
       "/" +
-      this.state.userData.rounds[id].id;
+      this.state.userData.rounds[id]._id; //Changed to use customId
 
     const res = await fetch(url, {
       method: "DELETE",
@@ -251,7 +253,7 @@ class App extends React.Component {
 
     if (res.status == 200) {
       const newRounds = this.state.userData.rounds.filter(
-        (item) => item.id !== this.state.userData.rounds[id].id
+        (item) => item._id !== this.state.userData.rounds[id]._id //Changed to use customId
       );
 
       const newUserData = {
