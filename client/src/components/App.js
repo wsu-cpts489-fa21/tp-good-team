@@ -193,9 +193,30 @@ class App extends React.Component {
     }
   };
 
-  updateUserData = (data) => {
-    localStorage.setItem(data.accountData.email, JSON.stringify(data));
-    this.setState({ userData: data });
+  updateUserData = async (newUserData) => {
+    // localStorage.setItem(data.accountData.email, JSON.stringify(newUserData));
+    const url = "/users/" + this.state.userData.accountData.id;
+    const res = await fetch(url, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "PUT",
+      body: JSON.stringify(newUserData),
+    });
+
+    if (res.status === 200) {
+      // alert("IDB: " + newUserData.accountData.id);
+
+      this.setState({ userData: newUserData });
+      // alert("IDA: " + newUserData.accountData.id);
+      return "Account " + newUserData.accountData.id + " successfully updated.";
+    } else {
+      // alert("ELSE " + newUserData.accountData.id);
+      // alert("ELSE2 " + this.state.userData.accountData.id);
+      const resText = await res.text();
+      return "Unable to update account. " + resText;
+    }
   };
 
   /*****************************************************************
@@ -385,9 +406,11 @@ class App extends React.Component {
              *****************************************************************           */
             SettingsMode: (
               <SettingsPage
-                setMode={this.setMode}
+                userData={this.state.userData}
                 prevMode={this.state.prevMode}
+                setMode={this.setMode}
                 toggleModalOpen={this.toggleModalOpen}
+                updateUserData={this.updateUserData}
               />
             ),
           }[this.state.mode]
