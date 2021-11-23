@@ -53,7 +53,6 @@ class App extends React.Component {
         identityData: {},
         speedgolfData: {},
         rounds: [],
-        roundCount: 0,
       },
       authenticated: false,
     };
@@ -193,6 +192,7 @@ class App extends React.Component {
       method: "POST",
       body: JSON.stringify(newRoundData),
     });
+
     if (res.status == 201) {
       const newRounds = [...this.state.userData.rounds];
       newRounds.push(newRoundData);
@@ -228,19 +228,13 @@ class App extends React.Component {
 
     if (res.status == 200) {
       const newRounds = [...this.state.userData.rounds];
-      let r;
-      for (r = 0; r < newRounds.length; ++r) {
-        if (newRounds[r].roundNum === newRoundData.roundNum) {
-          break;
-        }
-      }
-      newRounds[r] = newRoundData;
+
+      newRounds[index] = newRoundData;
       const newUserData = {
         accountData: this.state.userData.accountData,
         identityData: this.state.userData.identityData,
         speedgolfProfileData: this.state.userData.speedgolfProfileData,
         rounds: newRounds,
-        roundCount: this.state.userData.roundCount,
       };
       this.setState({ userData: newUserData });
       return "Round updated successfully";
@@ -249,6 +243,7 @@ class App extends React.Component {
       return "Round could not be updated because of" + text;
     }
   };
+
   deleteRound = (id) => {
     const newRounds = [...this.state.userData.rounds];
     let r;
