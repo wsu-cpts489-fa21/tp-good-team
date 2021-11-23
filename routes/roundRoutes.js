@@ -160,9 +160,9 @@ roundRoute.delete("/rounds/:userId/:roundId", async (req, res) => {
   );
 
   try {
-    const status = await User.updateOne(
-      { $pull: { rounds: { _id: req.params.roundId } } }
-    );
+    const status = await User.updateOne({
+      $pull: { rounds: { _id: req.params.roundId } },
+    });
     if (status.modifiedCount != 1) {
       console.log("status: " + JSON.stringify(status));
       res.status(404).send("Round not delete.");
