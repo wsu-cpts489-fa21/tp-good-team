@@ -287,6 +287,15 @@ class App extends React.Component {
       "/" +
       this.state.userData.rounds[id]._id; //Changed to use customId
 
+    const res = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        "Content-type": "application/json",
+      },
+      method: "DELETE",
+    });
+
     if (res.status == 200) {
       const newRounds = this.state.userData.rounds.filter(
         (item) => item._id !== this.state.userData.rounds[id]._id //Changed to use customId
