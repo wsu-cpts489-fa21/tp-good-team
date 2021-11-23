@@ -1,23 +1,23 @@
 import { Selector } from "testcafe";
 
-fixture`Test Delete`.page`http://localhost:3000`;
+fixture`Test Delete`.page`http://localhost:8081`;
 
 test("Test delete", async (t) => {
   await t
     .click("#createAccountBtn")
-    .click("#acctEmail")
-    .typeText("#acctEmail", "ezalvarez796@gmail.com")
-    .click("#acctPassword")
-    .typeText("#acctPassword", "Lastfirst1")
-    .click("#acctPasswordRepeat")
-    .typeText("#acctPasswordRepeat", "Lastfirst1")
-    .click("#acctDisplayName")
-    .typeText("#acctDisplayName", "kagekey5")
+    .click("#email")
+    .typeText("#email", "ezalvarez796@gmail.com")
+    .click("#password")
+    .typeText("#password", "Lastfirst1")
+    .click("#repeatPassword")
+    .typeText("#repeatPassword", "Lastfirst1")
+    .click("#displayName")
+    .typeText("#displayName", "kagekey5")
 
-    .click("#acctSecurityQuestion")
-    .typeText("#acctSecurityQuestion", "name?")
-    .click("#acctSecurityAnswer")
-    .typeText("#acctSecurityAnswer", "eric")
+    .click("#securityQuestion")
+    .typeText("#securityQuestion", "name?")
+    .click("#securityAnswer")
+    .typeText("#securityAnswer", "eric")
     .click("#submitCreateAccountBtn")
     .click("#email")
     .typeText("#email", "ezalvarez796@gmail.com")
@@ -31,14 +31,14 @@ test("Test delete", async (t) => {
     .click("#roundCourse")
     .typeText("#roundCourse", "Course")
     .click("#roundFormSubmitBtnLabel")
-    .click("#roundsModeActionBtn")
-    .click("#roundCourse")
-    .typeText("#roundCourse", "Eric's Course")
-    .click("#roundFormSubmitBtnLabel")
-    .expect(Selector(".row-item").count)
-    .eql(2)
-    .click("#deleteBtn1")
+    // .click("#roundsModeActionBtn")
+    // .click("#roundCourse")
+    // .typeText("#roundCourse", "Eric's Course")
+    // .click("#roundFormSubmitBtnLabel")
+    .expect(Selector("tbody").count)
+    .eql(1)
+    .click("#trash")
     .click("#deleteRoundBtn")
-    .expect(Selector(".row-item").count)
-    .eql(1);
+    .expect(Selector("tbody").count)
+    .eql(0);
 });
