@@ -10,6 +10,7 @@ class RoundForm extends React.Component {
       this.state = {
         date: today.toISOString().substr(0, 10),
         _id: 0,
+
         course: "",
         type: "practice",
         holes: "18",
@@ -72,6 +73,7 @@ class RoundForm extends React.Component {
     if (this.props.mode === RoundsMode.LOGROUND) {
       this.setState({ _id: Date.now() });
     }
+
     this.setState(
       { btnIcon: "spinner", btnLabel: "Saving..." },
       this.handleSubmitCallback
@@ -83,6 +85,7 @@ class RoundForm extends React.Component {
     delete newRound.btnIcon;
     delete newRound.btnLabel;
     const res = await this.props.saveRound(newRound);
+
     this.props.toggleModalOpen();
     this.props.setMode(RoundsMode.ROUNDSTABLE);
   };
@@ -260,12 +263,14 @@ class RoundForm extends React.Component {
           <div className="mode-page-btn-container">
             <button
               id="roundFormSubmitBtnLabel"
+
               type="submit"
               className="mode-page-btn action-dialog action-button"
             >
               <FontAwesomeIcon
                 icon={this.state.btnIcon}
                 className={this.state.btnIcon == "spinner" ? "fa-spin" : ""}
+
               />
               <span>&nbsp;{this.state.btnLabel}</span>
             </button>

@@ -25,6 +25,9 @@ import BuddiesPage from "./BuddiesPage.js";
 import SideMenu from "./SideMenu.js";
 import AppMode from "./AppMode.js";
 
+import SettingsPage from "./SettingsPage";
+
+
 library.add(
   faWindowClose,
   faEdit,
@@ -48,6 +51,9 @@ class App extends React.Component {
       mode: AppMode.LOGIN,
       menuOpen: false,
       modalOpen: false,
+
+      prevMode: AppMode.LOGIN,
+
       userData: {
         accountData: {},
         identityData: {},
@@ -112,10 +118,18 @@ class App extends React.Component {
     });
   };
 
-  //User interface state management methods
 
+  /*****************************************************************
+   * User interface state management methods
+   ***************************************************************** */
+
+  //Updated to keep track of a previos mode when user exits popup modals
   setMode = (newMode) => {
-    this.setState({ mode: newMode });
+    this.setState({
+      prevMode: this.state.mode,
+      mode: newMode,
+    });
+
   };
 
   toggleMenuOpen = () => {
@@ -123,10 +137,14 @@ class App extends React.Component {
   };
 
   toggleModalOpen = () => {
-    this.setState((prevState) => ({ dialogOpen: !prevState.dialogOpen }));
+
+    this.setState((prevState) => ({ modalOpen: !prevState.modalOpen }));
   };
 
-  //Account Management methods
+  /*****************************************************************
+   * Account Management methods
+   ***************************************************************** */
+
 
   accountExists = async (email) => {
     const res = await fetch("/user/" + email);
@@ -137,10 +155,12 @@ class App extends React.Component {
     return JSON.parse(localStorage.getItem(email));
   };
 
+
   authenticateUser = async (id, pw) => {
     const url = "/auth/login?username=" + id + "&password=" + pw;
     const res = await fetch(url, { method: "POST" });
-    if (res.status == 200) {
+    if (res.status === 200) {
+
       //successful login!
       return true;
     } else {
@@ -168,6 +188,7 @@ class App extends React.Component {
       body: JSON.stringify(data),
     });
     if (res.status == 201) {
+
       return "New account created with email " + data.accountData.id;
     } else {
       const resText = await res.text();
@@ -180,10 +201,12 @@ class App extends React.Component {
     this.setState({ userData: data });
   };
 
-  //Round Management methods
+  /*****************************************************************
+   * Round Management methods
+   ***************************************************************** */
 
   addRound = async (newRoundData) => {
-    console.log("New Round: " + JSON.stringify(newRoundData));
+
     const url = "/rounds/" + this.state.userData.accountData.id;
     let res = await fetch(url, {
       method: "POST",
@@ -195,6 +218,7 @@ class App extends React.Component {
       body: JSON.stringify(newRoundData),
     });
     if (res.status == 201) {
+
       const newRounds = [...this.state.userData.rounds];
       newRounds.push(newRoundData);
       const newUserData = {
@@ -204,7 +228,7 @@ class App extends React.Component {
         rounds: newRounds,
       };
       this.setState({ userData: newUserData });
-      console.log("NewUserData: " + JSON.stringify(this.state.userData));
+
       return "New round logged.";
     } else {
       const resText = await res.text();
@@ -242,14 +266,7 @@ class App extends React.Component {
       "/" +
       this.state.userData.rounds[id]._id; //Changed to use customId
 
-    const res = await fetch(url, {
-      method: "DELETE",
-      headers: {
-        Accept: "application/json",
-        "Content-type": "application/json",
-      },
-      method: "DELETE",
-    });
+
 
     if (res.status == 200) {
       const newRounds = this.state.userData.rounds.filter(
@@ -267,6 +284,7 @@ class App extends React.Component {
       const resText = await res.text();
       return "Unable to delete round.";
     }
+
   };
 
   render() {
@@ -280,6 +298,9 @@ class App extends React.Component {
           toggleModalOpen={this.toggleModalOpen}
           userData={this.state.userData}
           updateUserData={this.updateUserData}
+
+          setMode={this.setMode}
+
         />
         <ModeTabs
           mode={this.state.mode}
@@ -336,6 +357,18 @@ class App extends React.Component {
                 userId={this.state.userId}
               />
             ),
+
+            /*****************************************************************
+             * Added Settings mode to be part of the render system.
+             *****************************************************************           */
+            SettingsMode: (
+              <SettingsPage
+                setMode={this.setMode}
+                prevMode={this.state.prevMode}
+                toggleModalOpen={this.toggleModalOpen}
+              />
+            ),
+
           }[this.state.mode]
         }
       </>
