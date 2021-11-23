@@ -17,7 +17,7 @@ class DeleteDialog extends React.Component {
         <button
           id="deleteRoundBtn"
           onClick={() => {
-            this.props.deleteRound(this.props.deleteId);
+            this.props.confirmDeleteRound();
             this.props.cancelDeleteRound();
           }}
         >
