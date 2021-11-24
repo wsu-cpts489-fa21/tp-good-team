@@ -28,6 +28,7 @@ class RoundsTable extends React.Component {
           </td>
           <td>
             <button
+              id="edit"
               onClick={
                 this.props.menuOpen
                   ? null
