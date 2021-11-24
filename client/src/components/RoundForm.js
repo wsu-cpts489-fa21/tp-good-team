@@ -144,7 +144,6 @@ class RoundForm extends React.Component {
             <label htmlFor="roundType">
               Type:
               <select
-                id="roundType"
                 name="type"
                 id="roundType"
                 className="form-control centered"
