@@ -1,19 +1,21 @@
 # CptS 489 Team Project: good-team
 
-This repository implements SpeedScore, a web app that enables users to log, analyze, share, and discuss their speedgolf rounds and experiences. SpeedScore is built using MongoDB, Express.js, React.js, and Node.js.
+This repository implements SpeedScore, a web app that enables users to log, analyze, share, and discuss their speedgolf rounds and experiences.
+
+SpeedScore is built using MongoDB, Express.js, React.js, and Node.js
 
 ## Project Links
 
 You can access our team's deployed app at [this Heroku site](https://tp-good-team.herokuapp.com/)
 
-You can acces our team's [Project Board](https://github.com/wsu-cpts489-fa21/tp-good-team/projects/1).
+You can acces our team's [Project Board](https://github.com/wsu-cpts489-fa21/tp-good-team/projects/1)
 
 ## Team members
 
 1. **Team leader:** _Hekili Jordan HekiliJordan_
 1. _Team member 2: Eric Alvarez Eric-Alz_
 1. _Team member 3: Cole Hensley cjhWSU_
-1. _Team member 4: Jeremiah Strzelczyk [JeremiahStrzelczyk](https://github.com/JeremiahStrzelczyk)
+1. \_Team member 4: Jeremiah Strzelczyk [JeremiahStrzelczyk](https://github.com/JeremiahStrzelczyk)
 
 ## Milestone 0 (Due 11/19)
 

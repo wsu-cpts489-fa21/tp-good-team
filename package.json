@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "nodemon --exec node -r dotenv/config server.js",
     "start": "node -r dotenv/config server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "b": "cd client && npm run build && cd .. && npm run dev"
+    "test": "npx testcafe chrome tests/*.js",
+    "b": "cd client && npm run build && cd .. && npm run dev",
+    "install-all-deps": "npm install -g testcafe && npm i testcafe --save-dev && npm install passport-google-oauth20 && npm install passport-local && npm install bcrypt && npm install mongoose && npm install passport-local && npm install passport && npm install passport-github && npm install dotenv && cd client && npm install && npm install --save @fortawesome/free-brands-svg-icons && npm install bootstrap-social && npm run build && cd .. && npm i"
   },
   "repository": {
     "type": "git",
@@ -30,9 +31,11 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
-    "mongoose": "^6.0.12",
+    "mongoose": "^6.0.13",
+    "nanoid": "^3.1.30",
     "passport": "^0.5.0",
     "passport-github": "^1.1.0",
+    "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
     "url": "^0.11.0"
@@ -42,7 +45,9 @@
     "@babel/core": "^7.15.8",
     "@babel/node": "^7.15.8",
     "@babel/preset-env": "^7.15.8",
-    "nodemon": "^2.0.14"
+    "@testing-library/react": "^12.1.2",
+    "nodemon": "^2.0.14",
+    "testcafe": "^1.17.1"
   },
   "engines": {
     "node": "14.x"
