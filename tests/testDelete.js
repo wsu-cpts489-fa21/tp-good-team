@@ -26,19 +26,28 @@ test("Test delete", async (t) => {
     .click("#loginBtn")
     .expect(Selector("#feedMode").visible)
     .eql(true)
-    .click("#roundsMode")
+    .click("#roundsMode");
+  let table = Selector("#roundsTable");
+  const rowCountInit = await table.find("td").count;
+
+  await t
+    .expect(rowCountInit)
+    .eql(rowCountInit)
     .click("#roundsModeActionBtn")
     .click("#roundCourse")
     .typeText("#roundCourse", "Course")
-    .click("#roundFormSubmitBtnLabel")
-    // .click("#roundsModeActionBtn")
-    // .click("#roundCourse")
-    // .typeText("#roundCourse", "Eric's Course")
-    // .click("#roundFormSubmitBtnLabel")
-    .expect(Selector("tbody").count)
-    .eql(1)
+    .click("#roundFormSubmitBtnLabel");
+
+  table = Selector("#roundsTable");
+  const rowCount1 = await table.find("td").count;
+
+  await t
+    .expect(rowCount1)
+    .eql(rowCountInit + 5)
     .click("#trash")
-    .click("#deleteRoundBtn")
-    .expect(Selector("tbody").count)
-    .eql(0);
+    .click("#deleteRoundBtn");
+
+  table = Selector("#roundsTable");
+  const rowCount2 = await table.find("td").count;
+  await t.expect(rowCount2).eql(rowCountInit);
 });
