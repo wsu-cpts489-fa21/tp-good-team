@@ -28,7 +28,7 @@ test("Test delete", async (t) => {
     .eql(true)
     .click("#roundsMode");
   let table = Selector("#roundsTable");
-  const rowCountInit = await table.find("td").count;
+  const rowCountInit = (await table.find("td").count) + 1;
 
   await t
     .expect(rowCountInit)
