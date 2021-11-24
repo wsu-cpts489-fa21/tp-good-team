@@ -1,6 +1,7 @@
 import { Selector } from "testcafe";
+import { nanoid } from "nanoid";
 
-const email = "bob@bob.com";
+const email = "testUser_" + nanoid() + "@email.com";
 const pw = "nthnthNTH8";
 const badInput = "u";
 const setInput = "AAAAAAAAAA";
@@ -89,7 +90,16 @@ fixture `Settings Page Tests`.page `http://localhost:8081/`;
 
 test("Render Settings Page", async (t) => {
   await t
-    .wait(5000)
+    //Create account with random name
+    .click("#createAccountBtn")
+    .typeText("#email", email)
+    .typeText("#password", pw)
+    .typeText("#repeatPassword", pw)
+    .typeText("#displayName", email)
+    .typeText("#securityQuestion", pw)
+    .typeText("#securityAnswer", pw)
+    .click("#submitCreateAccountBtn")
+
     //Logs into App
     .typeText(emailInput, email)
     .typeText(pwInput, pw)
