@@ -257,7 +257,34 @@ class RoundForm extends React.Component {
               Enter optional round notes of up to 500 characters
             </div>
           </div>
+
           <div className="mode-page-btn-container">
+            {this.state.btnLabel == "Update Round" ? (
+              <button
+                id="updateRoundBtn"
+                type="submit"
+                className="mode-page-btn action-dialog action-button"
+              >
+                <FontAwesomeIcon
+                  icon={this.state.btnIcon}
+                  className={this.state.btnIcon == "spinner" ? "fa-spin" : ""}
+                />
+                <span>&nbsp;{(this.state.btnLabel = "Update Round")}</span>
+              </button>
+            ) : (
+              <button
+                id="roundFormSubmitBtnLabel"
+                type="submit"
+                className="mode-page-btn action-dialog action-button"
+              >
+                <FontAwesomeIcon
+                  icon={this.state.btnIcon}
+                  className={this.state.btnIcon == "spinner" ? "fa-spin" : ""}
+                />
+                <span>&nbsp;{this.state.btnLabel == "Log Round"}</span>
+              </button>
+            )}
+
             <button
               id="roundFormSubmitBtnLabel"
               type="submit"
