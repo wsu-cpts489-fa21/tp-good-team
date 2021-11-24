@@ -22,6 +22,8 @@ class LoginPage extends React.Component {
       loginBtnLabel: "Log In",
       githubIcon: ["fab", "github"],
       githubLabel: "Sign in with GitHub",
+      googleIcon: ["fab", "google"],
+      googleLabel: "Sign in with Google",
     };
   }
 
@@ -241,7 +243,7 @@ class LoginPage extends React.Component {
           >
             <FontAwesomeIcon
               icon={this.state.loginBtnIcon}
-              className={this.state.loginBtnIcon === "spinner" ? "fa-spin" : ""}
+              className={this.state.loginBtnIcon == "spinner" ? "fa-spin" : ""}
             />
             &nbsp;{this.state.loginBtnLabel}
           </button>
@@ -263,6 +265,9 @@ class LoginPage extends React.Component {
           </li>
         </ul>
         <div className="centered">
+          {/*****************************************************************
+           * GITHUB OAUTH BUTTON
+           *****************************************************************           */}
           <button
             type="button"
             className="btn btn-github"
@@ -270,9 +275,24 @@ class LoginPage extends React.Component {
           >
             <FontAwesomeIcon
               icon={this.state.githubIcon}
-              className={this.state.githubIcon === "spinner" ? "fa-spin" : ""}
+              className={this.state.githubIcon == "spinner" ? "fa-spin" : ""}
             />
             &nbsp;{this.state.githubLabel}
+          </button>
+          &nbsp;
+          {/*****************************************************************
+           * GOOGLE BUTTON
+           *****************************************************************         */}
+          <button
+            type="button"
+            className="btn btn-google"
+            onClick={() => this.handleOAuthLoginClick("google")}
+          >
+            <FontAwesomeIcon
+              icon={this.state.googleIcon}
+              className={this.state.googleIcon == "spinner" ? "fa-spin" : ""}
+            />
+            &nbsp;{this.state.googleLabel}
           </button>
         </div>
       </div>

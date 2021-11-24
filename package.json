@@ -44,6 +44,7 @@
     "@babel/core": "^7.15.8",
     "@babel/node": "^7.15.8",
     "@babel/preset-env": "^7.15.8",
+    "@testing-library/react": "^12.1.2",
     "nodemon": "^2.0.14",
     "testcafe": "^1.17.1"
   },

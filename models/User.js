@@ -1,30 +1,52 @@
-import mongoose from 'mongoose';
-import {RoundSchema} from './Round.js';
+import mongoose from "mongoose";
+import { RoundSchema } from "./Round.js";
 
 const UserSchema = new mongoose.Schema({
   accountData: {
-      id: String,
-      password: String,
-      securityQuestion: String,
-      securityAnswer: String
+    id: String,
+    password: String,
+    securityQuestion: String,
+    securityAnswer: String,
   },
   identityData: {
-      displayName: String,
-      profilePic: String
+    displayName: String,
+    profilePic: String,
   },
   speedgolfData: {
     bio: String,
     homeCourse: String,
     firstRound: Date,
-    personalBest: {strokes: Number,
-                   minutes: Number, 
-                   seconds: Number,
-                   course: String},
-    clubs: {},
-    clubComments: String
+    personalBest: {
+      strokes: Number,
+      minutes: Number,
+      seconds: Number,
+      course: String,
+    },
+    clubs: {
+      driver: Boolean,
+      threeW: Boolean,
+      fourW: Boolean,
+      fiveW: Boolean,
+      hybrid: Boolean,
+      oneI: Boolean,
+      twoI: Boolean,
+      threeI: Boolean,
+      fourI: Boolean,
+      fiveI: Boolean,
+      sixI: Boolean,
+      sevenI: Boolean,
+      eightI: Boolean,
+      nineI: Boolean,
+      pw: Boolean,
+      gw: Boolean,
+      sw: Boolean,
+      lw: Boolean,
+      putter: Boolean,
+    },
+    clubComments: String,
   },
-  rounds:[RoundSchema]
+  rounds: [RoundSchema],
 });
 
-const User = mongoose.model("User",UserSchema);
+const User = mongoose.model("User", UserSchema);
 export default User;

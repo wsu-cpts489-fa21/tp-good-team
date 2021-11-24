@@ -14,7 +14,8 @@ import {
   faEye,
   faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faGoogle } from "@fortawesome/free-brands-svg-icons";
+
 import NavBar from "./NavBar.js";
 import ModeTabs from "./ModeTabs.js";
 import LoginPage from "./LoginPage.js";
@@ -24,9 +25,7 @@ import CoursesPage from "./CoursesPage.js";
 import BuddiesPage from "./BuddiesPage.js";
 import SideMenu from "./SideMenu.js";
 import AppMode from "./AppMode.js";
-
 import SettingsPage from "./SettingsPage";
-
 
 library.add(
   faWindowClose,
@@ -41,7 +40,8 @@ library.add(
   faTrash,
   faEye,
   faUserPlus,
-  faGithub
+  faGithub,
+  faGoogle
 );
 
 class App extends React.Component {
@@ -51,7 +51,6 @@ class App extends React.Component {
       mode: AppMode.LOGIN,
       menuOpen: false,
       modalOpen: false,
-
       prevMode: AppMode.LOGIN,
 
       userData: {
@@ -117,7 +116,6 @@ class App extends React.Component {
     });
   };
 
-
   /*****************************************************************
    * User interface state management methods
    ***************************************************************** */
@@ -128,7 +126,6 @@ class App extends React.Component {
       prevMode: this.state.mode,
       mode: newMode,
     });
-
   };
 
   toggleMenuOpen = () => {
@@ -136,14 +133,12 @@ class App extends React.Component {
   };
 
   toggleModalOpen = () => {
-
     this.setState((prevState) => ({ modalOpen: !prevState.modalOpen }));
   };
 
   /*****************************************************************
    * Account Management methods
    ***************************************************************** */
-
 
   accountExists = async (email) => {
     const res = await fetch("/user/" + email);
@@ -154,12 +149,10 @@ class App extends React.Component {
     return JSON.parse(localStorage.getItem(email));
   };
 
-
   authenticateUser = async (id, pw) => {
     const url = "/auth/login?username=" + id + "&password=" + pw;
     const res = await fetch(url, { method: "POST" });
-    if (res.status === 200) {
-
+    if (res.status == 200) {
       //successful login!
       return true;
     } else {
@@ -187,7 +180,6 @@ class App extends React.Component {
       body: JSON.stringify(data),
     });
     if (res.status == 201) {
-
       return "New account created with email " + data.accountData.id;
     } else {
       const resText = await res.text();
@@ -195,17 +187,37 @@ class App extends React.Component {
     }
   };
 
-  updateUserData = (data) => {
-    localStorage.setItem(data.accountData.email, JSON.stringify(data));
-    this.setState({ userData: data });
+  updateUserData = async (newUserData) => {
+    // localStorage.setItem(data.accountData.email, JSON.stringify(newUserData));
+    const url = "/users/" + this.state.userData.accountData.id;
+    const res = await fetch(url, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "PUT",
+      body: JSON.stringify(newUserData),
+    });
+
+    if (res.status === 200) {
+      // alert("IDB: " + newUserData.accountData.id);
+
+      this.setState({ userData: newUserData });
+      // alert("IDA: " + newUserData.accountData.id);
+      return "Account " + newUserData.accountData.id + " successfully updated.";
+    } else {
+      // alert("ELSE " + newUserData.accountData.id);
+      // alert("ELSE2 " + this.state.userData.accountData.id);
+      const resText = await res.text();
+      return "Unable to update account. " + resText;
+    }
   };
 
   /*****************************************************************
    * Round Management methods
-   ***************************************************************** */
+   ******************************************************************/
 
   addRound = async (newRoundData) => {
-
     const url = "/rounds/" + this.state.userData.accountData.id;
     let res = await fetch(url, {
       method: "POST",
@@ -216,9 +228,7 @@ class App extends React.Component {
       method: "POST",
       body: JSON.stringify(newRoundData),
     });
-
     if (res.status == 201) {
-
       const newRounds = [...this.state.userData.rounds];
       newRounds.push(newRoundData);
       const newUserData = {
@@ -267,21 +277,7 @@ class App extends React.Component {
     } else {
       const text = await res.text();
       return "Round could not be updated because of" + text;
-
     }
-    newRounds[r] = newRoundData;
-    const newUserData = {
-      accountData: this.state.userData.accountData,
-      identityData: this.state.userData.identityData,
-      speedgolfProfileData: this.state.userData.speedgolfProfileData,
-      rounds: newRounds,
-      roundCount: this.state.userData.roundCount,
-    };
-    localStorage.setItem(
-      newUserData.accountData.email,
-      JSON.stringify(newUserData)
-    );
-    this.setState({ userData: newUserData });
   };
 
   deleteRound = async (id) => {
@@ -291,7 +287,14 @@ class App extends React.Component {
       "/" +
       this.state.userData.rounds[id]._id; //Changed to use customId
 
-
+    const res = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        "Content-type": "application/json",
+      },
+      method: "DELETE",
+    });
 
     if (res.status == 200) {
       const newRounds = this.state.userData.rounds.filter(
@@ -309,7 +312,6 @@ class App extends React.Component {
       const resText = await res.text();
       return "Unable to delete round.";
     }
-
   };
 
   render() {
@@ -323,9 +325,7 @@ class App extends React.Component {
           toggleModalOpen={this.toggleModalOpen}
           userData={this.state.userData}
           updateUserData={this.updateUserData}
-
           setMode={this.setMode}
-
         />
         <ModeTabs
           mode={this.state.mode}
@@ -382,18 +382,18 @@ class App extends React.Component {
                 userId={this.state.userId}
               />
             ),
-
             /*****************************************************************
              * Added Settings mode to be part of the render system.
              *****************************************************************           */
             SettingsMode: (
               <SettingsPage
-                setMode={this.setMode}
+                userData={this.state.userData}
                 prevMode={this.state.prevMode}
+                setMode={this.setMode}
                 toggleModalOpen={this.toggleModalOpen}
+                updateUserData={this.updateUserData}
               />
             ),
-
           }[this.state.mode]
         }
       </>
