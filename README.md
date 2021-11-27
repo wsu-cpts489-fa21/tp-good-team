@@ -51,7 +51,7 @@ You can acces our team's [Project Board](https://github.com/wsu-cpts489-fa21/tp-
 | H.J.        | <_Required_: I initially create the updateRound route and the updateRound function in App.js and later on it was improved. Later on I helped with testing, modifying the test to work accurately with our web application.> |
 | E.A.        | <_Required_: The story points data is unlikely to tell the whole story about your contribution. Write a brief statement explaining and reflecting on your contribution to this milestone.> |
 | C.H.        | <_Required_: The story points data is unlikely to tell the whole story about your contribution. Write a brief statement explaining and reflecting on your contribution to this milestone.> |
-| J.S.        | <_Required_: The story points data is unlikely to tell the whole story about your contribution. Write a brief statement explaining and reflecting on your contribution to this milestone.> |
+| J.S.        | I worked on the `Profile & Settings` page, along with the unit tests for the page. In addition, I worked on the Google OAuth feature. |
 
 ### Testing
 
