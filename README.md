@@ -137,7 +137,7 @@ You can acces our team's [Project Board](https://github.com/wsu-cpts489-fa21/tp-
 | H.J.        | <_Required_: In discord we all went over what we preferred to do and I also had to delegate some roles to people who had not picked up any.> |
 | E.A.        | <_Required_: The posts/replies data is unlikely to tell the whole story about your communication. Write a brief statement explaining and reflecting on your communication with your team during this milestone.> |
 | C.H.        | <_Required_: The posts/replies data is unlikely to tell the whole story about your communication. Write a brief statement explaining and reflecting on your communication with your team during this milestone.> |
-| J.S.        | <_Required_: The posts/replies data is unlikely to tell the whole story about your communication. Write a brief statement explaining and reflecting on your communication with your team during this milestone.> |
+| J.S.        | There were a few wrinkles in our communication. I think we were able to come together in the end to finalize a game plan, which will set us on the correct path for milestone1 |
 
 ### Retrospective
 
