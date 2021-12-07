@@ -78,6 +78,7 @@ class RoundForm extends React.Component {
     );
   };
 
+  //TODO: Check if any badges are unlocked
   handleSubmitCallback = async () => {
     const newRound = { ...this.state };
     delete newRound.btnIcon;

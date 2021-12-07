@@ -66,6 +66,8 @@ class RoundsTable extends React.Component {
         aria-label="Rounds Tab"
         tabIndex="0"
       >
+        {/*TODO: Render toast for earning new badge */}
+
         <h1 className="mode-page-header">Rounds</h1>
         <table id="roundsTable" className="table table-hover caption-top">
           <caption id="roundsTableCaption" aria-live="polite">
