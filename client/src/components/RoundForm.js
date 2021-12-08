@@ -21,11 +21,12 @@ class RoundForm extends React.Component {
         notes: "",
         btnIcon: "calendar",
         btnLabel: "Log Round",
-        newRoundsBadge: false,
-        newTimeBadge: false,
-        newStrokesBadge: false,
-        newStreakBadge: false,
-        newScoreBadge: false,
+        newBadge: false,
+        // newRoundsBadge: this.props.roundsBadge,
+        // newTimeBadge: this.props.timeBadge,
+        // newStrokesBadge: this.props.strokesBadge,
+        // newStreakBadge: this.props.streakBadge,
+        // newScoreBadge: this.props.scoreBadge,
       };
     } else {
       this.state = this.props.roundData;
@@ -87,56 +88,42 @@ class RoundForm extends React.Component {
   //TODO: Determine if badges are unlocked
   checkBadgesUnlocked = () => {
     /*****************************************************************
-     * TODO: Rounds
-     *****************************************************************   */
-    let testRounds = 600;
-    if (testRounds >= BadgeData.roundsPlayedBadges.purple) {
-      console.log("Purple");
-      this.setState({
-        newRoundsBadge: true,
-      });
-      this.props.toggleNewBadgeToast();
-    } else if (testRounds >= BadgeData.roundsPlayedBadges.blue) {
-      console.log("Blue");
-      this.setState({
-        newRoundsBadge: true,
-      });
-      this.props.toggleNewBadgeToast();
-    } else if (testRounds >= BadgeData.roundsPlayedBadges.gold) {
-      console.log("Gold");
-      this.setState({
-        newRoundsBadge: true,
-      });
-      this.props.toggleNewBadgeToast();
-    } else if (testRounds >= BadgeData.roundsPlayedBadges.grey) {
-      console.log("Grey");
-      this.setState({
-        newRoundsBadge: true,
-      });
-      this.props.toggleNewBadgeToast();
-    } else if (testRounds >= BadgeData.roundsPlayedBadges.brown) {
-      console.log("Brown");
-      this.setState({
-        newRoundsBadge: true,
-      });
-      this.props.toggleNewBadgeToast();
-    }
+     * For each badge Category
+     *    For each Tier
+     *        If New >= Current (BadgeData.<Category>.<Tier>)
+     *            Let the parent know what the new Tier is
+     *            Set flag signifying a new badge has been earned
+     ******************************************************************/
 
-    /*****************************************************************
-     * TODO: Time
-     *****************************************************************   */
+    const categoryProps = Object.keys(BadgeData);
+    // console.log(categoryProps); //Prints all the Categories
 
-    /*****************************************************************
-     * TODO: Strokes
-     *****************************************************************   */
+    categoryProps.forEach((CATEGORY, categoryIndex) => {
+      console.log(CATEGORY);
+      const tierProps = Object.keys(BadgeData[CATEGORY]);
+      // console.log(tierProps); //Prints all the Tiers
 
-    /*****************************************************************
-     * TODO: Streak
-     *****************************************************************   */
+      tierProps.forEach((TIER, tierIndex) => {
+        let tierReq = BadgeData[CATEGORY][TIER];
+        console.log("   " + TIER + ": " + tierReq);
 
-    /*****************************************************************
-     * TODO: Score
-     *****************************************************************   */
+        /*****************************************************************
+         * TODO: Rounds
+         ******************************************************************/
+        /*****************************************************************
+         * TODO: Time
+         ******************************************************************/
+        /*****************************************************************
+         * TODO: Strokes
+         ******************************************************************/
+        /*****************************************************************
+         * TODO: Streak
+         ******************************************************************/
+        /*****************************************************************
+         * TODO: Score
+         ******************************************************************/
+      }); //End looping through Tiers
+    }); //End looping through Categories
   };
 
   //TODO: Check if any badges are unlocked. If so, display congrats toast in parent
@@ -145,9 +132,10 @@ class RoundForm extends React.Component {
     delete newRound.btnIcon;
     delete newRound.btnLabel;
 
-    //TODO: If any badges unlocked, display congrats toast in parent
-
     this.checkBadgesUnlocked();
+    //TODO: If newBadges found,
+    // Let parent know to render congrats Toast
+    // Use this.props to await updateBadgeData(b1, 2, 3, 4, 5)
     const res = await this.props.saveRound(newRound, this.props.editId);
 
     this.props.toggleModalOpen();
