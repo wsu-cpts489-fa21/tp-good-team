@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import RoundsMode from "./RoundsMode.js";
+import BadgeData from "./BadgeData.js";
 
 class RoundForm extends React.Component {
   constructor(props) {
@@ -20,6 +21,11 @@ class RoundForm extends React.Component {
         notes: "",
         btnIcon: "calendar",
         btnLabel: "Log Round",
+        newRoundsBadge: false,
+        newTimeBadge: false,
+        newStrokesBadge: false,
+        newStreakBadge: false,
+        newScoreBadge: false,
       };
     } else {
       this.state = this.props.roundData;
@@ -78,11 +84,70 @@ class RoundForm extends React.Component {
     );
   };
 
-  //TODO: Check if any badges are unlocked. If so, display congrats toast
+  //TODO: Determine if badges are unlocked
+  checkBadgesUnlocked = () => {
+    /*****************************************************************
+     * TODO: Rounds
+     *****************************************************************   */
+    let testRounds = 600;
+    if (testRounds >= BadgeData.roundsPlayedBadges.purple) {
+      console.log("Purple");
+      this.setState({
+        newRoundsBadge: true,
+      });
+      this.props.toggleNewBadgeToast();
+    } else if (testRounds >= BadgeData.roundsPlayedBadges.blue) {
+      console.log("Blue");
+      this.setState({
+        newRoundsBadge: true,
+      });
+      this.props.toggleNewBadgeToast();
+    } else if (testRounds >= BadgeData.roundsPlayedBadges.gold) {
+      console.log("Gold");
+      this.setState({
+        newRoundsBadge: true,
+      });
+      this.props.toggleNewBadgeToast();
+    } else if (testRounds >= BadgeData.roundsPlayedBadges.grey) {
+      console.log("Grey");
+      this.setState({
+        newRoundsBadge: true,
+      });
+      this.props.toggleNewBadgeToast();
+    } else if (testRounds >= BadgeData.roundsPlayedBadges.brown) {
+      console.log("Brown");
+      this.setState({
+        newRoundsBadge: true,
+      });
+      this.props.toggleNewBadgeToast();
+    }
+
+    /*****************************************************************
+     * TODO: Time
+     *****************************************************************   */
+
+    /*****************************************************************
+     * TODO: Strokes
+     *****************************************************************   */
+
+    /*****************************************************************
+     * TODO: Streak
+     *****************************************************************   */
+
+    /*****************************************************************
+     * TODO: Score
+     *****************************************************************   */
+  };
+
+  //TODO: Check if any badges are unlocked. If so, display congrats toast in parent
   handleSubmitCallback = async () => {
     const newRound = { ...this.state };
     delete newRound.btnIcon;
     delete newRound.btnLabel;
+
+    //TODO: If any badges unlocked, display congrats toast in parent
+
+    this.checkBadgesUnlocked();
     const res = await this.props.saveRound(newRound, this.props.editId);
 
     this.props.toggleModalOpen();

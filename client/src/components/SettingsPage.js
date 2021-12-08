@@ -2,6 +2,7 @@ import { faThemeisle } from "@fortawesome/free-brands-svg-icons";
 import React from "react";
 import logo from "../images/sslogo2.png";
 import profilePic from "./../images/DefaultProfilePic.jpg";
+import Badge from "react-bootstrap/Badge";
 
 class SettingsPage extends React.Component {
   constructor(props) {
@@ -268,6 +269,25 @@ class SettingsPage extends React.Component {
     );
   };
 
+  //TODO Render badge display
+  renderBadgeDisplay = () => {
+    return (
+      <h1>
+        <Badge pill>Rounds Played</Badge>
+        <Badge pill>Fastest Time</Badge>
+        <Badge pill>Low Strokes</Badge>
+        <Badge pill>Streaks</Badge>
+        <Badge pill>High Score</Badge>
+      </h1>
+    );
+
+    //if user has no badges
+    //Render message about earning badges
+    //if user has badges
+    //Display badges earned
+    //If user (Hovers/Clicks) over badge, display info in a toast
+  };
+
   render() {
     return (
       <div
@@ -285,12 +305,8 @@ class SettingsPage extends React.Component {
         {/*****************************************************************
          * TODO: Section to display badges
          ******************************************************************/}
+        <div className="badge-container">{this.renderBadgeDisplay()}</div>
 
-        {/*TODO: Render toast for badge info */}
-
-        {/*TODO: If user has no badges, render a message about badges */}
-        {/*TODO: If user has badges, render them*/}
-        {/*TODO: If user (Hovers/Clicks) over badge, display info to the toast */}
         <form
           onSubmit={this.handleSubmit}
           id="editProfileForm"
