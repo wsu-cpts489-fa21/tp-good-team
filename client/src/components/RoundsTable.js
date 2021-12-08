@@ -57,6 +57,8 @@ class RoundsTable extends React.Component {
     return table;
   };
 
+  //TODO: Add toggleNewBadge method
+  //TODO: Add toggleNewBadge passed to child
   render() {
     return (
       <div
