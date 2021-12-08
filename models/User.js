@@ -45,6 +45,13 @@ const UserSchema = new mongoose.Schema({
     },
     clubComments: String,
   },
+  badges: {
+    roundsPlayedBadge: String,
+    fastTimeBadge: String,
+    lowStrokesBadge: String,
+    streakBadge: String,
+    highScoreBadge: String,
+  },
   rounds: [RoundSchema],
 });
 

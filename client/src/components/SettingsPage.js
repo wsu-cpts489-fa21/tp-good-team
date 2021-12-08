@@ -281,6 +281,16 @@ class SettingsPage extends React.Component {
           Account & Profile
         </h1>
         {this.renderErrorBox()}
+
+        {/*****************************************************************
+         * TODO: Section to display badges
+         ******************************************************************/}
+
+        {/*TODO: Render toast for badge info */}
+
+        {/*TODO: If user has no badges, render a message about badges */}
+        {/*TODO: If user has badges, render them*/}
+        {/*TODO: If user (Hovers/Clicks) over badge, display info to the toast */}
         <form
           onSubmit={this.handleSubmit}
           id="editProfileForm"

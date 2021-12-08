@@ -57,6 +57,7 @@ class App extends React.Component {
         accountData: {},
         identityData: {},
         speedgolfData: {},
+        badges: {},
         rounds: [],
       },
       authenticated: false,
@@ -109,6 +110,7 @@ class App extends React.Component {
         accountData: {},
         identityData: {},
         speedgolfData: {},
+        badges: {},
         rounds: [],
       },
       authenticated: false,
@@ -188,7 +190,6 @@ class App extends React.Component {
   };
 
   updateUserData = async (newUserData) => {
-    // localStorage.setItem(data.accountData.email, JSON.stringify(newUserData));
     const url = "/users/" + this.state.userData.accountData.id;
     const res = await fetch(url, {
       headers: {
@@ -200,14 +201,9 @@ class App extends React.Component {
     });
 
     if (res.status === 200) {
-      // alert("IDB: " + newUserData.accountData.id);
-
       this.setState({ userData: newUserData });
-      // alert("IDA: " + newUserData.accountData.id);
       return "Account " + newUserData.accountData.id + " successfully updated.";
     } else {
-      // alert("ELSE " + newUserData.accountData.id);
-      // alert("ELSE2 " + this.state.userData.accountData.id);
       const resText = await res.text();
       return "Unable to update account. " + resText;
     }
@@ -235,6 +231,7 @@ class App extends React.Component {
         accountData: this.state.userData.accountData,
         identityData: this.state.userData.identityData,
         speedgolfData: this.state.userData.speedgolfData,
+        badges: this.state.userData.badges,
         rounds: newRounds,
       };
       this.setState({ userData: newUserData });
@@ -270,6 +267,7 @@ class App extends React.Component {
         accountData: this.state.userData.accountData,
         identityData: this.state.userData.identityData,
         speedgolfProfileData: this.state.userData.speedgolfProfileData,
+        badges: this.state.userData.badges,
         rounds: newRounds,
       };
       this.setState({ userData: newUserData });
@@ -305,6 +303,7 @@ class App extends React.Component {
         accountData: this.state.userData.accountData,
         identityData: this.state.userData.identityData,
         speedgolfProfileData: this.state.userData.speedgolfProfileData,
+        badges: this.state.userData.badges,
         rounds: newRounds,
       };
       this.setState({ userData: newUserData });
