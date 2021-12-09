@@ -18,11 +18,11 @@ const BadgeData = {
 
   //TODO: Update Badge Data
   fastTimeBadges: {
-    brown: 0,
-    grey: 0,
-    gold: 0,
-    blue: 0,
-    purple: 0,
+    brown: 80,
+    grey: 60,
+    gold: 50,
+    blue: 45,
+    purple: 35,
   },
   //TODO: Update Badge Data
   lowStrokesBadges: {
@@ -34,11 +34,11 @@ const BadgeData = {
   },
   //TODO: Update Badge Data
   streakBadges: {
-    brown: 0,
-    grey: 0,
-    gold: 0,
-    blue: 0,
-    purple: 0,
+    brown: 1,
+    grey: 3,
+    gold: 7,
+    blue: 10,
+    purple: 15,
   },
   //TODO: Update Badge Data
   highScoreBadges: {

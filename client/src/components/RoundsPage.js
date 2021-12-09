@@ -107,6 +107,7 @@ class RoundsPage extends React.Component {
             saveRound={this.props.addRound}
             setMode={this.setMode}
             toggleModalOpen={this.props.toggleModalOpen}
+            badges={this.props.badges}
           />
         );
       case RoundsMode.EDITROUND:
@@ -119,6 +120,7 @@ class RoundsPage extends React.Component {
             saveRound={this.props.updateRound}
             setMode={this.setMode}
             toggleModalOpen={this.props.toggleModalOpen}
+            badges={this.props.badges}
           />
         );
     }

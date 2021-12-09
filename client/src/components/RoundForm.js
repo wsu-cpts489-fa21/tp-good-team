@@ -18,6 +18,7 @@ class RoundForm extends React.Component {
         minutes: 60,
         seconds: "00",
         SGS: "140:00",
+        rounds: 1,
         notes: "",
         btnIcon: "calendar",
         btnLabel: "Log Round",
@@ -97,9 +98,58 @@ class RoundForm extends React.Component {
     /*****************************************************************
      * TODO: Rounds
      ******************************************************************/
+
     /*****************************************************************
      * TODO: Time
      ******************************************************************/
+
+    if (this.state.minutes >= BadgeData.fastTimeBadges.brown) {
+      // render bronze picture
+      this.setState({
+        newBadge: true,
+      });
+      console.log("Bronze badge unlocked");
+    }
+    if (
+      this.state.minutes >= BadgeData.fastTimeBadges.grey &&
+      this.state.minutes < 80
+    ) {
+      // render silver picture
+      this.setState({
+        newBadge: true,
+      });
+      console.log("Silver badge unlocked");
+    }
+    if (
+      this.state.minutes >= BadgeData.fastTimeBadges.gold &&
+      this.state.minutes < 60
+    ) {
+      // render gold picture
+      this.setState({
+        newBadge: true,
+      });
+      console.log("Gold badge unlocked");
+    }
+    if (
+      this.state.minutes >= BadgeData.fastTimeBadges.blue &&
+      this.state.minutes < 50
+    ) {
+      // render diamond picture
+      this.setState({
+        newBadge: true,
+      });
+      console.log("Diamond badge unlocked");
+    }
+    if (
+      this.state.minutes <= BadgeData.fastTimeBadges.purple &&
+      this.state.minutes < 45
+    ) {
+      // render ultra picture
+      this.setState({
+        newBadge: true,
+      });
+      console.log("Ultra  badge unlocked");
+    }
     /*****************************************************************
      * TODO: Strokes
      ******************************************************************/
@@ -118,8 +168,11 @@ class RoundForm extends React.Component {
     delete newRound.btnLabel;
 
     this.checkBadgesUnlocked();
+    console.log(this.state.newBadge);
+
     //TODO: If newBadges found,
     // Let parent know to render congrats Toast
+
     // Use this.props to await updateBadgeData(b1, 2, 3, 4, 5)
     const res = await this.props.saveRound(newRound, this.props.editId);
 

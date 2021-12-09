@@ -370,6 +370,7 @@ class App extends React.Component {
                 menuOpen={this.state.menuOpen}
                 userId={this.state.userId}
                 //TODO: Add props
+                badges={this.state.userData.badges}
               />
             ),
             CoursesMode: (
