@@ -14,8 +14,13 @@ class RoundsPage extends React.Component {
       deleteId: -1,
       editId: -1,
       deleteDialogOpen: false,
+      //TODO: Add state variables for: rendering Congrats Toast
     };
   }
+
+  //TODO:Add method to set variables responsible for rendering Congrats Toast
+
+  //TODO: Add method to call this.props and await updating Badge
 
   setMode = (newMode) => {
     this.setState({ mode: newMode });
@@ -62,6 +67,7 @@ class RoundsPage extends React.Component {
         return (
           <>
             <RoundsTable
+              //TODO: Add aPROPriate props haha
               rounds={this.props.rounds}
               initiateDeleteRound={this.initiateDeleteRound}
               deleteRound={this.props.deleteRound}
@@ -94,6 +100,7 @@ class RoundsPage extends React.Component {
         );
       case RoundsMode.LOGROUND:
         return (
+          //TODO: Add aPROPriate props haha
           <RoundForm
             mode={this.state.mode}
             roundData={null}
@@ -106,6 +113,7 @@ class RoundsPage extends React.Component {
       case RoundsMode.EDITROUND:
         return (
           <RoundForm
+            //TODO: Add aPROPriate props haha
             mode={this.state.mode}
             editId={this.state.editId}
             roundData={this.props.rounds[this.state.editId]}

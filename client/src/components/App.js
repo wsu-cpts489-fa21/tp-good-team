@@ -211,9 +211,12 @@ class App extends React.Component {
     }
   };
 
-  incrementRounds = async () => {
-    const res = await this.updateUserData(this.state.userData);
-  };
+
+  //TODO: Method to update newBadge method
+
+  updateBadges = async (badge1, b2, b3, b4, b5) => {};
+  //Set current (this.state.userData.badges) userData.badges.<categories> with changes
+  //Create newUserData setting all current
 
   /*****************************************************************
    * Round Management methods
@@ -380,6 +383,7 @@ class App extends React.Component {
                 toggleModalOpen={this.toggleModalOpen}
                 menuOpen={this.state.menuOpen}
                 userId={this.state.userId}
+                //TODO: Add props
               />
             ),
             CoursesMode: (

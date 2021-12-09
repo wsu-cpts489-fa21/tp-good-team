@@ -27,6 +27,7 @@ class RoundForm extends React.Component {
         // newStrokesBadge: this.props.strokesBadge,
         // newStreakBadge: this.props.streakBadge,
         // newScoreBadge: this.props.scoreBadge,
+
       };
     } else {
       this.state = this.props.roundData;
@@ -124,6 +125,7 @@ class RoundForm extends React.Component {
          ******************************************************************/
       }); //End looping through Tiers
     }); //End looping through Categories
+
   };
 
   //TODO: Check if any badges are unlocked. If so, display congrats toast in parent
