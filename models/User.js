@@ -12,6 +12,7 @@ const UserSchema = new mongoose.Schema({
     displayName: String,
     profilePic: String,
   },
+  numRounds: Number,
   speedgolfData: {
     bio: String,
     homeCourse: String,

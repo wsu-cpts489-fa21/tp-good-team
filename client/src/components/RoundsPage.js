@@ -98,6 +98,7 @@ class RoundsPage extends React.Component {
             mode={this.state.mode}
             roundData={null}
             saveRound={this.props.addRound}
+            incrementRounds={this.props.incrementRounds}
             setMode={this.setMode}
             toggleModalOpen={this.props.toggleModalOpen}
           />

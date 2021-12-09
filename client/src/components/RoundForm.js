@@ -137,6 +137,7 @@ class RoundForm extends React.Component {
     // Let parent know to render congrats Toast
     // Use this.props to await updateBadgeData(b1, 2, 3, 4, 5)
     const res = await this.props.saveRound(newRound, this.props.editId);
+    // const resUser = await this.props.incrementRounds();
 
     this.props.toggleModalOpen();
     this.props.setMode(RoundsMode.ROUNDSTABLE);

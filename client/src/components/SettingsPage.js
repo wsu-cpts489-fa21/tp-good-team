@@ -23,6 +23,7 @@ class SettingsPage extends React.Component {
       securityQuestion: this.props.userData.accountData.securityQuestion,
       securityAnswer: this.props.userData.accountData.securityAnswer,
       displayName: this.props.userData.identityData.displayName,
+      numRounds: this.props.userData.numRounds,
       profilePic: this.props.userData.identityData.profilePic,
       bio: this.props.userData.speedgolfData.bio,
       homeCourse: this.props.userData.speedgolfData.homeCourse,
@@ -150,6 +151,7 @@ class SettingsPage extends React.Component {
           displayName: this.state.displayName,
           profilePic: this.state.profilePic,
         },
+        numRounds: this.state.numRounds,
         speedgolfData: {
           bio: this.state.bio,
           homeCourse: this.state.homeCourse,

@@ -56,6 +56,7 @@ class App extends React.Component {
       userData: {
         accountData: {},
         identityData: {},
+        numRounds: 0,
         speedgolfData: {},
         badges: {},
         rounds: [],
@@ -109,6 +110,7 @@ class App extends React.Component {
       userData: {
         accountData: {},
         identityData: {},
+        numRounds: 0,
         speedgolfData: {},
         badges: {},
         rounds: [],
@@ -209,6 +211,10 @@ class App extends React.Component {
     }
   };
 
+  incrementRounds = async () => {
+    const res = await this.updateUserData(this.state.userData);
+  };
+
   /*****************************************************************
    * Round Management methods
    ******************************************************************/
@@ -227,14 +233,20 @@ class App extends React.Component {
     if (res.status == 201) {
       const newRounds = [...this.state.userData.rounds];
       newRounds.push(newRoundData);
+
       const newUserData = {
         accountData: this.state.userData.accountData,
         identityData: this.state.userData.identityData,
+        numRounds: this.state.userData.numRounds,
         speedgolfData: this.state.userData.speedgolfData,
         badges: this.state.userData.badges,
         rounds: newRounds,
       };
+
+      //Incrementing Rounds
+      newUserData.numRounds++;
       this.setState({ userData: newUserData });
+      const resIncrement = await this.updateUserData(newUserData);
 
       return "New round logged.";
     } else {
@@ -266,6 +278,7 @@ class App extends React.Component {
       const newUserData = {
         accountData: this.state.userData.accountData,
         identityData: this.state.userData.identityData,
+        numRounds: this.state.userData.numRounds,
         speedgolfProfileData: this.state.userData.speedgolfProfileData,
         badges: this.state.userData.badges,
         rounds: newRounds,
@@ -278,6 +291,7 @@ class App extends React.Component {
     }
   };
 
+  //TODO: Decrement numRounds
   deleteRound = async (id) => {
     const url =
       "/rounds/" +
@@ -302,6 +316,7 @@ class App extends React.Component {
       const newUserData = {
         accountData: this.state.userData.accountData,
         identityData: this.state.userData.identityData,
+        numRounds: this.state.userData.numRounds,
         speedgolfProfileData: this.state.userData.speedgolfProfileData,
         badges: this.state.userData.badges,
         rounds: newRounds,
@@ -355,8 +370,10 @@ class App extends React.Component {
             ),
             RoundsMode: (
               <RoundsPage
+                badges={this.state.userData.badges}
                 rounds={this.state.userData.rounds}
                 addRound={this.addRound}
+                incrementRounds={this.updateUserData}
                 updateRound={this.updateRound}
                 deleteRound={this.deleteRound}
                 modalOpen={this.state.modalOpen}
