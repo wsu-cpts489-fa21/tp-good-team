@@ -27,7 +27,6 @@ userRoute.get("/users/:userId", async (req, res, next) => {
       return res.status(200).json(JSON.stringify(thisUser));
     }
   } catch (err) {
-    console.log();
     return res
       .status(400)
       .send(
@@ -59,6 +58,7 @@ userRoute.post("/users/:userId", async (req, res, next) => {
     "homeCourse",
     "firstRound",
     "personalBest",
+    // "numRounds",
     "clubs",
     "clubComments",
   ];
@@ -119,6 +119,7 @@ userRoute.post("/users/:userId", async (req, res, next) => {
             );
         }
       }
+    } else if (bodyProp === "numRounds") {
     } else {
       return res
         .status(400)
@@ -152,6 +153,7 @@ userRoute.post("/users/:userId", async (req, res, next) => {
           displayName: req.body.identityData.displayName,
           profilePic: req.body.identityData.profilePic,
         },
+        numRounds: req.body.numRounds,
         speedgolfData: {
           bio: req.body.speedgolfData.bio,
           homeCourse: req.body.speedgolfData.homeCourse,
@@ -189,6 +191,7 @@ userRoute.put("/users/:userId", async (req, res, next) => {
       " and body = " +
       JSON.stringify(req.body)
   );
+
   if (!req.params.hasOwnProperty("userId")) {
     return res
       .status(400)
@@ -209,6 +212,7 @@ userRoute.put("/users/:userId", async (req, res, next) => {
     "homeCourse",
     "personalBest",
     "firstRound",
+    // "numRounds",
     "clubs",
     "clubComments",
   ];
@@ -262,12 +266,14 @@ userRoute.put("/users/:userId", async (req, res, next) => {
           return res
             .status(400)
             .send(
-              "users/ POST request formulated incorrectly." +
+              "users/ PUT request formulated incorrectly." +
                 "Only the following props are allowed in badges: " +
                 "'roundsPlayedBadge', 'fastTimeBadge', lowStrokesBadge', 'streakBadge', 'highScoreBadge'"
             );
         }
       }
+    } else if (bodyProp === "numRounds") {
+    } else if (bodyProp === "rounds") {
     } else {
       return res
         .status(400)

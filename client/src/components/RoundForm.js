@@ -22,11 +22,12 @@ class RoundForm extends React.Component {
         btnIcon: "calendar",
         btnLabel: "Log Round",
         newBadge: false,
-        newRoundsBadge: this.props.roundsBadge,
-        newTimeBadge: this.props.timeBadge,
-        newStrokesBadge: this.props.strokesBadge,
-        newStreakBadge: this.props.streakBadge,
-        newScoreBadge: this.props.scoreBadge,
+        // newRoundsBadge: this.props.roundsBadge,
+        // newTimeBadge: this.props.timeBadge,
+        // newStrokesBadge: this.props.strokesBadge,
+        // newStreakBadge: this.props.streakBadge,
+        // newScoreBadge: this.props.scoreBadge,
+
       };
     } else {
       this.state = this.props.roundData;
@@ -94,21 +95,37 @@ class RoundForm extends React.Component {
      *            Let the parent know what the new Tier is
      *            Set flag signifying a new badge has been earned
      ******************************************************************/
-    /*****************************************************************
-     * TODO: Rounds
-     ******************************************************************/
-    /*****************************************************************
-     * TODO: Time
-     ******************************************************************/
-    /*****************************************************************
-     * TODO: Strokes
-     ******************************************************************/
-    /*****************************************************************
-     * TODO: Streak
-     ******************************************************************/
-    /*****************************************************************
-     * TODO: Score
-     ******************************************************************/
+
+    const categoryProps = Object.keys(BadgeData);
+    // console.log(categoryProps); //Prints all the Categories
+
+    categoryProps.forEach((CATEGORY, categoryIndex) => {
+      console.log(CATEGORY);
+      const tierProps = Object.keys(BadgeData[CATEGORY]);
+      // console.log(tierProps); //Prints all the Tiers
+
+      tierProps.forEach((TIER, tierIndex) => {
+        let tierReq = BadgeData[CATEGORY][TIER];
+        console.log("   " + TIER + ": " + tierReq);
+
+        /*****************************************************************
+         * TODO: Rounds
+         ******************************************************************/
+        /*****************************************************************
+         * TODO: Time
+         ******************************************************************/
+        /*****************************************************************
+         * TODO: Strokes
+         ******************************************************************/
+        /*****************************************************************
+         * TODO: Streak
+         ******************************************************************/
+        /*****************************************************************
+         * TODO: Score
+         ******************************************************************/
+      }); //End looping through Tiers
+    }); //End looping through Categories
+
   };
 
   //TODO: Check if any badges are unlocked. If so, display congrats toast in parent
@@ -122,6 +139,7 @@ class RoundForm extends React.Component {
     // Let parent know to render congrats Toast
     // Use this.props to await updateBadgeData(b1, 2, 3, 4, 5)
     const res = await this.props.saveRound(newRound, this.props.editId);
+    // const resUser = await this.props.incrementRounds();
 
     this.props.toggleModalOpen();
     this.props.setMode(RoundsMode.ROUNDSTABLE);
