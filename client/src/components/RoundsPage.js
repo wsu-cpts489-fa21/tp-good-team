@@ -102,6 +102,7 @@ class RoundsPage extends React.Component {
         return (
           //TODO: Add aPROPriate props haha
           <RoundForm
+            numRounds={this.props.numRounds}
             mode={this.state.mode}
             roundData={null}
             saveRound={this.props.addRound}
@@ -120,6 +121,7 @@ class RoundsPage extends React.Component {
             saveRound={this.props.updateRound}
             setMode={this.setMode}
             toggleModalOpen={this.props.toggleModalOpen}
+            numRounds={this.props.numRounds}
           />
         );
     }

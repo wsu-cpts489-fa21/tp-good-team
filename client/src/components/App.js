@@ -56,7 +56,7 @@ class App extends React.Component {
       userData: {
         accountData: {},
         identityData: {},
-        numRounds: 0,
+        numRounds: 1,
         speedgolfData: {},
         badges: {},
         rounds: [],
@@ -211,7 +211,6 @@ class App extends React.Component {
     }
   };
 
-
   //TODO: Method to update newBadge method
 
   updateBadges = async (badge1, b2, b3, b4, b5) => {};
@@ -324,6 +323,7 @@ class App extends React.Component {
         badges: this.state.userData.badges,
         rounds: newRounds,
       };
+      newUserData.numRounds--;
       this.setState({ userData: newUserData });
     } else {
       const resText = await res.text();
@@ -373,6 +373,7 @@ class App extends React.Component {
             ),
             RoundsMode: (
               <RoundsPage
+                numRounds={this.state.userData.numRounds}
                 badges={this.state.userData.badges}
                 rounds={this.state.userData.rounds}
                 addRound={this.addRound}
