@@ -18,11 +18,11 @@ const BadgeData = {
 
   //TODO: Update Badge Data
   fastTimeBadges: {
-    purple: 0,
-    blue: 0,
-    gold: 0,
-    grey: 0,
-    brown: 0,
+    purple: 35,
+    blue: 45,
+    gold: 50,
+    grey: 60,
+    brown: 80,
   },
   //TODO: Update Badge Data
   lowStrokesBadges: {
@@ -52,3 +52,4 @@ const BadgeData = {
 Object.freeze(BadgeData);
 
 export default BadgeData;
+
