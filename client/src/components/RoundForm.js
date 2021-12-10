@@ -111,6 +111,27 @@ class RoundForm extends React.Component {
         /*****************************************************************
          * Rounds
          ******************************************************************/
+        if (CATEGORY === "roundsPlayedBadges") {
+          const currentTier = this.state.roundsBadge;
+
+          //"Breaks" out of the loop when we've reached the tier we are currently at.
+          // This allows us to only consider badges we haven't earned yet
+          if (currentTier === badgeTier) return false;
+
+          //Compares the number of current rounds with the requirement to break into
+          // the next tier
+          // numRounds has not been set yet, se I had to add the +1 to it
+          if (numRounds + 1 >= tierReq) {
+            this.setState({
+              roundsBadge: badgeTier,
+            });
+
+            //Testing Workflow xx
+
+            //Sets return value
+            changeFlag = true;
+          }
+        } //End Rounds category
         /*****************************************************************
          * //TODO: Time
          * ***************************************************************/
@@ -157,24 +178,8 @@ class RoundForm extends React.Component {
             //Sets return value
             changeFlag = true;
           }
-        } //End Stroke category
-        /*****************************************************************
-         * TODO: Streak
-         ******************************************************************/
-
-        /*****************************************************************
-         * //TODO: Time
-         * ***************************************************************/
-        else if (CATEGORY === "fastTimeBadges") {
-          console.log("Update Time badges");
-        } //End Time category
-        /*****************************************************************
-         S //TODO: Strokes
-         ***************************************************************/
-        else if (CATEGORY === "lowStrokesBadges") {
-          console.log("Update Strokes badges");
-        } //End Strokes category
-
+        } //End Streak category
+  
         /*****************************************************************
          S //TODO: Score
          ***************************************************************/
