@@ -68,19 +68,19 @@ class EarnBadges extends React.Component {
         <p>To earn this badge, play a total of 520 rounds in one day</p>
 
         <img src={bronzeStreak} alt="Bronze Streak badge" />
-        <p>To earn this badge, play 1 round in one day</p>
+        <p>To earn this badge, play 1 game in one day</p>
 
         <img src={silverStreak} alt="Silver Streak badge" />
-        <p>To earn this badge, play 3 rounds in one day</p>
+        <p>To earn this badge, play 3 games in one day</p>
 
         <img src={goldStreak} alt="Gold Streak badge" />
-        <p>To earn this badge, play 7 rounds in one day</p>
+        <p>To earn this badge, play 7 games in one day</p>
 
         <img src={diamondStreak} alt="Diamond Streak badge" />
-        <p>To earn this badge, play 10 rounds in one day</p>
+        <p>To earn this badge, play 10 games in one day</p>
 
         <img src={ultraStreak} alt="Ultra Streak badge" />
-        <p>To earn this badge, play 15 rounds in one day</p>
+        <p>To earn this badge, play 15 games in one day</p>
 
         <img src={bronzeStroke} alt="Bronze Stroke badge" />
         <p>To earn this badge, accumulate 150 or more swings in one game</p>
