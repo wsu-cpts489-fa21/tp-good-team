@@ -22,6 +22,7 @@ class RoundForm extends React.Component {
         btnIcon: "calendar",
         btnLabel: "Log Round",
         newBadge: false,
+
         roundsBadge: this.props.badges.roundsPlayedBadge,
         timeBadge: this.props.badges.fastTimeBadge,
         strokesBadge: this.props.badges.lowStrokesBadge,
@@ -92,6 +93,7 @@ class RoundForm extends React.Component {
    * as the current tier of the category currently unlocked
    ***************************************************************** */
   checkBadgesUnlocked = () => {
+
     let changeFlag = false;
     const numRounds = this.props.numRounds;
 
@@ -144,10 +146,26 @@ class RoundForm extends React.Component {
           console.log("Update Strokes badges");
         } //End Strokes category
         /*****************************************************************
-         S //TODO: Streak
+         * //Streak
          ***************************************************************/
         else if (CATEGORY === "streakBadges") {
-          console.log("Update Streak badges");
+                    const currentTier = this.state.streakBadge; //CHNG
+
+          //"Breaks" out of the loop when we've reached the tier we are currently at.
+          // This allows us to only consider badges we haven't earned yet
+          if (currentTier === badgeTier) return false;
+
+          //Compares the number of current rounds with the requirement to break into
+          // the next tier
+          // numRounds has not been set yet, se I had to add the +1 to it
+          if (numRounds + 1 >= tierReq) {
+            this.setState({
+              streakBadge: badgeTier, //CHNG
+            });
+
+            //Sets return value
+            changeFlag = true;
+          }
         } //End Streak category
         /*****************************************************************
          S //TODO: Score
@@ -182,7 +200,15 @@ class RoundForm extends React.Component {
 
     let flag = this.checkBadgesUnlocked();
 
+    this.checkBadgesUnlocked();
+    console.log(this.state.newBadge);
+
+    //TODO: If newBadges found,
+    // Let parent know to render congrats Toast
+    // Use this.props to await updateBadgeData(b1, 2, 3, 4, 5)
+
     const res = await this.props.saveRound(newRound, this.props.editId);
+    // const resUser = await this.props.incrementRounds();
 
     if (flag) {
       this.props.toggleRenderNewBadgeToast();

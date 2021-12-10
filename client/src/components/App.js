@@ -404,6 +404,7 @@ class App extends React.Component {
                 rounds={this.state.userData.rounds}
                 menuOpen={this.state.menuOpen}
                 userId={this.state.userId}
+//                 badges={this.state.userData.badges}
                 numRounds={this.state.userData.numRounds}
                 updateBadges={this.updateBadges}
               />
