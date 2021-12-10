@@ -9,11 +9,11 @@
 
 const BadgeData = {
   roundsPlayedBadges: {
-    purple: 520,
-    blue: 260,
-    gold: 130,
-    grey: 65,
-    brown: 30,
+    purple: 35,
+    blue: 30,
+    gold: 25,
+    grey: 21,
+    brown: 17,
   },
 
   //TODO: Update Badge Data
@@ -26,7 +26,6 @@ const BadgeData = {
   },
   //TODO: Update Badge Data
   lowStrokesBadges: {
-
     purple: 65,
     blue: 75,
     gold: 90,
@@ -53,4 +52,3 @@ const BadgeData = {
 Object.freeze(BadgeData);
 
 export default BadgeData;
-
