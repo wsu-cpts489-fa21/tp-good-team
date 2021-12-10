@@ -366,14 +366,83 @@ class SettingsPage extends React.Component {
       return ultraStreak;
     }
   }
+
+  getRoundsBadgeDesc = (tier) => {
+    switch(tier){
+      case -1:
+        return null;
+      case 0:
+        return 'To earn this badge, play a total of 30 rounds in one day';
+      case 1:
+        return 'To earn this badge, play a total of 65 rounds in one day';
+      case 2:
+        return 'To earn this badge, play a total of 130 rounds in one day';
+      case 3:
+        return 'To earn this badge, play a total of 260 rounds in one day';
+      case 4:
+        return 'To earn this badge, play a total of 520 rounds in one day';
+    }  
+  }
+  
+  getFastTimeBadgeDesc = (tier) => {
+    switch(tier){
+      case -1:
+        return null;
+      case 0:
+        return 'To earn this badge, accumulate a total of 80 minutes or more in one game';
+      case 1:
+        return 'To earn this badge, accumulate between 51 and 60 minutes in one game';
+      case 2:
+        return 'To earn this badge, accumulate between 46 and 50 minutes in one game';
+      case 3:
+        return 'To earn this badge, accumulate between 36 and 45 minutes in one game';
+      case 4:
+        return 'To earn this badge, accumulate a total of 35 minutes or less in one game';
+    }  
+  }
+
+  getLowStrokesBadgeDesc = (tier) => {
+    switch(tier){
+      case -1:
+        return null;
+      case 0:
+        return 'To earn this badge, accumulate 150 or more swings in one game';
+      case 1:
+        return 'To earn this badge, accumulate between 91 and 120 swings in one game';
+      case 2:
+        return 'To earn this badge, accumulate between 76 and 90 swings in one game';
+      case 3:
+        return 'To earn this badge, accumulate between 66 and 75 swings in one game';
+      case 4:
+        return 'To earn this badge, accumulate 65 or less swings in one game';
+    }  
+  }
+
+  getStreakBadgeDesc = (tier) => {
+    switch(tier){
+      case -1:
+        return null;
+      case 0:
+        return 'To earn this badge, play 1 game in one day';
+      case 1:
+        return 'To earn this badge, play 3 game in one day';
+      case 2:
+        return 'To earn this badge, play 7 game in one day';
+      case 3:
+        return 'To earn this badge, play 10 game in one day';
+      case 4:
+        return 'To earn this badge, play 15 game in one day';
+    }  
+  }
+
   //TODO Render badge display
   renderBadgeDisplay = () => {
     console.log(this.props.userData.badges.roundsPlayedBadge, this.props.userData.badges.fastTimeBadge, this.props.userData.badges.lowStrokesBadge, this.props.userData.badges.streakBadge)
 
-    let roundsBadge  = <img src={this.getRoundsPlayedBadge(this.props.userData.badges.roundsPlayedBadge)}/>;
-    let timeBadge = <img src={this.getFastTimeBadge(this.props.userData.badges.fastTimeBadge)}/>;
-    let strokeBadge  = <img src={this.getLowStrokesBadge(this.props.userData.badges.lowStrokesBadge)}/>;
-    let streakBadge = <img src={this.getStreakBadge(this.props.userData.badges.streakBadge)}/>;
+    let roundsBadge  = <img src={this.getRoundsPlayedBadge(this.props.userData.badges.roundsPlayedBadge)} title={this.getRoundsBadgeDesc(this.props.userData.badges.roundsPlayedBadge)}/>;
+    let timeBadge = <img src={this.getFastTimeBadge(this.props.userData.badges.fastTimeBadge)} title={this.getFastTimeBadgeDesc(this.props.userData.badges.fastTimeBadge)}/>;
+    let strokeBadge  = <img src={this.getLowStrokesBadge(this.props.userData.badges.lowStrokesBadge)} title={this.getLowStrokesBadgeDesc(this.props.userData.badges.lowStrokesBadge)}/>;
+    let streakBadge = <img src={this.getStreakBadge(this.props.userData.badges.streakBadge)} title={this.getStreakBadgeDesc(this.props.userData.badges.streakBadge)}/>;
     
     return (
       <>
