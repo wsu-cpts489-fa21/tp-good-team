@@ -155,9 +155,22 @@ class RoundForm extends React.Component {
          S //TODO: Strokes
          ***************************************************************/
         else if (CATEGORY === "lowStrokesBadges") {
-          console.log("Update Strokes badges");
-        } //End Strokes category
+          const currentTier = this.state.strokesBadge; //CHNG
 
+          //"Breaks" out of the loop when we've reached the tier we are currently at.
+          // This allows us to only consider badges we haven't earned yet
+          if (currentTier === badgeTier) return false;
+
+          // if certain time is met, a badge is unlocked
+          if (this.state.strokes >= tierReq) {
+            this.setState({
+              strokesBadge: badgeTier, //CHNG
+            });
+
+            //Sets return value
+            changeFlag = true;
+          }
+        } //End Stroke category
         /*****************************************************************
          * //Streak
          ***************************************************************/
