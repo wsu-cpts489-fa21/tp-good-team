@@ -20,11 +20,17 @@ jobs:
       - name: Running Tests
         uses: DevExpress/testcafe-action@latest
         with:
-          - run: npm install
-          - run: npm build
           working-directory: ${{env.client-dir}}
-          - run: npm install
-          - run: npm dev
+          run: |
+            npm install
+            npm run build --if-present
+          # run: npm install
+          # run: npm build
           working-directory: ${{env.home-dir}}
+          run: |
+            npm install
+            npm run dev
+          # run: npm install
+          # run: npm dev
           wait-on: http://localhost:8081/
           args: "chrome tests"
