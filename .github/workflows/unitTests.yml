@@ -10,11 +10,21 @@ jobs:
 
     env:
       client-dir: ./client
+      home-dir: ./
 
     #Fetch repo content
     steps:
       - name: Checkout
         uses: actions/checkout@v1
+        uses: actions/setup-node@v2
+          with:
+            node-version: '14'
+        - run: npm install
+        working-directory: ${{env.client-dir}}
+        - run: npm install
+        working-directory: ${{env.home-dir}}
+        - run: npm run build
+        working-directory: ${{env.client-dir}}
       - name: Running Tests
         uses: DevExpress/testcafe-action@latest
         with:
