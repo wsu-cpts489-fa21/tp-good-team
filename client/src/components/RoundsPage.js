@@ -19,6 +19,7 @@ class RoundsPage extends React.Component {
       earnBadgesOpen: false,
       //TODO: Add state variables for: rendering Congrats Toast
       newBadgeToastOpen: false,
+      newBadgeToast: false,
     };
   }
 
@@ -58,7 +59,7 @@ class RoundsPage extends React.Component {
   };
 
   toggleRenderNewBadgeToast = () => {
-    console.log("Congrats! You earned a new badge!");
+    this.setState((prevState) => ({ newBadgeToast: !prevState.newBadgeToast }));
   };
 
   render() {
@@ -92,6 +93,7 @@ class RoundsPage extends React.Component {
           <>
             <RoundsTable
               //TODO: Add aPROPriate props haha
+              newBadgeToast={this.state.newBadgeToast}
               rounds={this.props.rounds}
               initiateDeleteRound={this.initiateDeleteRound}
               deleteRound={this.props.deleteRound}
@@ -102,6 +104,7 @@ class RoundsPage extends React.Component {
               toggleModalOpen={this.props.toggleModalOpen}
               menuOpen={this.props.menuOpen}
               newBadgeToastOpen={this.state.newBadgeToastOpen}
+              toggleRenderNewBadgeToast={this.toggleRenderNewBadgeToast}
             />
             <FloatingButton
               icon="calendar"
@@ -109,7 +112,7 @@ class RoundsPage extends React.Component {
               menuOpen={this.props.menuOpen}
               action={() =>
                 this.setState(
-                  { mode: RoundsMode.LOGROUND },
+                  { mode: RoundsMode.LOGROUND, newBadgeToast: false },
                   this.props.toggleModalOpen
                 )
               }

@@ -32,7 +32,6 @@ const BadgeData = {
     grey: 120,
     brown: 150,
   },
-  //TODO: Update Badge Data
   streakBadges: {
     purple: 15,
     blue: 10,
@@ -53,3 +52,4 @@ const BadgeData = {
 Object.freeze(BadgeData);
 
 export default BadgeData;
+
