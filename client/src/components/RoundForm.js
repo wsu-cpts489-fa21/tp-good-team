@@ -111,17 +111,58 @@ class RoundForm extends React.Component {
         /*****************************************************************
          * Rounds
          ******************************************************************/
+        if (CATEGORY === "roundsPlayedBadges") {
+          const currentTier = this.state.roundsBadge;
+
+          //"Breaks" out of the loop when we've reached the tier we are currently at.
+          // This allows us to only consider badges we haven't earned yet
+          if (currentTier === badgeTier) return false;
+
+          //Compares the number of current rounds with the requirement to break into
+          // the next tier
+          // numRounds has not been set yet, se I had to add the +1 to it
+          if (numRounds + 1 >= tierReq) {
+            this.setState({
+              roundsBadge: badgeTier,
+            });
+
+            //Testing Workflow xx
+
+            //Sets return value
+            changeFlag = true;
+          }
+        } //End Rounds category
         /*****************************************************************
          * //TODO: Time
          * ***************************************************************/
-        if (CATEGORY === "fastTimeBadges") {
-          console.log("Update Time badges");
+
+        else if (CATEGORY === "fastTimeBadges") {
+          const currentTier = this.state.timeBadge; //CHNG
+
+          //"Breaks" out of the loop when we've reached the tier we are currently at.
+          // This allows us to only consider badges we haven't earned yet
+          if (currentTier === badgeTier) return false;
+
+          //Compares the number of current rounds with the requirement to break into
+          // the next tier
+          // numRounds has not been set yet, se I had to add the +1 to it
+          if (this.state.minutes >= tierReq) {
+            this.setState({
+              timeBadge: badgeTier, //CHNG
+            });
+          }
         } //End Time category
         /*****************************************************************
-         * TODO: Strokes
-         ******************************************************************/
-        if (CATEGORY === "lowStrokesBadges") {
-          const currentTier = this.state.strokesBadge; //CHNG
+         S //TODO: Strokes
+         ***************************************************************/
+        else if (CATEGORY === "lowStrokesBadges") {
+          console.log("Update Strokes badges");
+        } //End Strokes category
+        /*****************************************************************
+         * //Streak
+         ***************************************************************/
+        else if (CATEGORY === "streakBadges") {
+          const currentTier = this.state.streakBadge; //CHNG
 
 
           //"Breaks" out of the loop when we've reached the tier we are currently at.
@@ -129,19 +170,16 @@ class RoundForm extends React.Component {
           if (currentTier === badgeTier) return false;
 
           // if certain time is met, a badge is unlocked
-          if (this.state.strokes >= tierReq) {
+          if (numRounds + 1 >= tierReq) {
             this.setState({
-              strokesBadge: badgeTier, //CHNG
+              streakBadge: badgeTier, //CHNG
             });
 
             //Sets return value
             changeFlag = true;
           }
-        } //End Stroke category
-        /*****************************************************************
-         * TODO: Streak
-         ******************************************************************/
-
+        } //End Streak category
+  
         /*****************************************************************
          S //TODO: Score
          ***************************************************************/
