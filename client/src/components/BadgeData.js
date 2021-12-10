@@ -23,6 +23,7 @@ const BadgeData = {
     gold: 50,
     grey: 60,
     brown: 80,
+
   },
   //TODO: Update Badge Data
   lowStrokesBadges: {
@@ -39,6 +40,7 @@ const BadgeData = {
     gold: 7,
     grey: 3,
     brown: 1,
+
   },
   //TODO: Update Badge Data
   highScoreBadges: {

@@ -112,6 +112,7 @@ class CreateAccount extends React.Component {
               : this.state.email,
           profilePic: this.state.profilePic,
         },
+        numRounds: 0,
         speedgolfData: {
           bio: "",
           homeCourse: "",
@@ -145,11 +146,11 @@ class CreateAccount extends React.Component {
           clubComments: "",
         },
         badges: {
-          roundsPlayedBadge: "",
-          fastTimeBadge: "",
-          lowStrokesBadge: "",
-          streakBadge: "",
-          highScoreBadge: "",
+          roundsPlayedBadge: -1,
+          fastTimeBadge: -1,
+          lowStrokesBadge: -1,
+          streakBadge: -1,
+          highScoreBadge: -1,
         },
       };
       this.props.createAccountDone(newAccount);
