@@ -211,8 +211,33 @@ class App extends React.Component {
     }
   };
 
-  incrementRounds = async () => {
-    const res = await this.updateUserData(this.state.userData);
+  // incrementRounds = async () => {
+  //   const res = await this.updateUserData(this.state.userData);
+  // };
+
+  updateBadges = async (rounds, time, strokes, streak, score) => {
+    const newBadgeData = {
+      roundsPlayedBadge: rounds,
+      fastTimeBadge: time,
+      lowStrokesBadge: strokes,
+      streakBadge: streak,
+      highScoreBadge: score,
+    };
+
+    const newUserData = {
+      accountData: this.state.userData.accountData,
+      identityData: this.state.userData.identityData,
+      numRounds: this.state.userData.numRounds,
+      speedgolfData: this.state.userData.speedgolfData,
+      badges: newBadgeData,
+      rounds: this.state.userData.rounds,
+    };
+
+    this.setState({
+      userData: newUserData,
+    });
+
+    const res = await this.updateUserData(newUserData);
   };
 
   /*****************************************************************
@@ -370,16 +395,17 @@ class App extends React.Component {
             ),
             RoundsMode: (
               <RoundsPage
-                badges={this.state.userData.badges}
-                rounds={this.state.userData.rounds}
                 addRound={this.addRound}
-                incrementRounds={this.updateUserData}
                 updateRound={this.updateRound}
                 deleteRound={this.deleteRound}
-                modalOpen={this.state.modalOpen}
                 toggleModalOpen={this.toggleModalOpen}
+                badges={this.state.userData.badges}
+                modalOpen={this.state.modalOpen}
+                rounds={this.state.userData.rounds}
                 menuOpen={this.state.menuOpen}
                 userId={this.state.userId}
+                numRounds={this.state.userData.numRounds}
+                updateBadges={this.updateBadges}
               />
             ),
             CoursesMode: (

@@ -14,6 +14,7 @@ class RoundsPage extends React.Component {
       deleteId: -1,
       editId: -1,
       deleteDialogOpen: false,
+      newBadgeToastOpen: false,
     };
   }
 
@@ -40,6 +41,10 @@ class RoundsPage extends React.Component {
   };
   confirmDeleteRound = async () => {
     const res = await this.props.deleteRound(this.state.deleteId);
+  };
+
+  toggleRenderNewBadgeToast = () => {
+    console.log("Congrats! You earned a new badge!");
   };
 
   render() {
@@ -71,6 +76,7 @@ class RoundsPage extends React.Component {
               setMode={this.setMode}
               toggleModalOpen={this.props.toggleModalOpen}
               menuOpen={this.props.menuOpen}
+              newBadgeToastOpen={this.state.newBadgeToastOpen}
             />
             <FloatingButton
               icon="calendar"
@@ -95,23 +101,31 @@ class RoundsPage extends React.Component {
       case RoundsMode.LOGROUND:
         return (
           <RoundForm
+            numRounds={this.props.numRounds}
+            badges={this.props.badges}
             mode={this.state.mode}
             roundData={null}
             saveRound={this.props.addRound}
             incrementRounds={this.props.incrementRounds}
-            setMode={this.setMode}
             toggleModalOpen={this.props.toggleModalOpen}
+            setMode={this.setMode}
+            updateBadges={this.props.updateBadges}
+            toggleRenderNewBadgeToast={this.toggleRenderNewBadgeToast}
           />
         );
       case RoundsMode.EDITROUND:
         return (
           <RoundForm
+            numRounds={this.props.numRounds}
+            badges={this.props.badges}
             mode={this.state.mode}
             editId={this.state.editId}
             roundData={this.props.rounds[this.state.editId]}
             saveRound={this.props.updateRound}
-            setMode={this.setMode}
             toggleModalOpen={this.props.toggleModalOpen}
+            setMode={this.setMode}
+            updateBadges={this.props.updateBadges}
+            toggleRenderNewBadgeToast={this.toggleRenderNewBadgeToast}
           />
         );
     }
