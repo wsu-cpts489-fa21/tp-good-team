@@ -93,7 +93,6 @@ class RoundForm extends React.Component {
    * as the current tier of the category currently unlocked
    ***************************************************************** */
   checkBadgesUnlocked = () => {
-
     let changeFlag = false;
     const numRounds = this.props.numRounds;
 
@@ -149,7 +148,7 @@ class RoundForm extends React.Component {
          * //Streak
          ***************************************************************/
         else if (CATEGORY === "streakBadges") {
-                    const currentTier = this.state.streakBadge; //CHNG
+          const currentTier = this.state.streakBadge; //CHNG
 
           //"Breaks" out of the loop when we've reached the tier we are currently at.
           // This allows us to only consider badges we haven't earned yet

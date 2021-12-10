@@ -23,15 +23,14 @@ const BadgeData = {
     gold: 50,
     grey: 60,
     brown: 80,
-
   },
   //TODO: Update Badge Data
-  lowStrokesBadges: {
-    purple: 0,
-    blue: 0,
-    gold: 0,
-    grey: 0,
-    brown: 0,
+  strokesBadges: {
+    purple: 65,
+    blue: 75,
+    gold: 90,
+    grey: 120,
+    brown: 150,
   },
   //TODO: Update Badge Data
   streakBadges: {
@@ -40,7 +39,6 @@ const BadgeData = {
     gold: 7,
     grey: 3,
     brown: 1,
-
   },
   //TODO: Update Badge Data
   highScoreBadges: {
