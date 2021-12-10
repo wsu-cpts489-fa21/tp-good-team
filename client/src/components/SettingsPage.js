@@ -278,17 +278,56 @@ class SettingsPage extends React.Component {
    *    If rank === 1, render <category>-brown
    *    Else if rank === 2, render <category>-grey-badge
    ***************************************************************** */
-
+  getBadgeTier = (tier) => {
+    switch (tier) {
+    case 0:
+      return null;
+    case 1:
+      return 'bronze';
+    case 2:
+      return 'silver';
+    case 3:
+      return 'gold';
+    case 4:
+      return 'diamond';
+    case 5:
+      return 'ultra';
+    }
+  }
   //TODO Render badge display
   renderBadgeDisplay = () => {
+    let badge1 = null;
+    let badge2 = null;
+    let badge3 = null;
+    let badge4 = null;
+    if (this.props.userData.badges.roundsPlayedBadge > 0) {
+      badge1 = <img id="roundsPlayedBadge" src={"./../images/" + this.getBadgeTier(this.props.userData.badges.roundsPlayedBadge) + "Round.png"}></img>;
+    }
+    if (this.props.userData.badges.fastTimeBadge > 0) {
+      badge2 = <img id="fastTimeBadge" src={"./../images/" + this.getBadgeTier(this.props.userData.badges.fastTimeBadge) + "Time.png"}></img>;
+    }
+    if (this.props.userData.badges.lowStrokesBadge > 0) {
+      badge3 = <img id="lowStrokesBadge" src={"./../images/" + this.getBadgeTier(this.props.userData.badges.lowStrokesBadge) + "Stroke.png"}></img>;
+    }
+    if (this.props.userData.badges.streakBadge > 0) {
+      badge4 = <img id="streakBadge" src={"./../images/" + this.getBadgeTier(this.props.userData.badges.streakBadge) + "Streak.png"}></img>;
+    }
+    
     return (
-      <h1>
-        <Badge pill>Rounds Played</Badge>
-        <Badge pill>Fastest Time</Badge>
-        <Badge pill>Low Strokes</Badge>
-        <Badge pill>Streaks</Badge>
-        <Badge pill>High Score</Badge>
-      </h1>
+      <>
+        <h1>
+          { 
+            badge1 || badge2 || badge3 || badge4 ?
+            <>
+              {badge1}{badge2}{badge3}{badge4}
+            </>
+              :
+            <>
+              You can earn badges here through logging rounds!
+            </>
+          }
+        </h1>
+      </>
     );
 
     //if user has no badges
