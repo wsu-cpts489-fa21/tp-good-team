@@ -21,5 +21,5 @@ jobs:
         uses: DevExpress/testcafe-action@latest
         with:
           - run: npm run install-all-deps
-          wait-on: http://localhost:8081/
+          # wait-on: http://localhost:8081/
           args: "chrome tests"
