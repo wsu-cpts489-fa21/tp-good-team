@@ -109,43 +109,7 @@ class RoundForm extends React.Component {
         /*****************************************************************
          * TODO: Rounds
          ******************************************************************/
-        if (this.props.numRounds + 1 === BadgeData.streakBadges.brown) {
-          // render bronze
-          this.setState({
-            newBadge: true,
-          });
-          console.log("Bronze badge unlocked");
-        }
 
-        if (this.props.numRounds + 1 === BadgeData.streakBadges.grey) {
-          // render silver
-          this.setState({
-            newBadge: true,
-          });
-          console.log("Silver badge unlocked");
-        }
-        if (this.props.numRounds + 1 === BadgeData.streakBadges.gold) {
-          // render gold
-          this.setState({
-            newBadge: true,
-          });
-          console.log("Gold badge unlocked");
-        }
-
-        if (this.props.numRounds + 1 === BadgeData.streakBadges.blue) {
-          // render diamond
-          this.setState({
-            newBadge: true,
-          });
-          console.log("Diamond badge unlocked");
-        }
-        if (this.props.numRounds + 1 === BadgeData.streakBadges.purple) {
-          // render ultra
-          this.setState({
-            newBadge: true,
-          });
-          console.log("Ultra badge unlocked");
-        }
         /*****************************************************************
          * TODO: Time
          ******************************************************************/
@@ -205,6 +169,43 @@ class RoundForm extends React.Component {
         /*****************************************************************
          * TODO: Streak
          ******************************************************************/
+        if (this.props.numRounds + 1 === BadgeData.streakBadges.brown) {
+          // render bronze
+          this.setState({
+            newBadge: true,
+          });
+          console.log("Bronze badge unlocked");
+        }
+
+        if (this.props.numRounds + 1 === BadgeData.streakBadges.grey) {
+          // render silver
+          this.setState({
+            newBadge: true,
+          });
+          console.log("Silver badge unlocked");
+        }
+        if (this.props.numRounds + 1 === BadgeData.streakBadges.gold) {
+          // render gold
+          this.setState({
+            newBadge: true,
+          });
+          console.log("Gold badge unlocked");
+        }
+
+        if (this.props.numRounds + 1 === BadgeData.streakBadges.blue) {
+          // render diamond
+          this.setState({
+            newBadge: true,
+          });
+          console.log("Diamond badge unlocked");
+        }
+        if (this.props.numRounds + 1 === BadgeData.streakBadges.purple) {
+          // render ultra
+          this.setState({
+            newBadge: true,
+          });
+          console.log("Ultra badge unlocked");
+        }
         /*****************************************************************
          * TODO: Score
          ******************************************************************/
