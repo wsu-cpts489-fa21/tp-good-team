@@ -109,46 +109,56 @@ class RoundForm extends React.Component {
         /*****************************************************************
          * TODO: Rounds
          ******************************************************************/
-        if (this.props.numRounds + 1 === BadgeData.streakBadges.brown) {
-          // render bronze
+        /*****************************************************************
+         * TODO: Time
+         ******************************************************************/
+        if (this.state.minutes >= BadgeData.fastTimeBadges.brown) {
+          // render bronze picture
           this.setState({
             newBadge: true,
           });
           console.log("Bronze badge unlocked");
         }
-
-        if (this.props.numRounds + 1 === BadgeData.streakBadges.grey) {
-          // render silver
+        if (
+          this.state.minutes >= BadgeData.fastTimeBadges.grey &&
+          this.state.minutes < 80
+        ) {
+          // render silver picture
           this.setState({
             newBadge: true,
           });
           console.log("Silver badge unlocked");
         }
-        if (this.props.numRounds + 1 === BadgeData.streakBadges.gold) {
-          // render gold
+        if (
+          this.state.minutes >= BadgeData.fastTimeBadges.gold &&
+          this.state.minutes < 60
+        ) {
+          // render gold picture
           this.setState({
             newBadge: true,
           });
           console.log("Gold badge unlocked");
         }
-
-        if (this.props.numRounds + 1 === BadgeData.streakBadges.blue) {
-          // render diamond
+        if (
+          this.state.minutes >= BadgeData.fastTimeBadges.blue &&
+          this.state.minutes < 50
+        ) {
+          // render diamond picture
           this.setState({
             newBadge: true,
           });
           console.log("Diamond badge unlocked");
         }
-        if (this.props.numRounds + 1 === BadgeData.streakBadges.purple) {
-          // render ultra
+        if (
+          this.state.minutes <= BadgeData.fastTimeBadges.purple &&
+          this.state.minutes < 45
+        ) {
+          // render ultra picture
           this.setState({
             newBadge: true,
           });
-          console.log("Ultra badge unlocked");
+          console.log("Ultra  badge unlocked");
         }
-        /*****************************************************************
-         * TODO: Time
-         ******************************************************************/
         /*****************************************************************
          * TODO: Strokes
          ******************************************************************/

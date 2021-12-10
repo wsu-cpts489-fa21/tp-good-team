@@ -9,44 +9,44 @@
 
 const BadgeData = {
   roundsPlayedBadges: {
-    brown: 30,
-    grey: 65,
-    gold: 130,
-    blue: 260,
     purple: 520,
+    blue: 260,
+    gold: 130,
+    grey: 65,
+    brown: 30,
   },
 
   //TODO: Update Badge Data
   fastTimeBadges: {
-    brown: 0,
-    grey: 0,
-    gold: 0,
-    blue: 0,
-    purple: 0,
+    purple: 35,
+    blue: 45,
+    gold: 50,
+    grey: 60,
+    brown: 80,
   },
   //TODO: Update Badge Data
   lowStrokesBadges: {
-    brown: 0,
-    grey: 0,
-    gold: 0,
-    blue: 0,
     purple: 0,
+    blue: 0,
+    gold: 0,
+    grey: 0,
+    brown: 0,
   },
   //TODO: Update Badge Data
   streakBadges: {
-    brown: 1,
-    grey: 3,
-    gold: 7,
-    blue: 10,
     purple: 15,
+    blue: 10,
+    gold: 7,
+    grey: 3,
+    brown: 1,
   },
   //TODO: Update Badge Data
   highScoreBadges: {
-    brown: 0,
-    grey: 0,
-    gold: 0,
-    blue: 0,
     purple: 0,
+    blue: 0,
+    gold: 0,
+    grey: 0,
+    brown: 0,
   },
 };
 
