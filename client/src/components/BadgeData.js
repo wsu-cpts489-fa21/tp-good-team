@@ -26,6 +26,7 @@ const BadgeData = {
   },
   //TODO: Update Badge Data
   lowStrokesBadges: {
+
     purple: 65,
     blue: 75,
     gold: 90,
@@ -52,3 +53,4 @@ const BadgeData = {
 Object.freeze(BadgeData);
 
 export default BadgeData;
+

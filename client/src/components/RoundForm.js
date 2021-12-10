@@ -107,34 +107,14 @@ class RoundForm extends React.Component {
       //Loops through each Badge Tier
       tierProps.every((TIER, tierIndex) => {
         let tierReq = BadgeData[CATEGORY][TIER];
-
+        // console.log("   " + TIER + ": " + tierReq);
         /*****************************************************************
          * Rounds
          ******************************************************************/
-        if (CATEGORY === "roundsPlayedBadges") {
-          const currentTier = this.state.roundsBadge;
-
-          //"Breaks" out of the loop when we've reached the tier we are currently at.
-          // This allows us to only consider badges we haven't earned yet
-          if (currentTier === badgeTier) return false;
-
-          //Compares the number of current rounds with the requirement to break into
-          // the next tier
-          // numRounds has not been set yet, se I had to add the +1 to it
-          if (numRounds + 1 >= tierReq) {
-            this.setState({
-              roundsBadge: badgeTier,
-            });
-
-            //Testing Workflow xx
-
-            //Sets return value
-            changeFlag = true;
-          }
-        } //End Rounds category
         /*****************************************************************
          * //TODO: Time
          * ***************************************************************/
+
         else if (CATEGORY === "fastTimeBadges") {
           const currentTier = this.state.timeBadge; //CHNG
 
@@ -163,22 +143,25 @@ class RoundForm extends React.Component {
         else if (CATEGORY === "streakBadges") {
           const currentTier = this.state.streakBadge; //CHNG
 
+
           //"Breaks" out of the loop when we've reached the tier we are currently at.
           // This allows us to only consider badges we haven't earned yet
           if (currentTier === badgeTier) return false;
 
-          //Compares the number of current rounds with the requirement to break into
-          // the next tier
-          // numRounds has not been set yet, se I had to add the +1 to it
-          if (numRounds + 1 >= tierReq) {
+          // if certain time is met, a badge is unlocked
+          if (this.state.strokes >= tierReq) {
             this.setState({
-              streakBadge: badgeTier, //CHNG
+              strokesBadge: badgeTier, //CHNG
             });
 
             //Sets return value
             changeFlag = true;
           }
-        } //End Streak category
+        } //End Stroke category
+        /*****************************************************************
+         * TODO: Streak
+         ******************************************************************/
+
         /*****************************************************************
          * //TODO: Time
          * ***************************************************************/
@@ -208,7 +191,6 @@ class RoundForm extends React.Component {
         return true;
       }); //End looping through Tiers
     }); //End looping through Categories
-    return changeFlag;
   };
 
   //TODO: Check if any badges are unlocked. If so, display congrats toast in parent
@@ -226,7 +208,6 @@ class RoundForm extends React.Component {
     let flag = this.checkBadgesUnlocked();
 
     this.checkBadgesUnlocked();
-    console.log(this.state.newBadge);
 
     //TODO: If newBadges found,
     // Let parent know to render congrats Toast

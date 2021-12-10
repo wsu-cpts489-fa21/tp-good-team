@@ -5,6 +5,8 @@ import RoundsTable from "./RoundsTable.js";
 import RoundForm from "./RoundForm.js";
 import FloatingButton from "./FloatingButton.js";
 import DeleteDialog from "./DeleteDialog.js";
+import EarnBadges from "./EarnBadges.js";
+import EarnBadgesBtn from "./EarnBadgesBtn.js";
 
 class RoundsPage extends React.Component {
   constructor(props) {
@@ -14,7 +16,10 @@ class RoundsPage extends React.Component {
       deleteId: -1,
       editId: -1,
       deleteDialogOpen: false,
+      earnBadgesOpen: false,
+      //TODO: Add state variables for: rendering Congrats Toast
       newBadgeToastOpen: false,
+      newBadgeToast: false,
     };
   }
 
@@ -43,12 +48,18 @@ class RoundsPage extends React.Component {
       deleteDialogOpen: false,
     });
   };
+
+  backBtn = () => {
+    this.setState({
+      earnBadgesOpen: false,
+    });
+  };
   confirmDeleteRound = async () => {
     const res = await this.props.deleteRound(this.state.deleteId);
   };
 
   toggleRenderNewBadgeToast = () => {
-    console.log("Congrats! You earned a new badge!");
+    this.setState((prevState) => ({ newBadgeToast: !prevState.newBadgeToast }));
   };
 
   render() {
@@ -66,12 +77,23 @@ class RoundsPage extends React.Component {
         </>
       );
     }
+
+    if (this.state.earnBadgesOpen) {
+      return (
+        <>
+          <div class="space">
+            <EarnBadges cancelBtn={this.backBtn} />
+          </div>
+        </>
+      );
+    }
     switch (this.state.mode) {
       case RoundsMode.ROUNDSTABLE:
         return (
           <>
             <RoundsTable
               //TODO: Add aPROPriate props haha
+              newBadgeToast={this.state.newBadgeToast}
               rounds={this.props.rounds}
               initiateDeleteRound={this.initiateDeleteRound}
               deleteRound={this.props.deleteRound}
@@ -82,6 +104,7 @@ class RoundsPage extends React.Component {
               toggleModalOpen={this.props.toggleModalOpen}
               menuOpen={this.props.menuOpen}
               newBadgeToastOpen={this.state.newBadgeToastOpen}
+              toggleRenderNewBadgeToast={this.toggleRenderNewBadgeToast}
             />
             <FloatingButton
               icon="calendar"
@@ -89,11 +112,22 @@ class RoundsPage extends React.Component {
               menuOpen={this.props.menuOpen}
               action={() =>
                 this.setState(
-                  { mode: RoundsMode.LOGROUND },
+                  { mode: RoundsMode.LOGROUND, newBadgeToast: false },
                   this.props.toggleModalOpen
                 )
               }
             />
+            <br />
+            <EarnBadgesBtn
+              icon="medal"
+              label={"Earn badges"}
+              action={() => {
+                this.setState({
+                  earnBadgesOpen: true,
+                });
+              }}
+            />
+            {this.state.earnBadgesOpen ? <EarnBadges /> : null}
             {this.state.deleteDialogOpen ? (
               <DeleteDialog
                 deleteRound={this.props.deleteRound}
@@ -114,7 +148,6 @@ class RoundsPage extends React.Component {
             saveRound={this.props.addRound}
             incrementRounds={this.props.incrementRounds}
             toggleModalOpen={this.props.toggleModalOpen}
-
             setMode={this.setMode}
             updateBadges={this.props.updateBadges}
             toggleRenderNewBadgeToast={this.toggleRenderNewBadgeToast}
@@ -130,7 +163,6 @@ class RoundsPage extends React.Component {
             roundData={this.props.rounds[this.state.editId]}
             saveRound={this.props.updateRound}
             toggleModalOpen={this.props.toggleModalOpen}
-
             setMode={this.setMode}
             updateBadges={this.props.updateBadges}
             toggleRenderNewBadgeToast={this.toggleRenderNewBadgeToast}
