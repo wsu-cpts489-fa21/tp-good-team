@@ -25,12 +25,12 @@ const BadgeData = {
     purple: 0,
   },
   //TODO: Update Badge Data
-  lowStrokesBadges: {
-    brown: 0,
-    grey: 0,
-    gold: 0,
-    blue: 0,
-    purple: 0,
+  strokesBadges: {
+    purple: 65,
+    blue: 75,
+    gold: 90,
+    grey: 120,
+    brown: 150,
   },
   //TODO: Update Badge Data
   streakBadges: {

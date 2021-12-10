@@ -152,6 +152,56 @@ class RoundForm extends React.Component {
         /*****************************************************************
          * TODO: Strokes
          ******************************************************************/
+        if (this.state.strokes >= BadgeData.strokesBadges.brown) {
+          // render bronze
+          this.setState({
+            newBadge: true,
+          });
+          console.log("Bronze badge unlocked");
+        }
+
+        if (
+          this.state.strokes >= BadgeData.strokesBadges.grey &&
+          this.state.strokes < BadgeData.strokesBadges.brown
+        ) {
+          // render silver
+          this.setState({
+            newBadge: true,
+          });
+          console.log("Silver badge unlocked");
+        }
+        if (
+          this.state.strokes >= BadgeData.strokesBadges.gold &&
+          this.state.strokes < BadgeData.strokesBadges.grey
+        ) {
+          // render gold
+          this.setState({
+            newBadge: true,
+          });
+          console.log("Gold badge unlocked");
+        }
+
+        if (
+          this.state.strokes >= BadgeData.strokesBadges.blue &&
+          this.state.strokes < BadgeData.strokesBadges.gold
+        ) {
+          // render diamond
+          this.setState({
+            newBadge: true,
+          });
+          console.log("Diamond badge unlocked");
+        }
+        if (
+          this.state.strokes >= BadgeData.strokesBadges.purple &&
+          this.state.strokes < BadgeData.strokesBadges.blue
+        ) {
+          // render ultra
+          this.setState({
+            newBadge: true,
+          });
+          console.log("Ultra badge unlocked");
+        }
+
         /*****************************************************************
          * TODO: Streak
          ******************************************************************/
