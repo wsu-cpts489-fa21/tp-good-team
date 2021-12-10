@@ -14,7 +14,10 @@ class RoundsPage extends React.Component {
       deleteId: -1,
       editId: -1,
       deleteDialogOpen: false,
+      earnBadgesOpen: false,
       //TODO: Add state variables for: rendering Congrats Toast
+      newBadgeToastOpen: false,
+      newBadgeToast: false,
     };
   }
 
@@ -38,6 +41,11 @@ class RoundsPage extends React.Component {
     this.setState({ deleteId: val, deleteDialogOpen: true });
   };
 
+  backBtn = () => {
+    this.setState({
+      earnBadgesOpen: false,
+    });
+  };
   cancelDeleteRound = () => {
     this.setState({
       deleteDialogOpen: false,
@@ -45,6 +53,9 @@ class RoundsPage extends React.Component {
   };
   confirmDeleteRound = async () => {
     const res = await this.props.deleteRound(this.state.deleteId);
+  };
+  toggleRenderNewBadgeToast = () => {
+    this.setState((prevState) => ({ newBadgeToast: !prevState.newBadgeToast }));
   };
 
   render() {
@@ -103,25 +114,32 @@ class RoundsPage extends React.Component {
           //TODO: Add aPROPriate props haha
           <RoundForm
             numRounds={this.props.numRounds}
+            badges={this.props.badges}
             mode={this.state.mode}
             roundData={null}
             saveRound={this.props.addRound}
             incrementRounds={this.props.incrementRounds}
-            setMode={this.setMode}
             toggleModalOpen={this.props.toggleModalOpen}
+            setMode={this.setMode}
+            updateBadges={this.props.updateBadges}
+            toggleRenderNewBadgeToast={this.toggleRenderNewBadgeToast}
           />
         );
       case RoundsMode.EDITROUND:
         return (
           <RoundForm
             //TODO: Add aPROPriate props haha
+            numRounds={this.props.numRounds}
+            badges={this.props.badges}
             mode={this.state.mode}
             editId={this.state.editId}
             roundData={this.props.rounds[this.state.editId]}
             saveRound={this.props.updateRound}
-            setMode={this.setMode}
             toggleModalOpen={this.props.toggleModalOpen}
             numRounds={this.props.numRounds}
+            setMode={this.setMode}
+            updateBadges={this.props.updateBadges}
+            toggleRenderNewBadgeToast={this.toggleRenderNewBadgeToast}
           />
         );
     }

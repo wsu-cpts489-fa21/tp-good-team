@@ -213,9 +213,30 @@ class App extends React.Component {
 
   //TODO: Method to update newBadge method
 
-  updateBadges = async (badge1, b2, b3, b4, b5) => {};
-  //Set current (this.state.userData.badges) userData.badges.<categories> with changes
-  //Create newUserData setting all current
+  updateBadges = async (rounds, time, strokes, streak, score) => {
+    const newBadgeData = {
+      roundsPlayedBadge: rounds,
+      fastTimeBadge: time,
+      lowStrokesBadge: strokes,
+      streakBadge: streak,
+      highScoreBadge: score,
+    };
+
+    const newUserData = {
+      accountData: this.state.userData.accountData,
+      identityData: this.state.userData.identityData,
+      numRounds: this.state.userData.numRounds,
+      speedgolfData: this.state.userData.speedgolfData,
+      badges: newBadgeData,
+      rounds: this.state.userData.rounds,
+    };
+
+    this.setState({
+      userData: newUserData,
+    });
+
+    const res = await this.updateUserData(newUserData);
+  };
 
   /*****************************************************************
    * Round Management methods
@@ -385,6 +406,7 @@ class App extends React.Component {
                 menuOpen={this.state.menuOpen}
                 userId={this.state.userId}
                 //TODO: Add props
+                updateBadges={this.updateBadges}
               />
             ),
             CoursesMode: (
