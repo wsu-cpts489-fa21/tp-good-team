@@ -20,12 +20,12 @@ jobs:
           with:
             node-version: '14'
         - run: npm install
+        - run: npm build
         working-directory: ${{env.client-dir}}
         - run: npm install
         working-directory: ${{env.home-dir}}
-        - run: npm run build
-        working-directory: ${{env.client-dir}}
       - name: Running Tests
         uses: DevExpress/testcafe-action@latest
         with:
           args: "chrome tests"
+          
