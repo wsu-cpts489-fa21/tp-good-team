@@ -396,6 +396,9 @@ class App extends React.Component {
             ),
             RoundsMode: (
               <RoundsPage
+                numRounds={this.state.userData.numRounds}
+                badges={this.state.userData.badges}
+                rounds={this.state.userData.rounds}
                 addRound={this.addRound}
                 updateRound={this.updateRound}
                 deleteRound={this.deleteRound}

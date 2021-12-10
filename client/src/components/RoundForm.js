@@ -123,6 +123,7 @@ class RoundForm extends React.Component {
         if (CATEGORY === "lowStrokesBadges") {
           const currentTier = this.state.strokesBadge; //CHNG
 
+
           //"Breaks" out of the loop when we've reached the tier we are currently at.
           // This allows us to only consider badges we haven't earned yet
           if (currentTier === badgeTier) return false;
