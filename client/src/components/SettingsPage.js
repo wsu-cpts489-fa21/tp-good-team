@@ -4,6 +4,8 @@ import logo from "../images/sslogo2.png";
 import profilePic from "./../images/DefaultProfilePic.jpg";
 import Badge from "react-bootstrap/Badge";
 
+//TODO import <Category>-<Tier>-badge rounds-brown-badge
+
 class SettingsPage extends React.Component {
   constructor(props) {
     super(props);
@@ -270,6 +272,12 @@ class SettingsPage extends React.Component {
       </p>
     );
   };
+
+  /*****************************************************************
+   * For each category
+   *    If rank === 1, render <category>-brown
+   *    Else if rank === 2, render <category>-grey-badge
+   ***************************************************************** */
 
   //TODO Render badge display
   renderBadgeDisplay = () => {
