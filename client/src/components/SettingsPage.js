@@ -435,6 +435,56 @@ class SettingsPage extends React.Component {
     }  
   }
 
+  getFastTimeBadge = (tier) => {
+    switch (tier) {
+    case -1:
+      return null;
+    case 0:
+      return bronzeTime;
+    case 1:
+      return silverTime;
+    case 2:
+      return goldTime;
+    case 3:
+      return diamondTime;
+    case 4:
+      return ultraTime;
+    }
+  }
+
+  getLowStrokesBadge = (tier) => {
+    switch (tier) {
+    case -1:
+      return null;
+    case 0:
+      return bronzeStroke;
+    case 1:
+      return silverStroke;
+    case 2:
+      return goldStroke;
+    case 3:
+      return diamondStroke;
+    case 4:
+      return ultraStroke;
+    }
+  }
+
+  getStreakBadge = (tier) => {
+    switch (tier) {
+    case -1:
+      return null;
+    case 0:
+      return bronzeStreak;
+    case 1:
+      return silverStreak;
+    case 2:
+      return goldStreak;
+    case 3:
+      return diamondStreak;
+    case 4:
+      return ultraStreak;
+    }
+  }
   //TODO Render badge display
   renderBadgeDisplay = () => {
     console.log(this.props.userData.badges.roundsPlayedBadge, this.props.userData.badges.fastTimeBadge, this.props.userData.badges.lowStrokesBadge, this.props.userData.badges.streakBadge)
