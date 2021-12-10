@@ -163,7 +163,6 @@ class RoundsPage extends React.Component {
             roundData={this.props.rounds[this.state.editId]}
             saveRound={this.props.updateRound}
             toggleModalOpen={this.props.toggleModalOpen}
-            numRounds={this.props.numRounds}
             setMode={this.setMode}
             updateBadges={this.props.updateBadges}
             toggleRenderNewBadgeToast={this.toggleRenderNewBadgeToast}
