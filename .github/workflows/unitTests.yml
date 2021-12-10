@@ -3,29 +3,21 @@ name: Unit Tests
 on: push
 
 jobs:
-  #Job 1: Testing in Chrome environment
-  test:
-    name: Running Tests
+  build:
     runs-on: windows-latest
 
-    env:
-      client-dir: ./client
-      home-dir: ./
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 16.x]
 
-    #Fetch repo content
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
-          with:
-            node-version: '14'
-        - run: npm install
-        - run: npm build
-        working-directory: ${{env.client-dir}}
-        - run: npm install
-        working-directory: ${{env.home-dir}}
-      - name: Running Tests
-        uses: DevExpress/testcafe-action@latest
         with:
-          args: "chrome tests"
-          
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - run: npm ci
+      - run: npm run build --if-present
+        working-directory: "./client/"
+      - run: npm test
