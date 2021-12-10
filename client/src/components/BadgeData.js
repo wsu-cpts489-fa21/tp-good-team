@@ -9,11 +9,11 @@
 
 const BadgeData = {
   roundsPlayedBadges: {
-    purple: 35,
-    blue: 30,
-    gold: 25,
-    grey: 21,
-    brown: 17,
+    purple: 520,
+    blue: 260,
+    gold: 130,
+    grey: 65,
+    brown: 30,
   },
 
   //TODO: Update Badge Data
@@ -39,13 +39,12 @@ const BadgeData = {
     grey: 3,
     brown: 1,
   },
-  //TODO: Update Badge Data
   highScoreBadges: {
-    purple: 0,
-    blue: 0,
-    gold: 0,
-    grey: 0,
-    brown: 0,
+    purple: 105,
+    blue: 115,
+    gold: 125,
+    grey: 130,
+    brown: 135,
   },
 };
 

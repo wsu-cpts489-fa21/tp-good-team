@@ -142,6 +142,7 @@ class RoundsPage extends React.Component {
           //TODO: Add aPROPriate props haha
           <RoundForm
             numRounds={this.props.numRounds}
+            // currentScore={this.props.currentScore}
             badges={this.props.badges}
             mode={this.state.mode}
             roundData={null}
@@ -157,6 +158,7 @@ class RoundsPage extends React.Component {
         return (
           <RoundForm
             numRounds={this.props.numRounds}
+            // currentScore={this.props.currentScore}
             badges={this.props.badges}
             mode={this.state.mode}
             editId={this.state.editId}
