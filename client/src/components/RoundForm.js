@@ -147,7 +147,23 @@ class RoundForm extends React.Component {
          S //TODO: Streak
          ***************************************************************/
         else if (CATEGORY === "streakBadges") {
-          console.log("Update Streak badges");
+          const currentTier = this.state.streakBadge; //CHNG
+
+          //"Breaks" out of the loop when we've reached the tier we are currently at.
+          // This allows us to only consider badges we haven't earned yet
+          if (currentTier === badgeTier) return false;
+
+          //Compares the number of current rounds with the requirement to break into
+          // the next tier
+          // numRounds has not been set yet, se I had to add the +1 to it
+          if (numRounds + 1 >= tierReq) {
+            this.setState({
+              streakBadge: badgeTier, //CHNG
+            });
+
+            //Sets return value
+            changeFlag = true;
+          }
         } //End Streak category
         /*****************************************************************
          S //TODO: Score
