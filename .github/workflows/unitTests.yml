@@ -17,9 +17,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
 
+      - name: Install Deps
+        run: npm run install-all-deps
+
       - name: Running Tests
         uses: DevExpress/testcafe-action@latest
         with:
-          - run: npm install-all-deps
-          # wait-on: http://localhost:8081/
           args: "chrome tests"
