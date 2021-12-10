@@ -84,6 +84,7 @@ class RoundsPage extends React.Component {
               setMode={this.setMode}
               toggleModalOpen={this.props.toggleModalOpen}
               menuOpen={this.props.menuOpen}
+              newBadgeToastOpen={this.state.newBadgeToastOpen}
             />
             <FloatingButton
               icon="calendar"
@@ -131,7 +132,6 @@ class RoundsPage extends React.Component {
             roundData={this.props.rounds[this.state.editId]}
             saveRound={this.props.updateRound}
             toggleModalOpen={this.props.toggleModalOpen}
-            numRounds={this.props.numRounds}
             setMode={this.setMode}
             updateBadges={this.props.updateBadges}
             toggleRenderNewBadgeToast={this.toggleRenderNewBadgeToast}

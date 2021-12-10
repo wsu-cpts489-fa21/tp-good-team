@@ -1,0 +1,26 @@
+name: Unit Tests
+
+on: push
+
+jobs:
+  #Job 1: Testing in Chrome environment
+  test:
+    name: Running Tests
+    runs-on: windows-latest
+
+    env:
+      client-dir: ./client
+      home-dir: ./
+
+    #Fetch repo content
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Install Deps
+        run: npm run install-all-deps
+
+      - name: Running Tests
+        uses: DevExpress/testcafe-action@latest
+        with:
+          args: "chrome tests"

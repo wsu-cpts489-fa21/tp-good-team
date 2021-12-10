@@ -211,7 +211,9 @@ class App extends React.Component {
     }
   };
 
-  //TODO: Method to update newBadge method
+  // incrementRounds = async () => {
+  //   const res = await this.updateUserData(this.state.userData);
+  // };
 
   updateBadges = async (rounds, time, strokes, streak, score) => {
     const newBadgeData = {
@@ -394,18 +396,18 @@ class App extends React.Component {
             ),
             RoundsMode: (
               <RoundsPage
-                badges={this.state.userData.badges}
-                rounds={this.state.userData.rounds}
                 addRound={this.addRound}
                 updateRound={this.updateRound}
                 deleteRound={this.deleteRound}
                 toggleModalOpen={this.toggleModalOpen}
+                badges={this.state.userData.badges}
                 modalOpen={this.state.modalOpen}
+                rounds={this.state.userData.rounds}
                 menuOpen={this.state.menuOpen}
                 userId={this.state.userId}
+//                 badges={this.state.userData.badges}
                 numRounds={this.state.userData.numRounds}
                 updateBadges={this.updateBadges}
-                //TODO: Add props
               />
             ),
             CoursesMode: (

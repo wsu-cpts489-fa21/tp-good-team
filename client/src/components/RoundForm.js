@@ -86,15 +86,13 @@ class RoundForm extends React.Component {
     );
   };
 
-  //TODO: Determine if badges are unlocked
+  /*****************************************************************
+   * Using data stored in BadgeData.js, we loop through each category
+   * of badges. Then we loop through each tier, making changes to
+   * respective categories based on the user's current stats, as well
+   * as the current tier of the category currently unlocked
+   ***************************************************************** */
   checkBadgesUnlocked = () => {
-    /*****************************************************************
-     * For each badge Category
-     *    For each Tier
-     *        If New >= Current (BadgeData.<Category>.<Tier>)
-     *            Let the parent know what the new Tier is
-     *            Set flag signifying a new badge has been earned
-     ******************************************************************/
     let changeFlag = false;
     const numRounds = this.props.numRounds;
 
@@ -111,12 +109,14 @@ class RoundForm extends React.Component {
         let tierReq = BadgeData[CATEGORY][TIER];
         // console.log("   " + TIER + ": " + tierReq);
         /*****************************************************************
-         * TODO: Rounds
+         * Rounds
          ******************************************************************/
-
         /*****************************************************************
-         * TODO: Time
-         ******************************************************************/
+         * //TODO: Time
+         * ***************************************************************/
+        if (CATEGORY === "fastTimeBadges") {
+          console.log("Update Time badges");
+        } //End Time category
         /*****************************************************************
          * TODO: Strokes
          ******************************************************************/
@@ -142,8 +142,19 @@ class RoundForm extends React.Component {
          ******************************************************************/
 
         /*****************************************************************
-         * TODO: Score
-         ******************************************************************/
+         S //TODO: Score
+         ***************************************************************/
+        else if (CATEGORY === "highScoreBadges") {
+          console.log("Update Score badges");
+        } //End Score category
+        else {
+          console.log("Error -- Too many arguments");
+        } //End Error category
+
+        //Decrements the current badge tier we're using to compare
+        //Returns true to continue looping through Tiers
+        badgeTier--;
+        return true;
       }); //End looping through Tiers
     }); //End looping through Categories
   };
