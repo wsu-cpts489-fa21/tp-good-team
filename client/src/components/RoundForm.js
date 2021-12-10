@@ -18,16 +18,15 @@ class RoundForm extends React.Component {
         minutes: 60,
         seconds: "00",
         SGS: "140:00",
-        rounds: 1,
         notes: "",
         btnIcon: "calendar",
         btnLabel: "Log Round",
         newBadge: false,
-        newRoundsBadge: this.props.roundsBadge,
-        newTimeBadge: this.props.timeBadge,
-        newStrokesBadge: this.props.strokesBadge,
-        newStreakBadge: this.props.streakBadge,
-        newScoreBadge: this.props.scoreBadge,
+        // newRoundsBadge: this.props.roundsBadge,
+        // newTimeBadge: this.props.timeBadge,
+        // newStrokesBadge: this.props.strokesBadge,
+        // newStreakBadge: this.props.streakBadge,
+        // newScoreBadge: this.props.scoreBadge,
       };
     } else {
       this.state = this.props.roundData;
@@ -95,70 +94,73 @@ class RoundForm extends React.Component {
      *            Let the parent know what the new Tier is
      *            Set flag signifying a new badge has been earned
      ******************************************************************/
-    /*****************************************************************
-     * TODO: Rounds
-     ******************************************************************/
 
-    /*****************************************************************
-     * TODO: Time
-     ******************************************************************/
+    const categoryProps = Object.keys(BadgeData);
+    // console.log(categoryProps); //Prints all the Categories
 
-    if (this.state.minutes >= BadgeData.fastTimeBadges.brown) {
-      // render bronze picture
-      this.setState({
-        newBadge: true,
-      });
-      console.log("Bronze badge unlocked");
-    }
-    if (
-      this.state.minutes >= BadgeData.fastTimeBadges.grey &&
-      this.state.minutes < 80
-    ) {
-      // render silver picture
-      this.setState({
-        newBadge: true,
-      });
-      console.log("Silver badge unlocked");
-    }
-    if (
-      this.state.minutes >= BadgeData.fastTimeBadges.gold &&
-      this.state.minutes < 60
-    ) {
-      // render gold picture
-      this.setState({
-        newBadge: true,
-      });
-      console.log("Gold badge unlocked");
-    }
-    if (
-      this.state.minutes >= BadgeData.fastTimeBadges.blue &&
-      this.state.minutes < 50
-    ) {
-      // render diamond picture
-      this.setState({
-        newBadge: true,
-      });
-      console.log("Diamond badge unlocked");
-    }
-    if (
-      this.state.minutes <= BadgeData.fastTimeBadges.purple &&
-      this.state.minutes < 45
-    ) {
-      // render ultra picture
-      this.setState({
-        newBadge: true,
-      });
-      console.log("Ultra  badge unlocked");
-    }
-    /*****************************************************************
-     * TODO: Strokes
-     ******************************************************************/
-    /*****************************************************************
-     * TODO: Streak
-     ******************************************************************/
-    /*****************************************************************
-     * TODO: Score
-     ******************************************************************/
+    categoryProps.forEach((CATEGORY, categoryIndex) => {
+      // console.log(CATEGORY);
+      const tierProps = Object.keys(BadgeData[CATEGORY]);
+      // console.log(tierProps); //Prints all the Tiers
+
+      tierProps.forEach((TIER, tierIndex) => {
+        let tierReq = BadgeData[CATEGORY][TIER];
+        // console.log("   " + TIER + ": " + tierReq);
+        /*****************************************************************
+         * TODO: Rounds
+         ******************************************************************/
+
+        /*****************************************************************
+         * TODO: Time
+         ******************************************************************/
+        /*****************************************************************
+         * TODO: Strokes
+         ******************************************************************/
+        /*****************************************************************
+         * TODO: Streak
+         ******************************************************************/
+        if (this.props.numRounds + 1 === BadgeData.streakBadges.brown) {
+          // render bronze
+          this.setState({
+            newBadge: true,
+          });
+          console.log("Bronze badge unlocked");
+        }
+
+        if (this.props.numRounds + 1 === BadgeData.streakBadges.grey) {
+          // render silver
+          this.setState({
+            newBadge: true,
+          });
+          console.log("Silver badge unlocked");
+        }
+        if (this.props.numRounds + 1 === BadgeData.streakBadges.gold) {
+          // render gold
+          this.setState({
+            newBadge: true,
+          });
+          console.log("Gold badge unlocked");
+        }
+
+        if (this.props.numRounds + 1 === BadgeData.streakBadges.blue) {
+          // render diamond
+          this.setState({
+            newBadge: true,
+          });
+          console.log("Diamond badge unlocked");
+        }
+        if (this.props.numRounds + 1 === BadgeData.streakBadges.purple) {
+          // render ultra
+          this.setState({
+            newBadge: true,
+          });
+          console.log("Ultra badge unlocked");
+        }
+        /*****************************************************************
+         * TODO: Score
+         ******************************************************************/
+      }); //End looping through Tiers
+    }); //End looping through Categories
   };
 
   //TODO: Check if any badges are unlocked. If so, display congrats toast in parent
@@ -172,9 +174,9 @@ class RoundForm extends React.Component {
 
     //TODO: If newBadges found,
     // Let parent know to render congrats Toast
-
     // Use this.props to await updateBadgeData(b1, 2, 3, 4, 5)
     const res = await this.props.saveRound(newRound, this.props.editId);
+    // const resUser = await this.props.incrementRounds();
 
     this.props.toggleModalOpen();
     this.props.setMode(RoundsMode.ROUNDSTABLE);
