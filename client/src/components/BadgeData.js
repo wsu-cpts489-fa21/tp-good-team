@@ -25,7 +25,7 @@ const BadgeData = {
     brown: 80,
   },
   //TODO: Update Badge Data
-  strokesBadges: {
+  lowStrokesBadges: {
     purple: 65,
     blue: 75,
     gold: 90,
