@@ -22,12 +22,11 @@ class RoundForm extends React.Component {
         btnIcon: "calendar",
         btnLabel: "Log Round",
         newBadge: false,
-        // newRoundsBadge: this.props.roundsBadge,
-        // newTimeBadge: this.props.timeBadge,
-        // newStrokesBadge: this.props.strokesBadge,
-        // newStreakBadge: this.props.streakBadge,
-        // newScoreBadge: this.props.scoreBadge,
-
+        roundsBadge: this.props.badges.roundsPlayedBadge,
+        timeBadge: this.props.badges.fastTimeBadge,
+        strokesBadge: this.props.badges.lowStrokesBadge,
+        streakBadge: this.props.badges.streakBadge,
+        scoreBadge: this.props.badges.highScoreBadge,
       };
     } else {
       this.state = this.props.roundData;
@@ -86,46 +85,87 @@ class RoundForm extends React.Component {
     );
   };
 
-  //TODO: Determine if badges are unlocked
+  /*****************************************************************
+   * Using data stored in BadgeData.js, we loop through each category
+   * of badges. Then we loop through each tier, making changes to
+   * respective categories based on the user's current stats, as well
+   * as the current tier of the category currently unlocked
+   ***************************************************************** */
   checkBadgesUnlocked = () => {
-    /*****************************************************************
-     * For each badge Category
-     *    For each Tier
-     *        If New >= Current (BadgeData.<Category>.<Tier>)
-     *            Let the parent know what the new Tier is
-     *            Set flag signifying a new badge has been earned
-     ******************************************************************/
+    let changeFlag = false;
+    const numRounds = this.props.numRounds;
 
     const categoryProps = Object.keys(BadgeData);
-    // console.log(categoryProps); //Prints all the Categories
 
+    //Loops through each Badge Category
     categoryProps.forEach((CATEGORY, categoryIndex) => {
-      console.log(CATEGORY);
       const tierProps = Object.keys(BadgeData[CATEGORY]);
-      // console.log(tierProps); //Prints all the Tiers
 
-      tierProps.forEach((TIER, tierIndex) => {
+      let badgeTier = 4;
+
+      //Loops through each Badge Tier
+      tierProps.every((TIER, tierIndex) => {
         let tierReq = BadgeData[CATEGORY][TIER];
-        console.log("   " + TIER + ": " + tierReq);
 
         /*****************************************************************
-         * TODO: Rounds
+         * Rounds
          ******************************************************************/
+        if (CATEGORY === "roundsPlayedBadges") {
+          const currentTier = this.state.roundsBadge;
+
+          //"Breaks" out of the loop when we've reached the tier we are currently at.
+          // This allows us to only consider badges we haven't earned yet
+          if (currentTier === badgeTier) return false;
+
+          //Compares the number of current rounds with the requirement to break into
+          // the next tier
+          // numRounds has not been set yet, se I had to add the +1 to it
+          if (numRounds + 1 >= tierReq) {
+            this.setState({
+              roundsBadge: badgeTier,
+            });
+
+            //Testing Workflow xx
+
+            //Sets return value
+            changeFlag = true;
+          }
+        } //End Rounds category
         /*****************************************************************
-         * TODO: Time
-         ******************************************************************/
+         * //TODO: Time
+         * ***************************************************************/
+        else if (CATEGORY === "fastTimeBadges") {
+          console.log("Update Time badges");
+        } //End Time category
         /*****************************************************************
-         * TODO: Strokes
-         ******************************************************************/
+         S //TODO: Strokes
+         ***************************************************************/
+        else if (CATEGORY === "lowStrokesBadges") {
+          console.log("Update Strokes badges");
+        } //End Strokes category
         /*****************************************************************
-         * TODO: Streak
-         ******************************************************************/
+         S //TODO: Streak
+         ***************************************************************/
+        else if (CATEGORY === "streakBadges") {
+          console.log("Update Streak badges");
+        } //End Streak category
         /*****************************************************************
-         * TODO: Score
-         ******************************************************************/
+         S //TODO: Score
+         ***************************************************************/
+        else if (CATEGORY === "highScoreBadges") {
+          console.log("Update Score badges");
+        } //End Score category
+        else {
+          console.log("Error -- Too many arguments");
+        } //End Error category
+
+        //Decrements the current badge tier we're using to compare
+        //Returns true to continue looping through Tiers
+        badgeTier--;
+        return true;
       }); //End looping through Tiers
     }); //End looping through Categories
-
+    return changeFlag;
   };
 
   //TODO: Check if any badges are unlocked. If so, display congrats toast in parent
@@ -133,13 +173,27 @@ class RoundForm extends React.Component {
     const newRound = { ...this.state };
     delete newRound.btnIcon;
     delete newRound.btnLabel;
+    delete newRound.newBadge;
+    delete newRound.roundsBadge;
+    delete newRound.timeBadge;
+    delete newRound.strokesBadge;
+    delete newRound.streakBadge;
+    delete newRound.scoreBadge;
 
-    this.checkBadgesUnlocked();
-    //TODO: If newBadges found,
-    // Let parent know to render congrats Toast
-    // Use this.props to await updateBadgeData(b1, 2, 3, 4, 5)
+    let flag = this.checkBadgesUnlocked();
+
     const res = await this.props.saveRound(newRound, this.props.editId);
-    // const resUser = await this.props.incrementRounds();
+
+    if (flag) {
+      this.props.toggleRenderNewBadgeToast();
+      let resBadges = await this.props.updateBadges(
+        this.state.roundsBadge,
+        this.state.timeBadge,
+        this.state.strokesBadge,
+        this.state.streakBadge,
+        this.state.scoreBadge
+      );
+    }
 
     this.props.toggleModalOpen();
     this.props.setMode(RoundsMode.ROUNDSTABLE);

@@ -211,12 +211,34 @@ class App extends React.Component {
     }
   };
 
+  // incrementRounds = async () => {
+  //   const res = await this.updateUserData(this.state.userData);
+  // };
 
-  //TODO: Method to update newBadge method
+  updateBadges = async (rounds, time, strokes, streak, score) => {
+    const newBadgeData = {
+      roundsPlayedBadge: rounds,
+      fastTimeBadge: time,
+      lowStrokesBadge: strokes,
+      streakBadge: streak,
+      highScoreBadge: score,
+    };
 
-  updateBadges = async (badge1, b2, b3, b4, b5) => {};
-  //Set current (this.state.userData.badges) userData.badges.<categories> with changes
-  //Create newUserData setting all current
+    const newUserData = {
+      accountData: this.state.userData.accountData,
+      identityData: this.state.userData.identityData,
+      numRounds: this.state.userData.numRounds,
+      speedgolfData: this.state.userData.speedgolfData,
+      badges: newBadgeData,
+      rounds: this.state.userData.rounds,
+    };
+
+    this.setState({
+      userData: newUserData,
+    });
+
+    const res = await this.updateUserData(newUserData);
+  };
 
   /*****************************************************************
    * Round Management methods
@@ -373,17 +395,17 @@ class App extends React.Component {
             ),
             RoundsMode: (
               <RoundsPage
-                badges={this.state.userData.badges}
-                rounds={this.state.userData.rounds}
                 addRound={this.addRound}
-                incrementRounds={this.updateUserData}
                 updateRound={this.updateRound}
                 deleteRound={this.deleteRound}
-                modalOpen={this.state.modalOpen}
                 toggleModalOpen={this.toggleModalOpen}
+                badges={this.state.userData.badges}
+                modalOpen={this.state.modalOpen}
+                rounds={this.state.userData.rounds}
                 menuOpen={this.state.menuOpen}
                 userId={this.state.userId}
-                //TODO: Add props
+                numRounds={this.state.userData.numRounds}
+                updateBadges={this.updateBadges}
               />
             ),
             CoursesMode: (
