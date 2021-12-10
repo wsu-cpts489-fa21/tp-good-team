@@ -93,7 +93,6 @@ class RoundForm extends React.Component {
    * as the current tier of the category currently unlocked
    ***************************************************************** */
   checkBadgesUnlocked = () => {
-
     let changeFlag = false;
     const numRounds = this.props.numRounds;
 
