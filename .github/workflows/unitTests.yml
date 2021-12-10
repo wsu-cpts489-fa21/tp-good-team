@@ -10,12 +10,21 @@ jobs:
 
     env:
       client-dir: ./client
+      home-dir: ./
 
     #Fetch repo content
     steps:
       - name: Checkout
         uses: actions/checkout@v1
+
       - name: Running Tests
         uses: DevExpress/testcafe-action@latest
         with:
+          run: npm install
+          run: npm build
+          working-directory: ${{env.client-dir}}
+          run: npm install
+          run: npm dev
+          working-directory: ${{env.home-dir}}
+          wait-on: http://localhost:8081/
           args: "chrome tests"
