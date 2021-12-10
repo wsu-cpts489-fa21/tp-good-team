@@ -94,6 +94,7 @@ class RoundForm extends React.Component {
   checkBadgesUnlocked = () => {
     let changeFlag = false;
     const numRounds = this.props.numRounds;
+    const currentScore = this.state.SGS;
 
     const categoryProps = Object.keys(BadgeData);
 
@@ -196,7 +197,21 @@ class RoundForm extends React.Component {
          S //TODO: Score
          ***************************************************************/
         else if (CATEGORY === "highScoreBadges") {
-          console.log("Update Score badges");
+          const currentTier = this.state.scoreBadge; //CHNG
+
+          //"Breaks" out of the loop when we've reached the tier we are currently at.
+          // This allows us to only consider badges we haven't earned yet
+          if (currentTier === badgeTier) return false;
+
+          // if certain time is met, a badge is unlocked
+          if (currentScore >= tierReq) {
+            this.setState({
+              scoreBadge: badgeTier, //CHNG
+            });
+
+            //Sets return value
+            changeFlag = true;
+          }
         } //End Score category
         else {
           console.log("Error -- Too many arguments");

@@ -39,13 +39,12 @@ const BadgeData = {
     grey: 3,
     brown: 1,
   },
-  //TODO: Update Badge Data
   highScoreBadges: {
-    purple: 0,
-    blue: 0,
-    gold: 0,
-    grey: 0,
-    brown: 0,
+    purple: 105,
+    blue: 115,
+    gold: 125,
+    grey: 130,
+    brown: 135,
   },
 };
 
