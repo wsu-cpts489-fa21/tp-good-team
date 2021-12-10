@@ -26,11 +26,11 @@ const BadgeData = {
   },
   //TODO: Update Badge Data
   lowStrokesBadges: {
-    purple: 0,
-    blue: 0,
-    gold: 0,
-    grey: 0,
-    brown: 0,
+    purple: 65,
+    blue: 75,
+    gold: 90,
+    grey: 120,
+    brown: 150,
   },
   //TODO: Update Badge Data
   streakBadges: {

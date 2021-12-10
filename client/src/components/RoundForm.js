@@ -155,8 +155,11 @@ class RoundForm extends React.Component {
           }
         } //End Time category
         /*****************************************************************
-           S //TODO: Strokes
-           ***************************************************************/
+       
+        /*****************************************************************
+         S //TODO: Strokes
+         ***************************************************************/
+
         else if (CATEGORY === "lowStrokesBadges") {
           console.log("Update Strokes badges");
         } //End Strokes category
@@ -183,8 +186,10 @@ class RoundForm extends React.Component {
           }
         } //End Streak category
         /*****************************************************************
-           S //TODO: Score
-           ***************************************************************/
+
+
+         S //TODO: Score
+         ***************************************************************/
         else if (CATEGORY === "highScoreBadges") {
           console.log("Update Score badges");
         } //End Score category
@@ -224,6 +229,17 @@ class RoundForm extends React.Component {
     const res = await this.props.saveRound(newRound, this.props.editId);
     // const resUser = await this.props.incrementRounds();
     console.log(this.state.newBadge);
+
+    if (flag) {
+      this.props.toggleRenderNewBadgeToast();
+      let resBadges = await this.props.updateBadges(
+        this.state.roundsBadge,
+        this.state.timeBadge,
+        this.state.strokesBadge,
+        this.state.streakBadge,
+        this.state.scoreBadge
+      );
+    }
 
     if (flag) {
       this.props.toggleRenderNewBadgeToast();
