@@ -170,9 +170,9 @@ class RoundForm extends React.Component {
           if (currentTier === badgeTier) return false;
 
           // if certain time is met, a badge is unlocked
-          if (this.state.strokes >= tierReq) {
+          if (numRounds + 1 >= tierReq) {
             this.setState({
-              strokesBadge: badgeTier, //CHNG
+              streakBadge: badgeTier, //CHNG
             });
 
             //Sets return value
