@@ -22,7 +22,6 @@ class RoundForm extends React.Component {
         btnIcon: "calendar",
         btnLabel: "Log Round",
         newBadge: false,
-
         roundsBadge: this.props.badges.roundsPlayedBadge,
         timeBadge: this.props.badges.fastTimeBadge,
         strokesBadge: this.props.badges.lowStrokesBadge,
@@ -107,7 +106,7 @@ class RoundForm extends React.Component {
       //Loops through each Badge Tier
       tierProps.every((TIER, tierIndex) => {
         let tierReq = BadgeData[CATEGORY][TIER];
-        // console.log("   " + TIER + ": " + tierReq);
+
         /*****************************************************************
          * Rounds
          ******************************************************************/
@@ -126,16 +125,14 @@ class RoundForm extends React.Component {
               roundsBadge: badgeTier,
             });
 
-            //Testing Workflow xx
-
             //Sets return value
             changeFlag = true;
           }
         } //End Rounds category
+
         /*****************************************************************
          * //TODO: Time
          * ***************************************************************/
-
         else if (CATEGORY === "fastTimeBadges") {
           const currentTier = this.state.timeBadge; //CHNG
 
@@ -150,20 +147,22 @@ class RoundForm extends React.Component {
             this.setState({
               timeBadge: badgeTier, //CHNG
             });
+            changeFlag = true;
           }
         } //End Time category
+
         /*****************************************************************
          S //TODO: Strokes
          ***************************************************************/
         else if (CATEGORY === "lowStrokesBadges") {
           console.log("Update Strokes badges");
         } //End Strokes category
+
         /*****************************************************************
          * //Streak
          ***************************************************************/
         else if (CATEGORY === "streakBadges") {
           const currentTier = this.state.streakBadge; //CHNG
-
 
           //"Breaks" out of the loop when we've reached the tier we are currently at.
           // This allows us to only consider badges we haven't earned yet
@@ -179,7 +178,7 @@ class RoundForm extends React.Component {
             changeFlag = true;
           }
         } //End Streak category
-  
+
         /*****************************************************************
          S //TODO: Score
          ***************************************************************/
@@ -196,6 +195,7 @@ class RoundForm extends React.Component {
         return true;
       }); //End looping through Tiers
     }); //End looping through Categories
+    return changeFlag;
   };
 
   //TODO: Check if any badges are unlocked. If so, display congrats toast in parent
@@ -211,8 +211,6 @@ class RoundForm extends React.Component {
     delete newRound.scoreBadge;
 
     let flag = this.checkBadgesUnlocked();
-
-    this.checkBadgesUnlocked();
 
     //TODO: If newBadges found,
     // Let parent know to render congrats Toast
