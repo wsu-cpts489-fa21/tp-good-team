@@ -191,7 +191,7 @@ We did not use Zoom, we used a private discord meeting to go through what we did
 
 | Team Member | Contribution Reflection Statement                                                                                                                                                          |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| H.J.        | <_Required_: The story points data is unlikely to tell the whole story about your contribution. Write a brief statement explaining and reflecting on your contribution to this milestone.> |
+| H.J.        | <_Required_: In this milestone I completed four tasks, 80,81,82,83. There was a lot of communication among the team members and everyone helped each other out best they could> |
 | E.A.        | <_Required_: The story points data is unlikely to tell the whole story about your contribution. Write a brief statement explaining and reflecting on your contribution to this milestone.> |
 | C.H.        | <_Required_: The story points data is unlikely to tell the whole story about your contribution. Write a brief statement explaining and reflecting on your contribution to this milestone.> |
 | J.S.        | <_Required_: The story points data is unlikely to tell the whole story about your contribution. Write a brief statement explaining and reflecting on your contribution to this milestone.> |
