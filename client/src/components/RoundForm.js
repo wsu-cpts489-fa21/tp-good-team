@@ -136,7 +136,20 @@ class RoundForm extends React.Component {
          * //TODO: Time
          * ***************************************************************/
         else if (CATEGORY === "fastTimeBadges") {
-          console.log("Update Time badges");
+          const currentTier = this.state.timeBadge; //CHNG
+
+          //"Breaks" out of the loop when we've reached the tier we are currently at.
+          // This allows us to only consider badges we haven't earned yet
+          if (currentTier === badgeTier) return false;
+
+          //Compares the number of current rounds with the requirement to break into
+          // the next tier
+          // numRounds has not been set yet, se I had to add the +1 to it
+          if (this.state.minutes >= tierReq) {
+            this.setState({
+              timeBadge: badgeTier, //CHNG
+            });
+          }
         } //End Time category
         /*****************************************************************
          S //TODO: Strokes
