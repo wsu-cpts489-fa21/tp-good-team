@@ -3,6 +3,27 @@ import React from "react";
 import logo from "../images/sslogo2.png";
 import profilePic from "./../images/DefaultProfilePic.jpg";
 import Badge from "react-bootstrap/Badge";
+import bronzeTime from "../images/bronzeTime.png";
+import bronzeStreak from "../images/bronzeStreak.png";
+import bronzeRound from "../images/bronzeRound.png";
+import bronzeStroke from "../images/bronzeStroke.png";
+import silverTime from "../images/silverTime.png";
+import silverStreak from "../images/silverStreak.png";
+import silverStroke from "../images/silverStroke.png";
+import silverRound from "../images/silverRound.png";
+import goldTime from "../images/goldTime.png";
+import goldRound from "../images/goldRound.png";
+import goldStroke from "../images/goldStroke.png";
+import goldStreak from "../images/goldStreak.png";
+import diamondTime from "../images/diamondTime.png";
+import diamondRound from "../images/diamondRound.png";
+import diamondStroke from "../images/diamondStroke.png";
+import diamondStreak from "../images/diamondStreak.png";
+import ultraTime from "../images/ultraTime.png";
+import ultraRound from "../images/ultraRound.png";
+import ultraStroke from "../images/ultraStroke.png";
+import ultraStreak from "../images/ultraStreak.png";
+
 
 //TODO import <Category>-<Tier>-badge rounds-brown-badge
 
@@ -278,52 +299,93 @@ class SettingsPage extends React.Component {
    *    If rank === 1, render <category>-brown
    *    Else if rank === 2, render <category>-grey-badge
    ***************************************************************** */
-  getBadgeTier = (tier) => {
+  getRoundsPlayedBadge = (tier) => {
     switch (tier) {
-    case 0:
+    case -1:
       return null;
+    case 0:
+      return bronzeStreak;
     case 1:
-      return 'bronze';
+      return silverStreak;
     case 2:
-      return 'silver';
+      return goldStreak;
     case 3:
-      return 'gold';
+      return diamondStreak;
     case 4:
-      return 'diamond';
-    case 5:
-      return 'ultra';
+      return ultraStreak;
+    }
+  }
+
+  getFastTimeBadge = (tier) => {
+    switch (tier) {
+    case -1:
+      return null;
+    case 0:
+      return bronzeTime;
+    case 1:
+      return silverTime;
+    case 2:
+      return goldTime;
+    case 3:
+      return diamondTime;
+    case 4:
+      return ultraTime;
+    }
+  }
+
+  getLowStrokesBadge = (tier) => {
+    switch (tier) {
+    case -1:
+      return null;
+    case 0:
+      return bronzeStroke;
+    case 1:
+      return silverStroke;
+    case 2:
+      return goldStroke;
+    case 3:
+      return diamondStroke;
+    case 4:
+      return ultraStroke;
+    }
+  }
+
+  getStreakBadge = (tier) => {
+    switch (tier) {
+    case -1:
+      return null;
+    case 0:
+      return bronzeStreak;
+    case 1:
+      return silverStreak;
+    case 2:
+      return goldStreak;
+    case 3:
+      return diamondStreak;
+    case 4:
+      return ultraStreak;
     }
   }
   //TODO Render badge display
   renderBadgeDisplay = () => {
-    let badge1 = null;
-    let badge2 = null;
-    let badge3 = null;
-    let badge4 = null;
-    if (this.props.userData.badges.roundsPlayedBadge > 0) {
-      badge1 = <img id="roundsPlayedBadge" src={"./../images/" + this.getBadgeTier(this.props.userData.badges.roundsPlayedBadge) + "Round.png"}></img>;
-    }
-    if (this.props.userData.badges.fastTimeBadge > 0) {
-      badge2 = <img id="fastTimeBadge" src={"./../images/" + this.getBadgeTier(this.props.userData.badges.fastTimeBadge) + "Time.png"}></img>;
-    }
-    if (this.props.userData.badges.lowStrokesBadge > 0) {
-      badge3 = <img id="lowStrokesBadge" src={"./../images/" + this.getBadgeTier(this.props.userData.badges.lowStrokesBadge) + "Stroke.png"}></img>;
-    }
-    if (this.props.userData.badges.streakBadge > 0) {
-      badge4 = <img id="streakBadge" src={"./../images/" + this.getBadgeTier(this.props.userData.badges.streakBadge) + "Streak.png"}></img>;
-    }
+    console.log(this.props.userData.badges.roundsPlayedBadge, this.props.userData.badges.fastTimeBadge, this.props.userData.badges.lowStrokesBadge, this.props.userData.badges.streakBadge)
+
+    let roundsBadge  = <img src={this.getRoundsPlayedBadge(this.props.userData.badges.roundsPlayedBadge)}/>;
+    let timeBadge = <img src={this.getFastTimeBadge(this.props.userData.badges.fastTimeBadge)}/>;
+    let strokeBadge  = <img src={this.getLowStrokesBadge(this.props.userData.badges.lowStrokesBadge)}/>;
+    let streakBadge = <img src={this.getStreakBadge(this.props.userData.badges.streakBadge)}/>;
     
     return (
       <>
         <h1>
           { 
-            badge1 || badge2 || badge3 || badge4 ?
+            roundsBadge || timeBadge || strokeBadge || streakBadge ?
             <>
-              {badge1}{badge2}{badge3}{badge4}
+              {roundsBadge}{timeBadge}{strokeBadge}{streakBadge}
             </>
               :
             <>
-              You can earn badges here through logging rounds!
+              You can earn badges here through logging rounds! 
             </>
           }
         </h1>
