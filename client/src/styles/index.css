@@ -301,6 +301,21 @@ button::-moz-focus-inner {
   box-shadow: 2px 2px 3px #999;
 }
 
+.earn-float-btn {
+  position: relative;
+  width: 130px;
+  height: 40px;
+  bottom: 20px;
+  right: 20px;
+  color: var(--text-color);
+  background-color: var(--main-color);
+  border-radius: 50px;
+  text-align: center;
+  box-shadow: 2px 2px 3px #999;
+  padding: auto;
+  margin: auto;
+}
+
 /* float-btn:hover -- When float button is hovered, 
  change cursor to pointer */
 .float-btn:hover {

@@ -5,6 +5,8 @@ import RoundsTable from "./RoundsTable.js";
 import RoundForm from "./RoundForm.js";
 import FloatingButton from "./FloatingButton.js";
 import DeleteDialog from "./DeleteDialog.js";
+import EarnBadges from "./EarnBadges.js";
+import EarnBadgesBtn from "./EarnBadgesBtn.js";
 
 class RoundsPage extends React.Component {
   constructor(props) {
@@ -14,6 +16,7 @@ class RoundsPage extends React.Component {
       deleteId: -1,
       editId: -1,
       deleteDialogOpen: false,
+      earnBadgesOpen: false,
       //TODO: Add state variables for: rendering Congrats Toast
     };
   }
@@ -43,6 +46,12 @@ class RoundsPage extends React.Component {
       deleteDialogOpen: false,
     });
   };
+
+  backBtn = () => {
+    this.setState({
+      earnBadgesOpen: false,
+    });
+  };
   confirmDeleteRound = async () => {
     const res = await this.props.deleteRound(this.state.deleteId);
   };
@@ -58,6 +67,16 @@ class RoundsPage extends React.Component {
               deleteDialogOpen={this.deleteDialogOpen}
               deleteId={this.state.deleteId}
             />
+          </div>
+        </>
+      );
+    }
+
+    if (this.state.earnBadgesOpen) {
+      return (
+        <>
+          <div class="space">
+            <EarnBadges cancelBtn={this.backBtn} />
           </div>
         </>
       );
@@ -89,6 +108,17 @@ class RoundsPage extends React.Component {
                 )
               }
             />
+            <br />
+            <EarnBadgesBtn
+              icon="medal"
+              label={"Earn badges"}
+              action={() => {
+                this.setState({
+                  earnBadgesOpen: true,
+                });
+              }}
+            />
+            {this.state.earnBadgesOpen ? <EarnBadges /> : null}
             {this.state.deleteDialogOpen ? (
               <DeleteDialog
                 deleteRound={this.props.deleteRound}
