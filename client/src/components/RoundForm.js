@@ -94,7 +94,6 @@ class RoundForm extends React.Component {
   checkBadgesUnlocked = () => {
     let changeFlag = false;
     const numRounds = this.props.numRounds;
-    const currentScore = this.state.SGS;
 
     const categoryProps = Object.keys(BadgeData);
 
@@ -132,7 +131,7 @@ class RoundForm extends React.Component {
         } //End Rounds category
 
         /*****************************************************************
-         * //TODO: Time
+         * Time
          * ***************************************************************/
         else if (CATEGORY === "fastTimeBadges") {
           const currentTier = this.state.timeBadge; //CHNG
@@ -143,8 +142,7 @@ class RoundForm extends React.Component {
 
           //Compares the number of current rounds with the requirement to break into
           // the next tier
-          // numRounds has not been set yet, se I had to add the +1 to it
-          if (this.state.minutes >= tierReq) {
+          if (this.state.minutes <= tierReq) {
             this.setState({
               timeBadge: badgeTier, //CHNG
             });
@@ -153,14 +151,14 @@ class RoundForm extends React.Component {
         } //End Time category
 
         /*****************************************************************
-         S //TODO: Strokes
+         * Strokes
          ***************************************************************/
         else if (CATEGORY === "lowStrokesBadges") {
           console.log("Update Strokes badges");
         } //End Strokes category
 
         /*****************************************************************
-         * //Streak
+         * Streak
          ***************************************************************/
         else if (CATEGORY === "streakBadges") {
           const currentTier = this.state.streakBadge; //CHNG
@@ -181,17 +179,22 @@ class RoundForm extends React.Component {
         } //End Streak category
 
         /*****************************************************************
-         S //TODO: Score
+         Score
          ***************************************************************/
         else if (CATEGORY === "highScoreBadges") {
           const currentTier = this.state.scoreBadge; //CHNG
+          const currentScore =
+            Number(this.state.strokes) +
+            Number(this.state.minutes) +
+            Number(this.state.seconds);
+          //CHNG
 
           //"Breaks" out of the loop when we've reached the tier we are currently at.
           // This allows us to only consider badges we haven't earned yet
           if (currentTier === badgeTier) return false;
 
           // if certain time is met, a badge is unlocked
-          if (currentScore >= tierReq) {
+          if (currentScore <= tierReq) {
             this.setState({
               scoreBadge: badgeTier, //CHNG
             });
@@ -227,12 +230,7 @@ class RoundForm extends React.Component {
 
     let flag = this.checkBadgesUnlocked();
 
-    //TODO: If newBadges found,
-    // Let parent know to render congrats Toast
-    // Use this.props to await updateBadgeData(b1, 2, 3, 4, 5)
-
     const res = await this.props.saveRound(newRound, this.props.editId);
-    // const resUser = await this.props.incrementRounds();
 
     if (flag) {
       this.props.toggleRenderNewBadgeToast();

@@ -6,251 +6,237 @@ const pw = "nthnthNTH8";
 //prettier-ignore
 fixture`Test badges earned for number of rounds played`.page`http://localhost:8081`;
 
+/*****************************************************************
+ * 56
+ * 55
+ * 50
+ * 45
+ * 35
+ * 25
+ * 24
+ *****************************************************************/
+
 test("Unqualified ECP test", async (t) => {
+  const email = "Unqualified_" + nanoid() + "@email.com";
   await t
     //Create account with random name
     .click("#createAccountBtn")
-    .typeText("#email", email0)
+    .typeText("#email", email)
     .typeText("#password", pw)
     .typeText("#repeatPassword", pw)
-    .typeText("#displayName", email0)
+    .typeText("#displayName", email)
     .typeText("#securityQuestion", pw)
     .typeText("#securityAnswer", pw)
     .click("#submitCreateAccountBtn")
 
     //Logs into App
-    .typeText(emailInput, email0)
-    .typeText(pwInput, pw)
+    .typeText("#email", email)
+    .typeText("#password", pw)
     .click("#loginBtn")
 
     //Navigate to Rounds Mode
-    .click("#roundsMode");
-
-  //Set up faux mocks.
-  //Set us up such that the next test will only cover the test
-  for (let i = 0; i < 20; i++) {
-    await t
-      .click("#roundsModeActionBtn")
-      //Course
-      .typeText("#roundCourse", "test_" + nanoid())
-      //Minutes
-      .click("#roundMinutes")
-      .pressKey("ctrl+a delete")
-      .typeText("#roundMinutes", "80")
-      //Strokes
-      .click("#roundStrokes")
-      .pressKey("ctrl+a delete")
-      .typeText("#roundStrokes", "160")
-      //Minutes
-      .click("#roundMinutes")
-      .pressKey("ctrl+a delete")
-      .typeText("#roundMinutes", "85")
-      .click("#roundFormSubmitBtnLabel");
-  }
-  await t
+    .click("#roundsMode")
 
     //Cover the test
     .click("#roundsModeActionBtn")
     .typeText("#roundCourse", "test_" + nanoid())
+    .click("#roundMinutes")
+    .pressKey("ctrl+a delete")
+    .typeText("#roundMinutes", "56")
+    .click("#roundFormSubmitBtnLabel");
 
-    //Make an assertion
-    .wait(2);
+  //Make assertions
 });
 
 test("Brown ECP test", async (t) => {
+  const email = "Brown_" + nanoid() + "@email.com";
   await t
     //Create account with random name
     .click("#createAccountBtn")
-    .typeText("#email", email1)
+    .typeText("#email", email)
     .typeText("#password", pw)
     .typeText("#repeatPassword", pw)
-    .typeText("#displayName", email1)
+    .typeText("#displayName", email)
     .typeText("#securityQuestion", pw)
     .typeText("#securityAnswer", pw)
     .click("#submitCreateAccountBtn")
 
     //Logs into App
-    .typeText(emailInput, email1)
-    .typeText(pwInput, pw)
+    .typeText("#email", email)
+    .typeText("#password", pw)
     .click("#loginBtn")
 
     //Navigate to Rounds Mode
-    .click("#roundsMode");
+    .click("#roundsMode")
 
-  //Log Brown ECP
-  for (let i = 0; i < 30; i++) {
-    await t
-      .click("#roundsModeActionBtn")
-      .typeText("#roundCourse", "test_" + nanoid())
-      .click("#roundFormSubmitBtnLabel");
-  }
+    //Cover the test
+    .click("#roundsModeActionBtn")
+    .typeText("#roundCourse", "test_" + nanoid())
+    .click("#roundMinutes")
+    .pressKey("ctrl+a delete")
+    .typeText("#roundMinutes", "55")
+    .wait(4000)
+    .click("#roundFormSubmitBtnLabel");
 
-  await t
-    //Make an assertion
-    .wait(2000);
+  //Make assertions
 });
 
 test("Grey ECP test", async (t) => {
+  const email = "Grey_" + nanoid() + "@email.com";
   await t
     //Create account with random name
     .click("#createAccountBtn")
-    .typeText("#email", email2)
+    .typeText("#email", email)
     .typeText("#password", pw)
     .typeText("#repeatPassword", pw)
-    .typeText("#displayName", email2)
+    .typeText("#displayName", email)
     .typeText("#securityQuestion", pw)
     .typeText("#securityAnswer", pw)
     .click("#submitCreateAccountBtn")
 
     //Logs into App
-    .typeText(emailInput, email2)
-    .typeText(pwInput, pw)
+    .typeText("#email", email)
+    .typeText("#password", pw)
     .click("#loginBtn")
 
     //Navigate to Rounds Mode
-    .click("#roundsMode");
+    .click("#roundsMode")
 
-  //Log Grey ECP
-  for (let i = 0; i < 65; i++) {
-    await t
-      .click("#roundsModeActionBtn")
-      .typeText("#roundCourse", "test_" + nanoid())
-      .click("#roundFormSubmitBtnLabel");
-  }
+    //Cover the test
+    .click("#roundsModeActionBtn")
+    .typeText("#roundCourse", "test_" + nanoid())
+    .click("#roundMinutes")
+    .pressKey("ctrl+a delete")
+    .typeText("#roundMinutes", "50")
+    .click("#roundFormSubmitBtnLabel");
 
-  await t
-    //Make an assertion
-    .wait(2000);
+  //Make assertions
 });
 
 test("Gold ECP test", async (t) => {
+  const email = "Gold" + nanoid() + "@email.com";
   await t
     //Create account with random name
     .click("#createAccountBtn")
-    .typeText("#email", email3)
+    .typeText("#email", email)
     .typeText("#password", pw)
     .typeText("#repeatPassword", pw)
-    .typeText("#displayName", email3)
+    .typeText("#displayName", email)
     .typeText("#securityQuestion", pw)
     .typeText("#securityAnswer", pw)
     .click("#submitCreateAccountBtn")
 
     //Logs into App
-    .typeText(emailInput, email3)
-    .typeText(pwInput, pw)
+    .typeText("#email", email)
+    .typeText("#password", pw)
     .click("#loginBtn")
 
     //Navigate to Rounds Mode
-    .click("#roundsMode");
+    .click("#roundsMode")
 
-  //Log Gold ECP
-  for (let i = 0; i < 130; i++) {
-    await t
-      .click("#roundsModeActionBtn")
-      .typeText("#roundCourse", "test_" + nanoid())
-      .click("#roundFormSubmitBtnLabel");
-  }
+    //Cover the test
+    .click("#roundsModeActionBtn")
+    .typeText("#roundCourse", "test_" + nanoid())
+    .click("#roundMinutes")
+    .pressKey("ctrl+a delete")
+    .typeText("#roundMinutes", "45")
+    .click("#roundFormSubmitBtnLabel");
 
-  await t
-    //Make an assertion
-    .wait(2000);
+  //Make assertions
 });
 
 test("Blue ECP test", async (t) => {
+  const email = "Blue_" + nanoid() + "@email.com";
   await t
     //Create account with random name
     .click("#createAccountBtn")
-    .typeText("#email", email4)
+    .typeText("#email", email)
     .typeText("#password", pw)
     .typeText("#repeatPassword", pw)
-    .typeText("#displayName", email4)
+    .typeText("#displayName", email)
     .typeText("#securityQuestion", pw)
     .typeText("#securityAnswer", pw)
     .click("#submitCreateAccountBtn")
 
     //Logs into App
-    .typeText(emailInput, email4)
-    .typeText(pwInput, pw)
+    .typeText("#email", email)
+    .typeText("#password", pw)
     .click("#loginBtn")
 
     //Navigate to Rounds Mode
-    .click("#roundsMode");
+    .click("#roundsMode")
 
-  //Log Blue ECP
-  for (let i = 0; i < 260; i++) {
-    await t
-      .click("#roundsModeActionBtn")
-      .typeText("#roundCourse", "test_" + nanoid())
-      .click("#roundFormSubmitBtnLabel");
-  }
+    //Cover the test
+    .click("#roundsModeActionBtn")
+    .typeText("#roundCourse", "test_" + nanoid())
+    .click("#roundMinutes")
+    .pressKey("ctrl+a delete")
+    .typeText("#roundMinutes", "35")
+    .click("#roundFormSubmitBtnLabel");
 
-  await t
-    //Make an assertion
-    .wait(2000);
+  //Make assertions
 });
 
 test("Purple ECP test", async (t) => {
+  const email = "Purple_" + nanoid() + "@email.com";
   await t
     //Create account with random name
     .click("#createAccountBtn")
-    .typeText("#email", email5)
+    .typeText("#email", email)
     .typeText("#password", pw)
     .typeText("#repeatPassword", pw)
-    .typeText("#displayName", email5)
+    .typeText("#displayName", email)
     .typeText("#securityQuestion", pw)
     .typeText("#securityAnswer", pw)
     .click("#submitCreateAccountBtn")
 
     //Logs into App
-    .typeText(emailInput, email5)
-    .typeText(pwInput, pw)
+    .typeText("#email", email)
+    .typeText("#password", pw)
     .click("#loginBtn")
 
     //Navigate to Rounds Mode
-    .click("#roundsMode");
+    .click("#roundsMode")
 
-  //Log Purple ECP
-  for (let i = 0; i < 520; i++) {
-    await t
-      .click("#roundsModeActionBtn")
-      .typeText("#roundCourse", "test_" + nanoid())
-      .click("#roundFormSubmitBtnLabel");
-  }
+    //Cover the test
+    .click("#roundsModeActionBtn")
+    .typeText("#roundCourse", "test_" + nanoid())
+    .click("#roundMinutes")
+    .pressKey("ctrl+a delete")
+    .typeText("#roundMinutes", "25")
+    .click("#roundFormSubmitBtnLabel");
 
-  await t
-    //Make an assertion
-    .wait(2000);
+  //Make assertions
 });
 
 test("Max ECP test", async (t) => {
+  const email = "Max_" + nanoid() + "@email.com";
   await t
     //Create account with random name
     .click("#createAccountBtn")
-    .typeText("#email", email6)
+    .typeText("#email", email)
     .typeText("#password", pw)
     .typeText("#repeatPassword", pw)
-    .typeText("#displayName", email6)
+    .typeText("#displayName", email)
     .typeText("#securityQuestion", pw)
     .typeText("#securityAnswer", pw)
     .click("#submitCreateAccountBtn")
 
     //Logs into App
-    .typeText(emailInput, email6)
-    .typeText(pwInput, pw)
+    .typeText("#email", email)
+    .typeText("#password", pw)
     .click("#loginBtn")
 
     //Navigate to Rounds Mode
-    .click("#roundsMode");
+    .click("#roundsMode")
 
-  //Log Max ECP
-  for (let i = 0; i < 521; i++) {
-    await t
-      .click("#roundsModeActionBtn")
-      .typeText("#roundCourse", "test_" + nanoid())
-      .click("#roundFormSubmitBtnLabel");
-  }
+    //Cover the test
+    .click("#roundsModeActionBtn")
+    .typeText("#roundCourse", "test_" + nanoid())
+    .click("#roundMinutes")
+    .pressKey("ctrl+a delete")
+    .typeText("#roundMinutes", "24")
+    .click("#roundFormSubmitBtnLabel");
 
-  await t
-    //Make an assertion
-    .wait(2000);
+  //Make assertions
 });
