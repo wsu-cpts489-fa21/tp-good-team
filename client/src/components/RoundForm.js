@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import RoundsMode from "./RoundsMode.js";
+import BadgeData from "./BadgeData.js";
 
 class RoundForm extends React.Component {
   constructor(props) {
@@ -20,6 +21,12 @@ class RoundForm extends React.Component {
         notes: "",
         btnIcon: "calendar",
         btnLabel: "Log Round",
+        newBadge: false,
+        roundsBadge: this.props.badges.roundsPlayedBadge,
+        timeBadge: this.props.badges.fastTimeBadge,
+        strokesBadge: this.props.badges.lowStrokesBadge,
+        streakBadge: this.props.badges.streakBadge,
+        scoreBadge: this.props.badges.highScoreBadge,
       };
     } else {
       this.state = this.props.roundData;
@@ -78,11 +85,176 @@ class RoundForm extends React.Component {
     );
   };
 
+  /*****************************************************************
+   * Using data stored in BadgeData.js, we loop through each category
+   * of badges. Then we loop through each tier, making changes to
+   * respective categories based on the user's current stats, as well
+   * as the current tier of the category currently unlocked
+   ***************************************************************** */
+  checkBadgesUnlocked = () => {
+    let changeFlag = false;
+    const numRounds = this.props.numRounds;
+
+    const categoryProps = Object.keys(BadgeData);
+
+    //Loops through each Badge Category
+    categoryProps.forEach((CATEGORY, categoryIndex) => {
+      const tierProps = Object.keys(BadgeData[CATEGORY]);
+
+      let badgeTier = 4;
+
+      //Loops through each Badge Tier
+      tierProps.every((TIER, tierIndex) => {
+        let tierReq = BadgeData[CATEGORY][TIER];
+
+        /*****************************************************************
+         * Rounds
+         ******************************************************************/
+        if (CATEGORY === "roundsPlayedBadges") {
+          const currentTier = this.state.roundsBadge;
+
+          //"Breaks" out of the loop when we've reached the tier we are currently at.
+          // This allows us to only consider badges we haven't earned yet
+          if (currentTier === badgeTier) return false;
+
+          //Compares the number of current rounds with the requirement to break into
+          // the next tier
+          // numRounds has not been set yet, se I had to add the +1 to it
+          if (numRounds + 1 >= tierReq) {
+            this.setState({
+              roundsBadge: badgeTier,
+            });
+
+            //Sets return value
+            changeFlag = true;
+          }
+        } //End Rounds category
+
+        /*****************************************************************
+         * Time
+         * ***************************************************************/
+        else if (CATEGORY === "fastTimeBadges") {
+          const currentTier = this.state.timeBadge; //CHNG
+
+          //"Breaks" out of the loop when we've reached the tier we are currently at.
+          // This allows us to only consider badges we haven't earned yet
+          if (currentTier === badgeTier) return false;
+
+          //Compares the number of current rounds with the requirement to break into
+          // the next tier
+          if (this.state.minutes <= tierReq) {
+            this.setState({
+              timeBadge: badgeTier, //CHNG
+            });
+            changeFlag = true;
+          }
+        } //End Time category
+
+        /*****************************************************************
+         * Strokes
+         ***************************************************************/
+        else if (CATEGORY === "lowStrokesBadges") {
+          const currentTier = this.state.strokesBadge; //CHNG
+
+          //"Breaks" out of the loop when we've reached the tier we are currently at.
+          // This allows us to only consider badges we haven't earned yet
+          if (currentTier === badgeTier) return false;
+
+          // if certain time is met, a badge is unlocked
+          if (this.state.strokes >= tierReq) {
+            this.setState({
+              strokesBadge: badgeTier, //CHNG
+            });
+
+            //Sets return value
+            changeFlag = true;
+          }
+        } //End Stroke category
+        /*****************************************************************
+         * Streak
+         ***************************************************************/
+        else if (CATEGORY === "streakBadges") {
+          const currentTier = this.state.streakBadge; //CHNG
+
+          //"Breaks" out of the loop when we've reached the tier we are currently at.
+          // This allows us to only consider badges we haven't earned yet
+          if (currentTier === badgeTier) return false;
+
+          // if certain time is met, a badge is unlocked
+          if (numRounds + 1 >= tierReq) {
+            this.setState({
+              streakBadge: badgeTier, //CHNG
+            });
+
+            //Sets return value
+            changeFlag = true;
+          }
+        } //End Streak category
+
+        /*****************************************************************
+         Score
+         ***************************************************************/
+        else if (CATEGORY === "highScoreBadges") {
+          const currentTier = this.state.scoreBadge; //CHNG
+          const currentScore =
+            Number(this.state.strokes) +
+            Number(this.state.minutes) +
+            Number(this.state.seconds);
+          //CHNG
+
+          //"Breaks" out of the loop when we've reached the tier we are currently at.
+          // This allows us to only consider badges we haven't earned yet
+          if (currentTier === badgeTier) return false;
+
+          // if certain time is met, a badge is unlocked
+          if (currentScore <= tierReq) {
+            this.setState({
+              scoreBadge: badgeTier, //CHNG
+            });
+
+            //Sets return value
+            changeFlag = true;
+          }
+        } //End Score category
+        else {
+          console.log("Error -- Too many arguments");
+        } //End Error category
+
+        //Decrements the current badge tier we're using to compare
+        //Returns true to continue looping through Tiers
+        badgeTier--;
+        return true;
+      }); //End looping through Tiers
+    }); //End looping through Categories
+    return changeFlag;
+  };
+
+  //TODO: Check if any badges are unlocked. If so, display congrats toast in parent
   handleSubmitCallback = async () => {
     const newRound = { ...this.state };
     delete newRound.btnIcon;
     delete newRound.btnLabel;
+    delete newRound.newBadge;
+    delete newRound.roundsBadge;
+    delete newRound.timeBadge;
+    delete newRound.strokesBadge;
+    delete newRound.streakBadge;
+    delete newRound.scoreBadge;
+
+    let flag = this.checkBadgesUnlocked();
+
     const res = await this.props.saveRound(newRound, this.props.editId);
+
+    if (flag) {
+      this.props.toggleRenderNewBadgeToast();
+      let resBadges = await this.props.updateBadges(
+        this.state.roundsBadge,
+        this.state.timeBadge,
+        this.state.strokesBadge,
+        this.state.streakBadge,
+        this.state.scoreBadge
+      );
+    }
 
     this.props.toggleModalOpen();
     this.props.setMode(RoundsMode.ROUNDSTABLE);

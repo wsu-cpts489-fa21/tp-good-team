@@ -193,7 +193,7 @@ We did not use Zoom, we used a private discord meeting to go through what we did
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | H.J.        | <_Required_: In this milestone I completed four tasks, 80,81,82,83. There was a lot of communication among the team members and everyone helped each other out best they could> |
 | E.A.        | <_Required_: The story points data is unlikely to tell the whole story about your contribution. Write a brief statement explaining and reflecting on your contribution to this milestone.> |
-| C.H.        | <_Required_: The story points data is unlikely to tell the whole story about your contribution. Write a brief statement explaining and reflecting on your contribution to this milestone.> |
+| C.H.        | With a lot of help from my team, I contributed to adding an "earn badges" link that gives information about badges, as well as making sure users could earn badges based on their golf strokes. |
 | J.S.        | <_Required_: The story points data is unlikely to tell the whole story about your contribution. Write a brief statement explaining and reflecting on your contribution to this milestone.> |
 
 ### Testing
@@ -251,7 +251,7 @@ We did not use Zoom, we used a private discord meeting to go through what we did
   </tbody>
 </table>
   
-#### Face-to-Face Meetings
+#### Discord Meetings
 <table> 
   <thead>
     <tr>
@@ -263,12 +263,15 @@ We did not use Zoom, we used a private discord meeting to go through what we did
   </thead> 
   <tbody>
     <tr>
-      <td>11/10/21</td><td>45</td><td>&check;</td><td>&check;</td><td></td><td>&check;</td><td>We met in CUB conference room</td>
+      <td>11/29/21</td><td>180</td><td>&check;</td><td>&check;</td><td>&check;</td><td>&check;</td><td>We met to discuss Milestone 1 issues and architecture</td>
     </tr>
      <tr>
-      <td>11/14/21</td><td>20</td><td>&check;</td><td>&check;</td><td></td><td></td><td>We met at Starbucks for coffee</td>
+      <td>12/1/21</td><td>90</td><td>&check;</td><td>&check;</td><td>&check;</td><td>&check;</td><td>We met to discuss further development on issues</td>
     </tr>
-    <tr><td align="right"><b>Totals:</b></td><td><b>65</b></td><td><b>2</b></td><td><b>2</b></td><td><b>0</b></td><td><b>1</b></td><td></td>
+     <tr>
+      <td>12/9/21</td><td>120</td><td>&check;</td><td>&check;</td><td>&check;</td><td>&check;</td><td>We met to discuss final touches on Milestone 1</td>
+    </tr>
+    <tr><td align="right"><b>Totals:</b></td><td><b>390</b></td><td><b>3</b></td><td><b>3</b></td><td><b>3</b></td><td><b>3</b></td><td></td>
     </tr>
   </tbody>
 </table>
@@ -279,7 +282,7 @@ We did not use Zoom, we used a private discord meeting to go through what we did
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | H.J.        | <_Required_: The posts/replies data is unlikely to tell the whole story about your communication. Write a brief statement explaining and reflecting on your communication with your team during this milestone.> |
 | E.A.        | <_Required_: The posts/replies data is unlikely to tell the whole story about your communication. Write a brief statement explaining and reflecting on your communication with your team during this milestone.> |
-| C.H.        | <_Required_: The posts/replies data is unlikely to tell the whole story about your communication. Write a brief statement explaining and reflecting on your communication with your team during this milestone.> |
+| C.H.        | I communicated consistently with my team in both the chat channels of Discord and Slack, as well as thorough video calls where everyone was involved and we were all getting work done together. |
 | J.S.        | <_Required_: The posts/replies data is unlikely to tell the whole story about your communication. Write a brief statement explaining and reflecting on your communication with your team during this milestone.> |
 
 ### Retrospective
@@ -288,21 +291,19 @@ We did not use Zoom, we used a private discord meeting to go through what we did
 
 #### What went well
 
-- Item 1
-- Item 2
-- Item x
+- Team Synergy was great and everyone was on the same page
+- Communication was effective and efficient
+- We managed our time well and met to work together over Discord a lot
 
 #### What we'd like to improve
 
-- Item 1
-- Item 2
-- Item x
+- Fixing bugs more efficiently
+- Making sure we're on top of the Slack schedule
 
 #### Changes we plan to implement in next milestone period
 
-- Item 1
-- Item 2
-- Item x
+- Keeping up with the Slack schedule
+- Managing bugs within a reasonable time frame
 
 ## Milestone 2 (Due 12/10)
 

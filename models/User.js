@@ -12,6 +12,7 @@ const UserSchema = new mongoose.Schema({
     displayName: String,
     profilePic: String,
   },
+  numRounds: Number,
   speedgolfData: {
     bio: String,
     homeCourse: String,
@@ -44,6 +45,13 @@ const UserSchema = new mongoose.Schema({
       putter: Boolean,
     },
     clubComments: String,
+  },
+  badges: {
+    roundsPlayedBadge: Number,
+    fastTimeBadge: Number,
+    lowStrokesBadge: Number,
+    streakBadge: Number,
+    highScoreBadge: Number,
   },
   rounds: [RoundSchema],
 });

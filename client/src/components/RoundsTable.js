@@ -57,6 +57,35 @@ class RoundsTable extends React.Component {
     return table;
   };
 
+  renderNewBadgeToast = () => {
+    if (!this.props.newBadgeToast) {
+      return null;
+    } else {
+      return (
+        <div
+          id="badgeUnlocked"
+          className="toast-container"
+          role="alert"
+          aria-atomic="true"
+          aria-live="assertive"
+        >
+          <p id="newBadgeToast" className="toast-text centered">
+            Congratulations! You've unlocked a new badge!
+          </p>
+          <button
+            id="accountCreatedClose"
+            type="button"
+            className="btn-close toast-close"
+            aria-label="Close"
+            onClick={() => this.props.toggleRenderNewBadgeToast()}
+          ></button>
+        </div>
+      );
+    }
+  };
+
+  //TODO: Add toggleNewBadge method
+  //TODO: Add toggleNewBadge passed to child
   render() {
     return (
       <div
@@ -66,6 +95,9 @@ class RoundsTable extends React.Component {
         aria-label="Rounds Tab"
         tabIndex="0"
       >
+        {/*TODO: Render toast for earning new badge */}
+        {this.renderNewBadgeToast()}
+
         <h1 className="mode-page-header">Rounds</h1>
         <table id="roundsTable" className="table table-hover caption-top">
           <caption id="roundsTableCaption" aria-live="polite">

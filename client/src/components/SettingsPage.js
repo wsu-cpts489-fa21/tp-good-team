@@ -2,6 +2,30 @@ import { faThemeisle } from "@fortawesome/free-brands-svg-icons";
 import React from "react";
 import logo from "../images/sslogo2.png";
 import profilePic from "./../images/DefaultProfilePic.jpg";
+import Badge from "react-bootstrap/Badge";
+import bronzeTime from "../images/bronzeTime.png";
+import bronzeStreak from "../images/bronzeStreak.png";
+import bronzeRound from "../images/bronzeRound.png";
+import bronzeStroke from "../images/bronzeStroke.png";
+import silverTime from "../images/silverTime.png";
+import silverStreak from "../images/silverStreak.png";
+import silverStroke from "../images/silverStroke.png";
+import silverRound from "../images/silverRound.png";
+import goldTime from "../images/goldTime.png";
+import goldRound from "../images/goldRound.png";
+import goldStroke from "../images/goldStroke.png";
+import goldStreak from "../images/goldStreak.png";
+import diamondTime from "../images/diamondTime.png";
+import diamondRound from "../images/diamondRound.png";
+import diamondStroke from "../images/diamondStroke.png";
+import diamondStreak from "../images/diamondStreak.png";
+import ultraTime from "../images/ultraTime.png";
+import ultraRound from "../images/ultraRound.png";
+import ultraStroke from "../images/ultraStroke.png";
+import ultraStreak from "../images/ultraStreak.png";
+
+
+//TODO import <Category>-<Tier>-badge rounds-brown-badge
 
 class SettingsPage extends React.Component {
   constructor(props) {
@@ -22,6 +46,7 @@ class SettingsPage extends React.Component {
       securityQuestion: this.props.userData.accountData.securityQuestion,
       securityAnswer: this.props.userData.accountData.securityAnswer,
       displayName: this.props.userData.identityData.displayName,
+      numRounds: this.props.userData.numRounds,
       profilePic: this.props.userData.identityData.profilePic,
       bio: this.props.userData.speedgolfData.bio,
       homeCourse: this.props.userData.speedgolfData.homeCourse,
@@ -149,6 +174,7 @@ class SettingsPage extends React.Component {
           displayName: this.state.displayName,
           profilePic: this.state.profilePic,
         },
+        numRounds: this.state.numRounds,
         speedgolfData: {
           bio: this.state.bio,
           homeCourse: this.state.homeCourse,
@@ -268,6 +294,230 @@ class SettingsPage extends React.Component {
     );
   };
 
+  /*****************************************************************
+   * For each category
+   *    If rank === 1, render <category>-brown
+   *    Else if rank === 2, render <category>-grey-badge
+   ***************************************************************** */
+  getRoundsPlayedBadge = (tier) => {
+    switch (tier) {
+    case -1:
+      return null;
+    case 0:
+      return bronzeStreak;
+    case 1:
+      return silverStreak;
+    case 2:
+      return goldStreak;
+    case 3:
+      return diamondStreak;
+    case 4:
+      return ultraStreak;
+    }
+  }
+
+  getFastTimeBadge = (tier) => {
+    switch (tier) {
+    case -1:
+      return null;
+    case 0:
+      return bronzeTime;
+    case 1:
+      return silverTime;
+    case 2:
+      return goldTime;
+    case 3:
+      return diamondTime;
+    case 4:
+      return ultraTime;
+    }
+  }
+
+  getLowStrokesBadge = (tier) => {
+    switch (tier) {
+    case -1:
+      return null;
+    case 0:
+      return bronzeStroke;
+    case 1:
+      return silverStroke;
+    case 2:
+      return goldStroke;
+    case 3:
+      return diamondStroke;
+    case 4:
+      return ultraStroke;
+    }
+  }
+
+  getStreakBadge = (tier) => {
+    switch (tier) {
+    case -1:
+      return null;
+    case 0:
+      return bronzeStreak;
+    case 1:
+      return silverStreak;
+    case 2:
+      return goldStreak;
+    case 3:
+      return diamondStreak;
+    case 4:
+      return ultraStreak;
+    }
+  }
+
+  getRoundsBadgeDesc = (tier) => {
+    switch(tier){
+      case -1:
+        return null;
+      case 0:
+        return 'To earn this badge, play a total of 30 rounds in one day';
+      case 1:
+        return 'To earn this badge, play a total of 65 rounds in one day';
+      case 2:
+        return 'To earn this badge, play a total of 130 rounds in one day';
+      case 3:
+        return 'To earn this badge, play a total of 260 rounds in one day';
+      case 4:
+        return 'To earn this badge, play a total of 520 rounds in one day';
+    }  
+  }
+  
+  getFastTimeBadgeDesc = (tier) => {
+    switch(tier){
+      case -1:
+        return null;
+      case 0:
+        return 'To earn this badge, accumulate a total of 80 minutes or more in one game';
+      case 1:
+        return 'To earn this badge, accumulate between 51 and 60 minutes in one game';
+      case 2:
+        return 'To earn this badge, accumulate between 46 and 50 minutes in one game';
+      case 3:
+        return 'To earn this badge, accumulate between 36 and 45 minutes in one game';
+      case 4:
+        return 'To earn this badge, accumulate a total of 35 minutes or less in one game';
+    }  
+  }
+
+  getLowStrokesBadgeDesc = (tier) => {
+    switch(tier){
+      case -1:
+        return null;
+      case 0:
+        return 'To earn this badge, accumulate 150 or more swings in one game';
+      case 1:
+        return 'To earn this badge, accumulate between 91 and 120 swings in one game';
+      case 2:
+        return 'To earn this badge, accumulate between 76 and 90 swings in one game';
+      case 3:
+        return 'To earn this badge, accumulate between 66 and 75 swings in one game';
+      case 4:
+        return 'To earn this badge, accumulate 65 or less swings in one game';
+    }  
+  }
+
+  getStreakBadgeDesc = (tier) => {
+    switch(tier){
+      case -1:
+        return null;
+      case 0:
+        return 'To earn this badge, play 1 game in one day';
+      case 1:
+        return 'To earn this badge, play 3 game in one day';
+      case 2:
+        return 'To earn this badge, play 7 game in one day';
+      case 3:
+        return 'To earn this badge, play 10 game in one day';
+      case 4:
+        return 'To earn this badge, play 15 game in one day';
+    }  
+  }
+
+  getFastTimeBadge = (tier) => {
+    switch (tier) {
+    case -1:
+      return null;
+    case 0:
+      return bronzeTime;
+    case 1:
+      return silverTime;
+    case 2:
+      return goldTime;
+    case 3:
+      return diamondTime;
+    case 4:
+      return ultraTime;
+    }
+  }
+
+  getLowStrokesBadge = (tier) => {
+    switch (tier) {
+    case -1:
+      return null;
+    case 0:
+      return bronzeStroke;
+    case 1:
+      return silverStroke;
+    case 2:
+      return goldStroke;
+    case 3:
+      return diamondStroke;
+    case 4:
+      return ultraStroke;
+    }
+  }
+
+  getStreakBadge = (tier) => {
+    switch (tier) {
+    case -1:
+      return null;
+    case 0:
+      return bronzeStreak;
+    case 1:
+      return silverStreak;
+    case 2:
+      return goldStreak;
+    case 3:
+      return diamondStreak;
+    case 4:
+      return ultraStreak;
+    }
+  }
+  //TODO Render badge display
+  renderBadgeDisplay = () => {
+    console.log(this.props.userData.badges.roundsPlayedBadge, this.props.userData.badges.fastTimeBadge, this.props.userData.badges.lowStrokesBadge, this.props.userData.badges.streakBadge)
+
+    let roundsBadge  = <img src={this.getRoundsPlayedBadge(this.props.userData.badges.roundsPlayedBadge)} title={this.getRoundsBadgeDesc(this.props.userData.badges.roundsPlayedBadge)}/>;
+    let timeBadge = <img src={this.getFastTimeBadge(this.props.userData.badges.fastTimeBadge)} title={this.getFastTimeBadgeDesc(this.props.userData.badges.fastTimeBadge)}/>;
+    let strokeBadge  = <img src={this.getLowStrokesBadge(this.props.userData.badges.lowStrokesBadge)} title={this.getLowStrokesBadgeDesc(this.props.userData.badges.lowStrokesBadge)}/>;
+    let streakBadge = <img src={this.getStreakBadge(this.props.userData.badges.streakBadge)} title={this.getStreakBadgeDesc(this.props.userData.badges.streakBadge)}/>;
+    
+    return (
+      <>
+        <h1>
+          { 
+            roundsBadge || timeBadge || strokeBadge || streakBadge ?
+            <>
+              {roundsBadge}{timeBadge}{strokeBadge}{streakBadge}
+            </>
+              :
+            <>
+              You can earn badges here through logging rounds! 
+            </>
+          }
+        </h1>
+      </>
+    );
+
+    //if user has no badges
+    //Render message about earning badges
+    //if user has badges
+    //Display badges earned
+    //If user (Hovers/Clicks) over badge, display info in a toast
+  };
+
   render() {
     return (
       <div
@@ -281,6 +531,12 @@ class SettingsPage extends React.Component {
           Account & Profile
         </h1>
         {this.renderErrorBox()}
+
+        {/*****************************************************************
+         * TODO: Section to display badges
+         ******************************************************************/}
+        <div className="badge-container">{this.renderBadgeDisplay()}</div>
+
         <form
           onSubmit={this.handleSubmit}
           id="editProfileForm"

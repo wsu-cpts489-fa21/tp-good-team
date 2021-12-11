@@ -56,7 +56,9 @@ class App extends React.Component {
       userData: {
         accountData: {},
         identityData: {},
+        numRounds: 1,
         speedgolfData: {},
+        badges: {},
         rounds: [],
       },
       authenticated: false,
@@ -108,7 +110,9 @@ class App extends React.Component {
       userData: {
         accountData: {},
         identityData: {},
+        numRounds: 0,
         speedgolfData: {},
+        badges: {},
         rounds: [],
       },
       authenticated: false,
@@ -188,7 +192,6 @@ class App extends React.Component {
   };
 
   updateUserData = async (newUserData) => {
-    // localStorage.setItem(data.accountData.email, JSON.stringify(newUserData));
     const url = "/users/" + this.state.userData.accountData.id;
     const res = await fetch(url, {
       headers: {
@@ -200,17 +203,41 @@ class App extends React.Component {
     });
 
     if (res.status === 200) {
-      // alert("IDB: " + newUserData.accountData.id);
-
       this.setState({ userData: newUserData });
-      // alert("IDA: " + newUserData.accountData.id);
       return "Account " + newUserData.accountData.id + " successfully updated.";
     } else {
-      // alert("ELSE " + newUserData.accountData.id);
-      // alert("ELSE2 " + this.state.userData.accountData.id);
       const resText = await res.text();
       return "Unable to update account. " + resText;
     }
+  };
+
+  // incrementRounds = async () => {
+  //   const res = await this.updateUserData(this.state.userData);
+  // };
+
+  updateBadges = async (rounds, time, strokes, streak, score) => {
+    const newBadgeData = {
+      roundsPlayedBadge: rounds,
+      fastTimeBadge: time,
+      lowStrokesBadge: strokes,
+      streakBadge: streak,
+      highScoreBadge: score,
+    };
+
+    const newUserData = {
+      accountData: this.state.userData.accountData,
+      identityData: this.state.userData.identityData,
+      numRounds: this.state.userData.numRounds,
+      speedgolfData: this.state.userData.speedgolfData,
+      badges: newBadgeData,
+      rounds: this.state.userData.rounds,
+    };
+
+    this.setState({
+      userData: newUserData,
+    });
+
+    const res = await this.updateUserData(newUserData);
   };
 
   /*****************************************************************
@@ -231,13 +258,20 @@ class App extends React.Component {
     if (res.status == 201) {
       const newRounds = [...this.state.userData.rounds];
       newRounds.push(newRoundData);
+
       const newUserData = {
         accountData: this.state.userData.accountData,
         identityData: this.state.userData.identityData,
+        numRounds: this.state.userData.numRounds,
         speedgolfData: this.state.userData.speedgolfData,
+        badges: this.state.userData.badges,
         rounds: newRounds,
       };
+
+      //Incrementing Rounds
+      newUserData.numRounds++;
       this.setState({ userData: newUserData });
+      const resIncrement = await this.updateUserData(newUserData);
 
       return "New round logged.";
     } else {
@@ -269,7 +303,9 @@ class App extends React.Component {
       const newUserData = {
         accountData: this.state.userData.accountData,
         identityData: this.state.userData.identityData,
+        numRounds: this.state.userData.numRounds,
         speedgolfProfileData: this.state.userData.speedgolfProfileData,
+        badges: this.state.userData.badges,
         rounds: newRounds,
       };
       this.setState({ userData: newUserData });
@@ -280,6 +316,7 @@ class App extends React.Component {
     }
   };
 
+  //TODO: Decrement numRounds
   deleteRound = async (id) => {
     const url =
       "/rounds/" +
@@ -304,9 +341,12 @@ class App extends React.Component {
       const newUserData = {
         accountData: this.state.userData.accountData,
         identityData: this.state.userData.identityData,
+        numRounds: this.state.userData.numRounds,
         speedgolfProfileData: this.state.userData.speedgolfProfileData,
+        badges: this.state.userData.badges,
         rounds: newRounds,
       };
+      newUserData.numRounds--;
       this.setState({ userData: newUserData });
     } else {
       const resText = await res.text();
@@ -356,14 +396,17 @@ class App extends React.Component {
             ),
             RoundsMode: (
               <RoundsPage
+                numRounds={this.state.userData.numRounds}
+                badges={this.state.userData.badges}
                 rounds={this.state.userData.rounds}
                 addRound={this.addRound}
                 updateRound={this.updateRound}
                 deleteRound={this.deleteRound}
-                modalOpen={this.state.modalOpen}
                 toggleModalOpen={this.toggleModalOpen}
+                modalOpen={this.state.modalOpen}
                 menuOpen={this.state.menuOpen}
                 userId={this.state.userId}
+                updateBadges={this.updateBadges}
               />
             ),
             CoursesMode: (

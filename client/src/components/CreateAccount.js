@@ -70,7 +70,6 @@ class CreateAccount extends React.Component {
       return;
     }
     if (event.target.value.length == 0) {
-
       this.setState({ profilePic: "" });
     } else {
       const self = this;
@@ -113,6 +112,7 @@ class CreateAccount extends React.Component {
               : this.state.email,
           profilePic: this.state.profilePic,
         },
+        numRounds: 0,
         speedgolfData: {
           bio: "",
           homeCourse: "",
@@ -144,6 +144,13 @@ class CreateAccount extends React.Component {
             putter: false,
           },
           clubComments: "",
+        },
+        badges: {
+          roundsPlayedBadge: -1,
+          fastTimeBadge: -1,
+          lowStrokesBadge: -1,
+          streakBadge: -1,
+          highScoreBadge: -1,
         },
       };
       this.props.createAccountDone(newAccount);
@@ -352,7 +359,6 @@ class CreateAccount extends React.Component {
               <img
                 id="acctProfilePicImage"
                 src={
-
                   this.state.profilePic === ""
                     ? profilePic
                     : this.state.profilePic
@@ -422,7 +428,6 @@ class CreateAccount extends React.Component {
           <div className="mode-page-btn-container">
             <button
               id="submitCreateAccountBtn"
-
               type="submit"
               className="mode-page-btn action-dialog action-button"
             >
