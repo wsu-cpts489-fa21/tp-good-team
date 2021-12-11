@@ -33,7 +33,6 @@
     "express-session": "^1.17.2",
     "install": "^0.13.0",
     "mongoose": "^6.1.1",
-    "nanoid": "^3.1.30",
     "npm": "^8.3.0",
     "passport": "^0.5.0",
     "passport-github": "^1.1.0",
@@ -48,6 +47,7 @@
     "@babel/node": "^7.15.8",
     "@babel/preset-env": "^7.15.8",
     "@testing-library/react": "^12.1.2",
+    "nanoid": "^3.1.30",
     "nodemon": "^2.0.14",
     "testcafe": "^1.17.1"
   },
