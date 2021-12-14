@@ -28,5 +28,5 @@ client/yarn-error.log*
 
 #Set before milestones
 client/package-lock.json
-client/build
+# client/build
 package-lock.json
