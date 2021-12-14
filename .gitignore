@@ -25,7 +25,8 @@ client/npm-debug.log*
 client/yarn-debug.log*
 client/yarn-error.log*
 
+
 #Set before milestones
-# client/package-lock.json
-# client/build
-# package-lock.json
+client/package-lock.json
+client/build
+package-lock.json
