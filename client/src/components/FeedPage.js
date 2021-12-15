@@ -6,75 +6,50 @@ class FeedPage extends React.Component {
     super(props);
     this.state = {
       id: 9999999999999,
+      objs: [],
     };
   }
 
-  getObject = async (url) => {
+  async componentDidMount() {
+    const url = "/posts/9999999999999";
+
     let res = await fetch(url)
       .then((response) => response.json())
       .then((obj) => {
         console.log("Obj " + JSON.stringify(obj)); //Must be stringify
-        console.log("Obj Id: " + obj._id);
-        return obj._id;
-      });
-  };
 
-  componentDidMount() {
-    // let id = 9999999999999;
-    let idarray = [];
-    idarray.push(9999999999999);
-
-    for (let i = 0; i < 5; i++) {
-      // let url = "/posts/" + id;
-      // let url = "/posts/" + idarray[i];
-      let url = "/posts/" + this.state.id;
-
-      // console.log("C: ID is : " + id);
-      // console.log("C: ID is : " + idarray[i]);
-      console.log("C: ID is " + this.state.id);
-
-      let newid = this.getObject(url);
-      console.log("newid: " + newid);
-      // idarray.push(newid);
-      this.setState({
-        ...this.state,
-        ...newid,
+        this.setState({
+          objs: obj,
+          // objs: JSON.stringify(obj),
+          // objs: JSON.stringify(obj[0]),
+        });
       });
 
-      // let res = fetch(url)
-      //   .then((response) => response.json())
-      //   .then((obj) => {
-      //     console.log("Obj " + JSON.stringify(obj)); //Must be stringify
-      //     console.log("Obj Id: " + obj._id);
+    // console.log("1: " + ob[0]); //undef
+    // console.log("2: " + JSON.stringify(ob[0])); //undef
+    // console.log("3: " + ob); //blank
+    // console.log("4: " + JSON.stringify(ob)); //[]
 
-      //     this.setState({
-      //       ...this.state,
-      //       ...obj._id,
-      //     });
-
-      //     /*****************************************************************
-      //      * Attempts at updating ID
-      //      *****************************************************************         */
-      //     // idarray.push(JSON.stringify(obj._id));
-      //     // idarray.push(Number(JSON.stringify(obj._id)));
-      //     // idarray.push(Number(obj._id));
-      //     // idarray.push(obj._id);
-
-      //     // idarray.push(obj._id);
-      //     // id = JSON.stringify(obj._id);
-      //     // idarray.push(JSON.stringify(obj._id));
-      //   });
-
-      // console.log("res: " + res);
-      // console.log("res stringify: " + JSON.stringify(res));
+    // console.log("5: " + this.state.objs); //[obj obj], [obj obj], ...
+    // console.log("6: " + JSON.stringify(this.state.objs)); //WORKs --> [{obj}]
+    for (let index = 0; index < 4; index++) {
+      console.log(
+        "Index[" + index + "]: " + JSON.stringify(this.state.objs[index])
+      );
     }
-
-    // for (let z = 0; z < 5; z++) {
-    //   console.log("z: " + idarray[z]);
+    // for (let index = 0; index < 4; index++) {
+    //   console.log("NO STRING[" + index + "]: " + this.state.objs[index]);
     // }
+    return;
   }
 
   render() {
+    for (let index = 0; index < 4; index++) {
+      console.log(
+        "RENDER[" + index + "]: " + JSON.stringify(this.state.objs[index])
+      );
+    }
+
     return (
       <div
         id="feedModeTab"
