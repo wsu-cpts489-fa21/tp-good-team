@@ -5,7 +5,6 @@ class FeedPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: 9999999999999,
       objs: [],
     };
   }
@@ -32,7 +31,7 @@ class FeedPage extends React.Component {
 
     // console.log("5: " + this.state.objs); //[obj obj], [obj obj], ...
     // console.log("6: " + JSON.stringify(this.state.objs)); //WORKs --> [{obj}]
-    for (let index = 0; index < 4; index++) {
+    for (let index = 0; index < 10; index++) {
       console.log(
         "Index[" + index + "]: " + JSON.stringify(this.state.objs[index])
       );
@@ -44,7 +43,7 @@ class FeedPage extends React.Component {
   }
 
   render() {
-    for (let index = 0; index < 4; index++) {
+    for (let index = 0; index < 10; index++) {
       console.log(
         "RENDER[" + index + "]: " + JSON.stringify(this.state.objs[index])
       );
