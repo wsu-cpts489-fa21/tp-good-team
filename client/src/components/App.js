@@ -288,7 +288,7 @@ class App extends React.Component {
       this.setState({ userData: newUserData });
       const resIncrement = await this.updateUserData(newUserData);
 
-      const newPost = await this.addPost(newRoundData);
+      const newPost = await this.addFeedRound(newRoundData);
 
       return "New round logged.";
     } else {
@@ -374,7 +374,8 @@ class App extends React.Component {
   /*****************************************************************
    * Post management methods
    ***************************************************************** */
-  addPost = async (newRound) => {
+  addFeedRound = async (newRound) => {
+    console.log("newRound.date: " + newRound.date);
     const newPost = {
       _id: newRound._id,
       userData: {
@@ -396,7 +397,6 @@ class App extends React.Component {
       },
     };
 
-    console.log("NEWPOST: " + JSON.stringify(newPost));
     const url = "/posts/" + newRound._id;
     const body = {
       method: "POST",
@@ -406,6 +406,38 @@ class App extends React.Component {
       },
       method: "POST",
       body: JSON.stringify(newPost),
+    };
+
+    let res = await fetch(url, body);
+  };
+
+  addFeedPost = async (id, pic, comment) => {
+    console.log("id: " + id + "\ncomment: " + comment);
+
+    const newFeedPost = {
+      _id: id,
+      userData: {
+        firstName: this.state.userData.accountData.id,
+        userName: this.state.userData.accountData.id,
+      },
+      postData: {
+        date: Date.now(),
+        fistBumpCount: 0,
+        commentCount: 0,
+        comment: comment,
+        postType: "post", //post, round, error
+      },
+    };
+
+    const url = "/posts/" + id;
+    const body = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(newFeedPost),
     };
 
     let res = await fetch(url, body);
@@ -450,6 +482,7 @@ class App extends React.Component {
                 toggleModalOpen={this.toggleModalOpen}
                 menuOpen={this.state.menuOpen}
                 userId={this.state.userId}
+                addFeedPost={this.addFeedPost}
               />
             ),
             RoundsMode: (

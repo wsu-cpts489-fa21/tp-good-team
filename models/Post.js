@@ -8,12 +8,15 @@ const PostSchema = new mongoose.Schema({
   },
   roundData: {
     sgs: { type: String },
-    strokes: { type: String, required: true, min: 1, max: 300 },
-    minutes: { type: String, required: true, min: 1, max: 240 },
-    seconds: { type: String, required: true, min: 0, max: 60 },
+    strokes: { type: String },
+    minutes: { type: String },
+    seconds: { type: String },
   },
   postData: {
-    date: { type: Date, default: Date.now },
+    date: {
+      type: Date,
+      default: Date.now() - new Date().getTimezoneOffset() * 60000,
+    },
     fistBumpCount: { type: Number, default: 0 },
     commentCount: { type: Number, default: 0 },
     comment: { type: String },

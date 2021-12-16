@@ -14,6 +14,8 @@ class FeedPage extends React.Component {
     };
   }
 
+  postSuccess = () => {};
+
   cancelBtn = () => {
     this.setState({
       postModalOpen: false,
@@ -86,7 +88,10 @@ class FeedPage extends React.Component {
       return (
         <>
           <div class="space">
-            <PostPage cancelBtn={this.cancelBtn} />
+            <PostPage
+              addFeedPost={this.props.addFeedPost}
+              cancelBtn={this.cancelBtn}
+            />
           </div>
         </>
       );
@@ -140,7 +145,12 @@ class FeedPage extends React.Component {
               })
             }
           />
-          {this.state.postModalOpen ? <PostPage /> : null}
+          {this.state.postModalOpen ? (
+            <PostPage
+              addFeedPost={this.props.addFeedPost}
+              postSuccess={this.postSuccess}
+            />
+          ) : null}
         </div>
 
         //   </div>

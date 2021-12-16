@@ -18,6 +18,14 @@ class FeedTable extends React.Component {
       // Need to add title for post and Round
       //For post
 
+      let date = postData.date;
+      // let date = new Intl.DateTimeFormat("en-US", {
+      //   year: "numeric",
+      //   month: "2-digit",
+      //   day: "2-digit",
+      // }).format(postData.date);
+      // console.log("newDate: " + postData.date);
+
       let title;
       if (postData.postType === "round") {
         //For round
@@ -25,17 +33,19 @@ class FeedTable extends React.Component {
           userData.firstName +
           " logged a speedgolf round. " +
           roundData.sgs +
-          "(" +
+          " (" +
           roundData.strokes +
           " in " +
           roundData.minutes +
           ":" +
           roundData.seconds +
-          " on " +
-          postData.date;
+          ") on " +
+          date;
       } else if (postData.postType === "post") {
-        title = userData.firstName + " Posted! ";
+        title = userData.firstName + " wrote a post on " + postData.date + ".";
       } else alert("Error");
+
+      //if not private
       table.push(
         <tr key={r}>
           <td>{userData.profilePic}</td>
