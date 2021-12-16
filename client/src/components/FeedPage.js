@@ -1,19 +1,60 @@
-import React from 'react';
-import logo from '../images/sslogo2.png'
+import React from "react";
+import logo from "../images/sslogo2.png";
+import PostButton from "./PostButton";
+import PostPage from "./PostPage";
 
 class FeedPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      postModalOpen: false,
+    };
+  }
 
-    render() {
-        return (
-            <div id="feedModeTab" className="mode-page" role="tabpanel"
-                 aria-label="Feed Tab" tabIndex="0">
-                <h1 className="mode-page-header">Activity Feed</h1>
-                <p className="mode-page-content">This page is under construction.</p>
-                <img className="mode-page-icon" 
-                     src={logo} alt="SpeedScore logo"></img>
-            </div>
-        );
-    }   
+  cancelBtn = () => {
+    this.setState({
+      postModalOpen: false,
+    });
+  };
+  render() {
+    if (this.state.postModalOpen) {
+      return (
+        <>
+          <div class="space">
+            <PostPage cancelBtn={this.cancelBtn} />
+          </div>
+        </>
+      );
+    } else {
+      return (
+        <div
+          id="feedModeTab"
+          className="mode-page"
+          role="tabpanel"
+          aria-label="Feed Tab"
+          tabIndex="0"
+        >
+          <h1 className="mode-page-header">Activity Feed</h1>
+          <p className="mode-page-content">This page is under construction.</p>
+          <img
+            className="mode-page-icon"
+            src={logo}
+            alt="SpeedScore logo"
+          ></img>
+          <PostButton
+            icon="blog"
+            label={"Post"}
+            action={() =>
+              this.setState({
+                postModalOpen: true,
+              })
+            }
+          />
+          {this.state.postModalOpen ? <PostPage /> : null}
+        </div>
+      );
+    }
+  }
 }
 
 export default FeedPage;
