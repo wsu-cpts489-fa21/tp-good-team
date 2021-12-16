@@ -302,7 +302,7 @@ button::-moz-focus-inner {
 }
 
 .earn-float-btn {
-  position: fixed;
+  position: relative;
   width: 130px;
   height: 40px;
   bottom: 20px;

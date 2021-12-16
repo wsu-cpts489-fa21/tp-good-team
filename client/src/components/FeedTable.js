@@ -1,3 +1,4 @@
+
 import React from "react";
 import logo from "../images/sslogo2.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,9 +13,6 @@ class FeedTable extends React.Component {
       sgs: "",
     };
   }
-  click = () => {
-    console.log("Click");
-  };
 
   cancelBtn = () => {
     this.setState({
@@ -32,6 +30,7 @@ class FeedTable extends React.Component {
     });
     console.log("You clicked " + r + "!", this.state.popupOpen);
   };
+  
   renderTable = () => {
     const table = [];
     for (let r = 0; r < this.props.objs.length; ++r) {
@@ -40,6 +39,14 @@ class FeedTable extends React.Component {
       const postData = this.props.objs[r].postData;
       // Need to add title for post and Round
       //For post
+      
+          let date = postData.date;
+      // let date = new Intl.DateTimeFormat("en-US", {
+      //   year: "numeric",
+      //   month: "2-digit",
+      //   day: "2-digit",
+      // }).format(postData.date);
+      // console.log("newDate: " + postData.date);
 
       let title;
       if (postData.postType === "round") {
@@ -48,16 +55,16 @@ class FeedTable extends React.Component {
           userData.firstName +
           " logged a speedgolf round. " +
           roundData.sgs +
-          "(" +
+          " (" +
           roundData.strokes +
           " in " +
           roundData.minutes +
           ":" +
           roundData.seconds +
-          " on " +
-          postData.date;
+          ") on " +
+          date;
       } else if (postData.postType === "post") {
-        title = userData.firstName + " Posted! ";
+        title = userData.firstName + " wrote a post on " + postData.date + ".";
       } else alert("Error");
       table.push(
         <tr key={r}>
@@ -117,7 +124,7 @@ class FeedTable extends React.Component {
               >
                 Title
               </th>
-              {/* <th></th> */}
+              {/* FISTBUMP */}
               <th
                 scope="col"
                 role="columnheader"

@@ -288,6 +288,8 @@ class App extends React.Component {
       this.setState({ userData: newUserData });
       const resIncrement = await this.updateUserData(newUserData);
 
+      const newPost = await this.addFeedRound(newRoundData);
+
       return "New round logged.";
     } else {
       const resText = await res.text();
@@ -369,6 +371,75 @@ class App extends React.Component {
     }
   };
 
+  /*****************************************************************
+   * Post management methods
+   ***************************************************************** */
+  addFeedRound = async (newRound) => {
+    const newPost = {
+      _id: newRound._id,
+      userData: {
+        firstName: this.state.userData.accountData.id,
+        userName: this.state.userData.accountData.id,
+      },
+      roundData: {
+        sgs: newRound.SGS,
+        strokes: newRound.strokes,
+        minutes: newRound.minutes,
+        seconds: newRound.seconds,
+      },
+      postData: {
+        date: newRound.date,
+        fistBumpCount: 0,
+        commentCount: 0,
+        comment: "",
+        postType: "round", //post, round, error
+      },
+    };
+
+    const url = "/posts/" + newRound._id;
+    const body = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(newPost),
+    };
+
+    let res = await fetch(url, body);
+  };
+
+  addFeedPost = async (id, pic, comment) => {
+    const newFeedPost = {
+      _id: id,
+      userData: {
+        firstName: this.state.userData.accountData.id,
+        userName: this.state.userData.accountData.id,
+      },
+      postData: {
+        date: Date.now(),
+        fistBumpCount: 0,
+        commentCount: 0,
+        comment: comment,
+        postType: "post", //post, round, error
+      },
+    };
+
+    const url = "/posts/" + id;
+    const body = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(newFeedPost),
+    };
+
+    let res = await fetch(url, body);
+  };
+
   render() {
     return (
       <>
@@ -408,6 +479,7 @@ class App extends React.Component {
                 toggleModalOpen={this.toggleModalOpen}
                 menuOpen={this.state.menuOpen}
                 userId={this.state.userId}
+                addFeedPost={this.addFeedPost}
               />
             ),
             RoundsMode: (
