@@ -18,6 +18,7 @@ class RoundForm extends React.Component {
         minutes: 60,
         seconds: "00",
         SGS: "140:00",
+        isPrivate: false,
         notes: "",
         btnIcon: "calendar",
         btnLabel: "Log Round",
@@ -261,6 +262,7 @@ class RoundForm extends React.Component {
   };
 
   render() {
+
     return (
       <div
         id="roundsModeDialog"
@@ -407,6 +409,20 @@ class RoundForm extends React.Component {
                 size="6"
                 value={this.state.SGS}
                 readOnly={true}
+              />
+            </label>
+          </div>
+          <div className="mb-3 centered">
+            <label>
+              Keep round private
+              <input
+                name="private"
+                type="checkbox"
+                readOnly={true}
+                onChange= { () => {
+                    this.setState({isPrivate: !this.state.isPrivate})
+                  }
+                }
               />
             </label>
           </div>

@@ -289,7 +289,7 @@ button::-moz-focus-inner {
 *************************************************************************/
 /* Float-btn -- Styling for the floating action button. */
 .float-btn {
-  position: fixed;
+  position: relative;
   width: 130px;
   height: 40px;
   bottom: 20px;

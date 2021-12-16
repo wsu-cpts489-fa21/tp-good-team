@@ -11,6 +11,7 @@ const PostSchema = new mongoose.Schema({
     strokes: { type: String, required: true, min: 1, max: 300 },
     minutes: { type: String, required: true, min: 1, max: 240 },
     seconds: { type: String, required: true, min: 0, max: 60 },
+    isPrivate: { type: Boolean },
   },
   postData: {
     date: { type: Date, default: Date.now },

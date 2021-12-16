@@ -31,15 +31,18 @@ class FeedTable extends React.Component {
         roundData.seconds +
         " on " +
         postData.date;
-      table.push(
-        <tr onClick={() => this.handleTableClick(r)} key={r}>
-          <td>{userData.profilePic}</td>
-          <td>{title}</td>
-          <td>{postData.fistBumpCount}</td>
-          <td>{postData.commentCount}</td>
-          <td>{postData.comment}</td>
-        </tr>
-      );
+      console.log('isPrivate: ', roundData.isPrivate)
+      if (!roundData.isPrivate) {
+        table.push(
+          <tr onClick={() => this.handleTableClick(r)} key={r}>
+            <td>{userData.profilePic}</td>
+            <td>{title}</td>
+            <td>{postData.fistBumpCount}</td>
+            <td>{postData.commentCount}</td>
+            <td>{postData.comment}</td>
+          </tr>
+        );
+      }
     }
     return table;
   };
