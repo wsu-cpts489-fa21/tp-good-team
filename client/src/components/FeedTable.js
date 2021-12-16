@@ -3,9 +3,6 @@ import logo from "../images/sslogo2.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class FeedTable extends React.Component {
-  click = () => {
-    console.log("Click");
-  };
   handleTableClick = (r) => {
     console.log("You clicked " + r + "!");
   };

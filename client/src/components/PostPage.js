@@ -84,7 +84,7 @@ class PostPage extends React.Component {
               type="button"
               onClick={() => {
                 this.savePost();
-                // this.props.postSuccess();
+                this.props.postSuccess();
               }}
             >
               Post to Feed

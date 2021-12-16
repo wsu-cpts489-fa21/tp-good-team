@@ -375,7 +375,6 @@ class App extends React.Component {
    * Post management methods
    ***************************************************************** */
   addFeedRound = async (newRound) => {
-    console.log("newRound.date: " + newRound.date);
     const newPost = {
       _id: newRound._id,
       userData: {
@@ -412,8 +411,6 @@ class App extends React.Component {
   };
 
   addFeedPost = async (id, pic, comment) => {
-    console.log("id: " + id + "\ncomment: " + comment);
-
     const newFeedPost = {
       _id: id,
       userData: {
