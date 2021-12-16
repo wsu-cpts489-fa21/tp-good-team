@@ -288,6 +288,8 @@ class App extends React.Component {
       this.setState({ userData: newUserData });
       const resIncrement = await this.updateUserData(newUserData);
 
+      const newPost = await this.addPost(newRoundData);
+
       return "New round logged.";
     } else {
       const resText = await res.text();
@@ -367,6 +369,46 @@ class App extends React.Component {
       const resText = await res.text();
       return "Unable to delete round.";
     }
+  };
+
+  /*****************************************************************
+   * Post management methods
+   ***************************************************************** */
+  addPost = async (newRound) => {
+    const newPost = {
+      _id: newRound._id,
+      userData: {
+        firstName: this.state.userData.accountData.id,
+        userName: this.state.userData.accountData.id,
+      },
+      roundData: {
+        sgs: newRound.SGS,
+        strokes: newRound.strokes,
+        minutes: newRound.minutes,
+        seconds: newRound.seconds,
+      },
+      postData: {
+        date: newRound.date,
+        fistBumpCount: 0,
+        commentCount: 0,
+        comment: "",
+        postType: "round", //post, round, error
+      },
+    };
+
+    console.log("NEWPOST: " + JSON.stringify(newPost));
+    const url = "/posts/" + newRound._id;
+    const body = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(newPost),
+    };
+
+    let res = await fetch(url, body);
   };
 
   render() {
