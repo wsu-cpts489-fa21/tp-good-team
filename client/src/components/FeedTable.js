@@ -18,23 +18,28 @@ class FeedTable extends React.Component {
       // Need to add title for post and Round
       //For post
 
-      //For round
-      const title =
-        userData.firstName +
-        " logged a speedgolf round. " +
-        roundData.sgs +
-        "(" +
-        roundData.strokes +
-        " in " +
-        roundData.minutes +
-        ":" +
-        roundData.seconds +
-        " on " +
-        postData.date;
+      let title;
+      if (postData.postType === "round") {
+        //For round
+        title =
+          userData.firstName +
+          " logged a speedgolf round. " +
+          roundData.sgs +
+          "(" +
+          roundData.strokes +
+          " in " +
+          roundData.minutes +
+          ":" +
+          roundData.seconds +
+          " on " +
+          postData.date;
+      } else if (postData.postType === "post") {
+        title = userData.firstName + " Posted! ";
+      } else alert("Error");
       table.push(
-        <tr onClick={() => this.handleTableClick(r)} key={r}>
+        <tr key={r}>
           <td>{userData.profilePic}</td>
-          <td>{title}</td>
+          <td onClick={() => this.handleTableClick(r)}>{title}</td>
           <td>{postData.fistBumpCount}</td>
           <td>{postData.commentCount}</td>
           <td>{postData.comment}</td>
