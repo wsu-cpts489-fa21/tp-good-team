@@ -230,7 +230,6 @@ class RoundForm extends React.Component {
     return changeFlag;
   };
 
-  //TODO: Check if any badges are unlocked. If so, display congrats toast in parent
   handleSubmitCallback = async () => {
     const newRound = { ...this.state };
     delete newRound.btnIcon;
@@ -262,7 +261,6 @@ class RoundForm extends React.Component {
   };
 
   render() {
-
     return (
       <div
         id="roundsModeDialog"
@@ -419,10 +417,9 @@ class RoundForm extends React.Component {
                 name="private"
                 type="checkbox"
                 readOnly={true}
-                onChange= { () => {
-                    this.setState({isPrivate: !this.state.isPrivate})
-                  }
-                }
+                onChange={() => {
+                  this.setState({ isPrivate: !this.state.isPrivate });
+                }}
               />
             </label>
           </div>

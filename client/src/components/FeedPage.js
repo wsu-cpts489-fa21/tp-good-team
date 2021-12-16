@@ -34,19 +34,11 @@ class FeedPage extends React.Component {
     let res = await fetch(url)
       .then((response) => response.json())
       .then((obj) => {
-        console.log("Obj " + JSON.stringify(obj)); //Must be stringify
-
         this.setState({
           objs: obj,
           postModalOpen: false,
         });
       });
-
-    for (let index = 0; index < 10; index++) {
-      console.log(
-        "Index[" + index + "]: " + JSON.stringify(this.state.objs[index])
-      );
-    }
 
     return;
   }

@@ -29,7 +29,7 @@ class FeedTable extends React.Component {
     });
     console.log("You clicked " + r + "!", this.state.popupOpen);
   };
-  
+
   renderTable = () => {
     const table = [];
     for (let r = 0; r < this.props.objs.length; ++r) {
@@ -38,8 +38,8 @@ class FeedTable extends React.Component {
       const postData = this.props.objs[r].postData;
       // Need to add title for post and Round
       //For post
-      
-          let date = postData.date;
+
+      let date = postData.date;
       // let date = new Intl.DateTimeFormat("en-US", {
       //   year: "numeric",
       //   month: "2-digit",
@@ -65,6 +65,7 @@ class FeedTable extends React.Component {
       } else if (postData.postType === "post") {
         title = userData.firstName + " wrote a post on " + postData.date + ".";
       } else alert("Error");
+
       if (!roundData.isPrivate) {
         table.push(
           <tr onClick={() => this.handleTableClick(r)} key={r}>

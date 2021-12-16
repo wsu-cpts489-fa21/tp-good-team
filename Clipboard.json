@@ -9,12 +9,14 @@
     "sgs": "143:00",
     "strokes": "80",
     "minutes": "60",
-    "seconds": "50"
+    "seconds": "50",
+    "isPrivate": true
   },
   "postData": {
     "date": "2005-01-01",
     "fistBumpCount": 0,
     "commentCount": 0,
-    "comment": ""
+    "comment": "",
+    "postType": "post"
   }
 }

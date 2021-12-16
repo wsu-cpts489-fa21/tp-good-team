@@ -16,7 +16,6 @@ const BadgeData = {
     brown: 30,
   },
 
-  //TODO: Update Badge Data
   fastTimeBadges: {
     purple: 35,
     blue: 45,
@@ -24,7 +23,6 @@ const BadgeData = {
     grey: 60,
     brown: 80,
   },
-  //TODO: Update Badge Data
   lowStrokesBadges: {
     purple: 65,
     blue: 75,
