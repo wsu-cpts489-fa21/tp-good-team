@@ -333,7 +333,6 @@ class App extends React.Component {
     }
   };
 
-  //TODO: Decrement numRounds
   deleteRound = async (id) => {
     const url =
       "/rounds/" +
@@ -386,6 +385,7 @@ class App extends React.Component {
         strokes: newRound.strokes,
         minutes: newRound.minutes,
         seconds: newRound.seconds,
+        isPrivate: newRound.isPrivate,
       },
       postData: {
         date: newRound.date,
@@ -416,6 +416,9 @@ class App extends React.Component {
       userData: {
         firstName: this.state.userData.accountData.id,
         userName: this.state.userData.accountData.id,
+      },
+      roundData: {
+        isPrivate: false,
       },
       postData: {
         date: Date.now(),

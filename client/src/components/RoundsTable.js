@@ -84,8 +84,6 @@ class RoundsTable extends React.Component {
     }
   };
 
-  //TODO: Add toggleNewBadge method
-  //TODO: Add toggleNewBadge passed to child
   render() {
     return (
       <div
@@ -95,7 +93,6 @@ class RoundsTable extends React.Component {
         aria-label="Rounds Tab"
         tabIndex="0"
       >
-        {/*TODO: Render toast for earning new badge */}
         {this.renderNewBadgeToast()}
 
         <h1 className="mode-page-header">Rounds</h1>

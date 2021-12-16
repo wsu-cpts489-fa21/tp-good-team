@@ -36,7 +36,7 @@ postRoute.post("/posts/:postId", async (req, res) => {
 
   //Verify data
   const validUserProps = ["firstName", "userName"];
-  const validRoundProps = ["sgs", "strokes", "minutes", "seconds"];
+  const validRoundProps = ["sgs", "strokes", "minutes", "seconds", "isPrivate"];
   const validPostProps = [
     "date",
     "fistBumpCount",
