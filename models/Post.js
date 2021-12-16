@@ -8,9 +8,10 @@ const PostSchema = new mongoose.Schema({
   },
   roundData: {
     sgs: { type: String },
-    strokes: { type: String },
-    minutes: { type: String },
-    seconds: { type: String },
+    strokes: { type: String, required: true, min: 1, max: 300 },
+    minutes: { type: String, required: true, min: 1, max: 240 },
+    seconds: { type: String, required: true, min: 0, max: 60 },
+    isPrivate: { type: Boolean },
   },
   postData: {
     date: {

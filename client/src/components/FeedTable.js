@@ -1,4 +1,3 @@
-
 import React from "react";
 import logo from "../images/sslogo2.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -66,15 +65,17 @@ class FeedTable extends React.Component {
       } else if (postData.postType === "post") {
         title = userData.firstName + " wrote a post on " + postData.date + ".";
       } else alert("Error");
-      table.push(
-        <tr key={r}>
-          <td>{userData.profilePic}</td>
-          <td onClick={() => this.handleTableClick(r)}>{title}</td>
-          <td>{postData.fistBumpCount}</td>
-          <td>{postData.commentCount}</td>
-          <td>{postData.comment}</td>
-        </tr>
-      );
+      if (!roundData.isPrivate) {
+        table.push(
+          <tr onClick={() => this.handleTableClick(r)} key={r}>
+            <td>{userData.profilePic}</td>
+            <td>{title}</td>
+            <td>{postData.fistBumpCount}</td>
+            <td>{postData.commentCount}</td>
+            <td>{postData.comment}</td>
+          </tr>
+        );
+      }
     }
     return table;
   };
