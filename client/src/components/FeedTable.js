@@ -34,12 +34,7 @@ class FeedTable extends React.Component {
       table.push(
         <tr onClick={() => this.handleTableClick(r)} key={r}>
           <td>{userData.profilePic}</td>
-          <td>{userData.firstName}</td>
-          <td>{roundData.sgs}</td>
-          <td>{roundData.strokes}</td>
-          <td>{roundData.minutes}</td>
-          <td>{roundData.seconds}</td>
-          <td>{postData.date}</td>
+          <td>{title}</td>
           <td>{postData.fistBumpCount}</td>
           <td>{postData.commentCount}</td>
           <td>{postData.comment}</td>

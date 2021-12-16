@@ -2,17 +2,21 @@ import mongoose from "mongoose";
 
 const PostSchema = new mongoose.Schema({
   _id: { type: Number, required: true },
-  postData: {
+  userData: {
     firstName: { type: String, required: true },
-    fistBumpCount: { type: Number, default: 0 },
-    commentCount: { type: Number, default: 0 },
+    userName: { type: String, required: true },
   },
   roundData: {
-    date: { type: Date, default: Date.now },
     sgs: { type: String },
     strokes: { type: String, required: true, min: 1, max: 300 },
     minutes: { type: String, required: true, min: 1, max: 240 },
     seconds: { type: String, required: true, min: 0, max: 60 },
+  },
+  postData: {
+    date: { type: Date, default: Date.now },
+    fistBumpCount: { type: Number, default: 0 },
+    commentCount: { type: Number, default: 0 },
+    comment: { type: String },
   },
   //   comments: [CommentSchema],
 });
