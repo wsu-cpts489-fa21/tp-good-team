@@ -140,6 +140,21 @@ class App extends React.Component {
     this.setState((prevState) => ({ modalOpen: !prevState.modalOpen }));
   };
 
+  // prepFeed = () => {
+  // fetch("/posts/9999999999999")
+  //   .then((response) => response.json())
+  //   .then((obj) => {
+  //     if (obj.isAuthenticated) {
+  //       this.logInUser(obj.user);
+  //     }
+  //   });
+  // const url = "/posts/9999999999999";
+  // const res = await fetch(url)
+  //   .then((response) => response.json())
+  //   .then((obj) => console.log("TESTTTT " + obj));
+  // for (let i = 0; i < 4; i++) {}
+  // };
+
   /*****************************************************************
    * Account Management methods
    ***************************************************************** */
@@ -372,6 +387,7 @@ class App extends React.Component {
           setMode={this.setMode}
           menuOpen={this.state.menuOpen}
           modalOpen={this.state.modalOpen}
+          // prepFeed={this.prepFeed}
         />
         {this.state.menuOpen ? <SideMenu logOut={this.logOut} /> : null}
         {
