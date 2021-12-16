@@ -10,6 +10,11 @@ class FeedTable extends React.Component {
       popupOpen: false,
       firstName: "",
       sgs: "",
+      minutes: "",
+      seconds: "",
+      strokes: "",
+      type: "",
+      comment: "",
     };
   }
 
@@ -21,15 +26,22 @@ class FeedTable extends React.Component {
   handleTableClick = (r) => {
     const userData = this.props.objs[r].userData;
     const roundData = this.props.objs[r].roundData;
+    const postData = this.props.objs[r].postData;
 
-    this.setState({
-      popupOpen: true,
-      firstName: userData.firstName,
-      sgs: roundData.sgs,
-    });
-    console.log("You clicked " + r + "!", this.state.popupOpen);
+    if (postData.postType === "round") {
+      this.setState({
+        popupOpen: true,
+        firstName: userData.firstName,
+        sgs: roundData.sgs,
+        strokes: roundData.strokes,
+        minutes: roundData.minutes,
+        seconds: roundData.seconds,
+        type: postData.postType,
+      });
+
+      console.log("You clicked " + r + "!", this.state.popupOpen);
+    }
   };
-
   renderTable = () => {
     const table = [];
     for (let r = 0; r < this.props.objs.length; ++r) {
@@ -90,13 +102,24 @@ class FeedTable extends React.Component {
         aria-label="Feed Table Tab"
         tabIndex="0"
       >
-        {this.state.popupOpen ? (
+        {this.state.popupOpen && this.state.type == "round" ? (
           <PopUpModal
             cancelBtn={this.cancelBtn}
             firstName={this.state.firstName}
+            strokes={this.state.strokes}
+            minutes={this.state.minutes}
+            seconds={this.state.seconds}
             sgs={this.state.sgs}
           />
         ) : null}
+
+        {/* {this.state.popupOpen && this.state.type == "post" ? (
+          <PostPopUpModal
+            cancelBtn={this.cancelBtn}
+            firstName={this.state.firstName}
+            comment={this.state.comment}
+          />
+        ) : null} */}
         <h1 className="mode-page-header">Feed Table</h1>
         <table
           id="feedTable"
