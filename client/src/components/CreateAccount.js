@@ -113,6 +113,7 @@ class CreateAccount extends React.Component {
           profilePic: this.state.profilePic,
         },
         numRounds: 0,
+        buddies: [],
         speedgolfData: {
           bio: "",
           homeCourse: "",

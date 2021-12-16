@@ -44,6 +44,7 @@ class SettingsPage extends React.Component {
       securityAnswer: this.props.userData.accountData.securityAnswer,
       displayName: this.props.userData.identityData.displayName,
       numRounds: this.props.userData.numRounds,
+      buddies: this.props.userData.buddies,
       profilePic: this.props.userData.identityData.profilePic,
       bio: this.props.userData.speedgolfData.bio,
       homeCourse: this.props.userData.speedgolfData.homeCourse,
@@ -172,6 +173,7 @@ class SettingsPage extends React.Component {
           profilePic: this.state.profilePic,
         },
         numRounds: this.state.numRounds,
+        buddies: this.state.buddies,
         speedgolfData: {
           bio: this.state.bio,
           homeCourse: this.state.homeCourse,

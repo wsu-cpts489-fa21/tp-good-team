@@ -119,6 +119,7 @@ userRoute.post("/users/:userId", async (req, res, next) => {
             );
         }
       }
+    } else if (bodyProp === "buddies") {
     } else if (bodyProp === "numRounds") {
     } else {
       return res
@@ -154,6 +155,7 @@ userRoute.post("/users/:userId", async (req, res, next) => {
           profilePic: req.body.identityData.profilePic,
         },
         numRounds: req.body.numRounds,
+        buddies: req.body.buddies,
         speedgolfData: {
           bio: req.body.speedgolfData.bio,
           homeCourse: req.body.speedgolfData.homeCourse,
@@ -272,6 +274,7 @@ userRoute.put("/users/:userId", async (req, res, next) => {
             );
         }
       }
+    } else if (bodyProp === "buddies") {
     } else if (bodyProp === "numRounds") {
     } else if (bodyProp === "rounds") {
     } else {
