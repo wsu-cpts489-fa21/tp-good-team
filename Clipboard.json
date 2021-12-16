@@ -2,7 +2,8 @@
    "_id": 5,
    "userData": {
      "firstName": "Bob",
-     "userName": "user@user.com"
+     "userName": "user@user.com",
+     "profilePic": ""
    },
    "roundData": {
      "sgs": "143:00",
@@ -21,7 +22,8 @@
    "_id": 7,
    "userData": {
      "firstName": "Bob",
-     "userName": "user@user.com"
+     "userName": "user@user.com",
+     "profilePic": ""
    },
    "roundData": {
      "sgs": "143:00",
@@ -40,7 +42,8 @@
    "_id": 2,
    "userData": {
      "firstName": "Bob",
-     "userName": "user@user.com"
+     "userName": "user@user.com",
+     "profilePic": ""
    },
    "roundData": {
      "sgs": "143:00",
@@ -59,7 +62,8 @@
    "_id": 1,
    "userData": {
      "firstName": "Bob",
-     "userName": "user@user.com"
+     "userName": "user@user.com",
+     "profilePic": ""
    },
    "roundData": {
      "sgs": "143:00",
@@ -78,7 +82,8 @@
    "_id": 8,
    "userData": {
      "firstName": "Bob",
-     "userName": "user@user.com"
+     "userName": "user@user.com",
+     "profilePic": ""
    },
    "roundData": {
      "sgs": "143:00",
@@ -97,7 +102,8 @@
    "_id": 9,
    "userData": {
      "firstName": "Bob",
-     "userName": "user@user.com"
+     "userName": "user@user.com",
+     "profilePic": ""
    },
    "roundData": {
      "sgs": "143:00",
@@ -116,7 +122,8 @@
    "_id": 3,
    "userData": {
      "firstName": "Bob",
-     "userName": "user@user.com"
+     "userName": "user@user.com",
+     "profilePic": ""
    },
    "roundData": {
      "sgs": "143:00",
@@ -135,7 +142,8 @@
    "_id": 4,
    "userData": {
      "firstName": "Bob",
-     "userName": "user@user.com"
+     "userName": "user@user.com",
+     "profilePic": ""
    },
    "roundData": {
      "sgs": "143:00",
@@ -154,7 +162,8 @@
    "_id": 10,
    "userData": {
      "firstName": "Bob",
-     "userName": "user@user.com"
+     "userName": "user@user.com",
+     "profilePic": ""
    },
    "roundData": {
      "sgs": "143:00",
@@ -173,7 +182,8 @@
    "_id": 6,
    "userData": {
      "firstName": "Bob",
-     "userName": "user@user.com"
+     "userName": "user@user.com",
+     "profilePic": ""
    },
    "roundData": {
      "sgs": "143:00",
