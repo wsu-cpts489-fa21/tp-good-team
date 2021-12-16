@@ -1,13 +1,36 @@
 import React from "react";
 import logo from "../images/sslogo2.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import PopUpModal from "./PopUpModal";
 
 class FeedTable extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      popupOpen: false,
+      firstName: "",
+      sgs: "",
+    };
+  }
   click = () => {
     console.log("Click");
   };
+
+  cancelBtn = () => {
+    this.setState({
+      popupOpen: false,
+    });
+  };
   handleTableClick = (r) => {
-    console.log("You clicked " + r + "!");
+    const userData = this.props.objs[r].userData;
+    const roundData = this.props.objs[r].roundData;
+
+    this.setState({
+      popupOpen: true,
+      firstName: userData.firstName,
+      sgs: roundData.sgs,
+    });
+    console.log("You clicked " + r + "!", this.state.popupOpen);
   };
   renderTable = () => {
     const table = [];
@@ -58,6 +81,13 @@ class FeedTable extends React.Component {
         aria-label="Feed Table Tab"
         tabIndex="0"
       >
+        {this.state.popupOpen ? (
+          <PopUpModal
+            cancelBtn={this.cancelBtn}
+            firstName={this.state.firstName}
+            sgs={this.state.sgs}
+          />
+        ) : null}
         <h1 className="mode-page-header">Feed Table</h1>
         <table
           id="feedTable"
@@ -87,6 +117,7 @@ class FeedTable extends React.Component {
               >
                 Title
               </th>
+              {/* <th></th> */}
               <th
                 scope="col"
                 role="columnheader"
@@ -95,6 +126,7 @@ class FeedTable extends React.Component {
               >
                 Fist Bumps
               </th>
+
               <th scope="col" className="cell-align-middle">
                 Comments
               </th>
