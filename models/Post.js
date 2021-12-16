@@ -17,6 +17,7 @@ const PostSchema = new mongoose.Schema({
     fistBumpCount: { type: Number, default: 0 },
     commentCount: { type: Number, default: 0 },
     comment: { type: String },
+    postType: { type: String }, //post, round, error
   },
   //   comments: [CommentSchema],
 });
