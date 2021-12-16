@@ -19,45 +19,6 @@ class FeedPage extends React.Component {
       postModalOpen: false,
     });
   };
-  //   render() {
-  //     if (this.state.postModalOpen) {
-  //       return (
-  //         <>
-  //           <div class="space">
-  //             <PostPage cancelBtn={this.cancelBtn} />
-  //           </div>
-  //         </>
-  //       );
-  //     } else {
-  //       return (
-  //         <div
-  //           id="feedModeTab"
-  //           className="mode-page"
-  //           role="tabpanel"
-  //           aria-label="Feed Tab"
-  //           tabIndex="0"
-  //         >
-  //           <h1 className="mode-page-header">Activity Feed</h1>
-  //           <p className="mode-page-content">This page is under construction.</p>
-  //           <img
-  //             className="mode-page-icon"
-  //             src={logo}
-  //             alt="SpeedScore logo"
-  //           ></img>
-  //           <PostButton
-  //             icon="blog"
-  //             label={"Post"}
-  //             action={() =>
-  //               this.setState({
-  //                 postModalOpen: true,
-  //               })
-  //             }
-  //           />
-  //           {this.state.postModalOpen ? <PostPage /> : null}
-  //         </div>
-  //       );
-
-  //   }
 
   async componentDidMount() {
     const url = "/posts/" + this.state.headId;
@@ -91,33 +52,6 @@ class FeedPage extends React.Component {
         </>
       );
     } else {
-      // return (
-      //   <div
-      //     id="feedModeTab"
-      //     className="mode-page"
-      //     role="tabpanel"
-      //     aria-label="Feed Tab"
-      //     tabIndex="0"
-      //   >
-      //     <h1 className="mode-page-header">Activity Feed</h1>
-      //     <p className="mode-page-content">This page is under construction.</p>
-      //     <img
-      //       className="mode-page-icon"
-      //       src={logo}
-      //       alt="SpeedScore logo"
-      //     ></img>
-      //     <PostButton
-      //       icon="blog"
-      //       label={"Post"}
-      //       action={() =>
-      //         this.setState({
-      //           postModalOpen: true,
-      //         })
-      //       }
-      //     />
-      //     {this.state.postModalOpen ? <PostPage /> : null}
-      //   </div>
-      // );
       return (
         <div
           id="feedModeTab"
@@ -142,8 +76,6 @@ class FeedPage extends React.Component {
           />
           {this.state.postModalOpen ? <PostPage /> : null}
         </div>
-
-        //   </div>
       );
     }
   }
