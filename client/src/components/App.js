@@ -487,8 +487,9 @@ class App extends React.Component {
                 modalOpen={this.state.modalOpen}
                 toggleModalOpen={this.toggleModalOpen}
                 menuOpen={this.state.menuOpen}
-                userId={this.state.userId}
+                userId={this.state.userData.accountData.id}
                 addFeedPost={this.addFeedPost}
+                buddies={this.state.userData.buddies}
               />
             ),
             RoundsMode: (

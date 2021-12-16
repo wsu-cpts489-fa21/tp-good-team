@@ -24,6 +24,8 @@ import ultraRound from "../images/ultraRound.png";
 import ultraStroke from "../images/ultraStroke.png";
 import ultraStreak from "../images/ultraStreak.png";
 
+//TODO import <Category>-<Tier>-badge rounds-brown-badge
+
 class SettingsPage extends React.Component {
   constructor(props) {
     super(props);
@@ -44,7 +46,6 @@ class SettingsPage extends React.Component {
       securityAnswer: this.props.userData.accountData.securityAnswer,
       displayName: this.props.userData.identityData.displayName,
       numRounds: this.props.userData.numRounds,
-      buddies: this.props.userData.buddies,
       profilePic: this.props.userData.identityData.profilePic,
       bio: this.props.userData.speedgolfData.bio,
       homeCourse: this.props.userData.speedgolfData.homeCourse,
@@ -173,7 +174,6 @@ class SettingsPage extends React.Component {
           profilePic: this.state.profilePic,
         },
         numRounds: this.state.numRounds,
-        buddies: this.state.buddies,
         speedgolfData: {
           bio: this.state.bio,
           homeCourse: this.state.homeCourse,
@@ -484,6 +484,7 @@ class SettingsPage extends React.Component {
         return ultraStreak;
     }
   };
+  //TODO Render badge display
   renderBadgeDisplay = () => {
     console.log(
       this.props.userData.badges.roundsPlayedBadge,
@@ -566,7 +567,7 @@ class SettingsPage extends React.Component {
         {this.renderErrorBox()}
 
         {/*****************************************************************
-         * Section to display badges
+         * TODO: Section to display badges
          ******************************************************************/}
         <div className="badge-container">{this.renderBadgeDisplay()}</div>
 

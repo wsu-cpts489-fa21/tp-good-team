@@ -66,7 +66,11 @@ class FeedPage extends React.Component {
           tabIndex="0"
         >
           {this.state.objs !== null ? (
-            <FeedTable objs={this.state.objs} />
+            <FeedTable
+              userId={this.props.userId}
+              buddies={this.props.buddies}
+              objs={this.state.objs}
+            />
           ) : null}
           <PostButton
             icon="blog"
