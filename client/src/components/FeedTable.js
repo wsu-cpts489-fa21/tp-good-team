@@ -15,6 +15,7 @@ class FeedTable extends React.Component {
       const userData = this.props.objs[r].userData;
       const roundData = this.props.objs[r].roundData;
       const postData = this.props.objs[r].postData;
+      // Need to add title for post and Round
       //For post
 
       //For round
