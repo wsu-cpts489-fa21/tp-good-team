@@ -17,6 +17,7 @@ class FeedTable extends React.Component {
       strokes: "",
       type: "",
       comment: "",
+      likes: 0,
     };
   }
 
@@ -52,6 +53,7 @@ class FeedTable extends React.Component {
         type: postData.postType,
         id: this.props.objs[r]._id,
         comments: commentList,
+        likes: postData.fistBumpCount,
       });
 
       console.log("You clicked " + r + "!", this.state.popupOpen);
@@ -138,6 +140,7 @@ class FeedTable extends React.Component {
             sgs={this.state.sgs}
             id={this.state.id}
             comments={this.state.comments}
+            likes={this.state.likes}
           />
         ) : null}
 

@@ -321,13 +321,23 @@ We did not use Zoom, we used a private discord meeting to go through what we did
     </tr>
   </thead> 
   <tbody>
+    
     <tr>
-      <td><a href="https://github.com/issue">Issue #</a></td><td><a href="https://github.com/PR">PR #</a></td><td>5</td><td>3</td><td>1</td><td>1</td><td>0</td><td>100</td><td></td>
+      <td><a href="https://github.com/issue">Issue #122</a></td><td><a href="https://github.com/PR">PR #132</a></td><td>5</td><td>3</td><td>1</td><td>1</td><td>0</td><td>100</td><td>Updated database schema. Updated server routes.</td>
     </tr>
     <tr>
-     <td><a href="https://github.com/issue">Issue #</a></td><td><a href="https://github.com/PR">PR #</a></td><td>3</td><td>0</td><td>0</td><td>0</td><td>0.8</td><td>40</td><td>Updated database schema. Updated server routes. Did not implement UI.</td>
+     <td><a href="https://github.com/issue">Issue #121</a></td><td><a href="https://github.com/PR">PR #136</a></td><td>3</td><td>0</td><td>0</td><td>0</td><td>0.8</td><td>40</td><td>Updated database schema. Updated server routes. Implemented UI.</td>
     </tr>
-    <tr><td colspan="2" align="right"><b>Totals:</b></td><td><b>8</b></td><td><b>3</b></td><td><b>1</b></td><td><b>1</b></td><td><b>0.8</b></td><td colspan="2"></td>
+     <tr>
+      <td><a href="https://github.com/issue">Issue #123</a></td><td><a href="https://github.com/PR">PR #130</a></td><td>5</td><td>3</td><td>1</td><td>1</td><td>0</td><td>100</td><td>Updated UI to display pop ups</td>
+    </tr>
+    <tr>
+     <td><a href="https://github.com/issue">Issue #120</a></td><td><a href="https://github.com/PR">PR #128</a></td><td>3</td><td>0</td><td>0</td><td>0</td><td>0.8</td><td>40</td><td>Updated database schema. Updated server routes. Implemented UI through a action button and added a page.</td>
+    </tr>
+     <tr>
+      <td><a href="https://github.com/issue">Issue #124</a></td><td><a href="https://github.com/PR">PR #125,126,127,129,131,133,135</a></td><td>5</td><td>3</td><td>1</td><td>1</td><td>0</td><td>100</td><td>Updated the databse multiple times. Updated the schema numerous times. UI implemented to accomdate for those changes.</td>
+    </tr>
+    <tr><td colspan="5" align="right"><b>Totals:</b></td><td><b>8</b></td><td><b>3</b></td><td><b>1</b></td><td><b>1</b></td><td><b>0.8</b></td><td colspan="5"></td>
     </tr>
   </tbody>
 </table>
@@ -393,7 +403,9 @@ We did not use Zoom, we used a private discord meeting to go through what we did
     </tr>
      <tr>
       <td>12/15/21</td><td>120</td><td>&check;</td><td>&check;</td><td></td><td></td><td>We met over discord to talk about our current features and resolve merge conflicts among the different versions of similar pages</td>
-       <td>12/15/21</td><td>120</td><td>&check;</td><td>&check;</td><td></td><td></td><td>We met over discord to talk about the final product, resolve merge conflicts among the different versions of similar pages and make sure we had a working product.</td>
+    </tr>
+    <tr>
+      <td>12/15/21</td><td>120</td><td>&check;</td><td>&check;</td><td></td><td></td><td>We met over discord to talk about the final product, resolve merge conflicts among the different versions of similar pages and make sure we had a working product.</td>
     </tr>
     <tr><td align="right"><b>Totals:</b></td><td><b>65</b></td><td><b>2</b></td><td><b>2</b></td><td><b>0</b></td><td><b>1</b></td><td></td>
     </tr>
@@ -415,18 +427,10 @@ We did not use Zoom, we used a private discord meeting to go through what we did
 
 #### What went well
 
-- Item 1
-- Item 2
-- Item x
+- Team communication
+- Implemented a lot of this milestone
+- Everyone played a big part in this milestone
 
 #### What we'd like to improve
 
-- Item 1
-- Item 2
-- Item x
-
-#### Changes we plan to implement in next milestone period
-
-- Item 1
-- Item 2
-- Item x
+- Fixing our previous bugs that we haven't had a chance to look at
