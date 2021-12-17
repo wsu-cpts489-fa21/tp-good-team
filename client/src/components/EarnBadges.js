@@ -104,7 +104,6 @@ class EarnBadges extends React.Component {
         <p>To earn this badge, accumulate 65 or less swings in one game</p>
 
         <button
-          className="btn btn-primary"
           onClick={() => {
             this.props.cancelBtn();
           }}
