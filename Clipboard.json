@@ -1,0 +1,22 @@
+{
+  "_id": 5,
+  "userData": {
+    "firstName": "TESTPRIVATEtrue",
+    "userName": "user@user.com",
+    "profilePic": ""
+  },
+  "roundData": {
+    "sgs": "143:00",
+    "strokes": "80",
+    "minutes": "60",
+    "seconds": "50",
+    "isPrivate": true
+  },
+  "postData": {
+    "date": "2005-01-01",
+    "fistBumpCount": 0,
+    "commentCount": 0,
+    "comment": "",
+    "postType": "post"
+  }
+}

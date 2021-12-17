@@ -13,6 +13,7 @@ const UserSchema = new mongoose.Schema({
     profilePic: String,
   },
   numRounds: Number,
+  buddies: [String],
   speedgolfData: {
     bio: String,
     homeCourse: String,

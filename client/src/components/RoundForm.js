@@ -18,6 +18,7 @@ class RoundForm extends React.Component {
         minutes: 60,
         seconds: "00",
         SGS: "140:00",
+        isPrivate: false,
         notes: "",
         btnIcon: "calendar",
         btnLabel: "Log Round",
@@ -229,7 +230,6 @@ class RoundForm extends React.Component {
     return changeFlag;
   };
 
-  //TODO: Check if any badges are unlocked. If so, display congrats toast in parent
   handleSubmitCallback = async () => {
     const newRound = { ...this.state };
     delete newRound.btnIcon;
@@ -407,6 +407,19 @@ class RoundForm extends React.Component {
                 size="6"
                 value={this.state.SGS}
                 readOnly={true}
+              />
+            </label>
+          </div>
+          <div className="mb-3 centered">
+            <label>
+              Keep round private
+              <input
+                name="private"
+                type="checkbox"
+                readOnly={true}
+                onChange={() => {
+                  this.setState({ isPrivate: !this.state.isPrivate });
+                }}
               />
             </label>
           </div>

@@ -321,13 +321,23 @@ We did not use Zoom, we used a private discord meeting to go through what we did
     </tr>
   </thead> 
   <tbody>
+    
     <tr>
-      <td><a href="https://github.com/issue">Issue #</a></td><td><a href="https://github.com/PR">PR #</a></td><td>5</td><td>3</td><td>1</td><td>1</td><td>0</td><td>100</td><td></td>
+      <td><a href="https://github.com/issue">Issue #122</a></td><td><a href="https://github.com/PR">PR #132</a></td><td>5</td><td>3</td><td>1</td><td>1</td><td>0</td><td>100</td><td>Updated database schema. Updated server routes.</td>
     </tr>
     <tr>
-     <td><a href="https://github.com/issue">Issue #</a></td><td><a href="https://github.com/PR">PR #</a></td><td>3</td><td>0</td><td>0</td><td>0</td><td>0.8</td><td>40</td><td>Updated database schema. Updated server routes. Did not implement UI.</td>
+     <td><a href="https://github.com/issue">Issue #121</a></td><td><a href="https://github.com/PR">PR #136</a></td><td>3</td><td>0</td><td>0</td><td>0</td><td>0.8</td><td>40</td><td>Updated database schema. Updated server routes. Implemented UI.</td>
     </tr>
-    <tr><td colspan="2" align="right"><b>Totals:</b></td><td><b>8</b></td><td><b>3</b></td><td><b>1</b></td><td><b>1</b></td><td><b>0.8</b></td><td colspan="2"></td>
+     <tr>
+      <td><a href="https://github.com/issue">Issue #123</a></td><td><a href="https://github.com/PR">PR #130</a></td><td>5</td><td>3</td><td>1</td><td>1</td><td>0</td><td>100</td><td>Updated UI to display pop ups</td>
+    </tr>
+    <tr>
+     <td><a href="https://github.com/issue">Issue #120</a></td><td><a href="https://github.com/PR">PR #128</a></td><td>3</td><td>0</td><td>0</td><td>0</td><td>0.8</td><td>40</td><td>Updated database schema. Updated server routes. Implemented UI through a action button and added a page.</td>
+    </tr>
+     <tr>
+      <td><a href="https://github.com/issue">Issue #124</a></td><td><a href="https://github.com/PR">PR #125,126,127,129,131,133,135</a></td><td>5</td><td>3</td><td>1</td><td>1</td><td>0</td><td>100</td><td>Updated the databse multiple times. Updated the schema numerous times. UI implemented to accomdate for those changes.</td>
+    </tr>
+    <tr><td colspan="5" align="right"><b>Totals:</b></td><td><b>8</b></td><td><b>3</b></td><td><b>1</b></td><td><b>1</b></td><td><b>0.8</b></td><td colspan="5"></td>
     </tr>
   </tbody>
 </table>
@@ -336,7 +346,7 @@ We did not use Zoom, we used a private discord meeting to go through what we did
 
 | Team Member | Contribution Reflection Statement                                                                                                                                                          |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| H.J.        | <_Required_: The story points data is unlikely to tell the whole story about your contribution. Write a brief statement explaining and reflecting on your contribution to this milestone.> |
+| H.J.        | <_Required_: During this milestone i worked on two tasks. I worked on 120 and 123 that led to a user being able to click a post action button and see a post page, write text or upload a file and with Jeremiah's help, submit to and have it seen on the feed. 123 I created a pop up modal for when users click a round on the feed page, they can view the stats.> |
 | E.A.        | <_Required_: The story points data is unlikely to tell the whole story about your contribution. Write a brief statement explaining and reflecting on your contribution to this milestone.> |
 | C.H.        | <_Required_: The story points data is unlikely to tell the whole story about your contribution. Write a brief statement explaining and reflecting on your contribution to this milestone.> |
 | J.S.        | <_Required_: The story points data is unlikely to tell the whole story about your contribution. Write a brief statement explaining and reflecting on your contribution to this milestone.> |
@@ -350,7 +360,7 @@ We did not use Zoom, we used a private discord meeting to go through what we did
 
 ### Communication
 
-#### Slack Messages
+#### Discord Messages
 
 <table> 
   <thead>
@@ -363,40 +373,21 @@ We did not use Zoom, we used a private discord meeting to go through what we did
   </thead> 
   <tbody>
     <tr>
-      <td>11/9/21</td><td>5</td><td>2</td><td>1</td><td>1</td><td>1</td>
+      <td>12/13/21</td><td>37</td><td>11</td><td>5</td><td>3</td><td>18</td>
     </tr>
     <tr>
-     <td>11/12/21</td><td>4</td><td>1</td><td>1</td><td>0</td><td>0</td>
-    </tr>
-    <tr><td align="right"><b>Totals:</b></td><td><b>9</b></td><td><b>3</b></td><td><b>2</b></td><td><b>1</b></td><td><b>1</b></td>
-    </tr>
-  </tbody>
-</table>
-
-#### Zoom Meetings
-
-<table> 
-  <thead>
-    <tr>
-      <th colspan="2"></th><th colspan="5">In attendance?</th>
-    </tr> 
-    <tr>
-      <th>Date</th><th>Duration (min)</th><th>H.J.</th><th>E.A.</th><th>C.H.</th><th>J.S.</th>
-    </tr>
-  </thead> 
-  <tbody>
-    <tr>
-      <td>11/9/21</td><td>17</td><td>&check;</td><td>&check;</td><td></td><td>&check;</td>
+     <td>12/15/21</td><td>69</td><td>22</td><td>13</td><td>5</td><td>29</td>
     </tr>
      <tr>
-      <td>11/12/21</td><td>31</td><td>&check;</td><td>&check;</td><td></td><td></td>
+      <td>12/16/21</td><td>54</td><td>15</td><td>11</td><td>7</td><td>21</td>
     </tr>
-    <tr><td align="right"><b>Totals:</b></td><td><b>48</b></td><td><b>2</b></td><td><b>2</b></td><td><b>0</b></td><td><b>1</b></td>
+    <tr><td align="right"><b>Totals:</b></td><td><b>160</b></td><td><b>48</b></td><td><b>29</b></td><td><b>15</b></td><td><b>68</b></td>
     </tr>
   </tbody>
 </table>
+
   
-#### Face-to-Face Meetings
+#### Discord Meetings
 <table> 
   <thead>
     <tr>
@@ -408,10 +399,13 @@ We did not use Zoom, we used a private discord meeting to go through what we did
   </thead> 
   <tbody>
     <tr>
-      <td>11/10/21</td><td>45</td><td>&check;</td><td>&check;</td><td></td><td>&check;</td><td>We met in CUB conference room</td>
+      <td>12/13/21</td><td>60</td><td>&check;</td><td></td><td></td><td>&check;</td><td>Met over discord to talk about the features we wanted to implement for this milestone</td>
     </tr>
      <tr>
-      <td>11/14/21</td><td>20</td><td>&check;</td><td>&check;</td><td></td><td></td><td>We met at Starbucks for coffee</td>
+      <td>12/15/21</td><td>120</td><td>&check;</td><td>&check;</td><td></td><td></td><td>We met over discord to talk about our current features and resolve merge conflicts among the different versions of similar pages</td>
+    </tr>
+    <tr>
+      <td>12/15/21</td><td>120</td><td>&check;</td><td>&check;</td><td></td><td></td><td>We met over discord to talk about the final product, resolve merge conflicts among the different versions of similar pages and make sure we had a working product.</td>
     </tr>
     <tr><td align="right"><b>Totals:</b></td><td><b>65</b></td><td><b>2</b></td><td><b>2</b></td><td><b>0</b></td><td><b>1</b></td><td></td>
     </tr>
@@ -422,7 +416,7 @@ We did not use Zoom, we used a private discord meeting to go through what we did
 
 | Team Member | Communication Reflection Statement                                                                                                                                                                               |
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| H.J.        | <_Required_: The posts/replies data is unlikely to tell the whole story about your communication. Write a brief statement explaining and reflecting on your communication with your team during this milestone.> |
+| H.J.        | <_Required_: During this milestone I worked closely with my teammates to figure out and meet the requirements needed for tpm2 to the best of our ability.> |
 | E.A.        | <_Required_: The posts/replies data is unlikely to tell the whole story about your communication. Write a brief statement explaining and reflecting on your communication with your team during this milestone.> |
 | C.H.        | <_Required_: The posts/replies data is unlikely to tell the whole story about your communication. Write a brief statement explaining and reflecting on your communication with your team during this milestone.> |
 | J.S.        | <_Required_: The posts/replies data is unlikely to tell the whole story about your communication. Write a brief statement explaining and reflecting on your communication with your team during this milestone.> |
@@ -433,18 +427,10 @@ We did not use Zoom, we used a private discord meeting to go through what we did
 
 #### What went well
 
-- Item 1
-- Item 2
-- Item x
+- Team communication
+- Implemented a lot of this milestone
+- Everyone played a big part in this milestone
 
 #### What we'd like to improve
 
-- Item 1
-- Item 2
-- Item x
-
-#### Changes we plan to implement in next milestone period
-
-- Item 1
-- Item 2
-- Item x
+- Fixing our previous bugs that we haven't had a chance to look at

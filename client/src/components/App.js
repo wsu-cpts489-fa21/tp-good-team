@@ -57,6 +57,7 @@ class App extends React.Component {
         accountData: {},
         identityData: {},
         numRounds: 1,
+        buddies: [],
         speedgolfData: {},
         badges: {},
         rounds: [],
@@ -111,6 +112,7 @@ class App extends React.Component {
         accountData: {},
         identityData: {},
         numRounds: 0,
+        buddies: [],
         speedgolfData: {},
         badges: {},
         rounds: [],
@@ -139,6 +141,21 @@ class App extends React.Component {
   toggleModalOpen = () => {
     this.setState((prevState) => ({ modalOpen: !prevState.modalOpen }));
   };
+
+  // prepFeed = () => {
+  // fetch("/posts/9999999999999")
+  //   .then((response) => response.json())
+  //   .then((obj) => {
+  //     if (obj.isAuthenticated) {
+  //       this.logInUser(obj.user);
+  //     }
+  //   });
+  // const url = "/posts/9999999999999";
+  // const res = await fetch(url)
+  //   .then((response) => response.json())
+  //   .then((obj) => console.log("TESTTTT " + obj));
+  // for (let i = 0; i < 4; i++) {}
+  // };
 
   /*****************************************************************
    * Account Management methods
@@ -228,6 +245,7 @@ class App extends React.Component {
       accountData: this.state.userData.accountData,
       identityData: this.state.userData.identityData,
       numRounds: this.state.userData.numRounds,
+      buddies: this.state.userData.buddies,
       speedgolfData: this.state.userData.speedgolfData,
       badges: newBadgeData,
       rounds: this.state.userData.rounds,
@@ -263,6 +281,7 @@ class App extends React.Component {
         accountData: this.state.userData.accountData,
         identityData: this.state.userData.identityData,
         numRounds: this.state.userData.numRounds,
+        buddies: this.state.userData.buddies,
         speedgolfData: this.state.userData.speedgolfData,
         badges: this.state.userData.badges,
         rounds: newRounds,
@@ -272,6 +291,8 @@ class App extends React.Component {
       newUserData.numRounds++;
       this.setState({ userData: newUserData });
       const resIncrement = await this.updateUserData(newUserData);
+
+      const newPost = await this.addFeedRound(newRoundData);
 
       return "New round logged.";
     } else {
@@ -304,6 +325,7 @@ class App extends React.Component {
         accountData: this.state.userData.accountData,
         identityData: this.state.userData.identityData,
         numRounds: this.state.userData.numRounds,
+        buddies: this.state.userData.buddies,
         speedgolfProfileData: this.state.userData.speedgolfProfileData,
         badges: this.state.userData.badges,
         rounds: newRounds,
@@ -316,7 +338,6 @@ class App extends React.Component {
     }
   };
 
-  //TODO: Decrement numRounds
   deleteRound = async (id) => {
     const url =
       "/rounds/" +
@@ -342,6 +363,7 @@ class App extends React.Component {
         accountData: this.state.userData.accountData,
         identityData: this.state.userData.identityData,
         numRounds: this.state.userData.numRounds,
+        buddies: this.state.userData.buddies,
         speedgolfProfileData: this.state.userData.speedgolfProfileData,
         badges: this.state.userData.badges,
         rounds: newRounds,
@@ -353,6 +375,86 @@ class App extends React.Component {
       return "Unable to delete round.";
     }
   };
+
+  /*****************************************************************
+   * Post management methods
+   ***************************************************************** */
+  addFeedRound = async (newRound) => {
+    const newPost = {
+      _id: newRound._id,
+      userData: {
+        firstName: this.state.userData.identityData.displayName,
+        userName: this.state.userData.accountData.id,
+      },
+      roundData: {
+        sgs: newRound.SGS,
+        strokes: newRound.strokes,
+        minutes: newRound.minutes,
+        seconds: newRound.seconds,
+        isPrivate: newRound.isPrivate,
+      },
+      postData: {
+        date: newRound.date,
+        fistBumpCount: 0,
+        commentCount: 0,
+        comment: "",
+        postType: "round", //post, round, error
+      },
+      comments: []
+      //add stuff here
+    };
+
+    const url = "/posts/" + newRound._id;
+    const body = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(newPost),
+    };
+
+    let res = await fetch(url, body);
+  };
+
+  addFeedPost = async (id, pic, comment) => {
+    const newFeedPost = {
+      _id: id,
+      userData: {
+        firstName: this.state.userData.identityData.displayName,
+        userName: this.state.userData.accountData.id,
+      },
+      roundData: {
+        isPrivate: false,
+      },
+      postData: {
+        date: Date.now(),
+        fistBumpCount: 0,
+        commentCount: 0,
+        comment: comment,
+        postType: "post", //post, round, error
+      },
+    };
+
+    const url = "/posts/" + id;
+    const body = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(newFeedPost),
+    };
+
+    let res = await fetch(url, body);
+  };
+
+  postComment = (postID, comment) => {
+    
+  }
+
 
   render() {
     return (
@@ -372,6 +474,7 @@ class App extends React.Component {
           setMode={this.setMode}
           menuOpen={this.state.menuOpen}
           modalOpen={this.state.modalOpen}
+          // prepFeed={this.prepFeed}
         />
         {this.state.menuOpen ? <SideMenu logOut={this.logOut} /> : null}
         {
@@ -391,7 +494,10 @@ class App extends React.Component {
                 modalOpen={this.state.modalOpen}
                 toggleModalOpen={this.toggleModalOpen}
                 menuOpen={this.state.menuOpen}
-                userId={this.state.userId}
+                userId={this.state.userData.accountData.id}
+                addFeedPost={this.addFeedPost}
+                postComment={this.postComment}
+                buddies={this.state.userData.buddies}
               />
             ),
             RoundsMode: (
