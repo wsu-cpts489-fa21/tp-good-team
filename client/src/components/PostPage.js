@@ -80,7 +80,7 @@ class PostPage extends React.Component {
           <div class="post-mode-page-btn-container">
             <button
               id="feedModeActionBtn"
-              class="post-mode-page-btn action-dialog action-button"
+              className="mode-page-btn action-dialog action-button"
               type="button"
               onClick={() => {
                 this.savePost();
@@ -91,7 +91,7 @@ class PostPage extends React.Component {
             </button>
             <button
               id="feedModePostCancelBtn"
-              class="post-mode-page-btn action-dialog cancel-button"
+              className="mode-page-btn-cancel action-dialog cancel-button"
               type="button"
               onClick={() => {
                 this.props.cancelBtn();
