@@ -10,6 +10,8 @@ class FeedTable extends React.Component {
       popupOpen: false,
       firstName: "",
       sgs: "",
+      id: -1,
+      comments: [],
     };
   }
 
@@ -21,11 +23,14 @@ class FeedTable extends React.Component {
   handleTableClick = (r) => {
     const userData = this.props.objs[r].userData;
     const roundData = this.props.objs[r].roundData;
+    const commentList = this.props.objs[r].comments;
 
     this.setState({
       popupOpen: true,
       firstName: userData.firstName,
       sgs: roundData.sgs,
+      id: this.props.objs[r]._id,
+      comments: commentList,
     });
     console.log("You clicked " + r + "!", this.state.popupOpen);
   };
@@ -81,6 +86,10 @@ class FeedTable extends React.Component {
     return table;
   };
 
+  postComment = (postID, comment) => {
+    this.props.postComment(postID, comment);
+  }
+
   render() {
     return (
       <div
@@ -93,8 +102,11 @@ class FeedTable extends React.Component {
         {this.state.popupOpen ? (
           <PopUpModal
             cancelBtn={this.cancelBtn}
+            postComment={this.postComment}
             firstName={this.state.firstName}
             sgs={this.state.sgs}
+            id={this.state.id}
+            comments={this.state.comments}
           />
         ) : null}
         <h1 className="mode-page-header">Feed Table</h1>

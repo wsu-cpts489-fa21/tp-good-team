@@ -43,6 +43,10 @@ class FeedPage extends React.Component {
     return;
   }
 
+  postComment = (postID, comment) => {
+    this.props.postComment(postID, comment);
+  }
+
   render() {
     if (this.state.postModalOpen) {
       return (
@@ -66,7 +70,9 @@ class FeedPage extends React.Component {
           tabIndex="0"
         >
           {this.state.objs !== null ? (
-            <FeedTable objs={this.state.objs} />
+            <FeedTable objs={this.state.objs}
+                       postComment={this.postComment}
+            />
           ) : null}
           <PostButton
             icon="blog"
