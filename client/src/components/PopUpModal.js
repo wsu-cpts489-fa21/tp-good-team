@@ -51,7 +51,7 @@ class PopUpModal extends React.Component {
           <td>{this.props.comments[i].username}:</td>
           <td>{this.props.comments[i].comment}</td>
         </tr>
-      )
+      );
     }
     return table
   }
