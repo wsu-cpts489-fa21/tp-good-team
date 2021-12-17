@@ -302,18 +302,16 @@ button::-moz-focus-inner {
 }
 
 .earn-float-btn {
-  position: relative;
+  position: fixed;
   width: 130px;
   height: 40px;
   bottom: 20px;
-  right: 20px;
+  left: 20px;
   color: var(--text-color);
   background-color: var(--main-color);
   border-radius: 50px;
   text-align: center;
   box-shadow: 2px 2px 3px #999;
-  padding: auto;
-  margin: auto;
 }
 
 /* float-btn:hover -- When float button is hovered, 
@@ -431,4 +429,64 @@ button::-moz-focus-inner {
 .space {
   position: relative;
   top: 100px;
+}
+
+/*************************************************************************
+* CSS CLASSES FOR Post Page
+*************************************************************************/
+.post-file {
+  justify-content: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.post-mode-below-textarea {
+  justify-content: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.post-mode-page {
+  padding-top: 40px;
+}
+
+.post-mode-page-header {
+  text-align: center;
+  font-size: 48px;
+}
+
+.post-mode-page-content {
+  text-align: center;
+  font-size: 24px;
+}
+
+.post-mode-page-icon {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 200px;
+  width: 200px;
+}
+
+.post-mode-page-btn-container {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  width: 80%;
+  gap: 10%;
+}
+
+.post-mode-page-btn {
+  display: inline;
+  font-size: 18px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  color: var(--text-color);
+  background-color: var(--main-color);
+  cursor: pointer;
+}
+
+.fist:hover {
+  cursor: grab;
 }

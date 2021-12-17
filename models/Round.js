@@ -11,6 +11,7 @@ const RoundSchema = new mongoose.Schema(
     minutes: { type: Number, required: true, min: 1, max: 240 },
     seconds: { type: Number, required: true, min: 0, max: 60 },
     notes: { type: String },
+    isPrivate: { type: Boolean },
   },
   {
     toObject: {

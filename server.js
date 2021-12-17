@@ -10,6 +10,7 @@ import passportConfig from "./passport/config.js";
 import authRoute from "./routes/authRoutes.js";
 import userRoute from "./routes/userRoutes.js";
 import roundRoute from "./routes/roundRoutes.js";
+import postRoute from "./routes/postRoutes.js";
 const PORT = process.env.PORT || process.env.LOCAL_PORT;
 const app = express(); //Instantiate express app
 const buildPath =
@@ -17,7 +18,7 @@ const buildPath =
     ? new URL("client/build/", import.meta.url).pathname
     : new URL("client/build/", import.meta.url).pathname.substring(1);
 import mongoose from "mongoose";
-// const connectStr = 'mongodb://localhost:27017/appdb'; //Local
+ //const connectStr = 'mongodb://localhost:27017/appdb'; //Local
 const connectStr =
   "mongodb+srv://" +
   process.env.MONGODB_USER +
@@ -53,4 +54,5 @@ app
   .use(authRoute)
   .use(userRoute)
   .use(roundRoute)
+  .use(postRoute)
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
