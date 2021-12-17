@@ -1,0 +1,10 @@
+GITHUB_CLIENT_ID="df537799265a75d0db33"
+GITHUB_CLIENT_SECRET="84d417398213c76a1266b4d0efb588518c461e6d"
+LOCAL_PORT=8081
+DEPLOY_URL="http://localhost:8081"
+SESSION_SECRET="speedgolf"
+GOOGLE_CLIENT_ID="920956124546-5m1b5t302rf8ffk27ojtao9ic6alvegq.apps.googleusercontent.com"
+GOOGLE_CLIENT_SECRET="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"
+MONGODB_USER="dbAdmin"
+MONGODB_PW="ylNoBQM0APT6yDgC"
+MONGODB_CSTRING="@ia8.pzhyb.mongodb.net/appdb?retryWrites=true&w=majority"
