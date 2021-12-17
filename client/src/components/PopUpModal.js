@@ -1,5 +1,6 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
+import like from "../images/like.jpg";
 
 class PopUpModal extends React.Component {
 
@@ -8,6 +9,7 @@ class PopUpModal extends React.Component {
     this.state = {
       commentMode: false,
       commentText: "",
+      likes: this.props.likes
     };
   }
   commentBtn = () => {
@@ -56,6 +58,12 @@ class PopUpModal extends React.Component {
     return table
   }
 
+  like = () => {
+    this.setState({
+      likes: this.state.likes + 1,
+    })
+  }
+
   render() {
     return (
       <Modal.Dialog>
@@ -72,6 +80,8 @@ class PopUpModal extends React.Component {
           {"SGS: " + this.props.sgs}
         </Modal.Body>
         <Modal.Footer>
+          {this.state.likes}
+          <img src={like} onClick={() => this.like()} width="20px" height="20px"></img>
           <button onClick={this.commentBtn} variant="primary">
             Comment
           </button>
