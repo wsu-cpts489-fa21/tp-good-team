@@ -64,6 +64,12 @@ class CreateAccount extends React.Component {
     return re.test(String(pass));
   };
 
+  setDefault = (displayName) => {
+    const re = /^.*?(?=@)/;
+    const found = displayName.match(re);
+    return found[0];
+  };
+
   handleChange = (event) => {
     if (event.target.name !== "profilePic") {
       this.setState({ [event.target.name]: event.target.value });
@@ -83,9 +89,16 @@ class CreateAccount extends React.Component {
 
   setDefaultDisplayName = (event) => {
     if (event.target.value.length > 0 && this.state.displayName === "") {
-      this.setState({ displayName: event.target.value });
+      let newDisplayName = this.setDefault(event.target.value);
+      this.setState({ displayName: newDisplayName });
     }
   };
+
+  // handleDefaultDisplayName = (name) => {
+  //   if (name === "")
+  //   let newDisplayName = setDefault(name);
+  //   this.setState({displayName: newDisplayName})
+  // }
 
   handleSubmit = async (event) => {
     event.preventDefault();
