@@ -47,7 +47,11 @@ postRoute.post("/posts/:postId", async (req, res) => {
 
   for (const bodyProp in req.body) {
     if (bodyProp === "_id") {
-    } else if (bodyProp === "userData") {
+
+    } else if (bodyProp === "comments") {
+      
+    }
+    else if (bodyProp === "userData") {
       for (const uProp in req.body.userData) {
         if (!validUserProps.includes(uProp)) {
           return res

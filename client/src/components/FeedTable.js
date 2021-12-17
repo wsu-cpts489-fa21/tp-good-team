@@ -10,6 +10,8 @@ class FeedTable extends React.Component {
       popupOpen: false,
       firstName: "",
       sgs: "",
+      id: -1,
+      comments: [],
       minutes: "",
       seconds: "",
       strokes: "",
@@ -35,6 +37,8 @@ class FeedTable extends React.Component {
   handleTableClick = (r) => {
     const userData = this.props.objs[r].userData;
     const roundData = this.props.objs[r].roundData;
+
+    const commentList = this.props.objs[r].comments;
     const postData = this.props.objs[r].postData;
 
     if (postData.postType === "round") {
@@ -46,6 +50,8 @@ class FeedTable extends React.Component {
         minutes: roundData.minutes,
         seconds: roundData.seconds,
         type: postData.postType,
+        id: this.props.objs[r]._id,
+        comments: commentList,
       });
 
       console.log("You clicked " + r + "!", this.state.popupOpen);
@@ -108,6 +114,10 @@ class FeedTable extends React.Component {
     return table;
   };
 
+  postComment = (postID, comment) => {
+    this.props.postComment(postID, comment);
+  }
+
   render() {
     return (
       <div
@@ -120,11 +130,14 @@ class FeedTable extends React.Component {
         {this.state.popupOpen && this.state.type == "round" ? (
           <PopUpModal
             cancelBtn={this.cancelBtn}
+            postComment={this.postComment}
             firstName={this.state.firstName}
             strokes={this.state.strokes}
             minutes={this.state.minutes}
             seconds={this.state.seconds}
             sgs={this.state.sgs}
+            id={this.state.id}
+            comments={this.state.comments}
           />
         ) : null}
 

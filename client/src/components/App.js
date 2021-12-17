@@ -400,6 +400,8 @@ class App extends React.Component {
         comment: "",
         postType: "round", //post, round, error
       },
+      comments: []
+      //add stuff here
     };
 
     const url = "/posts/" + newRound._id;
@@ -449,6 +451,11 @@ class App extends React.Component {
     let res = await fetch(url, body);
   };
 
+  postComment = (postID, comment) => {
+    
+  }
+
+
   render() {
     return (
       <>
@@ -489,6 +496,7 @@ class App extends React.Component {
                 menuOpen={this.state.menuOpen}
                 userId={this.state.userData.accountData.id}
                 addFeedPost={this.addFeedPost}
+                postComment={this.postComment}
                 buddies={this.state.userData.buddies}
               />
             ),

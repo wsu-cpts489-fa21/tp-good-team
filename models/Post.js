@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { CommentSchema } from "./Comment.js";
 
 const PostSchema = new mongoose.Schema({
   _id: { type: Number, required: true },
@@ -23,7 +24,7 @@ const PostSchema = new mongoose.Schema({
     comment: { type: String },
     postType: { type: String }, //post, round, error
   },
-  //   comments: [CommentSchema],
+  comments: [CommentSchema],
 });
 
 const Post = mongoose.model("Post", PostSchema);
