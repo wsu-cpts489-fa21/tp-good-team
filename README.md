@@ -427,18 +427,10 @@ We did not use Zoom, we used a private discord meeting to go through what we did
 
 #### What went well
 
-- Item 1
-- Item 2
-- Item x
+- Team communication
+- Implemented a lot of this milestone
+- Everyone played a big part in this milestone
 
 #### What we'd like to improve
 
-- Item 1
-- Item 2
-- Item x
-
-#### Changes we plan to implement in next milestone period
-
-- Item 1
-- Item 2
-- Item x
+- Fixing our previous bugs that we haven't had a chance to look at
