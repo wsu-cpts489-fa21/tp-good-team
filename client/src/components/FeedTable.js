@@ -12,75 +12,103 @@ class FeedTable extends React.Component {
       sgs: "",
       id: -1,
       comments: [],
+      minutes: "",
+      seconds: "",
+      strokes: "",
+      type: "",
+      comment: "",
     };
   }
+
+  hasBuddy = (poster) => {
+    if (poster === this.props.userId) return true;
+    for (let bIndex = 0; bIndex < this.props.buddies.length; bIndex++) {
+      if (this.props.buddies[bIndex] === poster) return true;
+    }
+    return false;
+  };
 
   cancelBtn = () => {
     this.setState({
       popupOpen: false,
     });
   };
+
   handleTableClick = (r) => {
     const userData = this.props.objs[r].userData;
     const roundData = this.props.objs[r].roundData;
+
     const commentList = this.props.objs[r].comments;
+    const postData = this.props.objs[r].postData;
 
-    this.setState({
-      popupOpen: true,
-      firstName: userData.firstName,
-      sgs: roundData.sgs,
-      id: this.props.objs[r]._id,
-      comments: commentList,
-    });
-    console.log("You clicked " + r + "!", this.state.popupOpen);
+    if (postData.postType === "round") {
+      this.setState({
+        popupOpen: true,
+        firstName: userData.firstName,
+        sgs: roundData.sgs,
+        strokes: roundData.strokes,
+        minutes: roundData.minutes,
+        seconds: roundData.seconds,
+        type: postData.postType,
+        id: this.props.objs[r]._id,
+        comments: commentList,
+      });
+
+      console.log("You clicked " + r + "!", this.state.popupOpen);
+    }
   };
-
   renderTable = () => {
     const table = [];
     for (let r = 0; r < this.props.objs.length; ++r) {
-      const userData = this.props.objs[r].userData;
-      const roundData = this.props.objs[r].roundData;
-      const postData = this.props.objs[r].postData;
-      // Need to add title for post and Round
-      //For post
+      if (this.hasBuddy(this.props.objs[r].userData.userName)) {
+        const userData = this.props.objs[r].userData;
+        const roundData = this.props.objs[r].roundData;
+        const postData = this.props.objs[r].postData;
+        // Need to add title for post and Round
+        //For post
 
-      let date = postData.date;
-      // let date = new Intl.DateTimeFormat("en-US", {
-      //   year: "numeric",
-      //   month: "2-digit",
-      //   day: "2-digit",
-      // }).format(postData.date);
-      // console.log("newDate: " + postData.date);
+        let date = postData.date;
+        // let date = new Intl.DateTimeFormat("en-US", {
+        //   year: "numeric",
+        //   month: "2-digit",
+        //   day: "2-digit",
+        // }).format(postData.date);
+        // console.log("newDate: " + postData.date);
+        let name;
+        let title;
 
-      let title;
-      if (postData.postType === "round") {
-        //For round
-        title =
-          userData.firstName +
-          " logged a speedgolf round. " +
-          roundData.sgs +
-          " (" +
-          roundData.strokes +
-          " in " +
-          roundData.minutes +
-          ":" +
-          roundData.seconds +
-          ") on " +
-          date;
-      } else if (postData.postType === "post") {
-        title = userData.firstName + " wrote a post on " + postData.date + ".";
-      } else alert("Error");
+        if (userData.userName === this.props.userId) name = "You";
+        else name = userData.firstName;
 
-      if (!roundData.isPrivate) {
-        table.push(
-          <tr onClick={() => this.handleTableClick(r)} key={r}>
-            <td>{userData.profilePic}</td>
-            <td>{title}</td>
-            <td>{postData.fistBumpCount}</td>
-            <td>{postData.commentCount}</td>
-            <td>{postData.comment}</td>
-          </tr>
-        );
+        if (postData.postType === "round") {
+          //For round
+          title =
+            name +
+            " logged a speedgolf round. " +
+            roundData.sgs +
+            " (" +
+            roundData.strokes +
+            " in " +
+            roundData.minutes +
+            ":" +
+            roundData.seconds +
+            ") on " +
+            date;
+        } else if (postData.postType === "post") {
+          title = name + " wrote a post on " + postData.date + ".";
+        } else alert("Error");
+
+        if (!roundData.isPrivate) {
+          table.push(
+            <tr onClick={() => this.handleTableClick(r)} key={r}>
+              <td>{userData.profilePic}</td>
+              <td>{title}</td>
+              <td>{postData.fistBumpCount}</td>
+              <td>{postData.commentCount}</td>
+              <td>{postData.comment}</td>
+            </tr>
+          );
+        }
       }
     }
     return table;
@@ -99,16 +127,27 @@ class FeedTable extends React.Component {
         aria-label="Feed Table Tab"
         tabIndex="0"
       >
-        {this.state.popupOpen ? (
+        {this.state.popupOpen && this.state.type == "round" ? (
           <PopUpModal
             cancelBtn={this.cancelBtn}
             postComment={this.postComment}
             firstName={this.state.firstName}
+            strokes={this.state.strokes}
+            minutes={this.state.minutes}
+            seconds={this.state.seconds}
             sgs={this.state.sgs}
             id={this.state.id}
             comments={this.state.comments}
           />
         ) : null}
+
+        {/* {this.state.popupOpen && this.state.type == "post" ? (
+          <PostPopUpModal
+            cancelBtn={this.cancelBtn}
+            firstName={this.state.firstName}
+            comment={this.state.comment}
+          />
+        ) : null} */}
         <h1 className="mode-page-header">Feed Table</h1>
         <table
           id="feedTable"

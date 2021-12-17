@@ -57,6 +57,7 @@ class App extends React.Component {
         accountData: {},
         identityData: {},
         numRounds: 1,
+        buddies: [],
         speedgolfData: {},
         badges: {},
         rounds: [],
@@ -111,6 +112,7 @@ class App extends React.Component {
         accountData: {},
         identityData: {},
         numRounds: 0,
+        buddies: [],
         speedgolfData: {},
         badges: {},
         rounds: [],
@@ -243,6 +245,7 @@ class App extends React.Component {
       accountData: this.state.userData.accountData,
       identityData: this.state.userData.identityData,
       numRounds: this.state.userData.numRounds,
+      buddies: this.state.userData.buddies,
       speedgolfData: this.state.userData.speedgolfData,
       badges: newBadgeData,
       rounds: this.state.userData.rounds,
@@ -278,6 +281,7 @@ class App extends React.Component {
         accountData: this.state.userData.accountData,
         identityData: this.state.userData.identityData,
         numRounds: this.state.userData.numRounds,
+        buddies: this.state.userData.buddies,
         speedgolfData: this.state.userData.speedgolfData,
         badges: this.state.userData.badges,
         rounds: newRounds,
@@ -321,6 +325,7 @@ class App extends React.Component {
         accountData: this.state.userData.accountData,
         identityData: this.state.userData.identityData,
         numRounds: this.state.userData.numRounds,
+        buddies: this.state.userData.buddies,
         speedgolfProfileData: this.state.userData.speedgolfProfileData,
         badges: this.state.userData.badges,
         rounds: newRounds,
@@ -358,6 +363,7 @@ class App extends React.Component {
         accountData: this.state.userData.accountData,
         identityData: this.state.userData.identityData,
         numRounds: this.state.userData.numRounds,
+        buddies: this.state.userData.buddies,
         speedgolfProfileData: this.state.userData.speedgolfProfileData,
         badges: this.state.userData.badges,
         rounds: newRounds,
@@ -377,7 +383,7 @@ class App extends React.Component {
     const newPost = {
       _id: newRound._id,
       userData: {
-        firstName: this.state.userData.accountData.id,
+        firstName: this.state.userData.identityData.displayName,
         userName: this.state.userData.accountData.id,
       },
       roundData: {
@@ -416,7 +422,7 @@ class App extends React.Component {
     const newFeedPost = {
       _id: id,
       userData: {
-        firstName: this.state.userData.accountData.id,
+        firstName: this.state.userData.identityData.displayName,
         userName: this.state.userData.accountData.id,
       },
       roundData: {
@@ -488,9 +494,10 @@ class App extends React.Component {
                 modalOpen={this.state.modalOpen}
                 toggleModalOpen={this.toggleModalOpen}
                 menuOpen={this.state.menuOpen}
-                userId={this.state.userId}
+                userId={this.state.userData.accountData.id}
                 addFeedPost={this.addFeedPost}
                 postComment={this.postComment}
+                buddies={this.state.userData.buddies}
               />
             ),
             RoundsMode: (
