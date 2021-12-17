@@ -337,7 +337,7 @@ We did not use Zoom, we used a private discord meeting to go through what we did
      <tr>
       <td><a href="https://github.com/issue">Issue #124</a></td><td><a href="https://github.com/PR">PR #125,126,127,129,131,133,135</a></td><td>5</td><td>3</td><td>1</td><td>1</td><td>0</td><td>100</td><td>Updated the databse multiple times. Updated the schema numerous times. UI implemented to accomdate for those changes.</td>
     </tr>
-    <tr><td colspan="2" align="right"><b>Totals:</b></td><td><b>8</b></td><td><b>3</b></td><td><b>1</b></td><td><b>1</b></td><td><b>0.8</b></td><td colspan="2"></td>
+    <tr><td colspan="5" align="right"><b>Totals:</b></td><td><b>8</b></td><td><b>3</b></td><td><b>1</b></td><td><b>1</b></td><td><b>0.8</b></td><td colspan="5"></td>
     </tr>
   </tbody>
 </table>
