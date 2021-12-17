@@ -42,7 +42,7 @@ class FeedTable extends React.Component {
   renderTable = () => {
     const table = [];
     for (let r = 0; r < this.props.objs.length; ++r) {
-      if (this.hasBuddy(this.props.objs[r].userData.firstName)) {
+      if (this.hasBuddy(this.props.objs[r].userData.userName)) {
         const userData = this.props.objs[r].userData;
         const roundData = this.props.objs[r].roundData;
         const postData = this.props.objs[r].postData;
@@ -59,7 +59,7 @@ class FeedTable extends React.Component {
         let name;
         let title;
 
-        if (userData.firstName === this.props.userId) name = "You";
+        if (userData.userName === this.props.userId) name = "You";
         else name = userData.firstName;
 
         if (postData.postType === "round") {

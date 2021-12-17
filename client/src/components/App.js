@@ -383,7 +383,7 @@ class App extends React.Component {
     const newPost = {
       _id: newRound._id,
       userData: {
-        firstName: this.state.userData.accountData.id,
+        firstName: this.state.userData.identityData.displayName,
         userName: this.state.userData.accountData.id,
       },
       roundData: {
@@ -420,7 +420,7 @@ class App extends React.Component {
     const newFeedPost = {
       _id: id,
       userData: {
-        firstName: this.state.userData.accountData.id,
+        firstName: this.state.userData.identityData.displayName,
         userName: this.state.userData.accountData.id,
       },
       roundData: {
