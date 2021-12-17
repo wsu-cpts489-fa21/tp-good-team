@@ -13,6 +13,7 @@ import {
   faTrash,
   faEye,
   faUserPlus,
+  faMedal,
 } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faGoogle } from "@fortawesome/free-brands-svg-icons";
 
@@ -41,7 +42,8 @@ library.add(
   faEye,
   faUserPlus,
   faGithub,
-  faGoogle
+  faGoogle,
+  faMedal
 );
 
 class App extends React.Component {
@@ -400,7 +402,7 @@ class App extends React.Component {
         comment: "",
         postType: "round", //post, round, error
       },
-      comments: []
+      comments: [],
       //add stuff here
     };
 
@@ -451,10 +453,7 @@ class App extends React.Component {
     let res = await fetch(url, body);
   };
 
-  postComment = (postID, comment) => {
-    
-  }
-
+  postComment = (postID, comment) => {};
 
   render() {
     return (
