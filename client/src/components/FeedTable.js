@@ -150,48 +150,7 @@ class FeedTable extends React.Component {
           id="feedTable"
           className="table table-hover table-striped caption-top"
         >
-          <caption id="feedTableCaption" aria-live="polite">
-            {"Feed displaying " +
-              this.props.objs.length +
-              " posts" +
-              (this.props.objs.length !== 1 ? "s" : "")}
-          </caption>
-          <thead className="table-light">
-            <tr>
-              <th
-                scope="col"
-                role="columnheader"
-                className="sortable-header cell-align-middle"
-                aria-sort="none"
-              >
-                Pic
-              </th>
-              <th
-                scope="col"
-                role="columnheader"
-                className="sortable-header cell-align-middle"
-                aria-sort="none"
-              >
-                Title
-              </th>
-              {/* FISTBUMP */}
-              <th
-                scope="col"
-                role="columnheader"
-                className="sortable-header cell-align-middle"
-                aria-sort="none"
-              >
-                Fist Bumps
-              </th>
-
-              <th scope="col" className="cell-align-middle">
-                Comments
-              </th>
-              <th scope="col" className="cell-align-middle">
-                Message Body
-              </th>
-            </tr>
-          </thead>
+          <caption id="feedTableCaption" aria-live="polite"></caption>
           <tbody>
             {this.props.objs === null || this.props.objs.length === 0 ? (
               <tr>
