@@ -382,6 +382,8 @@ class App extends React.Component {
    * Post management methods
    ***************************************************************** */
   addFeedRound = async (newRound) => {
+    let today = new Date(Date.now() - new Date().getTimezoneOffset() * 60000);
+    let date = today.toISOString().substr(0, 10);
     const newPost = {
       _id: newRound._id,
       userData: {
@@ -396,7 +398,7 @@ class App extends React.Component {
         isPrivate: newRound.isPrivate,
       },
       postData: {
-        date: newRound.date,
+        date: date,
         fistBumpCount: 0,
         commentCount: 0,
         comment: "",
@@ -421,6 +423,8 @@ class App extends React.Component {
   };
 
   addFeedPost = async (id, pic, comment) => {
+    let today = new Date(Date.now() - new Date().getTimezoneOffset() * 60000);
+    let date = today.toISOString().substr(0, 10);
     const newFeedPost = {
       _id: id,
       userData: {
@@ -431,7 +435,7 @@ class App extends React.Component {
         isPrivate: false,
       },
       postData: {
-        date: Date.now(),
+        date: date,
         fistBumpCount: 0,
         commentCount: 0,
         comment: comment,
@@ -453,7 +457,39 @@ class App extends React.Component {
     let res = await fetch(url, body);
   };
 
-  postComment = (postID, comment) => {};
+  postComment = async (postID, newComment, newCommentCount) => {
+    const url = "/comments/" + postID;
+
+    //Create new array of comments
+    // const newCommentList = [...commentList];
+    // newCommentList.push(comment);
+
+    // //Create new object with data we want to save
+    // const newPostData = {
+    //   postData: {
+    //     date: Date.now(),
+    //     commentCount: newCommentCount,
+    //   },
+    //   comments: newCommentList,
+    // };
+
+    const body = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(newComment),
+    };
+    let res = await fetch(url, body);
+    if (res.status == 201) {
+      return "New Post logged.";
+    } else {
+      const resText = await res.text();
+      return "New Post could not be logged. " + resText;
+    }
+  };
 
   render() {
     return (

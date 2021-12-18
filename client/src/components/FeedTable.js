@@ -54,9 +54,8 @@ class FeedTable extends React.Component {
         id: this.props.objs[r]._id,
         comments: commentList,
         likes: postData.fistBumpCount,
+        commentCount: postData.commentcount,
       });
-
-      console.log("You clicked " + r + "!", this.state.popupOpen);
     }
   };
   renderTable = () => {
@@ -116,10 +115,6 @@ class FeedTable extends React.Component {
     return table;
   };
 
-  postComment = (postID, comment) => {
-    this.props.postComment(postID, comment);
-  }
-
   render() {
     return (
       <div
@@ -131,8 +126,9 @@ class FeedTable extends React.Component {
       >
         {this.state.popupOpen && this.state.type == "round" ? (
           <PopUpModal
+            userId={this.props.userId}
             cancelBtn={this.cancelBtn}
-            postComment={this.postComment}
+            postComment={this.props.postComment}
             firstName={this.state.firstName}
             strokes={this.state.strokes}
             minutes={this.state.minutes}

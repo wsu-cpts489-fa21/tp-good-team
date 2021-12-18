@@ -43,16 +43,13 @@ class FeedPage extends React.Component {
     return;
   }
 
-  postComment = (postID, comment) => {
-    this.props.postComment(postID, comment);
-  }
-
   render() {
     if (this.state.postModalOpen) {
       return (
         <>
           <div class="space">
             <PostPage
+              postComment={this.props.postComment}
               postSuccess={this.postSuccess}
               addFeedPost={this.props.addFeedPost}
               cancelBtn={this.cancelBtn}
@@ -71,9 +68,9 @@ class FeedPage extends React.Component {
         >
           {this.state.objs !== null ? (
             <FeedTable
+              postComment={this.props.postComment}
               userId={this.props.userId}
               buddies={this.props.buddies}
-              postComment={this.postComment}
               objs={this.state.objs}
             />
           ) : null}
