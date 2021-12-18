@@ -147,7 +147,8 @@ class FeedTable extends React.Component {
             comment={this.state.comment}
           />
         ) : null} */}
-        <h1 className="mode-page-header">Feed Table</h1>
+
+        <h1 className="mode-page-header">Feed Mode</h1>
         <table
           id="feedTable"
           className="table table-hover table-striped caption-top"

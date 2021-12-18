@@ -426,6 +426,10 @@ button::-moz-focus-inner {
   vertical-align: middle;
 }
 
+.span {
+  width: 100%;
+}
+
 .space {
   position: relative;
   top: 100px;

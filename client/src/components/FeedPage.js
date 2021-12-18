@@ -3,11 +3,13 @@ import logo from "../images/sslogo2.png";
 import PostButton from "./PostButton";
 import PostPage from "./PostPage";
 import FeedTable from "./FeedTable";
+import FeedMode from "./FeedMode.js"
 
 class FeedPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      mode: FeedMode.TABLE
       postModalOpen: false,
       objs: null,
       headId: 9999999999999,

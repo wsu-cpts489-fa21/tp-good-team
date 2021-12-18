@@ -1,6 +1,7 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
 import like from "../images/like.jpg";
+import CommentPage from "./Comment";
 
 class PopUpModal extends React.Component {
   constructor(props) {
@@ -59,13 +60,23 @@ class PopUpModal extends React.Component {
   };
 
   renderComments = () => {
-    console.log("comments: ", this.props.comments);
+    // console.log("comments: ", this.props.comments);
     const table = [];
     for (let i = 0; i < this.props.comments.length; i++) {
       table.push(
-        <tr>
-          <td>{this.props.comments[i].username}:</td>
-          <td>{this.props.comments[i].comment}</td>
+        // <tr>
+        //   <td>{this.props.comments[i].username}:</td>
+        //   <td>{this.props.comments[i].comment}</td>
+        // </tr>
+
+        <tr className="w-100">
+          <td className="w-100">
+            <CommentPage
+              user={this.props.comments[i].username}
+              comment={this.props.comments[i].comment}
+              date={this.props.comments[i].date}
+            />
+          </td>
         </tr>
       );
     }
@@ -142,8 +153,9 @@ class PopUpModal extends React.Component {
             </button>
           </>
         ) : null}
-        <p>Comments:</p>
-        {this.renderComments()}
+        <Modal.Body className="">
+          <div className="mb-3 centered">{this.renderComments()}</div>
+        </Modal.Body>
       </Modal.Dialog>
     );
   }
