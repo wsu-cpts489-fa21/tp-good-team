@@ -10,11 +10,13 @@ class PopUpModal extends React.Component {
       commentMode: false,
       commentText: "",
       likes: this.props.likes,
+      update: false,
     };
   }
   commentBtn = () => {
     this.setState({
       commentMode: true,
+      update: true,
     });
   };
 
@@ -31,6 +33,15 @@ class PopUpModal extends React.Component {
     });
   };
 
+  componentDidUpdate = () => {
+    if (this.state.update) {
+      this.setState({
+        update: false,
+      });
+    }
+    this.renderComments();
+  };
+
   postComment = async () => {
     if (this.state.commentText != "") {
       let today = new Date(Date.now() - new Date().getTimezoneOffset() * 60000);
@@ -43,20 +54,21 @@ class PopUpModal extends React.Component {
         date: date,
         time: time,
       };
+      this.setState({
+        commentMode: false,
+        update: true,
+      });
 
       let res = await this.props.postComment(
         this.props.id,
         newComment,
         this.props.commentCount + 1
       );
-      this.setState({
-        commentMode: false,
-      });
     }
   };
 
   cancelBtn = () => {
-    this.props.cancelBtn();
+    this.props.cancelComment();
   };
 
   renderComments = () => {

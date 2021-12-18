@@ -1,24 +1,11 @@
 import React from "react";
-import logo from "../images/sslogo2.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import PopUpModal from "./PopUpModal";
+import PostButton from "./PostButton";
+import FeedMode from "./FeedMode";
 
 class FeedTable extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      popupOpen: false,
-      firstName: "",
-      sgs: "",
-      id: -1,
-      comments: [],
-      minutes: "",
-      seconds: "",
-      strokes: "",
-      type: "",
-      comment: "",
-      likes: 0,
-    };
+    this.state = {};
   }
 
   hasBuddy = (poster) => {
@@ -29,12 +16,6 @@ class FeedTable extends React.Component {
     return false;
   };
 
-  cancelBtn = () => {
-    this.setState({
-      popupOpen: false,
-    });
-  };
-
   handleTableClick = (r) => {
     const userData = this.props.objs[r].userData;
     const roundData = this.props.objs[r].roundData;
@@ -43,21 +24,23 @@ class FeedTable extends React.Component {
     const postData = this.props.objs[r].postData;
 
     if (postData.postType === "round") {
-      this.setState({
-        popupOpen: true,
+      const data = {
+        id: this.props.objs[r]._id,
         firstName: userData.firstName,
         sgs: roundData.sgs,
-        strokes: roundData.strokes,
         minutes: roundData.minutes,
         seconds: roundData.seconds,
+        strokes: roundData.strokes,
         type: postData.postType,
-        id: this.props.objs[r]._id,
         comments: commentList,
         likes: postData.fistBumpCount,
         commentCount: postData.commentcount,
-      });
+        objs: this.props.objs[r],
+      };
+      this.props.initiateCommentMode(data, FeedMode.FEEDCOMMENT);
     }
   };
+
   renderTable = () => {
     const table = [];
     for (let r = 0; r < this.props.objs.length; ++r) {
@@ -65,16 +48,9 @@ class FeedTable extends React.Component {
         const userData = this.props.objs[r].userData;
         const roundData = this.props.objs[r].roundData;
         const postData = this.props.objs[r].postData;
-        // Need to add title for post and Round
-        //For post
 
         let date = postData.date;
-        // let date = new Intl.DateTimeFormat("en-US", {
-        //   year: "numeric",
-        //   month: "2-digit",
-        //   day: "2-digit",
-        // }).format(postData.date);
-        // console.log("newDate: " + postData.date);
+
         let name;
         let title;
 
@@ -124,22 +100,6 @@ class FeedTable extends React.Component {
         aria-label="Feed Table Tab"
         tabIndex="0"
       >
-        {this.state.popupOpen && this.state.type == "round" ? (
-          <PopUpModal
-            userId={this.props.userId}
-            cancelBtn={this.cancelBtn}
-            postComment={this.props.postComment}
-            firstName={this.state.firstName}
-            strokes={this.state.strokes}
-            minutes={this.state.minutes}
-            seconds={this.state.seconds}
-            sgs={this.state.sgs}
-            id={this.state.id}
-            comments={this.state.comments}
-            likes={this.state.likes}
-          />
-        ) : null}
-
         {/* {this.state.popupOpen && this.state.type == "post" ? (
           <PostPopUpModal
             cancelBtn={this.cancelBtn}
@@ -207,6 +167,14 @@ class FeedTable extends React.Component {
             )}
           </tbody>
         </table>
+
+        <PostButton
+          icon="blog"
+          label={"Post"}
+          action={() => {
+            this.props.setMode(FeedMode.FEEDPOST);
+          }}
+        />
       </div>
     );
   }

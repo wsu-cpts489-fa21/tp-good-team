@@ -1,9 +1,9 @@
 /* FeedMode: The enumerated type for FeedMode. */
 
 const FeedMode = {
-  TABLE: "TableMode",
-  COMMENT: "CommentMode",
-  POST: "PostMode",
+  FEEDTABLE: "TableMode",
+  FEEDCOMMENT: "CommentMode",
+  FEEDPOST: "PostMode",
 };
 
 Object.freeze(FeedMode); //This ensures that the object is immutable.
