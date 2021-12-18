@@ -535,6 +535,7 @@ class App extends React.Component {
                 addFeedPost={this.addFeedPost}
                 postComment={this.postComment}
                 buddies={this.state.userData.buddies}
+                profilePic={this.state.userData.identityData.profilePic}
               />
             ),
             RoundsMode: (

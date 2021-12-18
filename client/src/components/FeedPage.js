@@ -84,7 +84,6 @@ class FeedPage extends React.Component {
   async componentDidUpdate() {
     if (this.state.update) {
       const url = "/posts/" + this.state.headId;
-
       let res = await fetch(url)
         .then((response) => response.json())
         .then((obj) => {
@@ -114,6 +113,7 @@ class FeedPage extends React.Component {
                 buddies={this.props.buddies}
                 objs={this.state.objs}
                 initiateCommentMode={this.initiateMode}
+                profilePic={this.props.profilePic}
               />
             ) : null}
           </div>

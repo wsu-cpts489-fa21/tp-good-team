@@ -1,11 +1,74 @@
 import React from "react";
 import PostButton from "./PostButton";
 import FeedMode from "./FeedMode";
+import FeedPost from "./FeedPost";
 
 class FeedTable extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      profilePic: "",
+      table: [],
+    };
+  }
+
+  async componentDidMount() {
+    const table = [];
+    for (let r = 0; r < this.props.objs.length; ++r) {
+      if (this.hasBuddy(this.props.objs[r].userData.userName)) {
+        const userData = this.props.objs[r].userData;
+        const roundData = this.props.objs[r].roundData;
+        const postData = this.props.objs[r].postData;
+
+        let date = postData.date;
+
+        let name;
+        let title;
+
+        if (userData.userName === this.props.userId) name = "You";
+        else name = userData.firstName;
+
+        if (postData.postType === "round") {
+          //For round
+          title =
+            name +
+            " logged a speedgolf round. " +
+            roundData.sgs +
+            " (" +
+            roundData.strokes +
+            " in " +
+            roundData.minutes +
+            ":" +
+            roundData.seconds +
+            ") on " +
+            date;
+        } else if (postData.postType === "post") {
+          title = name + " wrote a post on " + postData.date + ".";
+        } else alert("Error");
+
+        if (!roundData.isPrivate) {
+          await this.getProfilePic(userData.userName);
+          const pic = this.state.profilePic;
+
+          table.push(
+            <tr onClick={() => this.handleTableClick(r)} key={r}>
+              <td>
+                <FeedPost
+                  title={title}
+                  pic={pic}
+                  likeCount={postData.fistBumpCount}
+                  commentCount={postData.commentCount}
+                  comment={postData.comment}
+                />
+              </td>
+            </tr>
+          );
+        }
+      }
+    } //for
+    this.setState({
+      table: table,
+    });
   }
 
   hasBuddy = (poster) => {
@@ -41,54 +104,28 @@ class FeedTable extends React.Component {
     }
   };
 
+  /*****************************************************************
+   * Receives the userId from the specific Feed Post.
+   * We then fetch the user object based in the userId,
+   * Currently, the get route returns a string back, so we have to
+   * parse it first before using
+   ***************************************************************** */
+  getProfilePic = async (userId) => {
+    const url = "/users/" + userId;
+
+    let res = await fetch(url)
+      .then((response) => response.json())
+      .then((user) => {
+        let userObj = JSON.parse(user); //Turn string back into Object
+        this.setState({
+          profilePic: userObj.identityData.profilePic,
+        });
+      });
+  };
+
   renderTable = () => {
-    const table = [];
-    for (let r = 0; r < this.props.objs.length; ++r) {
-      if (this.hasBuddy(this.props.objs[r].userData.userName)) {
-        const userData = this.props.objs[r].userData;
-        const roundData = this.props.objs[r].roundData;
-        const postData = this.props.objs[r].postData;
-
-        let date = postData.date;
-
-        let name;
-        let title;
-
-        if (userData.userName === this.props.userId) name = "You";
-        else name = userData.firstName;
-
-        if (postData.postType === "round") {
-          //For round
-          title =
-            name +
-            " logged a speedgolf round. " +
-            roundData.sgs +
-            " (" +
-            roundData.strokes +
-            " in " +
-            roundData.minutes +
-            ":" +
-            roundData.seconds +
-            ") on " +
-            date;
-        } else if (postData.postType === "post") {
-          title = name + " wrote a post on " + postData.date + ".";
-        } else alert("Error");
-
-        if (!roundData.isPrivate) {
-          table.push(
-            <tr onClick={() => this.handleTableClick(r)} key={r}>
-              <td>{userData.profilePic}</td>
-              <td>{title}</td>
-              <td>{postData.fistBumpCount}</td>
-              <td>{postData.commentCount}</td>
-              <td>{postData.comment}</td>
-            </tr>
-          );
-        }
-      }
-    }
-    return table;
+    console.log("rendering feed");
+    return this.state.table;
   };
 
   render() {

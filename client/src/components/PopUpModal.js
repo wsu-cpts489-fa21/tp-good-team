@@ -103,74 +103,82 @@ class PopUpModal extends React.Component {
 
   render() {
     return (
-      <Modal.Dialog>
-        <Modal.Header closeButton onClick={this.cancelBtn}>
-          <Modal.Title>{this.props.firstName} </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {"Strokes:" + this.props.strokes}
-          <br></br>
-          {"Minutes:" + this.props.minutes}
-          <br></br>
-          {"Seconds:" + this.props.seconds}
-          <br></br>
-          {"SGS: " + this.props.sgs}
-        </Modal.Body>
-        <Modal.Footer>
-          {this.state.likes}
-          <img
-            src={like}
-            onClick={() => this.like()}
-            width="20px"
-            height="20px"
-          ></img>
-          <button
-            className="btn btn-primary"
-            onClick={this.commentBtn}
-            variant="primary"
-          >
-            Comment
-          </button>
-          <button
-            className="btn btn-secondary"
-            onClick={this.cancelBtn}
-            variant="primary"
-          >
-            Close
-          </button>
-        </Modal.Footer>
+      <div
+        id="commentMode"
+        className="mode-page"
+        role="tabpanel"
+        aria-label="Comment Tab"
+        tabIndex="0"
+      >
+        <Modal.Dialog>
+          <Modal.Header closeButton onClick={this.cancelBtn}>
+            <Modal.Title>{this.props.firstName} </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            {"Strokes:" + this.props.strokes}
+            <br></br>
+            {"Minutes:" + this.props.minutes}
+            <br></br>
+            {"Seconds:" + this.props.seconds}
+            <br></br>
+            {"SGS: " + this.props.sgs}
+          </Modal.Body>
+          <Modal.Footer>
+            {this.state.likes}
+            <img
+              src={like}
+              onClick={() => this.like()}
+              width="20px"
+              height="20px"
+            ></img>
+            <button
+              className="btn btn-primary"
+              onClick={this.commentBtn}
+              variant="primary"
+            >
+              Comment
+            </button>
+            <button
+              className="btn btn-secondary"
+              onClick={this.cancelBtn}
+              variant="primary"
+            >
+              Close
+            </button>
+          </Modal.Footer>
 
-        {this.state.commentMode ? (
-          <>
-            <input
-              type="text"
-              name="commentText"
-              minLength={1}
-              maxLength={200}
-              value={this.state.commentText}
-              onChange={this.updateComment}
-            />
-            <p>{this.state.commentText}</p>
-            <button
-              className="btn btn-primary btn-block"
-              onClick={() => this.postComment()}
-            >
-              Post comment
-            </button>
-            <button
-              className="btn btn-secondary btn-block"
-              onClick={() => this.cancelComment()}
-            >
-              Cancel comment
-            </button>
-          </>
-        ) : null}
-        <Modal.Body className="">
-          <div className="mb-3 centered">{this.renderComments()}</div>
-        </Modal.Body>
-      </Modal.Dialog>
-    );
-  }
+          {this.state.commentMode ? (
+            <>
+              <input
+                type="text"
+                name="commentText"
+                minLength={1}
+                maxLength={200}
+                value={this.state.commentText}
+                onChange={this.updateComment}
+              />
+              <p>{this.state.commentText}</p>
+              <button
+                className="btn btn-primary btn-block"
+                onClick={() => this.postComment()}
+              >
+                Post comment
+              </button>
+              <button
+                className="btn btn-secondary btn-block"
+                onClick={() => this.cancelComment()}
+              >
+                Cancel comment
+              </button>
+            </>
+          ) : null}
+          <Modal.Body className="">
+            <div className="mb-3 centered">{this.renderComments()}</div>
+          </Modal.Body>
+        </Modal.Dialog>
+      </div>
+    ); //return
+  } //render
 }
 
 export default PopUpModal;
