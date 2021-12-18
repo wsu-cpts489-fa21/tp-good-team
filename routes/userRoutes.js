@@ -24,6 +24,7 @@ userRoute.get("/users/:userId", async (req, res, next) => {
             " was found in database."
         );
     } else {
+      // return res.status(200).json(thisUser);
       return res.status(200).json(JSON.stringify(thisUser));
     }
   } catch (err) {

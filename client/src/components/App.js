@@ -27,6 +27,7 @@ import BuddiesPage from "./BuddiesPage.js";
 import SideMenu from "./SideMenu.js";
 import AppMode from "./AppMode.js";
 import SettingsPage from "./SettingsPage";
+import CommentPage from "./Comment.js";
 
 library.add(
   faWindowClose,
@@ -523,6 +524,7 @@ class App extends React.Component {
                 accountExists={this.accountExists}
                 authenticateUser={this.authenticateUser}
               />
+              // <CommentPage />
             ),
             FeedMode: (
               <FeedPage
@@ -533,6 +535,7 @@ class App extends React.Component {
                 addFeedPost={this.addFeedPost}
                 postComment={this.postComment}
                 buddies={this.state.userData.buddies}
+                profilePic={this.state.userData.identityData.profilePic}
               />
             ),
             RoundsMode: (

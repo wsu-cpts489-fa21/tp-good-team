@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class RoundsTable extends React.Component {
   renderTable = () => {
+    console.log("rendering rounds table");
     const table = [];
     for (let r = 0; r < this.props.rounds.length; ++r) {
       table.push(
