@@ -30,9 +30,24 @@ class PopUpModal extends React.Component {
     });
   };
 
-  postComment = () => {
+  postComment = async () => {
     if (this.state.commentText != "") {
-      this.props.postComment(this.props.id, this.state.commentText);
+      let today = new Date(Date.now() - new Date().getTimezoneOffset() * 60000);
+      let date = today.toISOString().substr(0, 10);
+      let time = today.toISOString().substr(11, 5);
+      const newComment = {
+        _id: Date.now(),
+        username: this.props.userId,
+        comment: this.state.commentText,
+        date: date,
+        time: time,
+      };
+
+      let res = await this.props.postComment(
+        this.props.id,
+        newComment,
+        this.props.commentCount + 1
+      );
       this.setState({
         commentMode: false,
       });
@@ -106,8 +121,10 @@ class PopUpModal extends React.Component {
           <>
             <input
               type="text"
+              name="commentText"
               minLength={1}
               maxLength={200}
+              value={this.state.commentText}
               onChange={this.updateComment}
             />
             <p>{this.state.commentText}</p>
