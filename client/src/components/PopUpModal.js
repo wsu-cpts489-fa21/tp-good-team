@@ -3,49 +3,63 @@ import Modal from "react-bootstrap/Modal";
 import like from "../images/like.jpg";
 
 class PopUpModal extends React.Component {
-
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       commentMode: false,
       commentText: "",
-      likes: this.props.likes
+      likes: this.props.likes,
     };
   }
   commentBtn = () => {
     this.setState({
       commentMode: true,
     });
-  }
+  };
 
   updateComment = (event) => {
     this.setState({
-      commentText: event.target.value
-    })
-  }
+      commentText: event.target.value,
+    });
+  };
 
   cancelComment = () => {
     this.setState({
       commentMode: false,
       commentText: "",
     });
-  }
+  };
 
-  postComment = () => {
-    if (this.state.commentText != ""){
-      this.props.postComment(this.props.id, this.state.commentText)
+  postComment = async () => {
+    if (this.state.commentText != "") {
+      let today = new Date(Date.now() - new Date().getTimezoneOffset() * 60000);
+      let date = today.toISOString().substr(0, 10);
+      let time = today.toISOString().substr(11, 5);
+      const newComment = {
+        _id: Date.now(),
+        username: this.props.userId,
+        comment: this.state.commentText,
+        date: date,
+        time: time,
+      };
+
+      let res = await this.props.postComment(
+        this.props.id,
+        newComment,
+        this.props.commentCount + 1
+      );
       this.setState({
         commentMode: false,
       });
     }
-  }
+  };
 
   cancelBtn = () => {
     this.props.cancelBtn();
   };
 
   renderComments = () => {
-    console.log("comments: ", this.props.comments)
+    console.log("comments: ", this.props.comments);
     const table = [];
     for (let i = 0; i < this.props.comments.length; i++) {
       table.push(
@@ -55,14 +69,14 @@ class PopUpModal extends React.Component {
         </tr>
       );
     }
-    return table
-  }
+    return table;
+  };
 
   like = () => {
     this.setState({
       likes: this.state.likes + 1,
-    })
-  }
+    });
+  };
 
   render() {
     return (
@@ -81,24 +95,53 @@ class PopUpModal extends React.Component {
         </Modal.Body>
         <Modal.Footer>
           {this.state.likes}
-          <img src={like} onClick={() => this.like()} width="20px" height="20px"></img>
-          <button onClick={this.commentBtn} variant="primary">
+          <img
+            src={like}
+            onClick={() => this.like()}
+            width="20px"
+            height="20px"
+          ></img>
+          <button
+            className="btn btn-primary"
+            onClick={this.commentBtn}
+            variant="primary"
+          >
             Comment
           </button>
-          <button onClick={this.cancelBtn} variant="primary">
+          <button
+            className="btn btn-secondary"
+            onClick={this.cancelBtn}
+            variant="primary"
+          >
             Close
           </button>
         </Modal.Footer>
 
-        { this.state.commentMode ? 
-        <>
-          <input type="text" minLength={1} maxLength={200} onChange={this.updateComment}/>
-          <p>{this.state.commentText}</p>
-          <button onClick={ () => this.postComment()}>Post comment</button>
-          <button onClick={ () => this.cancelComment()}>Cancel comment</button>
-        </>
-        :
-        null}
+        {this.state.commentMode ? (
+          <>
+            <input
+              type="text"
+              name="commentText"
+              minLength={1}
+              maxLength={200}
+              value={this.state.commentText}
+              onChange={this.updateComment}
+            />
+            <p>{this.state.commentText}</p>
+            <button
+              className="btn btn-primary btn-block"
+              onClick={() => this.postComment()}
+            >
+              Post comment
+            </button>
+            <button
+              className="btn btn-secondary btn-block"
+              onClick={() => this.cancelComment()}
+            >
+              Cancel comment
+            </button>
+          </>
+        ) : null}
         <p>Comments:</p>
         {this.renderComments()}
       </Modal.Dialog>

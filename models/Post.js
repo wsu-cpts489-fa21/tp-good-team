@@ -14,11 +14,9 @@ const PostSchema = new mongoose.Schema({
     seconds: { type: String },
     isPrivate: { type: Boolean },
   },
+
   postData: {
-    date: {
-      type: Date,
-      default: Date.now() - new Date().getTimezoneOffset() * 60000,
-    },
+    date: { type: String },
     fistBumpCount: { type: Number, default: 0 },
     commentCount: { type: Number, default: 0 },
     comment: { type: String },
@@ -29,6 +27,7 @@ const PostSchema = new mongoose.Schema({
 
 const Post = mongoose.model("Post", PostSchema);
 export { PostSchema, Post };
+// export default Post;
 
 /*****************************************************************
 

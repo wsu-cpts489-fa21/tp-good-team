@@ -45,6 +45,8 @@ class RoundsPage extends React.Component {
   };
 
   backBtn = () => {
+    this.props.toggleModalOpen();
+
     this.setState({
       earnBadgesOpen: false,
     });
@@ -116,6 +118,7 @@ class RoundsPage extends React.Component {
               icon="medal"
               label={"Earn badges"}
               action={() => {
+                this.props.toggleModalOpen();
                 this.setState({
                   earnBadgesOpen: true,
                 });
