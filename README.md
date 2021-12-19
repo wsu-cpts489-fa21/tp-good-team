@@ -343,7 +343,6 @@ We did not use Zoom, we used a private discord meeting to go through what we did
       <td>
           Created DB schema. Initially structured as a table, but later switched UI to look more like a Feed Post.
       </td>
-      </tr>
     </tr>
     <tr>
       <td><a href="https://github.com/wsu-cpts489-fa21/tp-good-team/issues/120">#120</a></td>
