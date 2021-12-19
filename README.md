@@ -491,14 +491,17 @@ We did not use Zoom, we used a private discord meeting to go through what we did
 
 ### Retrospective
 
-[Link to Recording](https://wsu.zoom.us/recording)
+Something happened with the retrespective recording. We tried to recreate the meeting, but it felt weird.
 
 #### What went well
 
 - Team communication
 - Implemented a lot of this milestone
 - Everyone played a big part in this milestone
+- Drilling into the issues and discussing smaller and smaller chunks.
 
 #### What we'd like to improve
 
 - Fixing our previous bugs that we haven't had a chance to look at
+- Digging even deeper into the issues to discuss smaller chunks
+- Discuss architecture layout before coding
