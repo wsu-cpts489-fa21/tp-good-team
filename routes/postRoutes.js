@@ -135,6 +135,7 @@ postRoute.put("/posts/:postId", async (req, res) => {
   for (const bodyProp in req.body) {
     if (bodyProp === "_id") {
     } else if (bodyProp === "comments") {
+    } else if (bodyProp === "__v") {
     } else if (bodyProp === "userData") {
       for (const uProp in req.body.userData) {
         if (!validUserProps.includes(uProp)) {
@@ -155,7 +156,7 @@ postRoute.put("/posts/:postId", async (req, res) => {
             .send(
               "posts/ POST request formatted incorrectly." +
                 "Only the following props are allowed in roundData: " +
-                "'sgs', strokes', minutes', seconds'"
+                "'sgs', strokes', minutes', seconds', isPrivate"
             );
         }
       }
@@ -183,9 +184,24 @@ postRoute.put("/posts/:postId", async (req, res) => {
   }
 
   //Try to update data
+  // try {
+  //   console.log("1: " + req.body.postData.fistBumpCount);
+  //   const newFistBumpCount = req.body.postData.fistBumpCount;
+  //   console.log("NewCount: " + newFistBumpCount);
+  //   console.log("2: " + req.body.fistBumpCount);
+  //   const status = await Post.updateOne(
+  //     { _id: req.params.postId },
+  //     { $set: { "postData.fistBumpCount": newFistBumpCount } }
+  //     // { $set: req.body }
+  //   );
   try {
+    console.log("1: " + req.body.postData.fistBumpCount);
+    const newFistBumpCount = req.body.postData.fistBumpCount;
+    console.log("NewCount: " + newFistBumpCount);
+    console.log("2: " + req.body.fistBumpCount);
     const status = await Post.updateOne(
       { _id: req.params.postId },
+      // { $set: { "postData.fistBumpCount": newFistBumpCount } }
       { $set: req.body }
     );
     if (status.modifiedCount != 1) {
