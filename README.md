@@ -395,6 +395,7 @@ We did not use Zoom, we used a private discord meeting to go through what we did
       </tr>
     <tr>
       <td colspan="1" align="right"><b>Totals:</b></td>
+      <td><b>20</b></td>
       <td><b>6</b></td>
       <td><b>6</b></td>
       <td><b>0</b></td>
