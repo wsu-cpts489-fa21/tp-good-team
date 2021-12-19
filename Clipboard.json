@@ -1,20 +1,15 @@
 {
-  "_id": 5,
+  "_id": 1639895705346,
   "userData": {
-    "firstName": "TESTPRIVATEtrue",
-    "userName": "user@user.com",
-    "profilePic": ""
+    "firstName": "Derek",
+    "userName": "Derek@email.com"
   },
   "roundData": {
-    "sgs": "143:00",
-    "strokes": "80",
-    "minutes": "60",
-    "seconds": "50",
-    "isPrivate": true
+    "isPrivate": false
   },
   "postData": {
-    "date": "2005-01-01",
-    "fistBumpCount": 0,
+    "date": "2021-12-18",
+    "fistBumpCount": 5,
     "commentCount": 0,
     "comment": "",
     "postType": "post"

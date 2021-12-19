@@ -13,7 +13,7 @@ class FeedPage extends React.Component {
       mode: FeedMode.FEEDTABLE,
       objs: null,
       headId: 9999999999999,
-      id: -1,
+      postId: -1,
       firstName: "",
       sgs: "",
       minutes: "",
@@ -26,6 +26,8 @@ class FeedPage extends React.Component {
       comment: "",
       update: false,
       table: [],
+      commentTitle: "",
+      commentBody: "",
     };
   }
 
@@ -47,25 +49,6 @@ class FeedPage extends React.Component {
     this.setState({
       update: true,
     });
-  };
-
-  initiateCommentMode = (data, newMode) => {
-    this.setState({
-      mode: newMode,
-      id: data.id,
-      firstName: data.firstName,
-      sgs: data.sgs,
-      minutes: data.minutes,
-      seconds: data.seconds,
-      strokes: data.strokes,
-      type: data.type,
-      comments: data.comments,
-      likes: data.likes,
-      commentCount: data.commentCount,
-      // objs: data.objs,
-    });
-
-    this.props.toggleModalOpen();
   };
 
   setMode = (newMode) => {
@@ -182,23 +165,67 @@ class FeedPage extends React.Component {
     const commentList = this.state.objs[r].comments;
     const postData = this.state.objs[r].postData;
 
+    let title;
+    let body;
+
+    //Derek logged a speedgolf round on DATE!
+    //Derek scored a SGS by finishing with 80 strokes in 48:89
     if (postData.postType === "round") {
-      const data = {
-        id: this.state.objs[r]._id,
-        firstName: userData.firstName,
-        sgs: roundData.sgs,
-        minutes: roundData.minutes,
-        seconds: roundData.seconds,
-        strokes: roundData.strokes,
-        type: postData.postType,
-        comments: commentList,
-        likes: postData.fistBumpCount,
-        commentCount: postData.commentcount,
-        objs: this.state.objs[r],
-      };
-      this.initiateCommentMode(data, FeedMode.FEEDCOMMENT);
+      title =
+        userData.firstName +
+        " logged a speedgolf round on " +
+        postData.date +
+        "!";
+
+      body =
+        userData.firstName +
+        " scored a " +
+        roundData.sgs +
+        " by finishing with " +
+        roundData.strokes +
+        " strokes in " +
+        roundData.minutes +
+        ":" +
+        roundData.seconds;
+    } else if (postData.postType === "post") {
+      //Derek created a post on DATE!
+      //Body
+      title = userData.firstName + " created a post on " + postData.date + "!";
+      body = postData.comment;
+    } else {
+      console.log("Unexpected branch in FeedPage.js");
     }
+
+    this.setState({
+      mode: FeedMode.FEEDCOMMENT,
+      firstName: userData.firstName,
+      postId: this.state.objs[r]._id,
+      commentCount: postData.commentCount,
+      comments: commentList,
+      commentTitle: title,
+      commentBody: body,
+    });
+    this.props.toggleModalOpen();
   };
+
+  // initiateCommentMode = (data, newMode) => {
+  //   this.setState({
+  //     mode: newMode,
+  //     id: data.id,
+  //     firstName: data.firstName,
+  //     sgs: data.sgs,
+  //     minutes: data.minutes,
+  //     seconds: data.seconds,
+  //     strokes: data.strokes,
+  //     type: data.type,
+  //     comments: data.comments,
+  //     likes: data.likes,
+  //     commentCount: data.commentCount,
+  //     // objs: data.objs,
+  //   });
+
+  //   this.props.toggleModalOpen();
+  // };
 
   handleLikeClick = async (r) => {
     //Trying new way
@@ -280,10 +307,12 @@ class FeedPage extends React.Component {
             minutes={this.state.minutes}
             seconds={this.state.seconds}
             sgs={this.state.sgs}
-            id={this.state.id}
+            postId={this.state.postId}
             comments={this.state.comments}
             likes={this.state.likes}
             commentCount={this.state.commentCount}
+            title={this.state.commentTitle}
+            body={this.state.commentBody}
           />
         );
       default:

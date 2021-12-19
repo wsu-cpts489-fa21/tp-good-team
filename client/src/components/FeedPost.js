@@ -2,6 +2,7 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import profilePic from "../images/DefaultProfilePic.jpg";
 import LikeImage from "../images/like.jpg";
+import CommentImage from "../images/comment.png";
 
 class FeedPost extends React.Component {
   render() {
@@ -29,13 +30,23 @@ class FeedPost extends React.Component {
               onClick={() => {
                 this.props.handleLikeClick(this.props.r);
               }}
-              width="20px"
-              height="20px"
+              width="40px"
+              height="40px"
               src={LikeImage}
             />{" "}
             {likeCount}
           </Card.Text>
-          <Card.Text>Comments: {commentCount}</Card.Text>
+          <Card.Text className="h3">
+            <img
+              onClick={() => {
+                this.props.handleTableClick(this.props.r);
+              }}
+              width="40px"
+              height="40px"
+              src={CommentImage}
+            />{" "}
+            {/* {commentCount} */}
+          </Card.Text>
         </Card.Footer>
       </Card>
     );

@@ -10,13 +10,11 @@ class PopUpModal extends React.Component {
       commentMode: false,
       commentText: "",
       likes: this.props.likes,
-      update: false,
     };
   }
   commentBtn = () => {
     this.setState({
       commentMode: true,
-      update: true,
     });
   };
 
@@ -33,15 +31,6 @@ class PopUpModal extends React.Component {
     });
   };
 
-  componentDidUpdate = () => {
-    if (this.state.update) {
-      this.setState({
-        update: false,
-      });
-    }
-    this.renderComments();
-  };
-
   postComment = async () => {
     if (this.state.commentText != "") {
       let today = new Date(Date.now() - new Date().getTimezoneOffset() * 60000);
@@ -49,21 +38,21 @@ class PopUpModal extends React.Component {
       let time = today.toISOString().substr(11, 5);
       const newComment = {
         _id: Date.now(),
-        username: this.props.userId,
+        username: this.props.firstName,
         comment: this.state.commentText,
         date: date,
         time: time,
       };
-      this.setState({
-        commentMode: false,
-        update: true,
-      });
 
       let res = await this.props.postComment(
-        this.props.id,
+        this.props.postId,
         newComment,
         this.props.commentCount + 1
       );
+      this.setState({
+        commentText: "",
+        commentMode: false,
+      });
     }
   };
 
@@ -95,61 +84,59 @@ class PopUpModal extends React.Component {
     return table;
   };
 
-  like = () => {
-    this.setState({
-      likes: this.state.likes + 1,
-    });
-  };
+  // like = () => {
+  //   this.setState({
+  //     likes: this.state.likes + 1,
+  //   });
+  // };
 
   render() {
+    const { title, body } = this.props;
     return (
       <div
-        id="commentMode"
+        id="feedCommentPade"
         className="mode-page"
         role="tabpanel"
-        aria-label="Comment Tab"
+        aria-label="Feed Comment Tab"
         tabIndex="0"
       >
         <Modal.Dialog>
           <Modal.Header closeButton onClick={this.cancelBtn}>
-            <Modal.Title>{this.props.firstName} </Modal.Title>
+            <Modal.Title>{title} </Modal.Title>
           </Modal.Header>
-          <Modal.Body>
-            {"Strokes:" + this.props.strokes}
-            <br></br>
-            {"Minutes:" + this.props.minutes}
-            <br></br>
-            {"Seconds:" + this.props.seconds}
-            <br></br>
-            {"SGS: " + this.props.sgs}
-          </Modal.Body>
+          <Modal.Body>{body}</Modal.Body>
           <Modal.Footer>
-            {this.state.likes}
+            {this.props.likes}
             <img
               src={like}
-              onClick={() => this.like()}
+              // onClick={() => this.like()}
               width="20px"
               height="20px"
             ></img>
-            <button
-              className="btn btn-primary"
-              onClick={this.commentBtn}
-              variant="primary"
-            >
-              Comment
-            </button>
-            <button
-              className="btn btn-secondary"
-              onClick={this.cancelBtn}
-              variant="primary"
-            >
-              Close
-            </button>
+            {this.state.commentMode ? null : (
+              <>
+                <button
+                  className="btn btn-primary"
+                  onClick={this.commentBtn}
+                  variant="primary"
+                >
+                  Comment
+                </button>
+                <button
+                  className="btn btn-secondary"
+                  onClick={this.cancelBtn}
+                  variant="primary"
+                >
+                  Close
+                </button>
+              </>
+            )}
           </Modal.Footer>
 
           {this.state.commentMode ? (
             <>
               <input
+                className="mb-3"
                 type="text"
                 name="commentText"
                 minLength={1}
@@ -157,9 +144,8 @@ class PopUpModal extends React.Component {
                 value={this.state.commentText}
                 onChange={this.updateComment}
               />
-              <p>{this.state.commentText}</p>
               <button
-                className="btn btn-primary btn-block"
+                className="btn btn-primary btn-block mb-1"
                 onClick={() => this.postComment()}
               >
                 Post comment
@@ -177,8 +163,8 @@ class PopUpModal extends React.Component {
           </Modal.Body>
         </Modal.Dialog>
       </div>
-    ); //return
-  } //render
+    );
+  }
 }
 
 export default PopUpModal;
