@@ -418,10 +418,15 @@ We did not use Zoom, we used a private discord meeting to go through what we did
 
 ### Testing
 
-| Issue                               | Test File                            | Feature Tested                   | Results Summary                                         |
-| ----------------------------------- | ------------------------------------ | -------------------------------- | ------------------------------------------------------- |
-| [Issue #](https://github.com/issue) | [Google.js](https://www.github.com/) | Google Authentication            | [3/3 tests passed](https://yoursite.com/animated.gif)   |
-| [Issue #](https://github.com/issue) | [routes.js](https://www.github.com/) | PUT and DELETE routes for rounds | [15/15 tests passed](https://yoursite.com/animated.gif) |
+| Issue                                                               | Test File                                                                                                    | Feature Tested      | Results Summary                                                                                                  |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| [#148](https://github.com/wsu-cpts489-fa21/tp-good-team/issues/148) | [postPutRoute](https://github.com/wsu-cpts489-fa21/tp-good-team/blob/LastMinutePushes/tests/postPutTest.gif) | Put route for Posts | [1/1 tests passed](https://github.com/wsu-cpts489-fa21/tp-good-team/blob/LastMinutePushes/tests/postPutTest.gif) |
+
+| [#](ISSUELINK) | [FILENAME](FILELINK) | DESCRIPTION | [XX tests passed](FILELINK) |
+| [#](ISSUELINK) | [FILENAME](FILELINK) | DESCRIPTION | [XX tests passed](FILELINK) |
+| [#](ISSUELINK) | [FILENAME](FILELINK) | DESCRIPTION | [XX tests passed](FILELINK) |
+| [#](ISSUELINK) | [FILENAME](FILELINK) | DESCRIPTION | [XX tests passed](FILELINK) |
+| [#](ISSUELINK) | [FILENAME](FILELINK) | DESCRIPTION | [XX tests passed](FILELINK) |
 
 ### Communication
 
