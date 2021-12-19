@@ -418,7 +418,7 @@ We did not use Zoom, we used a private discord meeting to go through what we did
         </td>
       </tr>
                         <tr>
-        <td><a href="https://github.com/wsu-cpts489-fa21/tp-good-team/issues/148">#147</a></td>
+        <td><a href="https://github.com/wsu-cpts489-fa21/tp-good-team/issues/42">#42</a></td>
         <td>3</td>
         <td>1</td>
         <td>1</td>
@@ -426,7 +426,7 @@ We did not use Zoom, we used a private discord meeting to go through what we did
         <td>1</td>
         <td>100</td>
         <td>
-          Updated `RoundForm` to include a box to check. If this is checked we don't render this Post
+         Complete TPM2 Report
         </td>
       </tr>
     <tr>
