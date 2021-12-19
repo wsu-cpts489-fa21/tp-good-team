@@ -46,12 +46,12 @@ You can acces our team's [Project Board](https://github.com/wsu-cpts489-fa21/tp-
 
 #### Reflection Statements
 
-| Team Member | Contribution Reflection Statement                                                                                                                                                          |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Team Member | Contribution Reflection Statement                                                                                                                                                                                           |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | H.J.        | <_Required_: I initially create the updateRound route and the updateRound function in App.js and later on it was improved. Later on I helped with testing, modifying the test to work accurately with our web application.> |
-| E.A.        | <_Required_: The story points data is unlikely to tell the whole story about your contribution. Write a brief statement explaining and reflecting on your contribution to this milestone.> |
-| C.H.        | <_Required_: The story points data is unlikely to tell the whole story about your contribution. Write a brief statement explaining and reflecting on your contribution to this milestone.> |
-| J.S.        | I worked on the `Profile & Settings` page, along with the unit tests for the page. In addition, I worked on the Google OAuth feature. |
+| E.A.        | <_Required_: The story points data is unlikely to tell the whole story about your contribution. Write a brief statement explaining and reflecting on your contribution to this milestone.>                                  |
+| C.H.        | <_Required_: The story points data is unlikely to tell the whole story about your contribution. Write a brief statement explaining and reflecting on your contribution to this milestone.>                                  |
+| J.S.        | I worked on the `Profile & Settings` page, along with the unit tests for the page. In addition, I worked on the Google OAuth feature.                                                                                       |
 
 ### Testing
 
@@ -134,14 +134,14 @@ You can acces our team's [Project Board](https://github.com/wsu-cpts489-fa21/tp-
 
 | Team Member | Communication Reflection Statement                                                                                                                                                                               |
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| H.J.        | <_Required_: In discord we all went over what we preferred to do and I also had to delegate some roles to people who had not picked up any.> |
+| H.J.        | <_Required_: In discord we all went over what we preferred to do and I also had to delegate some roles to people who had not picked up any.>                                                                     |
 | E.A.        | <_Required_: The posts/replies data is unlikely to tell the whole story about your communication. Write a brief statement explaining and reflecting on your communication with your team during this milestone.> |
 | C.H.        | <_Required_: The posts/replies data is unlikely to tell the whole story about your communication. Write a brief statement explaining and reflecting on your communication with your team during this milestone.> |
-| J.S.        | There were a few wrinkles in our communication. I think we were able to come together in the end to finalize a game plan, which will set us on the correct path for milestone1 |
+| J.S.        | There were a few wrinkles in our communication. I think we were able to come together in the end to finalize a game plan, which will set us on the correct path for milestone1                                   |
 
 ### Retrospective
 
-We did not use Zoom, we used a private discord meeting to go through what we did and what we still needed to do. 
+We did not use Zoom, we used a private discord meeting to go through what we did and what we still needed to do.
 
 #### What went well
 
@@ -189,12 +189,12 @@ We did not use Zoom, we used a private discord meeting to go through what we did
 
 #### Reflection Statements
 
-| Team Member | Contribution Reflection Statement                                                                                                                                                          |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| H.J.        | <_Required_: In this milestone I completed four tasks, 80,81,82,83. There was a lot of communication among the team members and everyone helped each other out best they could> |
-| E.A.        | <_Required_: The story points data is unlikely to tell the whole story about your contribution. Write a brief statement explaining and reflecting on your contribution to this milestone.> |
+| Team Member | Contribution Reflection Statement                                                                                                                                                               |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| H.J.        | <_Required_: In this milestone I completed four tasks, 80,81,82,83. There was a lot of communication among the team members and everyone helped each other out best they could>                 |
+| E.A.        | <_Required_: The story points data is unlikely to tell the whole story about your contribution. Write a brief statement explaining and reflecting on your contribution to this milestone.>      |
 | C.H.        | With a lot of help from my team, I contributed to adding an "earn badges" link that gives information about badges, as well as making sure users could earn badges based on their golf strokes. |
-| J.S.        | <_Required_: The story points data is unlikely to tell the whole story about your contribution. Write a brief statement explaining and reflecting on your contribution to this milestone.> |
+| J.S.        | <_Required_: The story points data is unlikely to tell the whole story about your contribution. Write a brief statement explaining and reflecting on your contribution to this milestone.>      |
 
 ### Testing
 
@@ -282,7 +282,7 @@ We did not use Zoom, we used a private discord meeting to go through what we did
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | H.J.        | <_Required_: The posts/replies data is unlikely to tell the whole story about your communication. Write a brief statement explaining and reflecting on your communication with your team during this milestone.> |
 | E.A.        | <_Required_: The posts/replies data is unlikely to tell the whole story about your communication. Write a brief statement explaining and reflecting on your communication with your team during this milestone.> |
-| C.H.        | I communicated consistently with my team in both the chat channels of Discord and Slack, as well as thorough video calls where everyone was involved and we were all getting work done together. |
+| C.H.        | I communicated consistently with my team in both the chat channels of Discord and Slack, as well as thorough video calls where everyone was involved and we were all getting work done together.                 |
 | J.S.        | <_Required_: The posts/replies data is unlikely to tell the whole story about your communication. Write a brief statement explaining and reflecting on your communication with your team during this milestone.> |
 
 ### Retrospective
@@ -311,45 +311,102 @@ We did not use Zoom, we used a private discord meeting to go through what we did
 
 #### Issues and Story Points
 
-<table> 
+<table>
   <thead>
     <tr>
-      <th colspan="2"></th><th colspan="6">Story Point Counts</th><th colspan="2"></th>
-    </tr> 
-    <tr>
-      <th>Issue</th><th>Linked PR</th><th>Total</th><th>H.J.</th><th>E.A.</th><th>C.H.</th><th>J.S.</th><th>% Complete</th><th>Notes</th>
+      <th colspan="1"></th>
+      <th colspan="6">Story Point Counts</th>
+      <th colspan="2"></th>
     </tr>
-  </thead> 
+    <tr>
+      <th>Issue</th>
+      <th>Total</th>
+      <th>H.J.</th>
+      <th>E.A.</th>
+      <th>C.H.</th>
+      <th>J.S.</th>
+      <th>% Complete</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+
   <tbody>
-    
     <tr>
-      <td><a href="https://github.com/issue">Issue #122</a></td><td><a href="https://github.com/PR">PR #132</a></td><td>5</td><td>3</td><td>1</td><td>1</td><td>0</td><td>100</td><td>Updated database schema. Updated server routes.</td>
+      <td>
+        <a href=https://github.com/wsu-cpts489-fa21/tp-good-team/issues/124
+          >#24</a
+        >
+      </td>
+      <td>
+      </td>
+      <td>8</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>8</td>
+      <td>100</td>
+      <td>
+          Created DB schema. Initially structured as a table, but later switched UI to look more like a Feed Post.
+      </td>
     </tr>
     <tr>
-     <td><a href="https://github.com/issue">Issue #121</a></td><td><a href="https://github.com/PR">PR #136</a></td><td>3</td><td>0</td><td>0</td><td>0</td><td>0.8</td><td>40</td><td>Updated database schema. Updated server routes. Implemented UI.</td>
-    </tr>
-     <tr>
-      <td><a href="https://github.com/issue">Issue #123</a></td><td><a href="https://github.com/PR">PR #130</a></td><td>5</td><td>3</td><td>1</td><td>1</td><td>0</td><td>100</td><td>Updated UI to display pop ups</td>
+      <td><a href="https://github.com/wsu-cpts489-fa21/tp-good-team/issues/120">#120</a></td>
+      <td>3</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>100</td>
+      <td>
+        Added to the schema to take count of the number received. Searched online for free svg icons to use.
+        Implemented this by giving specific rows onClick() abilities.
+      </td>
     </tr>
     <tr>
-     <td><a href="https://github.com/issue">Issue #120</a></td><td><a href="https://github.com/PR">PR #128</a></td><td>3</td><td>0</td><td>0</td><td>0</td><td>0.8</td><td>40</td><td>Updated database schema. Updated server routes. Implemented UI through a action button and added a page.</td>
-    </tr>
-     <tr>
-      <td><a href="https://github.com/issue">Issue #124</a></td><td><a href="https://github.com/PR">PR #125,126,127,129,131,133,135</a></td><td>5</td><td>3</td><td>1</td><td>1</td><td>0</td><td>100</td><td>Updated the databse multiple times. Updated the schema numerous times. UI implemented to accomdate for those changes.</td>
-    </tr>
-    <tr><td colspan="5" align="right"><b>Totals:</b></td><td><b>8</b></td><td><b>3</b></td><td><b>1</b></td><td><b>1</b></td><td><b>0.8</b></td><td colspan="5"></td>
-    </tr>
-  </tbody>
-</table>
+        <td><a href="https://github.com/wsu-cpts489-fa21/tp-good-team/issues/123">#123</a></td>
+        <td>3</td>
+        <td>3</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>100</td>
+        <td>
+          Accomplished by creating a `Comment` icon that users can click. Creating document-wide handlers affected handlers that existed in the children.
+        </td>
+      </tr>
+      <tr>
+        <td><a href="https://github.com/wsu-cpts489-fa21/tp-good-team/issues/121">#121</a></td>
+        <td>3</td>
+        <td>0</td>
+        <td>3</td>
+        <td>0</td>
+        <td>0</td>
+        <td>100</td>
+        <td>
+          While rendering the table of Posts, we can save the index and use it to link to specific handlers
+        </td>
+      </tr>
+      <tr>
+        <td><a href="https://github.com/wsu-cpts489-fa21/tp-good-team/issues/122">#122</a></td>
+        <td>3</td>
+        <td>0</td>
+        <td>3</td>
+        <td>0</td>
+        <td>0</td>
+        <td>100</td>
+        <td>
+          Updated `RoundForm` to include a box to check. If this is checked we don't render this Post
+        </td>
+      </tr>
 
 #### Reflection Statements
 
-| Team Member | Contribution Reflection Statement                                                                                                                                                          |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Team Member | Contribution Reflection Statement                                                                                                                                                                                                                                                                                                                                      |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | H.J.        | <_Required_: During this milestone i worked on two tasks. I worked on 120 and 123 that led to a user being able to click a post action button and see a post page, write text or upload a file and with Jeremiah's help, submit to and have it seen on the feed. 123 I created a pop up modal for when users click a round on the feed page, they can view the stats.> |
-| E.A.        | <_Required_: The story points data is unlikely to tell the whole story about your contribution. Write a brief statement explaining and reflecting on your contribution to this milestone.> |
-| C.H.        | <_Required_: The story points data is unlikely to tell the whole story about your contribution. Write a brief statement explaining and reflecting on your contribution to this milestone.> |
-| J.S.        | <_Required_: The story points data is unlikely to tell the whole story about your contribution. Write a brief statement explaining and reflecting on your contribution to this milestone.> |
+| E.A.        | <_Required_: The story points data is unlikely to tell the whole story about your contribution. Write a brief statement explaining and reflecting on your contribution to this milestone.>                                                                                                                                                                             |
+| C.H.        | <_Required_: The story points data is unlikely to tell the whole story about your contribution. Write a brief statement explaining and reflecting on your contribution to this milestone.>                                                                                                                                                                             |
+| J.S.        | <_Required_: The story points data is unlikely to tell the whole story about your contribution. Write a brief statement explaining and reflecting on your contribution to this milestone.>                                                                                                                                                                             |
 
 ### Testing
 
@@ -386,8 +443,8 @@ We did not use Zoom, we used a private discord meeting to go through what we did
   </tbody>
 </table>
 
-  
 #### Discord Meetings
+
 <table> 
   <thead>
     <tr>
@@ -416,7 +473,7 @@ We did not use Zoom, we used a private discord meeting to go through what we did
 
 | Team Member | Communication Reflection Statement                                                                                                                                                                               |
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| H.J.        | <_Required_: During this milestone I worked closely with my teammates to figure out and meet the requirements needed for tpm2 to the best of our ability.> |
+| H.J.        | <_Required_: During this milestone I worked closely with my teammates to figure out and meet the requirements needed for tpm2 to the best of our ability.>                                                       |
 | E.A.        | <_Required_: The posts/replies data is unlikely to tell the whole story about your communication. Write a brief statement explaining and reflecting on your communication with your team during this milestone.> |
 | C.H.        | <_Required_: The posts/replies data is unlikely to tell the whole story about your communication. Write a brief statement explaining and reflecting on your communication with your team during this milestone.> |
 | J.S.        | <_Required_: The posts/replies data is unlikely to tell the whole story about your communication. Write a brief statement explaining and reflecting on your communication with your team during this milestone.> |
