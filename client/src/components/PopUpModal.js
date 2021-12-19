@@ -38,14 +38,14 @@ class PopUpModal extends React.Component {
       let time = today.toISOString().substr(11, 5);
       const newComment = {
         _id: Date.now(),
-        username: this.props.userId,
+        username: this.props.firstName,
         comment: this.state.commentText,
         date: date,
         time: time,
       };
 
       let res = await this.props.postComment(
-        this.props.id,
+        this.props.postId,
         newComment,
         this.props.commentCount + 1
       );
@@ -91,6 +91,7 @@ class PopUpModal extends React.Component {
   // };
 
   render() {
+    const { title, body } = this.props;
     return (
       <div
         id="feedCommentPade"
@@ -101,19 +102,11 @@ class PopUpModal extends React.Component {
       >
         <Modal.Dialog>
           <Modal.Header closeButton onClick={this.cancelBtn}>
-            <Modal.Title>{this.props.firstName} </Modal.Title>
+            <Modal.Title>{title} </Modal.Title>
           </Modal.Header>
-          <Modal.Body>
-            {"Strokes:" + this.props.strokes}
-            <br></br>
-            {"Minutes:" + this.props.minutes}
-            <br></br>
-            {"Seconds:" + this.props.seconds}
-            <br></br>
-            {"SGS: " + this.props.sgs}
-          </Modal.Body>
+          <Modal.Body>{body}</Modal.Body>
           <Modal.Footer>
-            {this.state.likes}
+            {this.props.likes}
             <img
               src={like}
               // onClick={() => this.like()}
