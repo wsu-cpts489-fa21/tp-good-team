@@ -393,7 +393,6 @@ We did not use Zoom, we used a private discord meeting to go through what we did
           Updated `RoundForm` to include a box to check. If this is checked we don't render this Post
         </td>
       </tr>
-      
     <tr>
       <td colspan="2" align="right"><b>Totals:</b></td>
       <td><b>8</b></td>
@@ -403,6 +402,7 @@ We did not use Zoom, we used a private discord meeting to go through what we did
       <td><b>0.8</b></td>
       <td colspan="2"></td>
     </tr>
+      
   </tbody>
 </table>
 
