@@ -417,17 +417,28 @@ We did not use Zoom, we used a private discord meeting to go through what we did
           Updated `RoundForm` to include a box to check. If this is checked we don't render this Post
         </td>
       </tr>
+                        <tr>
+        <td><a href="https://github.com/wsu-cpts489-fa21/tp-good-team/issues/148">#147</a></td>
+        <td>3</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>100</td>
+        <td>
+          Updated `RoundForm` to include a box to check. If this is checked we don't render this Post
+        </td>
+      </tr>
     <tr>
       <td colspan="1" align="right"><b>Totals:</b></td>
-      <td><b>28</b></td>
-      <td><b>6</b></td>
-      <td><b>6</b></td>
+      <td><b>31</b></td>
+      <td><b>7</b></td>
+      <td><b>7</b></td>
       <td><b>0</b></td>
-      <td><b>16</b></td>
+      <td><b>17</b></td>
       <td><b>100</b></td>
       <td colspan="2"></td>
     </tr>
-      
   </tbody>
 </table>
 
