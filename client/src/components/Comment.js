@@ -6,7 +6,7 @@ class CommentPage extends React.Component {
   render() {
     const { user, comment, date } = this.props;
     return (
-      <Card className="text-left mb-3 centered w-100">
+      <Card id="feedCommentCard" className="text-left mb-3 centered w-100">
         {/* <Card.Header>User</Card.Header> */}
         <Card.Header className="mb-3 centered w-100">{user}</Card.Header>
         <Card.Body>

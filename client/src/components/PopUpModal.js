@@ -1,6 +1,6 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
-import like from "../images/like.jpg";
+import like from "../images/like.png";
 import CommentPage from "./Comment";
 
 class PopUpModal extends React.Component {
@@ -94,13 +94,13 @@ class PopUpModal extends React.Component {
     const { title, body } = this.props;
     return (
       <div
-        id="feedCommentPade"
+        id="feedCommentPage"
         className="mode-page"
         role="tabpanel"
         aria-label="Feed Comment Tab"
         tabIndex="0"
       >
-        <Modal.Dialog>
+        <Modal.Dialog id="feedCommentSection">
           <Modal.Header closeButton onClick={this.cancelBtn}>
             <Modal.Title>{title} </Modal.Title>
           </Modal.Header>
@@ -116,6 +116,7 @@ class PopUpModal extends React.Component {
             {this.state.commentMode ? null : (
               <>
                 <button
+                  id="commentModeActionBtn"
                   className="btn btn-primary"
                   onClick={this.commentBtn}
                   variant="primary"
@@ -123,6 +124,7 @@ class PopUpModal extends React.Component {
                   Comment
                 </button>
                 <button
+                  id="commentModeCloseBtn"
                   className="btn btn-secondary"
                   onClick={this.cancelBtn}
                   variant="primary"
@@ -136,6 +138,7 @@ class PopUpModal extends React.Component {
           {this.state.commentMode ? (
             <>
               <input
+                id="commentModeTextBox"
                 className="mb-3"
                 type="text"
                 name="commentText"
@@ -145,6 +148,7 @@ class PopUpModal extends React.Component {
                 onChange={this.updateComment}
               />
               <button
+                id="commentModeConfirmBtn"
                 className="btn btn-primary btn-block mb-1"
                 onClick={() => this.postComment()}
               >

@@ -414,6 +414,7 @@ class RoundForm extends React.Component {
             <label>
               Keep round private
               <input
+                id="roundFormPrivate"
                 name="private"
                 type="checkbox"
                 readOnly={true}
