@@ -182,18 +182,6 @@ postRoute.put("/posts/:postId", async (req, res) => {
         );
     }
   }
-
-  //Try to update data
-  // try {
-  //   console.log("1: " + req.body.postData.fistBumpCount);
-  //   const newFistBumpCount = req.body.postData.fistBumpCount;
-  //   console.log("NewCount: " + newFistBumpCount);
-  //   console.log("2: " + req.body.fistBumpCount);
-  //   const status = await Post.updateOne(
-  //     { _id: req.params.postId },
-  //     { $set: { "postData.fistBumpCount": newFistBumpCount } }
-  //     // { $set: req.body }
-  //   );
   try {
     console.log("1: " + req.body.postData.fistBumpCount);
     const newFistBumpCount = req.body.postData.fistBumpCount;

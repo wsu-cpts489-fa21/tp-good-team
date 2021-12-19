@@ -16,6 +16,40 @@
   }
 }
 
+/*****************************************************************
+Working Postman 
+*****************************************************************/
+{
+   "userData":{
+      "firstName":"BOB",
+      "userName":"Derek@email.com"
+   },
+   "roundData":{
+      "isPrivate":false
+   },
+   "postData":{
+      "date":"2021-12-18",
+      "fistBumpCount":987987,
+      "commentCount":0,
+      "comment":"",
+      "postType":"post"
+   },
+   "_id":88888888,
+   "comments":[
+   ]
+}
+
+/*****************************************************************
+   Comments
+*****************************************************************/
+
+{
+"_id": 123456,
+"username": "Jeremiah",
+"comment": "I really hope we get a decent grade",
+"date": "2021-12-24",
+"time": "13:11",
+}
 
 {
   "accountData":{
