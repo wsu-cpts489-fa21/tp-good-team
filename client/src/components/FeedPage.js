@@ -49,25 +49,6 @@ class FeedPage extends React.Component {
     });
   };
 
-  initiateCommentMode = (data, newMode) => {
-    this.setState({
-      mode: newMode,
-      id: data.id,
-      firstName: data.firstName,
-      sgs: data.sgs,
-      minutes: data.minutes,
-      seconds: data.seconds,
-      strokes: data.strokes,
-      type: data.type,
-      comments: data.comments,
-      likes: data.likes,
-      commentCount: data.commentCount,
-      // objs: data.objs,
-    });
-
-    this.props.toggleModalOpen();
-  };
-
   setMode = (newMode) => {
     this.setState({
       mode: newMode,
@@ -198,6 +179,38 @@ class FeedPage extends React.Component {
       };
       this.initiateCommentMode(data, FeedMode.FEEDCOMMENT);
     }
+  };
+
+  /*****************************************************************
+   * userId
+   * comments
+   * firstName
+   * strokes
+   * mins
+   * secs
+   * sgs
+   * comments.length
+   * postComment(id, commentCount)
+   * cancelComment
+   ***************************************************************** */
+
+  initiateCommentMode = (data, newMode) => {
+    this.setState({
+      mode: newMode,
+      id: data.id,
+      firstName: data.firstName,
+      sgs: data.sgs,
+      minutes: data.minutes,
+      seconds: data.seconds,
+      strokes: data.strokes,
+      type: data.type,
+      comments: data.comments,
+      likes: data.likes,
+      commentCount: data.commentCount,
+      // objs: data.objs,
+    });
+
+    this.props.toggleModalOpen();
   };
 
   handleLikeClick = async (r) => {
