@@ -405,13 +405,25 @@ We did not use Zoom, we used a private discord meeting to go through what we did
           Updated `RoundForm` to include a box to check. If this is checked we don't render this Post
         </td>
       </tr>
+                  <tr>
+        <td><a href="https://github.com/wsu-cpts489-fa21/tp-good-team/issues/148">#147</a></td>
+        <td>6</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>6</td>
+        <td>100</td>
+        <td>
+          Updated `RoundForm` to include a box to check. If this is checked we don't render this Post
+        </td>
+      </tr>
     <tr>
       <td colspan="1" align="right"><b>Totals:</b></td>
-      <td><b>22</b></td>
+      <td><b>28</b></td>
       <td><b>6</b></td>
       <td><b>6</b></td>
       <td><b>0</b></td>
-      <td><b>10</b></td>
+      <td><b>16</b></td>
       <td><b>100</b></td>
       <td colspan="2"></td>
     </tr>
@@ -426,7 +438,7 @@ We did not use Zoom, we used a private discord meeting to go through what we did
 | H.J.        | <_Required_: During this milestone i worked on two tasks. I worked on 120 and 123 that led to a user being able to click a post action button and see a post page, write text or upload a file and with Jeremiah's help, submit to and have it seen on the feed. 123 I created a pop up modal for when users click a round on the feed page, they can view the stats.> |
 | E.A.        | I worked on #121 and #122. These Issues added the ability to "like" and reply to posts. It required writing a Comment Schema, and updating the Post schema to allow for an array of Comments. I also added the ability for users to check a box to keep their rounds showing up in the Feed Mode. This involved updating Schemas.>                                     |
 | C.H.        | <_Required_: The story points data is unlikely to tell the whole story about your contribution. Write a brief statement explaining and reflecting on your contribution to this milestone.>                                                                                                                                                                             |
-| J.S.        | I worked on #124. I was responsible for setting up the schema to allow posts. I was also responsible for writing all the routes for both Posts and Comments. I set up the FeedMode to display the Posts. I also wrote the front-end connections to the backend for the backend-related methods.                                                                        |
+| J.S.        | I worked on #124 and #47 I was responsible for setting up the schema to allow posts. I was also responsible for writing all the routes for both Posts and Comments. I set up the FeedMode to display the Posts. I also wrote the front-end connections to the backend for the backend-related methods.                                                                 |
 
 ### Testing
 
@@ -436,9 +448,7 @@ We did not use Zoom, we used a private discord meeting to go through what we did
 | [#148](https://github.com/wsu-cpts489-fa21/tp-good-team/issues/148) | [postGetTest](https://github.com/wsu-cpts489-fa21/tp-good-team/blob/LastMinutePushes/tests/postGetTest.gif)         | Get route for Posts     | [1/1 tests passed](https://github.com/wsu-cpts489-fa21/tp-good-team/blob/LastMinutePushes/tests/postGetTest.gif)     |
 | [#148](https://github.com/wsu-cpts489-fa21/tp-good-team/issues/148) | [postPostTest](https://github.com/wsu-cpts489-fa21/tp-good-team/blob/LastMinutePushes/tests/postPostTest.gif)       | POST route for Posts    | [1/1 tests passed](https://github.com/wsu-cpts489-fa21/tp-good-team/blob/LastMinutePushes/tests/postPostTest.gif)    |
 | [#148](https://github.com/wsu-cpts489-fa21/tp-good-team/issues/148) | [commentPostTest](https://github.com/wsu-cpts489-fa21/tp-good-team/blob/LastMinutePushes/tests/commentPostTest.gif) | POST route for Comments | [1/1 tests passed](https://github.com/wsu-cpts489-fa21/tp-good-team/blob/LastMinutePushes/tests/commentPostTest.gif) |
-
-| [#](ISSUELINK) | [FILENAME](FILELINK) | DESCRIPTION | [XX tests passed](FILELINK) |
-| [#](ISSUELINK) | [FILENAME](FILELINK) | DESCRIPTION | [XX tests passed](FILELINK) |
+| [#148](https://github.com/wsu-cpts489-fa21/tp-good-team/issues/148) | [uiTests](https://github.com/wsu-cpts489-fa21/tp-good-team/blob/LastMinutePushes/tests/uiTests.js)                  | UI Tests for FeedMode   | [7/7 tests passed](https://github.com/wsu-cpts489-fa21/tp-good-team/blob/LastMinutePushes/tests/uiTests.gif)         |
 
 ### Communication
 
