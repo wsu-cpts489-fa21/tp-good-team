@@ -458,6 +458,21 @@ class App extends React.Component {
     let res = await fetch(url, body);
   };
 
+  updatePost = async (newPost, id) => {
+    console.log("newPost: " + JSON.stringify(newPost) + "\nID: " + id);
+    const url = "/posts/" + id;
+    const body = {
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-type": "application/json",
+      },
+      method: "PUT",
+      body: JSON.stringify(newPost),
+    };
+    const res = await fetch(url, body);
+  };
+
   postComment = async (postID, newComment, newCommentCount) => {
     const url = "/comments/" + postID;
 
@@ -529,6 +544,7 @@ class App extends React.Component {
             FeedMode: (
               <FeedPage
                 modalOpen={this.state.modalOpen}
+                updatePost={this.updatePost}
                 toggleModalOpen={this.toggleModalOpen}
                 menuOpen={this.state.menuOpen}
                 userId={this.state.userData.accountData.id}

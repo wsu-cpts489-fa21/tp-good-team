@@ -144,14 +144,17 @@ class FeedPage extends React.Component {
           const pic = this.state.profilePic;
 
           table.push(
-            <tr onClick={() => this.handleTableClick(r)} key={r}>
+            <tr key={r}>
               <td>
                 <FeedPost
+                  r={r}
                   title={title}
                   pic={pic}
                   likeCount={postData.fistBumpCount}
                   commentCount={postData.commentCount}
                   comment={postData.comment}
+                  handleLikeClick={this.handleLikeClick}
+                  handleTableClick={this.handleTableClick}
                 />
               </td>
             </tr>
@@ -195,6 +198,17 @@ class FeedPage extends React.Component {
       };
       this.initiateCommentMode(data, FeedMode.FEEDCOMMENT);
     }
+  };
+
+  handleLikeClick = async (r) => {
+    //Trying new way
+    const updatedPost = this.state.objs[r];
+    updatedPost.postData.fistBumpCount++;
+    const updateId = this.state.objs[r]._id;
+    const res = await this.props.updatePost(updatedPost, updateId);
+    this.setState({
+      update: true,
+    });
   };
 
   /*****************************************************************

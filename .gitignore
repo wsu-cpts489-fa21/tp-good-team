@@ -29,6 +29,6 @@ client/yarn-error.log*
 #BEFORE DEPLOY:
 #Comment client/package-lock.json
 #Comment client/build
-# client/package-lock.json
-# client/build
+client/package-lock.json
+client/build
 package-lock.json
