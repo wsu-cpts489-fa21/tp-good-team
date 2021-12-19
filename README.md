@@ -467,12 +467,15 @@ We did not use Zoom, we used a private discord meeting to go through what we did
       <td>12/13/21</td><td>60</td><td>&check;</td><td></td><td></td><td>&check;</td><td>Met over discord to talk about the features we wanted to implement for this milestone</td>
     </tr>
      <tr>
-      <td>12/15/21</td><td>120</td><td>&check;</td><td>&check;</td><td></td><td></td><td>We met over discord to talk about our current features and resolve merge conflicts among the different versions of similar pages</td>
+      <td>12/15/21</td><td>120</td><td>&check;</td><td>&check;</td><td></td><td>&check;</td><td>We met over discord to talk about our current features and resolve merge conflicts among the different versions of similar pages</td>
     </tr>
     <tr>
-      <td>12/15/21</td><td>120</td><td>&check;</td><td>&check;</td><td></td><td></td><td>We met over discord to talk about the final product, resolve merge conflicts among the different versions of similar pages and make sure we had a working product.</td>
+      <td>12/15/21</td><td>120</td><td>&check;</td><td>&check;</td><td></td><td>&check;</td><td>We met over discord to talk about the final product, resolve merge conflicts among the different versions of similar pages and make sure we had a working product.</td>
     </tr>
-    <tr><td align="right"><b>Totals:</b></td><td><b>65</b></td><td><b>2</b></td><td><b>2</b></td><td><b>0</b></td><td><b>1</b></td><td></td>
+        <tr>
+      <td>12/16/21</td><td>120</td><td>&check;</td><td>&check;</td><td></td><td>&check;</td><td>We met over discord to put any final touches on our app before deployment</td>
+    </tr>
+    <tr><td align="right"><b>Totals:</b></td><td><b>360</b></td><td><b>4</b></td><td><b>3</b></td><td><b>0</b></td><td><b>4</b></td><td></td>
     </tr>
   </tbody>
 </table>
