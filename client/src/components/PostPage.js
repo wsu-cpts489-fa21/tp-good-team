@@ -94,7 +94,7 @@ class PostPage extends React.Component {
               className="mode-page-btn-cancel action-dialog cancel-button"
               type="button"
               onClick={() => {
-                this.props.cancelPost();
+                this.props.cancelBtn();
               }}
             >
               Cancel
