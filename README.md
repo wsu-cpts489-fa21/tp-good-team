@@ -394,12 +394,12 @@ We did not use Zoom, we used a private discord meeting to go through what we did
         </td>
       </tr>
     <tr>
-      <td colspan="2" align="right"><b>Totals:</b></td>
+      <td colspan="1" align="right"><b>Totals:</b></td>
+      <td><b>6</b></td>
+      <td><b>6</b></td>
+      <td><b>0</b></td>
       <td><b>8</b></td>
-      <td><b>3</b></td>
-      <td><b>1</b></td>
-      <td><b>1</b></td>
-      <td><b>0.8</b></td>
+      <td><b>100</b></td>
       <td colspan="2"></td>
     </tr>
       
