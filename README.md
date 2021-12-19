@@ -418,10 +418,10 @@ We did not use Zoom, we used a private discord meeting to go through what we did
 
 ### Testing
 
-| Issue                                                               | Test File                                                                                                    | Feature Tested       | Results Summary                                                                                                  |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | -------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| [#148](https://github.com/wsu-cpts489-fa21/tp-good-team/issues/148) | [postPutRoute](https://github.com/wsu-cpts489-fa21/tp-good-team/blob/LastMinutePushes/tests/postPutTest.gif) | Put route for Posts  | [1/1 tests passed](https://github.com/wsu-cpts489-fa21/tp-good-team/blob/LastMinutePushes/tests/postPutTest.gif) |
-| [#148](https://github.com/wsu-cpts489-fa21/tp-good-team/issues/148) | [postGetTest](https://github.com/wsu-cpts489-fa21/tp-good-team/blob/LastMinutePushes/tests/postGetTest.gif)  | Post route for Posts | [1/1 tests passed](https://github.com/wsu-cpts489-fa21/tp-good-team/blob/LastMinutePushes/tests/postGetTest.gif) |
+| Issue                                                               | Test File                                                                                                    | Feature Tested      | Results Summary                                                                                                  |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| [#148](https://github.com/wsu-cpts489-fa21/tp-good-team/issues/148) | [postPutRoute](https://github.com/wsu-cpts489-fa21/tp-good-team/blob/LastMinutePushes/tests/postPutTest.gif) | Put route for Posts | [1/1 tests passed](https://github.com/wsu-cpts489-fa21/tp-good-team/blob/LastMinutePushes/tests/postPutTest.gif) |
+| [#148](https://github.com/wsu-cpts489-fa21/tp-good-team/issues/148) | [postGetTest](https://github.com/wsu-cpts489-fa21/tp-good-team/blob/LastMinutePushes/tests/postGetTest.gif)  | Get route for Posts | [1/1 tests passed](https://github.com/wsu-cpts489-fa21/tp-good-team/blob/LastMinutePushes/tests/postGetTest.gif) |
 
 | [#](ISSUELINK) | [FILENAME](FILELINK) | DESCRIPTION | [XX tests passed](FILELINK) |
 | [#](ISSUELINK) | [FILENAME](FILELINK) | DESCRIPTION | [XX tests passed](FILELINK) |
