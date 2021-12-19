@@ -333,12 +333,7 @@ We did not use Zoom, we used a private discord meeting to go through what we did
   <tbody>
     <tr>
       <td>
-        <a href=https://github.com/wsu-cpts489-fa21/tp-good-team/issues/124
-          >#24</a
-        >
-      </td>
-      <td>
-      </td>
+        <a href=https://github.com/wsu-cpts489-fa21/tp-good-team/issues/124>#24</a></td>
       <td>8</td>
       <td>0</td>
       <td>0</td>
@@ -348,6 +343,7 @@ We did not use Zoom, we used a private discord meeting to go through what we did
       <td>
           Created DB schema. Initially structured as a table, but later switched UI to look more like a Feed Post.
       </td>
+      </tr>
     </tr>
     <tr>
       <td><a href="https://github.com/wsu-cpts489-fa21/tp-good-team/issues/120">#120</a></td>
@@ -398,6 +394,18 @@ We did not use Zoom, we used a private discord meeting to go through what we did
           Updated `RoundForm` to include a box to check. If this is checked we don't render this Post
         </td>
       </tr>
+      
+    <tr>
+      <td colspan="2" align="right"><b>Totals:</b></td>
+      <td><b>8</b></td>
+      <td><b>3</b></td>
+      <td><b>1</b></td>
+      <td><b>1</b></td>
+      <td><b>0.8</b></td>
+      <td colspan="2"></td>
+    </tr>
+  </tbody>
+</table>
 
 #### Reflection Statements
 
