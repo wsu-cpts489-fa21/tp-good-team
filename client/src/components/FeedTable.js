@@ -1,6 +1,7 @@
 import React from "react";
 import PostButton from "./PostButton";
 import FeedMode from "./FeedMode";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import FeedPost from "./FeedPost";
 
 class FeedTable extends React.Component {
@@ -8,6 +9,7 @@ class FeedTable extends React.Component {
     super(props);
     this.state = {
       profilePic: "",
+      statusIcon: this.props.statusIcon,
       // table: [],
     };
   }
@@ -18,6 +20,9 @@ class FeedTable extends React.Component {
 
   componentDidUpdate(prevState, thisState) {
     console.log("feedTable Update");
+    if (this.props.statusIcon === "spinner") {
+      // this.props.resetIcon();
+    }
     // if (this.props.update) {
     //   this.buildTable();
     //   this.props.toggleUpdate();
@@ -38,15 +43,19 @@ class FeedTable extends React.Component {
         aria-label="Feed Table Tab"
         tabIndex="0"
       >
-        {/* {this.state.popupOpen && this.state.type == "post" ? (
-          <PostPopUpModal
-            cancelBtn={this.cancelBtn}
-            firstName={this.state.firstName}
-            comment={this.state.comment}
-          />
-        ) : null} */}
-
         <h1 className="mode-page-header">Feed Mode</h1>
+
+        <h3 style={{ align: "left" }}>
+          {this.props.statusIcon === "spinner" ? "Updating" : "Updated"}:{" "}
+          <FontAwesomeIcon
+            icon={this.props.statusIcon}
+            className={
+              this.props.statusIcon == "spinner"
+                ? "fa-spin text-danger"
+                : "text-success"
+            }
+          />
+        </h3>
         <table
           id="feedTable"
           className="table table-hover table-striped caption-top"

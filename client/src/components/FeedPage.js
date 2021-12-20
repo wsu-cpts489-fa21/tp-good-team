@@ -28,14 +28,23 @@ class FeedPage extends React.Component {
       table: [],
       commentTitle: "",
       commentBody: "",
+      statusIcon: "spinner",
     };
   }
 
   successBtn = () => {
     this.setState({
       update: true,
+      statusIcon: "spinner",
     });
     this.setMode(FeedMode.FEEDTABLE);
+  };
+
+  resetIcon = () => {
+    console.log("Reset Icon");
+    this.setState({
+      statusIcon: "check",
+    });
   };
 
   toggleUpdate = () => {
@@ -59,7 +68,9 @@ class FeedPage extends React.Component {
   };
 
   async componentDidMount() {
+    console.log("FeedPage Mounted");
     const url = "/posts/" + this.state.headId;
+    // this.setState({ statusIcon: "spinner" });
 
     let res = await fetch(url)
       .then((response) => response.json())
@@ -75,6 +86,7 @@ class FeedPage extends React.Component {
     if (this.state.update) {
       console.log("Update true");
       const url = "/posts/" + this.state.headId;
+
       let res = await fetch(url)
         .then((response) => response.json())
         .then((obj) => {
@@ -146,6 +158,7 @@ class FeedPage extends React.Component {
       }
     } //for
     this.setState({
+      statusIcon: "check",
       table: table,
     });
   };
@@ -204,28 +217,10 @@ class FeedPage extends React.Component {
       comments: commentList,
       commentTitle: title,
       commentBody: body,
+      statusIcon: "spinner",
     });
     this.props.toggleModalOpen();
   };
-
-  // initiateCommentMode = (data, newMode) => {
-  //   this.setState({
-  //     mode: newMode,
-  //     id: data.id,
-  //     firstName: data.firstName,
-  //     sgs: data.sgs,
-  //     minutes: data.minutes,
-  //     seconds: data.seconds,
-  //     strokes: data.strokes,
-  //     type: data.type,
-  //     comments: data.comments,
-  //     likes: data.likes,
-  //     commentCount: data.commentCount,
-  //     // objs: data.objs,
-  //   });
-
-  //   this.props.toggleModalOpen();
-  // };
 
   handleLikeClick = async (r) => {
     //Trying new way
@@ -235,6 +230,7 @@ class FeedPage extends React.Component {
     const res = await this.props.updatePost(updatedPost, updateId);
     this.setState({
       update: true,
+      statusIcon: "spinner",
     });
   };
 
@@ -278,6 +274,8 @@ class FeedPage extends React.Component {
                 profilePic={this.props.profilePic}
                 toggleUpdate={this.toggleUpdate}
                 table={this.state.table}
+                statusIcon={this.state.statusIcon}
+                resetIcon={this.resetIcon}
               />
             ) : null}
           </div>
