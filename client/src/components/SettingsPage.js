@@ -158,7 +158,8 @@ class SettingsPage extends React.Component {
     //Is security Q and A valid?
     const sqValid = this.state.securityQuestion.length > 0;
     const saValid = this.state.securityAnswer.length > 0;
-    const pValid = this.passwordIsValid(this.state.password);
+    const pValid = true;
+    //  const pValid = this.passwordIsValid(this.state.password);
 
     if (pValid && sqValid && saValid) {
       //Necessary fields are valid: Update account
@@ -207,10 +208,22 @@ class SettingsPage extends React.Component {
           },
           clubComments: this.state.clubComments,
         },
+        badges: {
+          roundsPlayedBadge: this.props.userData.badges.roundsPlayedBadge,
+          fastTimeBadge: this.props.userData.badges.fastTimeBadge,
+          lowStrokesBadge: this.props.userData.badges.lowStrokesBadge,
+          streakBadge: this.props.userData.badges.streakBadge,
+        },
       };
       const result = await this.props.updateUserData(newUserData);
       this.props.toggleModalOpen();
-      this.props.setMode(this.props.prevMode);
+
+      /*****************************************************************
+       * App broke when using this method to return to previous screen
+       * Used window.open() to remount Appjs
+       *****************************************************************     */
+      // this.props.setMode(this.props.prevMode);
+      window.open("/", "_self"); //App.componentDidMount() takes it from here
     } else {
       //At least one field invalid
       //Clear out invalid fields and display errors
