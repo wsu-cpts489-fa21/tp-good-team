@@ -149,21 +149,6 @@ class App extends React.Component {
     this.setState((prevState) => ({ modalOpen: !prevState.modalOpen }));
   };
 
-  // prepFeed = () => {
-  // fetch("/posts/9999999999999")
-  //   .then((response) => response.json())
-  //   .then((obj) => {
-  //     if (obj.isAuthenticated) {
-  //       this.logInUser(obj.user);
-  //     }
-  //   });
-  // const url = "/posts/9999999999999";
-  // const res = await fetch(url)
-  //   .then((response) => response.json())
-  //   .then((obj) => console.log("TESTTTT " + obj));
-  // for (let i = 0; i < 4; i++) {}
-  // };
-
   /*****************************************************************
    * Account Management methods
    ***************************************************************** */
@@ -333,10 +318,11 @@ class App extends React.Component {
         identityData: this.state.userData.identityData,
         numRounds: this.state.userData.numRounds,
         buddies: this.state.userData.buddies,
-        speedgolfProfileData: this.state.userData.speedgolfProfileData,
+        speedgolfData: this.state.userData.speedgolfData,
         badges: this.state.userData.badges,
         rounds: newRounds,
       };
+
       this.setState({ userData: newUserData });
       return "Round updated successfully";
     } else {
@@ -371,7 +357,7 @@ class App extends React.Component {
         identityData: this.state.userData.identityData,
         numRounds: this.state.userData.numRounds,
         buddies: this.state.userData.buddies,
-        speedgolfProfileData: this.state.userData.speedgolfProfileData,
+        speedgolfData: this.state.userData.speedgolfData,
         badges: this.state.userData.badges,
         rounds: newRounds,
       };
@@ -463,7 +449,6 @@ class App extends React.Component {
   };
 
   updatePost = async (newPost, id) => {
-    console.log("newPost: " + JSON.stringify(newPost) + "\nID: " + id);
     const url = "/posts/" + id;
     const body = {
       method: "PUT",
