@@ -29,17 +29,55 @@ const googleStrategy = new passportGoogle.Strategy(
     if (!currentUser) {
       //Add this user to the database
       currentUser = await new User({
-        accountData: { id: userId },
+        accountData: {
+          id: userId,
+          securityQuestion: "Need to fix this",
+          securityAnswer: "With check for API usage",
+        },
         identityData: {
           displayName: profile.displayName,
           profilePic: profile.photos[0].value,
         },
+        numRounds: 0,
+        buddies: [],
         speedgolfData: {
           bio: "",
           homeCourse: "",
-          personalBest: {},
-          clubs: {},
+          firstRound: "",
+          personalBest: {
+            strokes: "",
+            minutes: "",
+            course: "",
+          },
+          clubs: {
+            driver: false,
+            threeW: false,
+            fourW: false,
+            fiveW: false,
+            hybrid: false,
+            oneI: false,
+            twoI: false,
+            threeI: false,
+            fourI: false,
+            fiveI: false,
+            sixI: false,
+            sevenI: false,
+            eightI: false,
+            nineI: false,
+            pw: false,
+            gw: false,
+            sw: false,
+            lw: false,
+            putter: false,
+          },
           clubComments: "",
+        },
+        badges: {
+          roundsPlayedBadge: -1,
+          fastTimeBadge: -1,
+          lowStrokesBadge: -1,
+          streakBadge: -1,
+          highScoreBadge: -1,
         },
       }).save();
     }
