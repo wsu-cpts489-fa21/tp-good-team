@@ -215,6 +215,7 @@ class SettingsPage extends React.Component {
           streakBadge: this.props.userData.badges.streakBadge,
         },
       };
+      console.log(JSON.stringify(newUserData));
       const result = await this.props.updateUserData(newUserData);
       this.props.toggleModalOpen();
 
