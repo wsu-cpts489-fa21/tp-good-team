@@ -4,6 +4,7 @@ import {
   faWindowClose,
   faEdit,
   faCalendar,
+  faCheck,
   faSpinner,
   faSignInAlt,
   faBars,
@@ -14,6 +15,7 @@ import {
   faEye,
   faUserPlus,
   faMedal,
+  faCheckCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faGoogle } from "@fortawesome/free-brands-svg-icons";
 
@@ -33,6 +35,7 @@ library.add(
   faWindowClose,
   faEdit,
   faCalendar,
+  faCheck,
   faSpinner,
   faSignInAlt,
   faBars,
@@ -44,7 +47,8 @@ library.add(
   faUserPlus,
   faGithub,
   faGoogle,
-  faMedal
+  faMedal,
+  faCheckCircle
 );
 
 class App extends React.Component {
