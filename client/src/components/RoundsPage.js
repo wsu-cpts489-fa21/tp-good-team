@@ -1,5 +1,5 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import RoundsMode from "./RoundsMode.js";
 import RoundsTable from "./RoundsTable.js";
 import RoundForm from "./RoundForm.js";
@@ -54,7 +54,8 @@ class RoundsPage extends React.Component {
     });
   };
   confirmDeleteRound = async () => {
-    const res = await this.props.deleteRound(this.state.deleteId);
+    // await this.props.deleteRound(this.state.deleteId);
+    await this.props.deleteRound(this.state.deleteId);
   };
 
   toggleRenderNewBadgeToast = () => {
@@ -167,6 +168,8 @@ class RoundsPage extends React.Component {
             toggleRenderNewBadgeToast={this.toggleRenderNewBadgeToast}
           />
         );
+      default:
+        console.log("RoundsPage: Default case in switch");
     }
   }
 }

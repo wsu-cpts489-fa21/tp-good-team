@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../images/sslogo2.png";
+// import logo from "../images/sslogo2.png";
 import PostPage from "./PostPage";
 import FeedTable from "./FeedTable";
 import FeedMode from "./FeedMode.js";
@@ -72,7 +72,8 @@ class FeedPage extends React.Component {
     const url = "http://localhost:8081/posts/" + this.state.headId;
     // this.setState({ statusIcon: "spinner" });
 
-    let res = await fetch(url)
+    // let res = await fetch(url);
+    await fetch(url)
       .then((response) => response.json())
       .then((obj) => {
         this.setState({
@@ -87,7 +88,8 @@ class FeedPage extends React.Component {
       console.log("Update true");
       const url = "http://localhost:8081/posts/" + this.state.headId;
 
-      let res = await fetch(url)
+      // let res = await fetch(url);
+      await fetch(url)
         .then((response) => response.json())
         .then((obj) => {
           this.setState({
@@ -227,7 +229,8 @@ class FeedPage extends React.Component {
     const updatedPost = this.state.objs[r];
     updatedPost.postData.fistBumpCount++;
     const updateId = this.state.objs[r]._id;
-    const res = await this.props.updatePost(updatedPost, updateId);
+    // const res = await this.props.updatePost(updatedPost, updateId);
+    await this.props.updatePost(updatedPost, updateId);
     this.setState({
       update: true,
       statusIcon: "spinner",
@@ -243,7 +246,8 @@ class FeedPage extends React.Component {
   getProfilePic = async (userId) => {
     const url = "http://localhost:8081/users/" + userId;
 
-    let res = await fetch(url)
+    // let res = await fetch(url);
+    await fetch(url)
       .then((response) => response.json())
       .then((user) => {
         let userObj = JSON.parse(user); //Turn string back into Object

@@ -27,7 +27,8 @@ class PostPage extends React.Component {
   };
 
   savePost = async () => {
-    const res = await this.props.addFeedPost(
+    // const res = await this.props.addFeedPost(
+    await this.props.addFeedPost(
       Date.now(),
       this.state.feedPostPic,
       this.state.feedPostComment

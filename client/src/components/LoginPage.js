@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import AppMode from "./AppMode.js";
+// import AppMode from "./AppMode.js";
 import CreateAccount from "./CreateAccount.js";
 
 class LoginPage extends React.Component {

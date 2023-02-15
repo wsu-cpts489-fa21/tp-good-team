@@ -1,26 +1,26 @@
-import { faThemeisle } from "@fortawesome/free-brands-svg-icons";
+// import { faThemeisle } from "@fortawesome/free-brands-svg-icons";
 import React from "react";
-import logo from "../images/sslogo2.png";
+// import logo from "../images/sslogo2.png";
 import profilePic from "./../images/DefaultProfilePic.jpg";
-import Badge from "react-bootstrap/Badge";
+// import Badge from "react-bootstrap/Badge";
 import bronzeTime from "../images/bronzeTime.png";
 import bronzeStreak from "../images/bronzeStreak.png";
-import bronzeRound from "../images/bronzeRound.png";
+// import bronzeRound from "../images/bronzeRound.png";
 import bronzeStroke from "../images/bronzeStroke.png";
 import silverTime from "../images/silverTime.png";
 import silverStreak from "../images/silverStreak.png";
 import silverStroke from "../images/silverStroke.png";
-import silverRound from "../images/silverRound.png";
+// import silverRound from "../images/silverRound.png";
 import goldTime from "../images/goldTime.png";
-import goldRound from "../images/goldRound.png";
+// import goldRound from "../images/goldRound.png";
 import goldStroke from "../images/goldStroke.png";
 import goldStreak from "../images/goldStreak.png";
 import diamondTime from "../images/diamondTime.png";
-import diamondRound from "../images/diamondRound.png";
+// import diamondRound from "../images/diamondRound.png";
 import diamondStroke from "../images/diamondStroke.png";
 import diamondStreak from "../images/diamondStreak.png";
 import ultraTime from "../images/ultraTime.png";
-import ultraRound from "../images/ultraRound.png";
+// import ultraRound from "../images/ultraRound.png";
 import ultraStroke from "../images/ultraStroke.png";
 import ultraStreak from "../images/ultraStreak.png";
 
@@ -216,7 +216,8 @@ class SettingsPage extends React.Component {
         },
       };
       console.log(JSON.stringify(newUserData));
-      const result = await this.props.updateUserData(newUserData);
+      await this.props.updateUserData(newUserData);
+      // const result = await this.props.updateUserData(newUserData);
       this.props.toggleModalOpen();
 
       /*****************************************************************
@@ -237,7 +238,6 @@ class SettingsPage extends React.Component {
         password: pVal,
         passwordValid: pValid,
         // emailValid: eValid,
-        passwordValid: pValid,
         securityQuestionValid: sqValid,
         securityAnswerValid: saValid,
       });
@@ -326,6 +326,8 @@ class SettingsPage extends React.Component {
         return diamondStreak;
       case 4:
         return ultraStreak;
+      default:
+        console.log("Default is Switch\n");
     }
   };
 
@@ -343,6 +345,8 @@ class SettingsPage extends React.Component {
         return diamondTime;
       case 4:
         return ultraTime;
+      default:
+        console.log("Default is Switch\n");
     }
   };
 
@@ -360,6 +364,8 @@ class SettingsPage extends React.Component {
         return diamondStroke;
       case 4:
         return ultraStroke;
+      default:
+        console.log("Default is Switch\n");
     }
   };
 
@@ -377,6 +383,8 @@ class SettingsPage extends React.Component {
         return diamondStreak;
       case 4:
         return ultraStreak;
+      default:
+        console.log("Default is Switch\n");
     }
   };
 
@@ -394,6 +402,8 @@ class SettingsPage extends React.Component {
         return "To earn this badge, play a total of 260 rounds in one day";
       case 4:
         return "To earn this badge, play a total of 520 rounds in one day";
+      default:
+        console.log("Default is Switch\n");
     }
   };
 
@@ -411,6 +421,8 @@ class SettingsPage extends React.Component {
         return "To earn this badge, accumulate between 36 and 45 minutes in one game";
       case 4:
         return "To earn this badge, accumulate a total of 35 minutes or less in one game";
+      default:
+        console.log("Default is Switch\n");
     }
   };
 
@@ -428,6 +440,8 @@ class SettingsPage extends React.Component {
         return "To earn this badge, accumulate between 66 and 75 swings in one game";
       case 4:
         return "To earn this badge, accumulate 65 or less swings in one game";
+      default:
+        console.log("Default is Switch\n");
     }
   };
 
@@ -445,6 +459,8 @@ class SettingsPage extends React.Component {
         return "To earn this badge, play 10 game in one day";
       case 4:
         return "To earn this badge, play 15 game in one day";
+      default:
+        console.log("Default is Switch\n");
     }
   };
 
@@ -462,6 +478,8 @@ class SettingsPage extends React.Component {
         return diamondTime;
       case 4:
         return ultraTime;
+      default:
+        console.log("Default is Switch\n");
     }
   };
 
@@ -479,6 +497,8 @@ class SettingsPage extends React.Component {
         return diamondStroke;
       case 4:
         return ultraStroke;
+      default:
+        console.log("Default is Switch\n");
     }
   };
 
@@ -496,6 +516,8 @@ class SettingsPage extends React.Component {
         return diamondStreak;
       case 4:
         return ultraStreak;
+      default:
+        console.log("Default is Switch\n");
     }
   };
   //TODO Render badge display
@@ -509,6 +531,7 @@ class SettingsPage extends React.Component {
 
     let roundsBadge = (
       <img
+        alt="Rounds played badge"
         src={this.getRoundsPlayedBadge(
           this.props.userData.badges.roundsPlayedBadge
         )}
@@ -519,6 +542,7 @@ class SettingsPage extends React.Component {
     );
     let timeBadge = (
       <img
+        alt="Fast time badge"
         src={this.getFastTimeBadge(this.props.userData.badges.fastTimeBadge)}
         title={this.getFastTimeBadgeDesc(
           this.props.userData.badges.fastTimeBadge
@@ -527,6 +551,7 @@ class SettingsPage extends React.Component {
     );
     let strokeBadge = (
       <img
+        alt="Low strokes badge"
         src={this.getLowStrokesBadge(
           this.props.userData.badges.lowStrokesBadge
         )}
@@ -537,6 +562,7 @@ class SettingsPage extends React.Component {
     );
     let streakBadge = (
       <img
+        alt="Streak badge"
         src={this.getStreakBadge(this.props.userData.badges.streakBadge)}
         title={this.getStreakBadgeDesc(this.props.userData.badges.streakBadge)}
       />
@@ -776,6 +802,7 @@ class SettingsPage extends React.Component {
                         Profile Picture (optional):
                         <br />
                         <img
+                          alt="Profile"
                           id="acctProfilePicImage"
                           src={
                             this.state.profilePic === ""

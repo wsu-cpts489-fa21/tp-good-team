@@ -371,6 +371,7 @@ class CreateAccount extends React.Component {
               Profile Picture:
               <br />
               <img
+                alt="Profile"
                 id="acctProfilePicImage"
                 src={
                   this.state.profilePic === ""

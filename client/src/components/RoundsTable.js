@@ -159,7 +159,7 @@ class RoundsTable extends React.Component {
           <tbody>
             {this.props.rounds === null || this.props.rounds.length === 0 ? (
               <tr>
-                <td colSpan="5" scope="rowgroup">
+                <td colSpan="5">
                   <i>No rounds logged</i>
                 </td>
               </tr>

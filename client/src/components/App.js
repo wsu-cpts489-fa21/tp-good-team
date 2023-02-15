@@ -29,7 +29,7 @@ import BuddiesPage from "./BuddiesPage.js";
 import SideMenu from "./SideMenu.js";
 import AppMode from "./AppMode.js";
 import SettingsPage from "./SettingsPage";
-import CommentPage from "./Comment.js";
+// import CommentPage from "./Comment.js";
 
 library.add(
   faWindowClose,
@@ -252,7 +252,8 @@ class App extends React.Component {
       userData: newUserData,
     });
 
-    const res = await this.updateUserData(newUserData);
+    await this.updateUserData(newUserData);
+    // const res = await this.updateUserData(newUserData);
   };
 
   /*****************************************************************
@@ -268,7 +269,6 @@ class App extends React.Component {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      method: "POST",
       body: JSON.stringify(newRoundData),
     });
     if (res.status === 201) {
@@ -288,9 +288,11 @@ class App extends React.Component {
       //Incrementing Rounds
       newUserData.numRounds++;
       this.setState({ userData: newUserData });
-      const resIncrement = await this.updateUserData(newUserData);
+      await this.updateUserData(newUserData);
+      // const resIncrement = await this.updateUserData(newUserData);
 
-      const newPost = await this.addFeedRound(newRoundData);
+      await this.addFeedRound(newRoundData);
+      // const newPost = await this.addFeedRound(newRoundData);
 
       return "New round logged.";
     } else {
@@ -311,7 +313,6 @@ class App extends React.Component {
         Accept: "application/json",
         "Content-type": "application/json",
       },
-      method: "PUT",
       body: JSON.stringify(newRoundData),
     });
 
@@ -350,7 +351,6 @@ class App extends React.Component {
         Accept: "application/json",
         "Content-type": "application/json",
       },
-      method: "DELETE",
     });
 
     if (res.status === 200) {
@@ -370,7 +370,8 @@ class App extends React.Component {
       newUserData.numRounds--;
       this.setState({ userData: newUserData });
     } else {
-      const resText = await res.text();
+      await res.text();
+      // const resText = await res.text();
       return "Unable to delete round.";
     }
   };
@@ -412,11 +413,11 @@ class App extends React.Component {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      method: "POST",
       body: JSON.stringify(newPost),
     };
 
-    let res = await fetch(url, body);
+    await fetch(url, body);
+    // let res = await fetch(url, body);
   };
 
   addFeedPost = async (id, pic, comment) => {
@@ -447,11 +448,11 @@ class App extends React.Component {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      method: "POST",
       body: JSON.stringify(newFeedPost),
     };
 
-    let res = await fetch(url, body);
+    await fetch(url, body);
+    // let res = await fetch(url, body);
   };
 
   updatePost = async (newPost, id) => {
@@ -462,10 +463,10 @@ class App extends React.Component {
         Accept: "application/json",
         "Content-type": "application/json",
       },
-      method: "PUT",
       body: JSON.stringify(newPost),
     };
-    const res = await fetch(url, body);
+    await fetch(url, body);
+    // const res = await fetch(url, body);
   };
 
   postComment = async (postID, newComment, newCommentCount) => {
@@ -490,7 +491,6 @@ class App extends React.Component {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      method: "POST",
       body: JSON.stringify(newComment),
     };
     let res = await fetch(url, body);

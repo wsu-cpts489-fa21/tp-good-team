@@ -243,11 +243,13 @@ class RoundForm extends React.Component {
 
     let flag = this.checkBadgesUnlocked();
 
-    const res = await this.props.saveRound(newRound, this.props.editId);
+    await this.props.saveRound(newRound, this.props.editId);
+    // const res = await this.props.saveRound(newRound, this.props.editId);
 
     if (flag) {
       this.props.toggleRenderNewBadgeToast();
-      let resBadges = await this.props.updateBadges(
+      // let resBadges = await this.props.updateBadges(
+      await this.props.updateBadges(
         this.state.roundsBadge,
         this.state.timeBadge,
         this.state.strokesBadge,
@@ -455,7 +457,8 @@ class RoundForm extends React.Component {
                   icon={this.state.btnIcon}
                   className={this.state.btnIcon === "spinner" ? "fa-spin" : ""}
                 />
-                <span>&nbsp;{(this.state.btnLabel = "Update Round")}</span>
+                {/* <span>&nbsp;{(this.state.btnLabel = "Update Round")}</span> */}
+                <span>&nbsp; {this.state.btnLabel}</span>
               </button>
             ) : (
               <button
