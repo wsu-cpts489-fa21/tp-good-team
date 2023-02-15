@@ -60,7 +60,6 @@ roundRoute.post("/rounds/:userId", async (req, res, next) => {
     } else {
       return res.status(201).send("Round successfully added to database.");
     }
-
   } catch (err) {
     console.log(err);
     return res

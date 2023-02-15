@@ -78,7 +78,7 @@ class App extends React.Component {
     if (!this.state.authenticated) {
       console.log("Attempting to fetch /auth/test");
       //Use /auth/test route to (re)-test authentication and obtain user data
-      fetch("/auth/test")
+      fetch("http://localhost:8081/auth/test")
         .then((response) => response.json())
         .then((obj) => {
           if (obj.isAuthenticated) {
@@ -156,7 +156,7 @@ class App extends React.Component {
    ***************************************************************** */
 
   accountExists = async (email) => {
-    const res = await fetch("/user/" + email);
+    const res = await fetch("http://localhost:8081/user/" + email);
     return res.status === 200;
   };
 
@@ -165,7 +165,9 @@ class App extends React.Component {
   };
 
   authenticateUser = async (id, pw) => {
-    const url = "/auth/login?username=" + id + "&password=" + pw;
+    console.log("USER: " + id + " pw: " + pw);
+    const url =
+      "http://localhost:8081/auth/login?username=" + id + "&password=" + pw;
     const res = await fetch(url, { method: "POST" });
     if (res.status === 200) {
       //successful login!
@@ -185,7 +187,7 @@ class App extends React.Component {
   };
 
   createAccount = async (data) => {
-    const url = "/users/" + data.accountData.id;
+    const url = "http://localhost:8081/users/" + data.accountData.id;
     const res = await fetch(url, {
       headers: {
         Accept: "application/json",
@@ -203,7 +205,8 @@ class App extends React.Component {
   };
 
   updateUserData = async (newUserData) => {
-    const url = "/users/" + this.state.userData.accountData.id;
+    const url =
+      "http://localhost:8081/users/" + this.state.userData.accountData.id;
     const res = await fetch(url, {
       headers: {
         Accept: "application/json",
@@ -257,7 +260,8 @@ class App extends React.Component {
    ******************************************************************/
 
   addRound = async (newRoundData) => {
-    const url = "/rounds/" + this.state.userData.accountData.id;
+    const url =
+      "http://localhost:8081/rounds/" + this.state.userData.accountData.id;
     let res = await fetch(url, {
       method: "POST",
       headers: {
@@ -297,7 +301,7 @@ class App extends React.Component {
 
   updateRound = async (newRoundData, index) => {
     const url =
-      "/rounds/" +
+      "http://localhost:8081/rounds/" +
       this.state.userData.accountData.id +
       "/" +
       this.state.userData.rounds[index]._id; //Changed for customId
@@ -335,7 +339,7 @@ class App extends React.Component {
 
   deleteRound = async (id) => {
     const url =
-      "/rounds/" +
+      "http://localhost:8081/rounds/" +
       this.state.userData.accountData.id +
       "/" +
       this.state.userData.rounds[id]._id; //Changed to use customId
@@ -401,7 +405,7 @@ class App extends React.Component {
       //add stuff here
     };
 
-    const url = "/posts/" + newRound._id;
+    const url = "http://localhost:8081/posts/" + newRound._id;
     const body = {
       method: "POST",
       headers: {
@@ -436,7 +440,7 @@ class App extends React.Component {
       },
     };
 
-    const url = "/posts/" + id;
+    const url = "http://localhost:8081/posts/" + id;
     const body = {
       method: "POST",
       headers: {
@@ -465,7 +469,7 @@ class App extends React.Component {
   };
 
   postComment = async (postID, newComment, newCommentCount) => {
-    const url = "/comments/" + postID;
+    const url = "http://localhost:8081/comments/" + postID;
 
     //Create new array of comments
     // const newCommentList = [...commentList];

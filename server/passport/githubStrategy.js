@@ -3,8 +3,10 @@
 //The following code sets up the app with OAuth authentication using
 //the 'github' strategy in passport.js.
 //////////////////////////////////////////////////////////////////////////
+
 import passportGithub from "passport-github";
 import User from "../models/User.js";
+import {} from "dotenv/config";
 
 const githubStrategy = new passportGithub.Strategy(
   {

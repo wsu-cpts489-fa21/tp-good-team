@@ -21,6 +21,14 @@ const buildPath =
 import mongoose from "mongoose";
 //const connectStr = 'mongodb://localhost:27017/appdb'; //Local
 const connectStr = process.env.MONGODB_CSTRING;
+
+// import { slash } from "./routes/root.js";
+import router from "./routes/root.js";
+
+// CORS Imports
+import cors from "cors";
+import allowedOrigins from "./config/allowedOrigins.js";
+
 // "mongodb+srv://" +
 // process.env.MONGODB_USER +
 // ":" +
@@ -42,6 +50,14 @@ mongoose
     }
   );
 
+////////////////////////////////////////////////////////
+// CORS
+////////////////////////////////////////////////////////
+const corsOptions = {
+  origin: "http://localhost:3000/",
+};
+app.use(cors());
+
 //////////////////////////////////////////////////////////////////////////
 //EXPRESS SET-UP
 // The following code uses express.static to serve the React app defined
@@ -50,7 +66,8 @@ mongoose
 
 passportConfig(app); //Configure session and passport
 app
-  .use(express.static(buildPath))
+  .use("/", router)
+  // .use(express.static(buildPath))
   .use(express.json({ limit: "20mb" }))
   .use(authRoute)
   .use(userRoute)

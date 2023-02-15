@@ -69,7 +69,7 @@ class FeedPage extends React.Component {
 
   async componentDidMount() {
     console.log("FeedPage Mounted");
-    const url = "/posts/" + this.state.headId;
+    const url = "http://localhost:8081/posts/" + this.state.headId;
     // this.setState({ statusIcon: "spinner" });
 
     let res = await fetch(url)
@@ -85,7 +85,7 @@ class FeedPage extends React.Component {
   async componentDidUpdate() {
     if (this.state.update) {
       console.log("Update true");
-      const url = "/posts/" + this.state.headId;
+      const url = "http://localhost:8081/posts/" + this.state.headId;
 
       let res = await fetch(url)
         .then((response) => response.json())
@@ -241,7 +241,7 @@ class FeedPage extends React.Component {
    * parse it first before using
    ***************************************************************** */
   getProfilePic = async (userId) => {
-    const url = "/users/" + userId;
+    const url = "http://localhost:8081/users/" + userId;
 
     let res = await fetch(url)
       .then((response) => response.json())
