@@ -31,6 +31,8 @@ import AppMode from "./AppMode.js";
 import SettingsPage from "./SettingsPage";
 // import CommentPage from "./Comment.js";
 
+import baseURL from "../app/api/apiSlice.js";
+
 library.add(
   faWindowClose,
   faEdit,
@@ -78,10 +80,15 @@ class App extends React.Component {
     if (!this.state.authenticated) {
       console.log("Attempting to fetch /auth/test");
       //Use /auth/test route to (re)-test authentication and obtain user data
-      fetch("http://localhost:8081/auth/test")
+      fetch(baseURL + "/auth/test", {
+        credentials: "include",
+      })
         .then((response) => response.json())
         .then((obj) => {
           if (obj.isAuthenticated) {
+            console.log(
+              "App.js->componentDidMount: obj.isAuthenticated = true"
+            );
             this.logInUser(obj.user);
           }
         });
@@ -114,7 +121,7 @@ class App extends React.Component {
   /*
    * Menu item functionality
    */
-  logOut = () => {
+  logOut = async () => {
     this.setState({
       mode: AppMode.LOGIN,
       userData: {
@@ -128,6 +135,10 @@ class App extends React.Component {
       },
       authenticated: false,
       menuOpen: false,
+    });
+
+    await fetch(baseURL + "/auth/logout", {
+      credentials: "include",
     });
   };
 
@@ -156,7 +167,9 @@ class App extends React.Component {
    ***************************************************************** */
 
   accountExists = async (email) => {
-    const res = await fetch("http://localhost:8081/user/" + email);
+    const res = await fetch(baseURL + "/user/" + email, {
+      credentials: "include",
+    });
     return res.status === 200;
   };
 
@@ -165,12 +178,14 @@ class App extends React.Component {
   };
 
   authenticateUser = async (id, pw) => {
-    console.log("USER: " + id + " pw: " + pw);
-    const url =
-      "http://localhost:8081/auth/login?username=" + id + "&password=" + pw;
-    const res = await fetch(url, { method: "POST" });
+    const url = baseURL + "/auth/login?username=" + id + "&password=" + pw;
+    const res = await fetch(url, {
+      method: "POST",
+      credentials: "include",
+    });
     if (res.status === 200) {
       //successful login!
+      console.log("successful login: \n\n YA");
       return true;
     } else {
       //Unsuccessful login
@@ -187,12 +202,14 @@ class App extends React.Component {
   };
 
   createAccount = async (data) => {
-    const url = "http://localhost:8081/users/" + data.accountData.id;
+    const url = baseURL + "/users/" + data.accountData.id;
     const res = await fetch(url, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
+      credentials: "include",
+
       method: "POST",
       body: JSON.stringify(data),
     });
@@ -205,13 +222,14 @@ class App extends React.Component {
   };
 
   updateUserData = async (newUserData) => {
-    const url =
-      "http://localhost:8081/users/" + this.state.userData.accountData.id;
+    const url = baseURL + "/users/" + this.state.userData.accountData.id;
     const res = await fetch(url, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
+      credentials: "include",
+
       method: "PUT",
       body: JSON.stringify(newUserData),
     });
@@ -261,14 +279,15 @@ class App extends React.Component {
    ******************************************************************/
 
   addRound = async (newRoundData) => {
-    const url =
-      "http://localhost:8081/rounds/" + this.state.userData.accountData.id;
+    const url = baseURL + "/rounds/" + this.state.userData.accountData.id;
     let res = await fetch(url, {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
+      credentials: "include",
+
       body: JSON.stringify(newRoundData),
     });
     if (res.status === 201) {
@@ -303,7 +322,8 @@ class App extends React.Component {
 
   updateRound = async (newRoundData, index) => {
     const url =
-      "http://localhost:8081/rounds/" +
+      baseURL +
+      "/rounds/" +
       this.state.userData.accountData.id +
       "/" +
       this.state.userData.rounds[index]._id; //Changed for customId
@@ -313,6 +333,8 @@ class App extends React.Component {
         Accept: "application/json",
         "Content-type": "application/json",
       },
+      credentials: "include",
+
       body: JSON.stringify(newRoundData),
     });
 
@@ -340,7 +362,8 @@ class App extends React.Component {
 
   deleteRound = async (id) => {
     const url =
-      "http://localhost:8081/rounds/" +
+      baseURL +
+      "/rounds/" +
       this.state.userData.accountData.id +
       "/" +
       this.state.userData.rounds[id]._id; //Changed to use customId
@@ -351,6 +374,7 @@ class App extends React.Component {
         Accept: "application/json",
         "Content-type": "application/json",
       },
+      credentials: "include",
     });
 
     if (res.status === 200) {
@@ -406,9 +430,11 @@ class App extends React.Component {
       //add stuff here
     };
 
-    const url = "http://localhost:8081/posts/" + newRound._id;
+    const url = baseURL + "/posts/" + newRound._id;
     const body = {
       method: "POST",
+      credentials: "include",
+
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -441,9 +467,11 @@ class App extends React.Component {
       },
     };
 
-    const url = "http://localhost:8081/posts/" + id;
+    const url = baseURL + "/posts/" + id;
     const body = {
       method: "POST",
+      credentials: "include",
+
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -459,6 +487,8 @@ class App extends React.Component {
     const url = "/posts/" + id;
     const body = {
       method: "PUT",
+      credentials: "include",
+
       headers: {
         Accept: "application/json",
         "Content-type": "application/json",
@@ -470,7 +500,7 @@ class App extends React.Component {
   };
 
   postComment = async (postID, newComment, newCommentCount) => {
-    const url = "http://localhost:8081/comments/" + postID;
+    const url = baseURL + "/comments/" + postID;
 
     //Create new array of comments
     // const newCommentList = [...commentList];
@@ -487,6 +517,8 @@ class App extends React.Component {
 
     const body = {
       method: "POST",
+      credentials: "include",
+
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",

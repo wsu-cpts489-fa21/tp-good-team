@@ -41,16 +41,16 @@ class PostPage extends React.Component {
       <>
         <div
           id="feedModeDialog"
-          class="post-mode-page action-dialog"
+          className="post-mode-page action-dialog"
           role="dialog"
           aria-modal="true"
           aria-labelledby="newPostHeader"
           tabindex="0"
         >
-          <h1 id="newPostHeader" class="post-mode-page-header">
+          <h1 id="newPostHeader" className="post-mode-page-header">
             What's on your mind?
           </h1>
-          <p class="post-mode-page-content">
+          <p className="post-mode-page-content">
             <form method="post">
               <textarea
                 id="feedPost"
@@ -78,7 +78,7 @@ class PostPage extends React.Component {
             </form>
           </p>
 
-          <div class="post-mode-page-btn-container">
+          <div className="post-mode-page-btn-container">
             <button
               id="feedModeActionBtn"
               className="mode-page-btn action-dialog action-button"

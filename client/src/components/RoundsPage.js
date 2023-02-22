@@ -66,7 +66,7 @@ class RoundsPage extends React.Component {
     if (this.state.deleteDialogOpen) {
       return (
         <>
-          <div class="space">
+          <div className="space">
             <DeleteDialog
               confirmDeleteRound={this.confirmDeleteRound}
               cancelDeleteRound={this.cancelDeleteRound}
@@ -81,7 +81,7 @@ class RoundsPage extends React.Component {
     if (this.state.earnBadgesOpen) {
       return (
         <>
-          <div class="space">
+          <div className="space">
             <EarnBadges cancelBtn={this.backBtn} />
           </div>
         </>

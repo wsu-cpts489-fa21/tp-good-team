@@ -65,8 +65,6 @@ authRoute.get("/auth/logout", (req, res) => {
 //TEST route: Tests whether user was successfully authenticated.
 //Should be called from the React.js client to set up app state.
 authRoute.get("/auth/test", (req, res) => {
-  console.log("REQ: " + req.user);
-  // console.log("REQ: " + JSON.stringify(res));
   console.log("auth/test reached.");
   const isAuth = req.isAuthenticated();
   if (isAuth) {
@@ -76,6 +74,7 @@ authRoute.get("/auth/test", (req, res) => {
     //User is not authenticated
     console.log("User is not authenticated");
   }
+
   //Return JSON object to client with results.
   res.json({ isAuthenticated: isAuth, user: req.user });
 });

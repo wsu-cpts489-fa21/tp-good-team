@@ -16,8 +16,8 @@ const PORT = process.env.PORT || process.env.LOCAL_PORT;
 const app = express(); //Instantiate express app
 const buildPath =
   PORT === process.env.PORT
-    ? new URL("client/build/", import.meta.url).pathname
-    : new URL("client/build/", import.meta.url).pathname.substring(1);
+    ? new URL("../client/build/", import.meta.url).pathname
+    : new URL("../client/build/", import.meta.url).pathname.substring(1);
 import mongoose from "mongoose";
 //const connectStr = 'mongodb://localhost:27017/appdb'; //Local
 const connectStr = process.env.MONGODB_CSTRING;
@@ -54,9 +54,25 @@ mongoose
 // CORS
 ////////////////////////////////////////////////////////
 const corsOptions = {
-  origin: "http://localhost:3000/",
+  origin: allowedOrigins,
+  credentials: true,
 };
-app.use(cors());
+app.use(cors(corsOptions));
+
+// app.use(function (req, res, next) {
+//   res.header("Access-Control-Allow-Credentials", true);
+//   res.header("Access-Control-Allow-Origin", req.headers.origin);
+//   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept"
+//   );
+//   if ("OPTIONS" == req.method) {
+//     res.send(200);
+//   } else {
+//     next();
+//   }
+// });
 
 //////////////////////////////////////////////////////////////////////////
 //EXPRESS SET-UP

@@ -6,6 +6,7 @@ import FeedMode from "./FeedMode.js";
 import PopUpModal from "./PopUpModal";
 import FeedPost from "./FeedPost";
 
+import baseURL from "../app/api/apiSlice";
 class FeedPage extends React.Component {
   constructor(props) {
     super(props);
@@ -69,7 +70,7 @@ class FeedPage extends React.Component {
 
   async componentDidMount() {
     console.log("FeedPage Mounted");
-    const url = "http://localhost:8081/posts/" + this.state.headId;
+    const url = baseURL + "/posts/" + this.state.headId;
     // this.setState({ statusIcon: "spinner" });
 
     // let res = await fetch(url);
@@ -86,7 +87,7 @@ class FeedPage extends React.Component {
   async componentDidUpdate() {
     if (this.state.update) {
       console.log("Update true");
-      const url = "http://localhost:8081/posts/" + this.state.headId;
+      const url = baseURL + "/posts/" + this.state.headId;
 
       // let res = await fetch(url);
       await fetch(url)
@@ -244,7 +245,7 @@ class FeedPage extends React.Component {
    * parse it first before using
    ***************************************************************** */
   getProfilePic = async (userId) => {
-    const url = "http://localhost:8081/users/" + userId;
+    const url = baseURL + "/users/" + userId;
 
     // let res = await fetch(url);
     await fetch(url)
@@ -287,7 +288,7 @@ class FeedPage extends React.Component {
       case FeedMode.FEEDPOST:
         return (
           <>
-            <div class="space">
+            <div className="space">
               <PostPage
                 postComment={this.props.postComment}
                 postSuccess={this.successBtn}

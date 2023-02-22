@@ -23,7 +23,6 @@ const localStrategy = new passportLocal.Strategy(
           thisUser.accountData.password
         );
         if (match) {
-          console.log("MATCH\n\n");
           return done(null, thisUser);
         } else {
           req.authError =
