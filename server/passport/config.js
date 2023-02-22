@@ -12,6 +12,7 @@ const passportConfig = (app) => {
 
   passport.serializeUser((user, done) => {
     console.log("In serializeUser.");
+    console.log("user.accountData.id: " + user.accountData.id);
     done(null, user.accountData.id);
   });
 
