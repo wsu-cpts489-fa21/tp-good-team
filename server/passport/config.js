@@ -38,8 +38,11 @@ const passportConfig = (app) => {
         resave: false,
         saveUninitialized: false,
         cookie: {
-          secure: process.env.NODE_ENV === "development" ? false : true,
-          httpOnly: process.env.NODE_ENV === "development" ? false : true,
+          // secure: process.env.NODE_ENV === "development" ? false : true,
+          // httpOnly: process.env.NODE_ENV === "development" ? false : true,
+          secure: true,
+          sameSite: "none", // Set if using CORS
+          httpOnly: true,
           maxAge: 1000 * 60 * 5,
         }, // 5 minutes
       })
