@@ -44,6 +44,8 @@ const passportConfig = (app) => {
           secure: true,
           sameSite: "None", // Set if using CORS
           httpOnly: true,
+          domain: "speedscore-api.onrender.com/",
+          path: "/",
           maxAge: 1000 * 60 * 5,
         }, // 5 minutes
       })
