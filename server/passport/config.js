@@ -42,7 +42,7 @@ const passportConfig = (app) => {
           // secure: process.env.NODE_ENV === "development" ? false : true,
           // httpOnly: process.env.NODE_ENV === "development" ? false : true,
           secure: true,
-          sameSite: "none", // Set if using CORS
+          sameSite: "None", // Set if using CORS
           httpOnly: true,
           maxAge: 1000 * 60 * 5,
         }, // 5 minutes
