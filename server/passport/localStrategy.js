@@ -23,6 +23,7 @@ const localStrategy = new passportLocal.Strategy(
           thisUser.accountData.password
         );
         if (match) {
+          console.log("user found. PW matches. Returning done(null, thisUser)");
           return done(null, thisUser);
         } else {
           req.authError =
