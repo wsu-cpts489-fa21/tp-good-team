@@ -37,7 +37,7 @@ const passportConfig = (app) => {
         secret: process.env.SESSION_SECRET,
         resave: false,
         saveUninitialized: false,
-        cookie: { maxAge: 1000 * 60 * 5 }, // 5 minutes
+        cookie: { secure: true, maxAge: 1000 * 60 * 5 }, // 5 minutes
       })
     )
 
