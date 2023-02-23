@@ -84,7 +84,8 @@ authRoute.get("/auth/test", (req, res) => {
 //LOGIN route: Attempts to log in user using local strategy
 authRoute.post(
   "/auth/login",
-  passport.authenticate("local", { failWithError: true }),
+  passport.authenticate("local"),
+  // passport.authenticate("local", { failWithError: true }),
   (req, res) => {
     console.log("/login route reached: successful authentication.");
     //Redirect to app's main page; the /auth/test route should return true
