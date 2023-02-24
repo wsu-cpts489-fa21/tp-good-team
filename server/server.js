@@ -4,7 +4,7 @@
 //variables used in the server middleware.
 //////////////////////////////////////////////////////////////////////////
 //import path from 'path';
-import { URL } from "url";
+import { fileURLToPath, URL } from "url";
 import express from "express";
 import passportConfig from "./passport/config.js";
 import authRoute from "./routes/authRoutes.js";
@@ -29,6 +29,13 @@ import router from "./routes/root.js";
 import cors from "cors";
 import allowedOrigins from "./config/allowedOrigins.js";
 
+// So that we can serve public files to the API
+import { dirname } from "path";
+import path from "path";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+app.use("/", express.static(path.join(__dirname, "public")));
 // "mongodb+srv://" +
 // process.env.MONGODB_USER +
 // ":" +
@@ -81,6 +88,7 @@ app.use(cors(corsOptions));
 /////////////////////////////////////////////////////////////////////////
 
 passportConfig(app); //Configure session and passport
+
 app
   .use("/", router)
   // .use(express.static(buildPath))
