@@ -36,6 +36,10 @@ import path from "path";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 app.use("/", express.static(path.join(__dirname, "public")));
+
+if (process.env.NODE_ENV === "production") {
+  app.set("trust proxy", 1);
+}
 // "mongodb+srv://" +
 // process.env.MONGODB_USER +
 // ":" +
