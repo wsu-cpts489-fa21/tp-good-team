@@ -42,7 +42,6 @@ class FeedPage extends React.Component {
   };
 
   resetIcon = () => {
-    console.log("Reset Icon");
     this.setState({
       statusIcon: "check",
     });
@@ -69,7 +68,6 @@ class FeedPage extends React.Component {
   };
 
   async componentDidMount() {
-    console.log("FeedPage Mounted");
     const url = baseURL + "/posts/" + this.state.headId;
     // this.setState({ statusIcon: "spinner" });
 
@@ -86,7 +84,6 @@ class FeedPage extends React.Component {
 
   async componentDidUpdate() {
     if (this.state.update) {
-      console.log("Update true");
       const url = baseURL + "/posts/" + this.state.headId;
 
       // let res = await fetch(url);
@@ -99,11 +96,10 @@ class FeedPage extends React.Component {
           });
         });
       this.buildTable();
-    } else console.log("Update false");
+    }
   }
 
   buildTable = async () => {
-    console.log("building table");
     const table = [];
     for (let r = 0; r < this.state.objs.length; ++r) {
       if (this.hasBuddy(this.state.objs[r].userData.userName)) {
@@ -209,7 +205,7 @@ class FeedPage extends React.Component {
       title = userData.firstName + " created a post on " + postData.date + "!";
       body = postData.comment;
     } else {
-      console.log("Unexpected branch in FeedPage.js");
+      console.log("FeedPage: Unexpected branch");
     }
 
     this.setState({

@@ -13,8 +13,6 @@ const localStrategy = new passportLocal.Strategy(
   //userId contains the email address entered into the form and password
   //contains the password entered into the form.
   async (req, userId, password, done) => {
-    console.log("localStrategy: ");
-    console.log(req.headers["x-forwarded-for"]);
     let thisUser;
     try {
       thisUser = await User.findOne({ "accountData.id": userId });
@@ -24,7 +22,6 @@ const localStrategy = new passportLocal.Strategy(
           thisUser.accountData.password
         );
         if (match) {
-          console.log("user found. PW matches. Returning done(null, thisUser)");
           return done(null, thisUser);
         } else {
           req.authError =

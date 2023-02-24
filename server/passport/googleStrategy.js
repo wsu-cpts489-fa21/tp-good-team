@@ -20,12 +20,11 @@ const googleStrategy = new passportGoogle.Strategy(
    * - `serealizeUser()` on `currentUser`
    ***************************************************************** */
   async (accessToken, refreshToken, profile, done) => {
-    console.log("User authenticated through Google. In passport callback.");
+    // console.log("User authenticated through Google. In passport callback.");
     //Our convention is to build userId from displayName and provider
     const userId = `${profile.id}@${profile.provider}`;
     //See if document with this unique userId exists in database
     let currentUser = await User.findOne({ "accountData.id": userId });
-    console.log("CURRENTUSER: " + currentUser);
     if (!currentUser) {
       //Add this user to the database
       currentUser = await new User({

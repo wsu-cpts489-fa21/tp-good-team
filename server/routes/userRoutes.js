@@ -10,9 +10,9 @@ const saltRounds = 10;
 
 //READ user route: Retrieves the user with the specified userId from users collection (GET)
 userRoute.get("/users/:userId", async (req, res, next) => {
-  console.log(
-    "in /users route (GET) with userId = " + JSON.stringify(req.params.userId)
-  );
+  // console.log(
+  //   "in /users route (GET) with userId = " + JSON.stringify(req.params.userId)
+  // );
   try {
     let thisUser = await User.findOne({ "accountData.id": req.params.userId });
     if (!thisUser) {
@@ -188,12 +188,12 @@ userRoute.post("/users/:userId", async (req, res, next) => {
 
 //UPDATE user route: Updates a user account in the users collection (POST)
 userRoute.put("/users/:userId", async (req, res, next) => {
-  console.log(
-    "in /users update route (PUT) with userId = " +
-      JSON.stringify(req.params) +
-      " and body = " +
-      JSON.stringify(req.body)
-  );
+  // console.log(
+  //   "in /users update route (PUT) with userId = " +
+  //     JSON.stringify(req.params) +
+  //     " and body = " +
+  //     JSON.stringify(req.body)
+  // );
 
   if (!req.params.hasOwnProperty("userId")) {
     return res
@@ -295,7 +295,6 @@ userRoute.put("/users/:userId", async (req, res, next) => {
     );
     if (status.modifiedCount != 1) {
       //account could not be found
-      console.log("status: " + JSON.stringify(status));
       res
         .status(404)
         .send(
@@ -316,10 +315,10 @@ userRoute.put("/users/:userId", async (req, res, next) => {
 
 //DELETE user route: Deletes the document with the specified userId from users collection (DELETE)
 userRoute.delete("/users/:userId", async (req, res, next) => {
-  console.log(
-    "in /users route (DELETE) with userId = " +
-      JSON.stringify(req.params.userId)
-  );
+  // console.log(
+  //   "in /users route (DELETE) with userId = " +
+  //     JSON.stringify(req.params.userId)
+  // );
   try {
     let status = await User.deleteOne({ "accountData.id": req.params.userId });
     if (status.deletedCount != 1) {

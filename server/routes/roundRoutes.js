@@ -10,12 +10,12 @@ const roundRoute = express.Router();
 //CREATE round route: Adds a new round as a subdocument to
 //a document in the users collection (POST)
 roundRoute.post("/rounds/:userId", async (req, res, next) => {
-  console.log(
-    "in /rounds (POST) route with params = " +
-      JSON.stringify(req.params) +
-      " and body = " +
-      JSON.stringify(req.body)
-  );
+  // console.log(
+  //   "in /rounds (POST) route with params = " +
+  //     JSON.stringify(req.params) +
+  //     " and body = " +
+  //     JSON.stringify(req.body)
+  // );
   if (
     !req.body.hasOwnProperty("date") ||
     !req.body.hasOwnProperty("course") ||
@@ -61,7 +61,6 @@ roundRoute.post("/rounds/:userId", async (req, res, next) => {
       return res.status(201).send("Round successfully added to database.");
     }
   } catch (err) {
-    console.log(err);
     return res
       .status(400)
       .send(
@@ -73,9 +72,9 @@ roundRoute.post("/rounds/:userId", async (req, res, next) => {
 //READ round route: Returns all rounds associated with a given user in
 //the users collection (GET)
 roundRoute.get("/rounds/:userId", async (req, res) => {
-  console.log(
-    "in /rounds route (GET) with userId = " + JSON.stringify(req.params.userId)
-  );
+  // console.log(
+  //   "in /rounds route (GET) with userId = " + JSON.stringify(req.params.userId)
+  // );
   try {
     let thisUser = await User.findOne({ "accountData.id": req.params.userId });
     if (!thisUser) {
@@ -88,7 +87,6 @@ roundRoute.get("/rounds/:userId", async (req, res) => {
       return res.status(200).json(JSON.stringify(thisUser.rounds));
     }
   } catch (err) {
-    console.log();
     return res
       .status(400)
       .send(
@@ -103,9 +101,9 @@ roundRoute.get("/rounds/:userId", async (req, res) => {
 //in the users collection (PUT)
 //TO DO: Implement this route
 roundRoute.put("/rounds/:userId/:roundId", async (req, res) => {
-  console.log(
-    "in /rounds route (PUT) with id = " + JSON.stringify(req.params.roundId)
-  );
+  // console.log(
+  //   "in /rounds route (PUT) with id = " + JSON.stringify(req.params.roundId)
+  // );
   if (
     !req.body.hasOwnProperty("date") ||
     !req.body.hasOwnProperty("course") ||
@@ -136,7 +134,6 @@ roundRoute.put("/rounds/:userId/:roundId", async (req, res) => {
       { $set: { "rounds.$": req.body } }
     );
     if (status.modifiedCount != 1) {
-      console.log("status: " + JSON.stringify(status));
       res.status(404).send("Round not updated.");
     } else {
       res
@@ -155,7 +152,7 @@ roundRoute.put("/rounds/:userId/:roundId", async (req, res) => {
 //in the users collection (DELETE)
 //TO DO: Implement this route
 roundRoute.delete("/rounds/:userId/:roundId", async (req, res) => {
-  console.log("in /rounds route (DELETE) with id = " + req.params.roundId);
+  // console.log("in /rounds route (DELETE) with id = " + req.params.roundId);
 
   try {
     const status = await User.updateOne(
@@ -169,7 +166,6 @@ roundRoute.delete("/rounds/:userId/:roundId", async (req, res) => {
     );
 
     if (status.modifiedCount != 1) {
-      console.log("status: " + JSON.stringify(status));
       res.status(404).send("Round not delete.");
     } else {
       res

@@ -34,7 +34,6 @@ class RoundsPage extends React.Component {
   };
 
   initiateDeleteRound = (val) => {
-    console.log("initiate delete round");
     this.setState({ deleteId: val, deleteDialogOpen: true });
     this.props.toggleModalOpen();
   };

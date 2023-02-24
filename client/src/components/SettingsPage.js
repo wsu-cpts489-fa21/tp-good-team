@@ -215,7 +215,6 @@ class SettingsPage extends React.Component {
           streakBadge: this.props.userData.badges.streakBadge,
         },
       };
-      console.log(JSON.stringify(newUserData));
       await this.props.updateUserData(newUserData);
       // const result = await this.props.updateUserData(newUserData);
       this.props.toggleModalOpen();
@@ -327,7 +326,9 @@ class SettingsPage extends React.Component {
       case 4:
         return ultraStreak;
       default:
-        console.log("Default is Switch\n");
+        console.log(
+          "SettingsPage: getRoundsPlayedBadge: Default reached in Switch\n"
+        );
     }
   };
 
@@ -346,7 +347,9 @@ class SettingsPage extends React.Component {
       case 4:
         return ultraTime;
       default:
-        console.log("Default is Switch\n");
+        console.log(
+          "SettingsPage: getFastTimeBadge: Default reached in Switch\n"
+        );
     }
   };
 
@@ -365,7 +368,9 @@ class SettingsPage extends React.Component {
       case 4:
         return ultraStroke;
       default:
-        console.log("Default is Switch\n");
+        console.log(
+          "SettingsPage: getLowStrokesBadge: Default reached in Switch\n"
+        );
     }
   };
 
@@ -384,7 +389,9 @@ class SettingsPage extends React.Component {
       case 4:
         return ultraStreak;
       default:
-        console.log("Default is Switch\n");
+        console.log(
+          "SettingsPage: getStreakBadge: Default reached in Switch\n"
+        );
     }
   };
 
@@ -403,7 +410,9 @@ class SettingsPage extends React.Component {
       case 4:
         return "To earn this badge, play a total of 520 rounds in one day";
       default:
-        console.log("Default is Switch\n");
+        console.log(
+          "SettingsPage: getRoundsBadgeDesc: Default reached in Switch\n"
+        );
     }
   };
 
@@ -422,7 +431,9 @@ class SettingsPage extends React.Component {
       case 4:
         return "To earn this badge, accumulate a total of 35 minutes or less in one game";
       default:
-        console.log("Default is Switch\n");
+        console.log(
+          "SettingsPage: getFastTimeBadgeDesc: Default reached in Switch\n"
+        );
     }
   };
 
@@ -441,7 +452,9 @@ class SettingsPage extends React.Component {
       case 4:
         return "To earn this badge, accumulate 65 or less swings in one game";
       default:
-        console.log("Default is Switch\n");
+        console.log(
+          "SettingsPage: getLowStrokesBadgeDesc: Default reached in Switch\n"
+        );
     }
   };
 
@@ -460,7 +473,9 @@ class SettingsPage extends React.Component {
       case 4:
         return "To earn this badge, play 15 game in one day";
       default:
-        console.log("Default is Switch\n");
+        console.log(
+          "SettingsPage: getStreakBadgeDesc: Default reached in Switch\n"
+        );
     }
   };
 
@@ -479,7 +494,9 @@ class SettingsPage extends React.Component {
       case 4:
         return ultraTime;
       default:
-        console.log("Default is Switch\n");
+        console.log(
+          "SettingsPage: getFastTimeBadge: Default reached in Switch\n"
+        );
     }
   };
 
@@ -498,7 +515,9 @@ class SettingsPage extends React.Component {
       case 4:
         return ultraStroke;
       default:
-        console.log("Default is Switch\n");
+        console.log(
+          "SettingsPage: getLowStrokesBadge: Default reached in Switch\n"
+        );
     }
   };
 
@@ -517,18 +536,13 @@ class SettingsPage extends React.Component {
       case 4:
         return ultraStreak;
       default:
-        console.log("Default is Switch\n");
+        console.log(
+          "SettingsPage: getStreakBadge: Default reached in Switch\n"
+        );
     }
   };
   //TODO Render badge display
   renderBadgeDisplay = () => {
-    console.log(
-      this.props.userData.badges.roundsPlayedBadge,
-      this.props.userData.badges.fastTimeBadge,
-      this.props.userData.badges.lowStrokesBadge,
-      this.props.userData.badges.streakBadge
-    );
-
     let roundsBadge = (
       <img
         alt="Rounds played badge"
@@ -615,7 +629,7 @@ class SettingsPage extends React.Component {
           onSubmit={this.handleSubmit}
           id="editProfileForm"
           className="centered"
-          novalidate
+          noValidate
         >
           <div id="profileFormAccordion" className="accordion">
             {/*****************************************************************
@@ -880,7 +894,7 @@ class SettingsPage extends React.Component {
                         aria-describedby="bioDescr"
                         rows="5"
                         cols="40"
-                        maxlength="500"
+                        maxLength="500"
                       ></textarea>
                       <div id="bioDescr" className="form-text">
                         A short personal bio about your speedgolf journey.

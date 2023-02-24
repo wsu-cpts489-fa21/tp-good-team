@@ -77,7 +77,6 @@ class LoginPage extends React.Component {
     const aValid = await this.props.authenticateUser(email, password);
     if (aValid) {
       window.open("/", "_self"); //App.componentDidMount() takes it from here
-      console.log("LoginPage->submitCallback: aValid good!\n");
     } else {
       //at least one field is invalid--trigger re-render of LoginPage component
       this.setState({

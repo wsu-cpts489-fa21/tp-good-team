@@ -22,7 +22,6 @@ authRoute.get(
   "/auth/github/callback",
   passport.authenticate("github", { failureRedirect: "/" }),
   (req, res) => {
-    console.log("auth/github/callback reached.");
     res.redirect("/"); //sends user back to login screen;
     //req.isAuthenticated() indicates status
   }
@@ -48,7 +47,7 @@ authRoute.get(
   "/auth/google/callback",
   passport.authenticate("google", { failureRedirect: "/" }),
   (req, res) => {
-    console.log("auth/google/callback reached.");
+    // console.log("auth/google/callback reached.");
     res.redirect("/"); //sends user back to login screen;
     //req.isAuthenticated() indicates status
   }
@@ -57,7 +56,6 @@ authRoute.get(
 //LOGOUT route: Use passport's req.logout() method to log the user out and
 //redirect the user to the main app page. req.isAuthenticated() is toggled to false.
 authRoute.get("/auth/logout", (req, res) => {
-  console.log("/auth/logout reached. Logging out");
   req.logout();
   res.redirect("/");
 });
@@ -65,16 +63,12 @@ authRoute.get("/auth/logout", (req, res) => {
 //TEST route: Tests whether user was successfully authenticated.
 //Should be called from the React.js client to set up app state.
 authRoute.get("/auth/test", (req, res) => {
-  console.log("auth/test reached.");
-  console.log("req.user: " + req.user);
   const isAuth = req.isAuthenticated();
 
   if (isAuth) {
-    console.log("User is authenticated");
-    console.log("User record tied to session: " + JSON.stringify(req.user));
+    // console.log("User record tied to session: " + JSON.stringify(req.user));
   } else {
     //User is not authenticated
-    console.log("User is not authenticated");
   }
 
   //Return JSON object to client with results.
@@ -87,14 +81,11 @@ authRoute.post(
   passport.authenticate("local"),
   // passport.authenticate("local", { failWithError: true }),
   (req, res) => {
-    console.log("/login route reached: successful authentication.");
     //Redirect to app's main page; the /auth/test route should return true
     res.status(200).send("Login successful");
   },
   (err, req, res, next) => {
-    console.log("/login route reached: unsuccessful authentication");
     if (req.authError) {
-      console.log("req.authError: " + req.authError);
       res.status(401).send(req.authError);
     } else {
       res

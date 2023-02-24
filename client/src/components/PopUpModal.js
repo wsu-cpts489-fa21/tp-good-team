@@ -62,7 +62,6 @@ class PopUpModal extends React.Component {
   };
 
   renderComments = () => {
-    // console.log("comments: ", this.props.comments);
     const table = [];
     for (let i = 0; i < this.props.comments.length; i++) {
       table.push(

@@ -6,12 +6,12 @@ const commentRoute = express.Router();
 //CREATE comment route: Adds a new comment as a subdocument to
 //a document in the users collection (POST)
 commentRoute.post("/comments/:postId", async (req, res, next) => {
-  console.log(
-    "in /comments (POST) route with params = " +
-      JSON.stringify(req.params) +
-      " and body = " +
-      JSON.stringify(req.body)
-  );
+  // console.log(
+  //   "in /comments (POST) route with params = " +
+  //     JSON.stringify(req.params) +
+  //     " and body = " +
+  //     JSON.stringify(req.body)
+  // );
 
   if (
     !req.body.hasOwnProperty("username") ||
@@ -54,7 +54,6 @@ commentRoute.post("/comments/:postId", async (req, res, next) => {
       return res.status(201).send("Comment successfully added to database.");
     }
   } catch (err) {
-    console.log(err);
     return res
       .status(400)
       .send(

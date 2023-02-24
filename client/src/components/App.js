@@ -78,7 +78,6 @@ class App extends React.Component {
   componentDidMount() {
     document.addEventListener("click", this.handleClick, true);
     if (!this.state.authenticated) {
-      console.log("Attempting to fetch /auth/test");
       //Use /auth/test route to (re)-test authentication and obtain user data
       fetch(baseURL + "/auth/test", {
         credentials: "include",
@@ -86,13 +85,9 @@ class App extends React.Component {
         .then((response) => response.json())
         .then((obj) => {
           if (obj.isAuthenticated) {
-            console.log(
-              "App.js->componentDidMount: obj.isAuthenticated = true"
-            );
             this.logInUser(obj.user);
           }
         });
-      console.log("Fetch complete");
     }
   }
 
@@ -185,7 +180,6 @@ class App extends React.Component {
     });
     if (res.status === 200) {
       //successful login!
-      console.log("successful login: \n\n YA");
       return true;
     } else {
       //Unsuccessful login

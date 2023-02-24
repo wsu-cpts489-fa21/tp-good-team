@@ -14,12 +14,9 @@ class FeedTable extends React.Component {
     };
   }
 
-  componentDidMount() {
-    console.log("FeedTable Mounted");
-  }
+  componentDidMount() {}
 
   componentDidUpdate(prevState, thisState) {
-    console.log("feedTable Update");
     if (this.props.statusIcon === "spinner") {
       // this.props.resetIcon();
     }
@@ -34,7 +31,6 @@ class FeedTable extends React.Component {
   };
 
   render() {
-    console.log("FeedTable render method");
     return (
       <div
         id="feedTableTab"

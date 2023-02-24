@@ -6,9 +6,9 @@ const postRoute = express.Router();
  * Used to get the first element in the Posts database
  *****************************************************************/
 postRoute.get("/posts/:postId", async (req, res, next) => {
-  console.log(
-    "In /posts route (GET) with postId = " + JSON.stringify(req.params.postId)
-  );
+  // console.log(
+  //   "In /posts route (GET) with postId = " + JSON.stringify(req.params.postId)
+  // );
 
   try {
     const PostCursor = await Post.findOne({ _id: req.params.postId });
@@ -20,19 +20,17 @@ postRoute.get("/posts/:postId", async (req, res, next) => {
 
     res.status(200).json(prev);
     // res.status(200).json(prev[0]); //Only passes first obj
-  } catch {
-    console.log("XX GET Catch Block");
-  }
+  } catch {}
 });
 
 postRoute.post("/posts/:postId", async (req, res) => {
   //Print log
-  console.log(
-    "In /posts (POST) route with params = " +
-      JSON.stringify(req.params) +
-      " and body = " +
-      JSON.stringify(req.body)
-  );
+  // console.log(
+  //   "In /posts (POST) route with params = " +
+  //     JSON.stringify(req.params) +
+  //     " and body = " +
+  //     JSON.stringify(req.body)
+  // );
 
   //Verify data
   const validUserProps = ["firstName", "userName"];
@@ -102,7 +100,6 @@ postRoute.post("/posts/:postId", async (req, res) => {
       .status(201)
       .send("New post for'" + req.params.postId + "' successfully created");
   } catch (err) {
-    console.log("XXX posts/ POST Catch block");
     return res
       .status(400)
       .send("Unexpected error occurred while adding Post to database. " + err);
@@ -114,12 +111,12 @@ postRoute.post("/posts/:postId", async (req, res) => {
  *****************************************************************/
 postRoute.put("/posts/:postId", async (req, res) => {
   //Print log
-  console.log(
-    "In /posts (PUT) route with params = " +
-      JSON.stringify(req.params) +
-      " and body = " +
-      JSON.stringify(req.body)
-  );
+  // console.log(
+  //   "In /posts (PUT) route with params = " +
+  //     JSON.stringify(req.params) +
+  //     " and body = " +
+  //     JSON.stringify(req.body)
+  // );
 
   //Verify data
   const validUserProps = ["firstName", "userName"];
@@ -183,10 +180,7 @@ postRoute.put("/posts/:postId", async (req, res) => {
     }
   }
   try {
-    console.log("1: " + req.body.postData.fistBumpCount);
     const newFistBumpCount = req.body.postData.fistBumpCount;
-    console.log("NewCount: " + newFistBumpCount);
-    console.log("2: " + req.body.fistBumpCount);
     const status = await Post.updateOne(
       { _id: req.params.postId },
       // { $set: { "postData.fistBumpCount": newFistBumpCount } }
@@ -194,7 +188,6 @@ postRoute.put("/posts/:postId", async (req, res) => {
     );
     if (status.modifiedCount != 1) {
       //Post not found
-      console.log("status: " + JSON.stringify(status));
       res
         .status(404)
         .send(
@@ -206,7 +199,6 @@ postRoute.put("/posts/:postId", async (req, res) => {
         .send("New post for'" + req.params.postId + "' successfully created");
     }
   } catch (err) {
-    console.log("XXX posts/ POST Catch block");
     return res
       .status(400)
       .send("Unexpected error occurred while adding Post to database. " + err);

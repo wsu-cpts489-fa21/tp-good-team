@@ -15,7 +15,7 @@ const githubStrategy = new passportGithub.Strategy(
     callbackURL: process.env.DEPLOY_URL + "/auth/github/callback",
   },
   async (accessToken, refreshToken, profile, done) => {
-    console.log("User authenticated through GitHub. In passport callback.");
+    // console.log("User authenticated through GitHub. In passport callback.");
     //Our convention is to build userId from displayName and provider
     const userId = `${profile.username}@${profile.provider}`;
     //See if document with this unique userId exists in database

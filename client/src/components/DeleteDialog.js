@@ -3,7 +3,6 @@ import React from "react";
 
 class DeleteDialog extends React.Component {
   render() {
-    console.log("rendering delete dialog");
     return (
       <div
         id="deleteRoundDialog"

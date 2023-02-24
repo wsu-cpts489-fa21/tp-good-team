@@ -36,7 +36,6 @@ class PostPage extends React.Component {
   };
 
   render() {
-    console.log("Rendering Post modal");
     return (
       <>
         <div

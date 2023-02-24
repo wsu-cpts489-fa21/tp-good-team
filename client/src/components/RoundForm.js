@@ -218,7 +218,7 @@ class RoundForm extends React.Component {
           }
         } //End Score category
         else {
-          console.log("Error -- Too many arguments");
+          console.log("RoundForm: Error. Too many arguments");
         } //End Error category
 
         //Decrements the current badge tier we're using to compare
