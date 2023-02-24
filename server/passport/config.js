@@ -37,13 +37,13 @@ const passportConfig = (app) => {
       session({
         secret: process.env.SESSION_SECRET,
         resave: false,
-        saveUninitialized: true,
+        saveUninitialized: false,
         // saveUninitialized: false,
         cookie: {
           secure: process.env.NODE_ENV === "development" ? false : true,
           httpOnly: process.env.NODE_ENV === "development" ? false : true,
           sameSite: process.env.NODE_ENV === "development" ? "" : "none", // Set if using CORS
-          domain: process.env.NODE_ENV === "development" ? "" : ".onrender.com",
+          // domain: process.env.NODE_ENV === "development" ? "" : ".onrender.com",
           path: "/",
           maxAge: 1000 * 60 * 5,
         }, // 5 minutes
