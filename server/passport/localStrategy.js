@@ -14,6 +14,7 @@ const localStrategy = new passportLocal.Strategy(
   //contains the password entered into the form.
   async (req, userId, password, done) => {
     console.log("localStrategy: ");
+    console.log(req.headers["x-forwarded-for"]);
     let thisUser;
     try {
       thisUser = await User.findOne({ "accountData.id": userId });
