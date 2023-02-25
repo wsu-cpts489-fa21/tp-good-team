@@ -75,7 +75,7 @@ class CreateAccount extends React.Component {
       this.setState({ [event.target.name]: event.target.value });
       return;
     }
-    if (event.target.value.length == 0) {
+    if (event.target.value.length === 0) {
       this.setState({ profilePic: "" });
     } else {
       const self = this;
@@ -132,8 +132,9 @@ class CreateAccount extends React.Component {
           homeCourse: "",
           firstRound: "",
           personalBest: {
-            strokes: "",
-            minutes: "",
+            strokes: 0,
+            minutes: 0,
+            seconds: 0,
             course: "",
           },
           clubs: {
@@ -371,6 +372,7 @@ class CreateAccount extends React.Component {
               Profile Picture:
               <br />
               <img
+                alt="Profile"
                 id="acctProfilePicImage"
                 src={
                   this.state.profilePic === ""

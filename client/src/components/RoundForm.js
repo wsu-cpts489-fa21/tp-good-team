@@ -218,7 +218,7 @@ class RoundForm extends React.Component {
           }
         } //End Score category
         else {
-          console.log("Error -- Too many arguments");
+          console.log("RoundForm: Error. Too many arguments");
         } //End Error category
 
         //Decrements the current badge tier we're using to compare
@@ -243,11 +243,13 @@ class RoundForm extends React.Component {
 
     let flag = this.checkBadgesUnlocked();
 
-    const res = await this.props.saveRound(newRound, this.props.editId);
+    await this.props.saveRound(newRound, this.props.editId);
+    // const res = await this.props.saveRound(newRound, this.props.editId);
 
     if (flag) {
       this.props.toggleRenderNewBadgeToast();
-      let resBadges = await this.props.updateBadges(
+      // let resBadges = await this.props.updateBadges(
+      await this.props.updateBadges(
         this.state.roundsBadge,
         this.state.timeBadge,
         this.state.strokesBadge,
@@ -271,7 +273,7 @@ class RoundForm extends React.Component {
         tabIndex="0"
       >
         <h1 id="roundFormHeader" className="mode-page-header">
-          {this.props.mode == RoundsMode.LOGROUND ? "Log Round" : "Edit Round"}
+          {this.props.mode === RoundsMode.LOGROUND ? "Log Round" : "Edit Round"}
         </h1>
         <form id="logRoundForm" onSubmit={this.handleSubmit} noValidate>
           <div className="mb-3 centered">
@@ -445,7 +447,7 @@ class RoundForm extends React.Component {
           </div>
 
           <div className="mode-page-btn-container">
-            {this.state.btnLabel == "Update Round" ? (
+            {this.state.btnLabel === "Update Round" ? (
               <button
                 id="updateRoundBtn"
                 type="submit"
@@ -453,9 +455,10 @@ class RoundForm extends React.Component {
               >
                 <FontAwesomeIcon
                   icon={this.state.btnIcon}
-                  className={this.state.btnIcon == "spinner" ? "fa-spin" : ""}
+                  className={this.state.btnIcon === "spinner" ? "fa-spin" : ""}
                 />
-                <span>&nbsp;{(this.state.btnLabel = "Update Round")}</span>
+                {/* <span>&nbsp;{(this.state.btnLabel = "Update Round")}</span> */}
+                <span>&nbsp; {this.state.btnLabel}</span>
               </button>
             ) : (
               <button
@@ -465,9 +468,9 @@ class RoundForm extends React.Component {
               >
                 <FontAwesomeIcon
                   icon={this.state.btnIcon}
-                  className={this.state.btnIcon == "spinner" ? "fa-spin" : ""}
+                  className={this.state.btnIcon === "spinner" ? "fa-spin" : ""}
                 />
-                <span>&nbsp;{this.state.btnLabel == "Log Round"}</span>
+                <span>&nbsp;{this.state.btnLabel === "Log Round"}</span>
               </button>
             )}
 
@@ -478,7 +481,7 @@ class RoundForm extends React.Component {
             >
               <FontAwesomeIcon
                 icon={this.state.btnIcon}
-                className={this.state.btnIcon == "spinner" ? "fa-spin" : ""}
+                className={this.state.btnIcon === "spinner" ? "fa-spin" : ""}
               />
               <span>&nbsp;{this.state.btnLabel}</span>
             </button>

@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import AppMode from "./AppMode.js";
+// import AppMode from "./AppMode.js";
 import CreateAccount from "./CreateAccount.js";
 
 class LoginPage extends React.Component {
@@ -241,10 +241,11 @@ class LoginPage extends React.Component {
             id="loginBtn"
             className="btn btn-primary fm-primary-btn"
           >
-            <FontAwesomeIcon
+            test
+            {/* <FontAwesomeIcon
               icon={this.state.loginBtnIcon}
-              className={this.state.loginBtnIcon == "spinner" ? "fa-spin" : ""}
-            />
+              className={this.state.loginBtnIcon === "spinner" ? "fa-spin" : ""}
+            /> */}
             &nbsp;{this.state.loginBtnLabel}
           </button>
         </form>
@@ -275,7 +276,7 @@ class LoginPage extends React.Component {
           >
             <FontAwesomeIcon
               icon={this.state.githubIcon}
-              className={this.state.githubIcon == "spinner" ? "fa-spin" : ""}
+              className={this.state.githubIcon === "spinner" ? "fa-spin" : ""}
             />
             &nbsp;{this.state.githubLabel}
           </button>
@@ -290,7 +291,7 @@ class LoginPage extends React.Component {
           >
             <FontAwesomeIcon
               icon={this.state.googleIcon}
-              className={this.state.googleIcon == "spinner" ? "fa-spin" : ""}
+              className={this.state.googleIcon === "spinner" ? "fa-spin" : ""}
             />
             &nbsp;{this.state.googleLabel}
           </button>
